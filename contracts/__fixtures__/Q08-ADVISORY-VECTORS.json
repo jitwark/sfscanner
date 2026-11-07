@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "q08-advisory-contract-fixture-v1",
+  "authority": "SYNTHETIC_CONTRACT_VECTOR_NOT_AUTHENTIC_LABEL_PIN_OR_COMPLETENESS",
+  "targetBoundary": [
+    {
+      "id": "two-exact-installed-versions",
+      "input": {
+        "communityPackages": [
+          {
+            "name": "pkg",
+            "version": "1.2.3"
+          },
+          {
+            "name": "pkg",
+            "version": "2.0.0"
+          }
+        ]
+      },
+      "currentError": "DUPLICATE_PACKAGE",
+      "futureExpectation": "two-distinct-package-version-pairs",
+      "observedCurrentError": "DUPLICATE_PACKAGE"
+    },
+    {
+      "id": "old-reader-explicit-v3",
+      "input": {
+        "schemaVersion": "scanner-target-v3",
+        "communityPackages": [
+          {
+            "name": "pkg",
+            "version": "1.2.3"
+          }
+        ]
+      },
+      "futureExpectation": "accepted-by-v3-only",
+      "observedCurrentError": "UNKNOWN_KEY: target.schemaVersion"
+    },
+    {
+      "id": "strict-raw-version",
+      "input": {
+        "communityPackages": [
+          {
+            "name": "pkg",
+            "version": "v1.2.3"
+          }
+        ]
+      },
+      "currentError": "INVALID_PACKAGE_VERSION",
+      "futureExpectation": "reject-no-coercion",
+      "observedCurrentError": "INVALID_PACKAGE_VERSION"
+    }
+  ],
+  "currentSingleExactVersionAccepted": true,
+  "requiredFutureCoveragePairs": [
+    {
+      "packageName": "pkg",
+      "packageVersion": "1.2.3"
+    },
+    {
+      "packageName": "pkg",
+      "packageVersion": "2.0.0"
+    }
+  ],
+  "requiredFutureRowDiscriminators": [
+    {
+      "advisoryId": "FIXTURE-ADVISORY-1",
+      "packageName": "pkg",
+      "installedVersion": "1.2.3"
+    },
+    {
+      "advisoryId": "FIXTURE-ADVISORY-1",
+      "packageName": "pkg",
+      "installedVersion": "2.0.0"
+    }
+  ],
+  "mandatorySemanticVectors": [
+    {
+      "id": "no-request",
+      "expectedState": "NOT_REQUESTED",
+      "impliesSafety": false
+    },
+    {
+      "id": "declared-empty",
+      "expectedState": "NO_DECLARED_PACKAGES",
+      "impliesNoDependencies": false
+    },
+    {
+      "id": "unverified-inventory",
+      "expectedState": "REFUSED",
+      "expectedReason": "INVENTORY_UNVERIFIED"
+    },
+    {
+      "id": "no-approved-snapshot",
+      "expectedState": "UNAVAILABLE",
+      "expectedReason": "NO_ADMITTED_SNAPSHOT",
+      "everyDeclaredPackageCoverage": "UNKNOWN"
+    },
+    {
+      "id": "reviewed-complete-zero-record-scope",
+      "expectedState": "COMPLETE",
+      "requiresApprovedExactCompleteness": true,
+      "impliesSafety": false
+    }
+  ],
+  "twoVersionCriterionCurrentlyFulfilled": false
+}

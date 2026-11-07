@@ -6,7 +6,7 @@ import { projectResultV2ToV1 } from '../compat/v1-projector';
 import { createAdvisoryCatalogueDigest } from './advisory-admission';
 import { buildSyntheticAdmittedAdvisoryFactsV3, type SyntheticAdvisoryAdmissionV3 } from './synthetic-advisory-evaluation';
 import type { AdvisoryRecordV2 } from './advisory-schema';
-import vectors from '../../../../docs/superpowers/plans/2026-10-21-scanner-deepseek/Q08-ADVISORY-VECTORS.json';
+import vectors from '../../../../contracts/__fixtures__/Q08-ADVISORY-VECTORS.json';
 
 const target = validateTargetContextV3({ schemaVersion: 'scanner-target-v3', communityPackages: [
   { name: 'pkg', version: '1.2.3' }, { name: 'pkg', version: '2.0.0' },

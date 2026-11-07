@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import vectors from '../docs/superpowers/plans/2026-10-21-scanner-deepseek/Q04-FIELD-FACT-VECTORS.json';
+import vectors from './__fixtures__/Q04-FIELD-FACT-VECTORS.json';
 import type { FindingCandidateV2, SafeFactV2, SafeFactValueV2, TraceV2 } from './scanner-v2-evidence';
 import { validateFieldFlowCoherenceV1, validateFieldFlowWitnessesV1 } from './scanner-v2-field-flow-coherence';
 

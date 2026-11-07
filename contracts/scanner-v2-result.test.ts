@@ -2,7 +2,7 @@ import { notRequestedAdvisoryFixture as advisoryFixture } from './scanner-v2-adv
 import { createTargetContextDigestV3 } from './scanner-target-v3';
 import { createRequire } from 'node:module';
 import scannerResultSchema from '../schemas/scanner-result-v2.schema.json';
-import fieldFlowVectors from '../docs/superpowers/plans/2026-10-21-scanner-deepseek/Q04-FIELD-FACT-VECTORS.json';
+import fieldFlowVectors from './__fixtures__/Q04-FIELD-FACT-VECTORS.json';
 import { describe, expect, it } from 'vitest';
 import { validateScannerResultV2, type SafeFactV2, type ScannerResultV2 } from './scanner-v2-result';
 

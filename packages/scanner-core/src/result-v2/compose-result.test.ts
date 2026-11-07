@@ -17,7 +17,7 @@ import { scheduleCapabilities, type AnalyzerContextV2, type CapabilityCandidateV
 import { RULE_PACK_DIGEST_V2 } from '../capabilities/candidate-validator';
 import { createAdmittedRuleView } from '../v2/admitted-registry';
 import { validateTargetContextV3 } from '../semantics/target-context';
-import fieldFlowVectors from '../../../../docs/superpowers/plans/2026-10-21-scanner-deepseek/Q04-FIELD-FACT-VECTORS.json';
+import fieldFlowVectors from '../../../../contracts/__fixtures__/Q04-FIELD-FACT-VECTORS.json';
 
 const digest = (letter: string): string => letter.repeat(64);
 const source = { pointer: '', occurrencePath: [], astNodeId: digest('a'), span: null } as const;

@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { sha256 } from '@noble/hashes/sha2.js';
 import { bytesToHex } from '@noble/hashes/utils.js';
 import { DEFAULT_SCANNER_LIMITS_V2 } from '@hub/contracts';
-import fieldFlowVectors from '../../../../docs/superpowers/plans/2026-10-21-scanner-deepseek/Q04-FIELD-FACT-VECTORS.json';
+import fieldFlowVectors from '../../../../contracts/__fixtures__/Q04-FIELD-FACT-VECTORS.json';
 import type { SafeFactV2, SafeFactValueV2 } from '../../../../contracts/scanner-v2-evidence';
 import { canonicalSafeFactSubjectIdentity } from '../facts/safe-fact-validator';
 import { canonicalizeJson } from '../canonical-json';

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "q04-field-fact-contract-fixture-v1",
+  "authority": "SYNTHETIC_CONTRACT_VECTOR_NOT_MODEL_OR_PROFILE_ADMISSION",
+  "identityContexts": [
+    {
+      "semanticSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "semanticSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "facts": [
+    {
+      "factId": "20ec0fd5991bcf71b25754bd50c1c47dd4f84b21d94ee76b4ea60639f8139653",
+      "kind": "dataflow.provenance.v1",
+      "subject": {
+        "kind": "NODE",
+        "node": {
+          "ordinal": 0,
+          "source": {
+            "pointer": "/nodes/0",
+            "occurrencePath": [
+              0,
+              0
+            ],
+            "astNodeId": "ce2de4cd8d2f80207fecdc4b09fe500ebdeaeda979f56168ef503926c5b65210",
+            "span": {
+              "start": {
+                "line": 1,
+                "column": 11,
+                "utf16Offset": 10,
+                "utf8ByteOffset": 10
+              },
+              "end": {
+                "line": 1,
+                "column": 90,
+                "utf16Offset": 89,
+                "utf8ByteOffset": 89
+              }
+            }
+          },
+          "explicitId": "source",
+          "name": "Source",
+          "identityDigest": "4153e05fc347007bb0bd6042969c5b8988352fea0a59c68ac33b328388e77b25"
+        }
+      },
+      "properties": {
+        "sourceNodeOrdinal": 0,
+        "sourceNodeDigest": "4153e05fc347007bb0bd6042969c5b8988352fea0a59c68ac33b328388e77b25",
+        "sourceFieldPath": [
+          "body",
+          "cmd"
+        ],
+        "taintChannel": "CONFIDENTIALITY",
+        "taintLabels": [
+          "WEBHOOK_BODY"
+        ]
+      }
+    },
+    {
+      "factId": "489fe74f2b7e4b20dbedc99644b4db67113b41907a07906f8efdc42b894357f7",
+      "kind": "dataflow.summary.v3",
+      "subject": {
+        "kind": "NODE",
+        "node": {
+          "ordinal": 1,
+          "source": {
+            "pointer": "/nodes/1",
+            "occurrencePath": [
+              0,
+              1
+            ],
+            "astNodeId": "6cba2a3788ccfb57a796da6a86019f347eea19aa222fa3d2d4aa69aebe02ec81",
+            "span": {
+              "start": {
+                "line": 1,
+                "column": 91,
+                "utf16Offset": 90,
+                "utf8ByteOffset": 90
+              },
+              "end": {
+                "line": 1,
+                "column": 201,
+                "utf16Offset": 200,
+                "utf8ByteOffset": 200
+              }
+            }
+          },
+          "explicitId": "sink",
+          "name": "Sink",
+          "identityDigest": "04f95d33b445474dcee4b7f2885a4467f0512d5a1869a6ef7a578b791683dfb4"
+        }
+      },
+      "properties": {
+        "flowKind": "TAINT_SINK",
+        "sinkClass": "COMMAND",
+        "sinkParameterPath": "/command",
+        "sinkChannel": "DATA",
+        "edgeChannel": "DATA",
+        "taintChannel": "CONFIDENTIALITY",
+        "taintLabels": [
+          "WEBHOOK_BODY"
+        ],
+        "sourceProvenanceFactId": "20ec0fd5991bcf71b25754bd50c1c47dd4f84b21d94ee76b4ea60639f8139653",
+        "sourceNodeOrdinal": 0,
+        "sourceNodeDigest": "4153e05fc347007bb0bd6042969c5b8988352fea0a59c68ac33b328388e77b25",
+        "sourceFieldPath": [
+          "body",
+          "cmd"
+        ],
+        "sinkFieldPath": [
+          "cmd"
+        ],
+        "knowledge": "KNOWN",
+        "unknownReasons": [],
+        "omittedAtoms": 0,
+        "omittedSanitizers": 0,
+        "sanitizedFor": [],
+        "reachability": "CONFIGURED"
+      }
+    },
+    {
+      "factId": "edd617154d4f0ced350ef43adf913e442d62d526ecea13f8c9d85b9710f8597d",
+      "kind": "dataflow.coverage.v1",
+      "subject": {
+        "kind": "WORKFLOW"
+      },
+      "properties": {
+        "capabilityId": "taint-confidentiality",
+        "coverageStatus": "COMPLETE",
+        "fieldsExamined": 2,
+        "knownFields": 2,
+        "knownEmptyFields": 0,
+        "unknownFields": 0,
+        "positiveFields": 2,
+        "emittedFlows": 1,
+        "suppressedFlows": 0,
+        "omittedAtoms": 0,
+        "omittedSanitizers": 0,
+        "unknownReasons": [],
+        "taintChannels": [
+          "CONFIDENTIALITY"
+        ],
+        "sinkChannels": [
+          "DATA"
+        ],
+        "edgeChannels": [
+          "DATA"
+        ],
+        "unmappedSources": 0,
+        "unmappedSinks": 0,
+        "unmappedPaths": 0,
+        "redactedPaths": 0,
+        "invalidTokens": 0,
+        "witnessUnavailable": 0,
+        "omittedTraceSteps": 0
+      }
+    }
+  ],
+  "observedCurrentOldReader": [
+    {
+      "kind": "dataflow.provenance.v1",
+      "result": {
+        "ok": false,
+        "code": "SAFE_FACT_REJECTED",
+        "reason": "UNKNOWN_FACT_KIND"
+      }
+    },
+    {
+      "kind": "dataflow.summary.v3",
+      "result": {
+        "ok": false,
+        "code": "SAFE_FACT_REJECTED",
+        "reason": "UNKNOWN_FACT_KIND"
+      }
+    },
+    {
+      "kind": "dataflow.coverage.v1",
+      "result": {
+        "ok": false,
+        "code": "SAFE_FACT_REJECTED",
+        "reason": "UNKNOWN_FACT_KIND"
+      }
+    }
+  ],
+  "observedIdentity": {
+    "nodeResultScoped": true,
+    "workflowBound": true
+  },
+  "futureValidatorExpected": "ACCEPT_ONLY_AFTER_REVIEWED_NEW_REGISTRY_AND_COHERENCE_IMPLEMENTATION"
+}

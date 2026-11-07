@@ -8,7 +8,7 @@ import { canonicalSafeFactSubjectIdentity } from '../facts/safe-fact-validator';
 import { encodeIdentityTuple } from '../workflow-v2/node-edge-identity';
 import { createCandidateTraceId, createFactId, createTraceId } from './identities';
 import { rekeyCandidates, rekeyFacts } from './rekey-evidence';
-import vectors from '../../../../docs/superpowers/plans/2026-10-21-scanner-deepseek/Q04-FIELD-FACT-VECTORS.json';
+import vectors from '../../../../contracts/__fixtures__/Q04-FIELD-FACT-VECTORS.json';
 
 const semanticSha256 = 'c'.repeat(64);
 const hash = (parts: readonly string[]) => bytesToHex(sha256(new TextEncoder().encode(encodeIdentityTuple(parts))));
