@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2024",
+    "lib": ["ES2024"],
+    "types": ["node"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../app/*"]
+    }
+  },
+  // noUncheckedIndexedAccess is deferred because pipeline imports app sources owned by app; re-enable after extracting scanner into a shared package.
+  "include": ["**/*.ts", "**/*.mjs"],
+  "exclude": ["node_modules", ".work"]
+}

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "message-mcp",
+  "cases": [
+    {
+      "id": "message-mcp-slack-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-send-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-post-message-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.2.0",
+      "operation": "postMessage",
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.4.2",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-authenticated-bot-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-authenticated-webhook-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.1.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-error-continue-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-retry-bounded-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.5.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-garbage-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-unknown-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-unknown-credentials-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.1.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.slack",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-slack-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-slack-prerelease-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "0.1.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-slack-unmatched-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.slackDeprecated",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-slack-unsupported-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "0.8.0",
+      "operation": "unsupportedOp",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "database-file",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "database-file.postgres": {
+      "semanticId": "database-file.postgres",
+      "nodeType": "n8n-nodes-base.postgres",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/operation",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/query",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/postgres"
+      ],
+      "destinationPaths": [
+        "/options/database",
+        "/options/host"
+      ],
+      "effects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "endpoints": [
+        {
+          "path": "/query",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "31da2afd8b00d8543d82093a39f9c4d6d82ad942707e274d5d03bf04a907f4ea",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "database-file.mysql": {
+      "semanticId": "database-file.mysql",
+      "nodeType": "n8n-nodes-base.mySql",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/operation",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/query",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/mySql"
+      ],
+      "destinationPaths": [
+        "/options/database",
+        "/options/host"
+      ],
+      "effects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "endpoints": [
+        {
+          "path": "/query",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "3b32421a9e2a1087eca6064cf2e0ed7e32c97cc128c36331fcac1a0e7dead6f6",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "database-file.read-binary-file": {
+      "semanticId": "database-file.read-binary-file",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/filePath",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [
+        "/filePath"
+      ],
+      "effects": [
+        "READ_FILE"
+      ],
+      "endpoints": [
+        {
+          "path": "/filePath",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "CONFIDENTIALITY"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "56525a3ebb326d7d4629d9a4c3192125179a9023e069cec344cf0b97c8b6c8fe",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "database-file.write-binary-file": {
+      "semanticId": "database-file.write-binary-file",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/fileName",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [
+        "/fileName"
+      ],
+      "effects": [
+        "WRITE_FILE"
+      ],
+      "endpoints": [
+        {
+          "path": "/fileName",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "INTEGRITY"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [
+        "/fileName"
+      ],
+      "errorMode": "UNKNOWN",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "5f6e4f64a2636b8a77779ce8524a39a56df1337e7ac9d0474374025663db4ecc",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "postgres-default-query",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.postgres",
+      "version": "1.4.2",
+      "operation": null,
+      "expectedSemanticId": "database-file.postgres"
+    },
+    {
+      "id": "mysql-credentials-and-destination",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "999.0.0",
+      "operation": "insert",
+      "expectedSemanticId": "database-file.mysql"
+    },
+    {
+      "id": "read-file-dynamic-destination",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "dynamicDestination": "={{ $json.filePath }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "write-file-overwrite-path",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "dynamicDestination": "={{ $json.outputPath }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "database-file-unknown-node",
+      "kind": "UNKNOWN",
+      "nodeType": "custom.database",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "database-file-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.postgres",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null
+    }
+  ]
+}

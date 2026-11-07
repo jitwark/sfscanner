@@ -1,0 +1,1015 @@
+{
+  "schemaVersion": "semantic-source-receipts-v1",
+  "note": "Identity-only provenance receipts for the two pinned upstream packages that the built-in semantic catalogue records describe. Every file digest below is a SHA-256 computed from the published npm tarball on 2026-10-17 by the AI review worker for packet B1a (review identity: scanner-core-semantics-review; this is an agent review, not a human sign-off); the upstream bytes are deliberately not retained in this repository. Deviation from the plan's retained-snapshot wording, with reason: n8n-nodes-base and @n8n/n8n-nodes-langchain are published under 'SEE LICENSE IN LICENSE.md', which is not an OSI licence, so no upstream source bytes may be copied into this repository and the repository's link-only rights posture applies (same class of reason as RULING-2). The receipt therefore binds package name, version, tarball URL and digest, registry integrity, per-file path, byte length and SHA-256, review date and review identity, with a documented re-fetch command in docs/audit/2026-10-17-remediation/B1a-report.md, without retaining the bytes. documentsRecords maps each catalogue semanticId to the upstream files that were reviewed for that record's claims. For flow-control.filter, google-workspace.google-drive, and flow-control.aggregate, documentsRecords also covers the statically referenced package-local .js/.json implementation closure observed on 2026-10-27 with no unresolved relative imports; this source identity pinning does not claim complete semantics or include external package and host runtime dependencies.",
+  "packages": [
+    {
+      "package": "n8n-nodes-base",
+      "version": "2.15.1",
+      "registry": "https://registry.npmjs.org",
+      "tarballUrl": "https://registry.npmjs.org/n8n-nodes-base/-/n8n-nodes-base-2.15.1.tgz",
+      "tarballSha256": "43e200c1cbe1c4a9f967efa079facb00cc3cbe51ede23c9a3cfc66c9a4051406",
+      "distIntegrity": "sha512-E4/vb8sBb4tzZSFoBAP2EigAHSc3uEn52RdfyTu1C7xPBNLYDfw5y5OxvMmHBQ8of9YQwcK9AQsoEsggyu7ztQ==",
+      "fetchedAt": "2026-10-17",
+      "files": [
+        {
+          "path": "dist/credentials/GmailOAuth2Api.credentials.js",
+          "bytes": 917,
+          "sha256": "d26a4ac3387ceec1f0edfe09c9d9a375dda82825b4588c8a35edf9e5ff5e4fb6"
+        },
+        {
+          "path": "dist/credentials/MySql.credentials.js",
+          "bytes": 2661,
+          "sha256": "2b887261e175c08a804577a13dad6cd2dc160668cb480ae668f2d04a56b61380"
+        },
+        {
+          "path": "dist/credentials/Postgres.credentials.js",
+          "bytes": 2485,
+          "sha256": "8d2f881eb6fa169b1b1fb34059424767df54e717850008274308c08a4077e905"
+        },
+        {
+          "path": "dist/credentials/TelegramApi.credentials.js",
+          "bytes": 1034,
+          "sha256": "5b14055bf4688b6a56cac314e9c6ca7937bdd6e7a9067f043ccadaae33016fe5"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/gmail/v1/index.schema.js",
+          "bytes": 1128,
+          "sha256": "78a51412dbf0119e846a137b4ca3855cca480deb5a7f54694d3965b5b2008376"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/gmail/v2/index.schema.js",
+          "bytes": 1111,
+          "sha256": "346a9b3f9166c8b1a4749c49cdb6729a4c8a14490524067d4aadbdbb58bd66d8"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/gmail/v21/index.schema.js",
+          "bytes": 1113,
+          "sha256": "ebcad04fe71130c425d963bf7fa0ed69ea692e3a9fa6e2f17d9c8b7002a6d9df"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/gmail/v22/index.schema.js",
+          "bytes": 1113,
+          "sha256": "cea2ae376538c3009fd94346ded5f10a8fd4c85fde1121edd82540436f39de5c"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/splitOut/v1.schema.js",
+          "bytes": 1431,
+          "sha256": "b4937c0a04a9ef31a9a4deb6628d7a84c64b468163e909b9df1fd603a83a5f31"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/telegram/v1/index.schema.js",
+          "bytes": 1114,
+          "sha256": "0b6219091e0481eff54e45098dd86d233da61954b24d3fa9a7dc52de3a9b3351"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/telegram/v11/index.schema.js",
+          "bytes": 1116,
+          "sha256": "06d4c646a0aeee2f4d01674e3ab725aef3377253e33061cd02d169791e0d5dce"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/telegram/v12/index.schema.js",
+          "bytes": 1116,
+          "sha256": "7ee3807d5b76829555b55ab27bb459f2ccbd43e8e489fbaa678a55af852307c7"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/wait/v1.schema.js",
+          "bytes": 7719,
+          "sha256": "1d136e35600febc0124585e6483e4e453101b748947455c4275973ff69f5e355"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-base/wait/v11.schema.js",
+          "bytes": 7721,
+          "sha256": "6dc663befce6251b1ecc7906510460b9a5dc260209858f6c8e4ce4e140f8ab65"
+        },
+        {
+          "path": "dist/nodes/Code/Code.node.js",
+          "bytes": 7874,
+          "sha256": "b86fceda544451fce8dbdadf7f68c0417b79f1d6f3a79d6986d5f0f2d0027289"
+        },
+        {
+          "path": "dist/nodes/Code/descriptions/JavascriptCodeDescription.js",
+          "bytes": 2136,
+          "sha256": "8ac750eb00492b3cb8ffbb7d4165489370f965aab45b1cb50b72ace59dbd8452"
+        },
+        {
+          "path": "dist/nodes/EmailSend/EmailSend.node.js",
+          "bytes": 1004,
+          "sha256": "d76e18808343c4d0a7c35db3213e8e69bdb684cdda5c613e60b184da12c76b4c"
+        },
+        {
+          "path": "dist/nodes/EmailSend/v2/EmailSendV2.node.js",
+          "bytes": 4489,
+          "sha256": "712169b216a6edc2d2a10ec378bd6ae8871a1ecb76387e670eacb78a113bc37a"
+        },
+        {
+          "path": "dist/nodes/EmailSend/v2/descriptions.js",
+          "bytes": 759,
+          "sha256": "5516434cbebe759f4620cd1d06453e01e0a19f09282b9726467ea3274f8bfefa"
+        },
+        {
+          "path": "dist/nodes/EmailSend/v2/send.operation.js",
+          "bytes": 8807,
+          "sha256": "6faad70b99bc41f757bb53f02784a5925cba8b9d33246d785ba613a47ff13134"
+        },
+        {
+          "path": "dist/nodes/ExecuteCommand/ExecuteCommand.node.js",
+          "bytes": 3666,
+          "sha256": "e710b4f054ecb8002dd3fe6d02f977bce00fb0722d23b7cc7c2c8bcc8834338a"
+        },
+        {
+          "path": "dist/nodes/ExecuteWorkflow/ExecuteWorkflow/ExecuteWorkflow.node.js",
+          "bytes": 19378,
+          "sha256": "5f351ab2c88cfc14d192530ccdb869ccaee135d8267a1491535037b4011b28a0"
+        },
+        {
+          "path": "dist/nodes/ExecuteWorkflow/ExecuteWorkflowTrigger/ExecuteWorkflowTrigger.node.js",
+          "bytes": 10448,
+          "sha256": "e75d626746d865a458d57c496d85c444fa72a73a7ade7e6018f91e2f6b9e7195"
+        },
+        {
+          "path": "dist/nodes/Filter/Filter.node.js",
+          "bytes": 1120,
+          "sha256": "a1dcf3158ea24bcf32cc5c9c816f4b654a5eeb2152c8c8677070d710d158e13b"
+        },
+        {
+          "path": "dist/nodes/Filter/V1/FilterV1.node.js",
+          "bytes": 17595,
+          "sha256": "d56c59c8535c350211946fe146472f2b249a63ac35dc3a717b92467fec2e423c"
+        },
+        {
+          "path": "dist/nodes/Filter/V1/GenericFunctions.js",
+          "bytes": 3895,
+          "sha256": "ec17c9a4049d2c0386f1c423180dede2530bb3f1a16dad31546c60d36130b369"
+        },
+        {
+          "path": "dist/nodes/Filter/V2/FilterV2.node.js",
+          "bytes": 5158,
+          "sha256": "7fab400df6f723fa537dee6937c43c88d8bd88b509635736e2d1046b06a1c4b6"
+        },
+        {
+          "path": "dist/nodes/Form/FormTrigger.node.js",
+          "bytes": 1372,
+          "sha256": "86c7128a1256494968b7fff4908e36956447eb23b09cfca8c5cfb15f6b008a9f"
+        },
+        {
+          "path": "dist/nodes/Form/common.descriptions.js",
+          "bytes": 24412,
+          "sha256": "36e8efc3f3f2cb6030aaeec30bac9ac3c564fc6fa54607c209adf7c708c0b6fa"
+        },
+        {
+          "path": "dist/nodes/Form/v2/FormTriggerV2.node.js",
+          "bytes": 7991,
+          "sha256": "4c20e9dd7b48d7019c1f30762dfa6e0261f050c7328a38901dcf0b64b3585941"
+        },
+        {
+          "path": "dist/nodes/Git/Git.node.js",
+          "bytes": 28226,
+          "sha256": "c42647afb36dcf5abe558c29090d8edeb26932f3e53c01db250b58fa35b2a9f7"
+        },
+        {
+          "path": "dist/nodes/Git/descriptions/CloneDescription.js",
+          "bytes": 567,
+          "sha256": "d7931770204f7d8416124ea47e62ef8afbb8b86a64d98af6adfdbe0a2538e270"
+        },
+        {
+          "path": "dist/nodes/Git/descriptions/CommitDescription.js",
+          "bytes": 1492,
+          "sha256": "022963b6ed776114e1e5f488019a912651b5e14f3d40c559ab9d8857066bf540"
+        },
+        {
+          "path": "dist/nodes/Git/descriptions/PushDescription.js",
+          "bytes": 1106,
+          "sha256": "710634a4f149c7f6e57b72ad3ce99c261d62f0fb4bf0fc430f6c602ca7b36540"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/GoogleDrive.node.js",
+          "bytes": 1161,
+          "sha256": "a3d84f1fd1bfc0974f0fc70f71c62630c0ae2a27ff20920d25b1d0e764bb6d7a"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v1/GenericFunctions.js",
+          "bytes": 2752,
+          "sha256": "0f2168a2ccf243e5db55d12853056ac80b46ab45e54943e1a9ba30b0493e831e"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v1/GoogleDriveV1.node.js",
+          "bytes": 106744,
+          "sha256": "620faf9978a66288551057d75cde6700c6c9a4091ecd35d26e2828f4dbf3f663"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v1/SearchFunctions.js",
+          "bytes": 2194,
+          "sha256": "38d7f1d65080cf87958def13c0b1ad6f63434c87a5176470dbc5eff4b3c640cf"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/GoogleDriveV2.node.js",
+          "bytes": 689,
+          "sha256": "d70e4a2c184075f89a3f7576a7cf2fa06e6411185a5d184a135b48b43fb85b9c"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/common.descriptions.js",
+          "bytes": 19761,
+          "sha256": "56e7cc76de1c0024ae04865621e4ffe1ccc371eff29ab9e8b9714821b12d02c9"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/drive/Drive.resource.js",
+          "bytes": 3468,
+          "sha256": "aabcd655370557fb9486316cdbc7c60eca6a9c783877cbc8cc6477067351537e"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/drive/create.operation.js",
+          "bytes": 11009,
+          "sha256": "c825f62e35267db84b8ad89903e7d17d6f45811b1e651ac7906360314b972e6c"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/drive/deleteDrive.operation.js",
+          "bytes": 1159,
+          "sha256": "5401eff9ff18d913c0ec1f216fc945b1ff066df7f67ae8f336a42532cdc18f50"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/drive/get.operation.js",
+          "bytes": 1864,
+          "sha256": "3448edabb8ac9c39ceaa5ca5b9fb065a2e963965b2f1a1cf5fe85098a827e923"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/drive/list.operation.js",
+          "bytes": 2848,
+          "sha256": "d2e03076af404081a6d6a837177f74e2bd9d8654814aef6f547878e7ed735429"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/drive/update.operation.js",
+          "bytes": 4329,
+          "sha256": "4f52a8756cfd02c97d43f40bfc5feceae9421f5a9f6e4dbe794199efb5df1cf5"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/File.resource.js",
+          "bytes": 4490,
+          "sha256": "c5ce0a60cd29f44a4c2b2326ca7ea8739272ca5829d049554b56695308c0f292"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/copy.operation.js",
+          "bytes": 3802,
+          "sha256": "3351b6a0183876252e8ee4fe0541f9106a16853acbb3a6e81d13bbd21ac9c13d"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/createFromText.operation.js",
+          "bytes": 5692,
+          "sha256": "5c54a747d0ebf7801ff400220d3b6b5985618e92c823c42e82709a41c13d53cc"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/deleteFile.operation.js",
+          "bytes": 1934,
+          "sha256": "947f3c86853049681c72bc88a81009c74d3dc889b6f6e3ca1546e387b6ba2d57"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/download.operation.js",
+          "bytes": 10625,
+          "sha256": "6c8a396bd63672220fe3cde0f3adaedfc96bf9efce9e25f138968fb614e30db6"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/move.operation.js",
+          "bytes": 2121,
+          "sha256": "31af1f1f696b78fa721113720a849ba105b58d55e06bc39388b7ccfebec5f196"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/share.operation.js",
+          "bytes": 1589,
+          "sha256": "1d3ad3c35b7a31a3f713c8903ee011fe031982f88a0a5f959019540e8eea2194"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/update.operation.js",
+          "bytes": 8104,
+          "sha256": "bacd6bdf9622ff4858e53f4c9f23ad42bbba036fc467e22a5ee2a2d5b37a5a8b"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/file/upload.operation.js",
+          "bytes": 5999,
+          "sha256": "8cc9ad5b194b435ad1c2b6d51dd92474a46c01129efc8995f904d1fa4535d81b"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/fileFolder/FileFolder.resource.js",
+          "bytes": 2182,
+          "sha256": "52e5e9385c9a57e9b5b52f48681b565ca7bfef7788cf79fe22af95df171a8a8b"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/fileFolder/search.operation.js",
+          "bytes": 11333,
+          "sha256": "326ee3fd40037beacb6a267fa634d7bfc3d26845110ea0e17f18b26e75bd0f01"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/folder/Folder.resource.js",
+          "bytes": 2835,
+          "sha256": "a563b83c4a21bf7548089b5c1a0bb84fc0c6e2a40134182521c4a50c461f3903"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/folder/create.operation.js",
+          "bytes": 3313,
+          "sha256": "6c86b96e7c89c7f0e24a2552a9b9dce54eff52c0fb7249002f77e1fdaf52c988"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/folder/deleteFolder.operation.js",
+          "bytes": 2037,
+          "sha256": "5749427a207137a361d8c5ad0d1f865a62057a13fba6c6b6d27bd4b774cdc5d9"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/folder/share.operation.js",
+          "bytes": 1613,
+          "sha256": "b54986983f01535d71ae58ba20cbf289867e71af6627383a84d181bdcc64cc68"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/router.js",
+          "bytes": 3454,
+          "sha256": "a246a4f9f3e25f93d32c03abe24b76d56c086910144d4cb54b24f55958db22d9"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/actions/versionDescription.js",
+          "bytes": 4223,
+          "sha256": "c5a9935503d5ff84f0e6e3eb75be0bc6680c80c62ded68f5acd647e16755ea4c"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/helpers/interfaces.js",
+          "bytes": 1185,
+          "sha256": "b07b1fa23e43b471ab648c3532eee20b9de20b2552e6348c67b14fdbd25f83f3"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/helpers/utils.js",
+          "bytes": 4342,
+          "sha256": "ca67d2e910f6edcd7d4814ebf3958739d61f8e0601da6d086879b83ab5f41fb0"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/methods/index.js",
+          "bytes": 1558,
+          "sha256": "d465fad237b4c71538bff36d330b8c199f78b24d1c9e71756e4b4436291897f3"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/methods/listSearch.js",
+          "bytes": 4907,
+          "sha256": "e704069ed73ebfb452ddd2fad53eee852e15f7634a982d89599b63f5af16eb43"
+        },
+        {
+          "path": "dist/nodes/Google/Drive/v2/transport/index.js",
+          "bytes": 2261,
+          "sha256": "1aa1352a43f950a0921f3afaa4621c63e758601516b64ba53de9a15cc38c6b2e"
+        },
+        {
+          "path": "dist/nodes/Google/GenericFunctions.js",
+          "bytes": 5347,
+          "sha256": "777bbcbd04e0a0667a6bd1e9f17819e6f34f8ad292972ce6665387d7c5136d52"
+        },
+        {
+          "path": "dist/nodes/Google/Gmail/Gmail.node.js",
+          "bytes": 1474,
+          "sha256": "51d583d04cfa9ed2f8e71e0ebb1ea4c68545470f673fa53467f4ee17fcb6db5b"
+        },
+        {
+          "path": "dist/nodes/Google/Gmail/v2/GmailV2.node.js",
+          "bytes": 33094,
+          "sha256": "43ab5dff34987ab01175fc832a35190f0c9a1d172a0830a05c538c9a6c7071a7"
+        },
+        {
+          "path": "dist/nodes/Google/Gmail/v2/MessageDescription.js",
+          "bytes": 17847,
+          "sha256": "1983d7d70037b76f1d5bd7ea8597141372f01da27f85ddd53d97e3353bb407a9"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/GoogleSheets.node.js",
+          "bytes": 2229,
+          "sha256": "af00ac359dfefa93783bc9f559259d1ebc5f4c41065077547f89cec1d7a1b94a"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v1/GoogleSheetsV1.node.js",
+          "bytes": 18853,
+          "sha256": "ade3d4012749f407ba3370318b6a7c5538bc78596ef130103e397499ce5b31ad"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/GoogleSheetsV2.node.js",
+          "bytes": 853,
+          "sha256": "de4c47cdaeb1019a8711ed385a24ed690ce1498123ef2426d3bf70472b96ca91"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/actions/router.js",
+          "bytes": 3948,
+          "sha256": "c78e0e050f752b04d286cf3d1e0231fa5d16061abc0676ae9bc72e78c6df399c"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/actions/sheet/append.operation.js",
+          "bytes": 9449,
+          "sha256": "be18d376b86460f5e884de130705bb317d9a35011a3fdd3ac2fec06b05e8a993"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/actions/sheet/read.operation.js",
+          "bytes": 5830,
+          "sha256": "3dace7a812e6c322b92572cef4d47429c0112931096203d4313c306cfe39edbb"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/actions/sheet/update.operation.js",
+          "bytes": 15965,
+          "sha256": "29c92be3cd21dfd117134700911d3511b69d3f4cdb9308dc96af9b9ecc5d565f"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/actions/versionDescription.js",
+          "bytes": 5546,
+          "sha256": "71408af602bd2f915426b963d3e2d88f197e80bf528cca2ec1400fa01b0d97c7"
+        },
+        {
+          "path": "dist/nodes/Google/Sheet/v2/helpers/GoogleSheet.js",
+          "bytes": 24180,
+          "sha256": "70e477ba7d00aaf39290e4b53b9134c5ef4a4771cba78b17156c94c3a23100c5"
+        },
+        {
+          "path": "dist/nodes/Google/constants.js",
+          "bytes": 625,
+          "sha256": "ce52f2e15ff6360e3366307d929c74dc63a3c5d2cbc15469ee8e366badeb2b9b"
+        },
+        {
+          "path": "dist/nodes/HttpRequest/HttpRequest.node.js",
+          "bytes": 2163,
+          "sha256": "7a516ec8527fbb7c209c489fc05cb7fd6f2b32baff838ac4f5230a08e9d2e6db"
+        },
+        {
+          "path": "dist/nodes/HttpRequest/V3/Description.js",
+          "bytes": 45912,
+          "sha256": "8b9f0334842600a60d9f23bd07de163142b66075fda9f0d191433cb86b9ace2f"
+        },
+        {
+          "path": "dist/nodes/HttpRequest/V3/HttpRequestV3.node.js",
+          "bytes": 45490,
+          "sha256": "00b6f6963b3487b1607dd4731a877fa4e7ce1d8822795a27fb6c4bcf1f902885"
+        },
+        {
+          "path": "dist/nodes/If/If.node.js",
+          "bytes": 1044,
+          "sha256": "8690fc5d4a28a6267a21e95adeffd0d48f36ea28ff1657943a48eae81d7cc6f4"
+        },
+        {
+          "path": "dist/nodes/If/V1/IfV1.node.js",
+          "bytes": 22171,
+          "sha256": "790fc1cb6065f24eb670e15ada6876ad1f21d21006f94c290f855a39d10cb036"
+        },
+        {
+          "path": "dist/nodes/If/V2/IfV2.node.js",
+          "bytes": 5145,
+          "sha256": "6b7ed12d8da084049c4ffb7cd04bb5529c0ea757c7dd7aeb103123d9e38b40ad"
+        },
+        {
+          "path": "dist/nodes/If/V2/utils.js",
+          "bytes": 832,
+          "sha256": "17b5ce77a09fcd298d5b7e73919cd38747e68f492dff60a96fbba3f949ac7ebb"
+        },
+        {
+          "path": "dist/nodes/ManualTrigger/ManualTrigger.node.js",
+          "bytes": 1509,
+          "sha256": "aa3151c441a98c2b047ddbb64266bdee8d383aea890b29368124ff4e831af1e4"
+        },
+        {
+          "path": "dist/nodes/Merge/Merge.node.js",
+          "bytes": 1257,
+          "sha256": "3c32794aae7af1277d689bbaa6b013f4d5f80141625a61d363d45937215bb777"
+        },
+        {
+          "path": "dist/nodes/Merge/v1/MergeV1.node.js",
+          "bytes": 19431,
+          "sha256": "e6ffc04766805f99950dbe5710a727755c7fb222a4fb4d36ea5951a7072e1d67"
+        },
+        {
+          "path": "dist/nodes/Merge/v2/MergeV2.node.js",
+          "bytes": 23341,
+          "sha256": "b280182890e773550276b809ba1d9f8ee353372c89079a74e2a3086afb38e28c"
+        },
+        {
+          "path": "dist/nodes/Merge/v3/MergeV3.node.js",
+          "bytes": 674,
+          "sha256": "d5c9edbb8c4a7b12e238f22bbecd3081a3ab846f94d83239b3c1295c61e56c2d"
+        },
+        {
+          "path": "dist/nodes/MySql/MySql.node.js",
+          "bytes": 1259,
+          "sha256": "11f0dd39f78221f9f6e0c4dce4e024c7ea9db47268dca640a0d5f25b32f94ea3"
+        },
+        {
+          "path": "dist/nodes/MySql/v2/actions/database/Database.resource.js",
+          "bytes": 4320,
+          "sha256": "bf7a1c2d5b1231fc7e11f3cefee10b7e0f38606826df57beff7bc6277b76eb4a"
+        },
+        {
+          "path": "dist/nodes/MySql/v2/actions/database/executeQuery.operation.js",
+          "bytes": 2918,
+          "sha256": "4c1c388c764f4ed8fd4802d48da3a162a19a4d730c2e783e2a8e5a6a64e63db8"
+        },
+        {
+          "path": "dist/nodes/MySql/v2/actions/versionDescription.js",
+          "bytes": 2745,
+          "sha256": "3a9307265ff4d0c8197883da853dd664a494cd2b8230449e135a6309ea434c82"
+        },
+        {
+          "path": "dist/nodes/NoOp/NoOp.node.js",
+          "bytes": 813,
+          "sha256": "015ada9acac98a289039faf2ee2f55ba6c0f3f414f467c269cc6c65a5bdd045e"
+        },
+        {
+          "path": "dist/nodes/NoOp/NoOp.node.json",
+          "bytes": 2666,
+          "sha256": "ec5012a56869016dc99ecdddd3df25ffe630a8ec5a3398141d75e06fc9dbc6a4"
+        },
+        {
+          "path": "dist/nodes/OpenAi/ChatDescription.js",
+          "bytes": 14151,
+          "sha256": "540f8dd69bb38c25eb82c514c688fc21161f711de404e146306cd4fbf9c01903"
+        },
+        {
+          "path": "dist/nodes/OpenAi/OpenAi.node.js",
+          "bytes": 2803,
+          "sha256": "a2e5f5722375b520c2c689670d6b3b16c0f693e0f16300a8c1ca47e57d3089dd"
+        },
+        {
+          "path": "dist/nodes/OpenAi/TextDescription.js",
+          "bytes": 17012,
+          "sha256": "f2d22bf998130bd40c034a58fdb6a06c48bf7c98e6af250bc2e0187cdce86cee"
+        },
+        {
+          "path": "dist/nodes/Postgres/Postgres.node.js",
+          "bytes": 1368,
+          "sha256": "54c0194e046a08723991d4baa747bbade7ea95e2e6713ef2218329f6e0bed260"
+        },
+        {
+          "path": "dist/nodes/Postgres/v2/actions/database/Database.resource.js",
+          "bytes": 4404,
+          "sha256": "629948e576cdba7cbe1e5d16b9622f7f72bff2161d52533033aa5b82b1ff250d"
+        },
+        {
+          "path": "dist/nodes/Postgres/v2/actions/database/executeQuery.operation.js",
+          "bytes": 4985,
+          "sha256": "0de44810a69b1c89d2d430882a064a39f1587fd0f565e2997506f37070fc7b38"
+        },
+        {
+          "path": "dist/nodes/Postgres/v2/actions/versionDescription.js",
+          "bytes": 2731,
+          "sha256": "71cd65f264791a3debf9db37320903f3e7726cdb96e426eb9099c5aa23a702c7"
+        },
+        {
+          "path": "dist/nodes/ReadBinaryFile/ReadBinaryFile.node.js",
+          "bytes": 3211,
+          "sha256": "ff3b4d896ab2a0b72be74497a0bff1ae134e700db0f697eed310863a455a3576"
+        },
+        {
+          "path": "dist/nodes/Schedule/ScheduleTrigger.node.js",
+          "bytes": 23132,
+          "sha256": "bac9111de5ea6cf97cbfbcf4253f524eadb94979586b253962723a23110c3919"
+        },
+        {
+          "path": "dist/nodes/Set/Set.node.js",
+          "bytes": 1161,
+          "sha256": "05fb602270c01e7244291b7e9fa04d60d7aa9ba0f2ecfc2dbd11741c71cc6722"
+        },
+        {
+          "path": "dist/nodes/Set/v1/SetV1.node.js",
+          "bytes": 8069,
+          "sha256": "8a2c21be95ce48161465e787a6a7ccaf3f90c15010af19ce23626d8b470db146"
+        },
+        {
+          "path": "dist/nodes/Set/v2/SetV2.node.js",
+          "bytes": 14293,
+          "sha256": "cc71e353359e4107787cfaafb0f5ec6fc5c7416efb4f43f61139f835d32593ec"
+        },
+        {
+          "path": "dist/nodes/Slack/Slack.node.js",
+          "bytes": 1193,
+          "sha256": "852da1fc867bfc03d01ddac6e1acdf96c1b8e185db4c556aef89984c40591069"
+        },
+        {
+          "path": "dist/nodes/Slack/V2/MessageDescription.js",
+          "bytes": 37505,
+          "sha256": "d1583a16230dad669ccc91acb2ab5c422850d652ccfbfd0adf5593b58b596103"
+        },
+        {
+          "path": "dist/nodes/Slack/V2/SlackV2.node.js",
+          "bytes": 58179,
+          "sha256": "902cff7c1bcb4ce3c5fc601cc977d29702558abfa0c9673ebe0716f304b5a49d"
+        },
+        {
+          "path": "dist/nodes/SplitInBatches/SplitInBatches.node.js",
+          "bytes": 1172,
+          "sha256": "93c3f12852542f08f58f2d71277916eba6f524898b8e410c9b7466f06cc144b9"
+        },
+        {
+          "path": "dist/nodes/SplitInBatches/v1/SplitInBatchesV1.node.js",
+          "bytes": 4673,
+          "sha256": "25ccdb50dd10f982af270c8681d727924460ef989ae49123eb198608308c5002"
+        },
+        {
+          "path": "dist/nodes/SplitInBatches/v2/SplitInBatchesV2.node.js",
+          "bytes": 5350,
+          "sha256": "279f601f57541c2a2598b79a8eac0d505a0ce09c0471048216fe8ea6d49202be"
+        },
+        {
+          "path": "dist/nodes/SplitInBatches/v3/SplitInBatchesV3.node.js",
+          "bytes": 5471,
+          "sha256": "753a1ecaa7f2e9de387212b26e5b6b3e0d827b4190184e32947aad7bdb8ef2bb"
+        },
+        {
+          "path": "dist/nodes/StickyNote/StickyNote.node.js",
+          "bytes": 1546,
+          "sha256": "a71b15eacdfe0e40740d43183d0db4afcda2d2ccb09d584b969b5a63d67695f4"
+        },
+        {
+          "path": "dist/nodes/StickyNote/StickyNote.node.json",
+          "bytes": 214,
+          "sha256": "c3e90dbc08c152d204e2b17035419904592b9764279ea13ea79437966db28fe5"
+        },
+        {
+          "path": "dist/nodes/Switch/Switch.node.js",
+          "bytes": 1320,
+          "sha256": "d71978230704fb4cc865d3ee0e00b824273324d5196991aba202584cd034c080"
+        },
+        {
+          "path": "dist/nodes/Switch/V1/SwitchV1.node.js",
+          "bytes": 28845,
+          "sha256": "3f97bb96782c26c2299fd98ead79e5ae9585ad3d8e01b58def3813a9dac4f5dd"
+        },
+        {
+          "path": "dist/nodes/Switch/V2/SwitchV2.node.js",
+          "bytes": 29354,
+          "sha256": "124637d7cf57fa6b61323bdd4c9bff9b4b2cc26e7c5d4fd472f47f378497f289"
+        },
+        {
+          "path": "dist/nodes/Switch/V3/SwitchV3.node.js",
+          "bytes": 18071,
+          "sha256": "7cdfe9d3773fa7f78d8ffc7ce0a66f85f48d30dc4cf2d87c1ed63f747dc63fbf"
+        },
+        {
+          "path": "dist/nodes/Telegram/Telegram.node.js",
+          "bytes": 92819,
+          "sha256": "9e3d1e7db6df87ac6ee7648e2d67d52ab9aafdf87e09503fb2f0ce774c206a9a"
+        },
+        {
+          "path": "dist/nodes/Transform/Aggregate/Aggregate.node.js",
+          "bytes": 17606,
+          "sha256": "fe524e7c14a73e7a2521efb525dc495943a5358059d3af40fb767e6f509e6f44"
+        },
+        {
+          "path": "dist/nodes/Transform/Aggregate/utils.js",
+          "bytes": 1685,
+          "sha256": "650c67335c49f3ae6629a3c4ab52d01c0329a3e8ee51e76f8e8318aa3d9436d1"
+        },
+        {
+          "path": "dist/nodes/Transform/SplitOut/SplitOut.node.js",
+          "bytes": 10605,
+          "sha256": "9b367f65f121c5571d9daecd9df9bb609d7c2de013555bfa2af2fab62d5bd057"
+        },
+        {
+          "path": "dist/nodes/Transform/utils/utils.js",
+          "bytes": 711,
+          "sha256": "3ad983c285aba9c6b0fcdbd715dcb89a28d3c6ef2ba9a15258d13e4f3388f2c6"
+        },
+        {
+          "path": "dist/nodes/Wait/Wait.node.js",
+          "bytes": 21116,
+          "sha256": "8b45af6d1167e83ae2c39e0778a07863080806cd7844dce613689ecf09a0f63f"
+        },
+        {
+          "path": "dist/nodes/Webhook/Webhook.node.js",
+          "bytes": 13110,
+          "sha256": "402d01fdd04a2a71738c189e0b76a87415978bb414660f13fd9c2ece96ee3e37"
+        },
+        {
+          "path": "dist/nodes/Webhook/description.js",
+          "bytes": 15348,
+          "sha256": "0bca9f9b690a9965bc8ce05c56c7532430eb4c839198b07eafd4b175850595cb"
+        },
+        {
+          "path": "dist/nodes/WriteBinaryFile/WriteBinaryFile.node.js",
+          "bytes": 4588,
+          "sha256": "c495d4696d5f051ffed6a622442405429c344593bee70d4b129997c33334d11f"
+        },
+        {
+          "path": "dist/utils/constants.js",
+          "bytes": 679,
+          "sha256": "484f7094ea69e4bb419a49c0705243d0c668ad16195b464229e34a550a897b14"
+        },
+        {
+          "path": "dist/utils/descriptions.js",
+          "bytes": 8216,
+          "sha256": "4c5353d285a824d9cea2c2b716eeacac984648c87bf64b45c424bfaffdc8a6fb"
+        },
+        {
+          "path": "dist/utils/utilities.js",
+          "bytes": 17594,
+          "sha256": "395f19f109454af33aec72fdaa4e2f1cb6581c4365edf6747acd54c52e0b751c"
+        },
+        {
+          "path": "dist/utils/workflowInputsResourceMapping/constants.js",
+          "bytes": 1022,
+          "sha256": "14930146d4c928a51815eeba1f057f2d86de0243578e62512ebd6e43b56eeefd"
+        }
+      ]
+    },
+    {
+      "package": "@n8n/n8n-nodes-langchain",
+      "version": "2.43.5",
+      "registry": "https://registry.npmjs.org",
+      "tarballUrl": "https://registry.npmjs.org/@n8n/n8n-nodes-langchain/-/n8n-nodes-langchain-2.43.5.tgz",
+      "tarballSha256": "63a7a9108d2c944e278ed1389c4eacf8e8dc309a649442d704e316d266c360b7",
+      "distIntegrity": "sha512-TuAopltLsyCBbalz4fUvD0/Bdcvjl4MaoWAz2XvijP4fDR7dkbzYXhuKYwBU/rZg7LioouAktR8t3djG0m766w==",
+      "fetchedAt": "2026-10-17",
+      "files": [
+        {
+          "path": "dist/nodes/agents/Agent/Agent.node.js",
+          "bytes": 7126,
+          "sha256": "4b37709cb6c170e5a92d54870d6d7b75b7df7f8931ee4c84c5d5123b4a14c777"
+        },
+        {
+          "path": "dist/nodes/agents/Agent/agents/ToolsAgent/V3/description.js",
+          "bytes": 1742,
+          "sha256": "17a8b4999dd8ae7199cf8527e0501cb1b68cbaa953e338f6486be60d5a6dc2b6"
+        },
+        {
+          "path": "dist/nodes/agents/Agent/agents/ToolsAgent/options.js",
+          "bytes": 6352,
+          "sha256": "bcf373fa125fa545ef1c98972a21db70834dc792d9f7b20d29543a6411ac41fe"
+        },
+        {
+          "path": "dist/nodes/code/Code.node.js",
+          "bytes": 16924,
+          "sha256": "fe6912416ed6ccf16ff777162681c00bceaffe76284c809f8e5096aa14a3e123"
+        },
+        {
+          "path": "dist/nodes/llms/LMChatOpenAi/LmChatOpenAi.node.js",
+          "bytes": 40036,
+          "sha256": "5fdb1f45f58b27a75baee66ad066316dacd79c2585684fd9b292b9b312f43562"
+        },
+        {
+          "path": "dist/nodes/mcp/McpClientTool/McpClientTool.node.js",
+          "bytes": 10891,
+          "sha256": "19eaeece51b0e6fc56d02c9704c77da1eedf53226e2663efb7be30aab3d1e1d5"
+        },
+        {
+          "path": "dist/nodes/tools/ToolCode/ToolCode.node.js",
+          "bytes": 11554,
+          "sha256": "f7d0886d66ed93533a577fa415dc2dadb66e4493eec97b27dd6f27dbca31ed7b"
+        },
+        {
+          "path": "dist/nodes/tools/ToolWorkflow/ToolWorkflow.node.js",
+          "bytes": 1985,
+          "sha256": "98e79b8f438ac669b0635a7c921be418dade424c6531bfd5dd21de6a68b1d692"
+        },
+        {
+          "path": "dist/nodes/tools/ToolWorkflow/v2/versionDescription.js",
+          "bytes": 4790,
+          "sha256": "02b194c5da74b3c238eee4b6d904eceaa8b823d7a0e92e1e284d7514ae727d7c"
+        },
+        {
+          "path": "dist/nodes/trigger/ChatTrigger/ChatTrigger.node.js",
+          "bytes": 48392,
+          "sha256": "498f05b57eb73e9f2a00f330c37a12a696016a7808480d332fe883c58d17eaca"
+        },
+        {
+          "path": "dist/nodes/output_parser/OutputParserStructured/OutputParserStructured.node.js",
+          "bytes": 8612,
+          "sha256": "1de5e957d3f4d8f89638d18c15b718c8ebd5c20624d471953cdc5109e9b54c32"
+        },
+        {
+          "path": "dist/node-definitions/nodes/n8n-nodes-langchain/outputParserStructured/v1.schema.js",
+          "bytes": 2172,
+          "sha256": "1da2069dbc726eca4af1859fa5bc86ef89acb05d00eefa9deb9a6cb9c5854dc8"
+        }
+      ]
+    }
+  ],
+  "documentsRecords": {
+    "ingress.webhook": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Webhook/Webhook.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Webhook/description.js"
+    ],
+    "ingress.form-trigger": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Form/FormTrigger.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Form/v2/FormTriggerV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Form/common.descriptions.js"
+    ],
+    "ingress.chat-trigger": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/trigger/ChatTrigger/ChatTrigger.node.js"
+    ],
+    "ingress.manual-trigger": [
+      "n8n-nodes-base@2.15.1:dist/nodes/ManualTrigger/ManualTrigger.node.js"
+    ],
+    "http-ai.http-request": [
+      "n8n-nodes-base@2.15.1:dist/nodes/HttpRequest/HttpRequest.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/HttpRequest/V3/Description.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/HttpRequest/V3/HttpRequestV3.node.js"
+    ],
+    "http-ai.http-request.request": [
+      "n8n-nodes-base@2.15.1:dist/nodes/HttpRequest/HttpRequest.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/HttpRequest/V3/Description.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/HttpRequest/V3/HttpRequestV3.node.js"
+    ],
+    "http-ai.openai": [
+      "n8n-nodes-base@2.15.1:dist/nodes/OpenAi/OpenAi.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/OpenAi/TextDescription.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/OpenAi/ChatDescription.js"
+    ],
+    "http-ai.ai-agent": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/agents/Agent/Agent.node.js",
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/agents/Agent/agents/ToolsAgent/options.js",
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/agents/Agent/agents/ToolsAgent/V3/description.js"
+    ],
+    "http-ai.chat-model": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/llms/LMChatOpenAi/LmChatOpenAi.node.js"
+    ],
+    "database-file.postgres": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Postgres/Postgres.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Postgres/v2/actions/database/Database.resource.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Postgres/v2/actions/database/executeQuery.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Postgres/v2/actions/versionDescription.js",
+      "n8n-nodes-base@2.15.1:dist/credentials/Postgres.credentials.js"
+    ],
+    "database-file.mysql": [
+      "n8n-nodes-base@2.15.1:dist/nodes/MySql/MySql.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/MySql/v2/actions/database/Database.resource.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/MySql/v2/actions/database/executeQuery.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/MySql/v2/actions/versionDescription.js",
+      "n8n-nodes-base@2.15.1:dist/credentials/MySql.credentials.js"
+    ],
+    "database-file.read-binary-file": [
+      "n8n-nodes-base@2.15.1:dist/nodes/ReadBinaryFile/ReadBinaryFile.node.js"
+    ],
+    "database-file.write-binary-file": [
+      "n8n-nodes-base@2.15.1:dist/nodes/WriteBinaryFile/WriteBinaryFile.node.js"
+    ],
+    "code-command.execute-command": [
+      "n8n-nodes-base@2.15.1:dist/nodes/ExecuteCommand/ExecuteCommand.node.js"
+    ],
+    "code-command.code": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Code/Code.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Code/descriptions/JavascriptCodeDescription.js"
+    ],
+    "code-command.langchain-tool-code": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/tools/ToolCode/ToolCode.node.js"
+    ],
+    "code-command.langchain-code": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/code/Code.node.js"
+    ],
+    "message-mcp.slack": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Slack/Slack.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Slack/V2/SlackV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Slack/V2/MessageDescription.js"
+    ],
+    "message-mcp.email-send": [
+      "n8n-nodes-base@2.15.1:dist/nodes/EmailSend/EmailSend.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/EmailSend/v2/EmailSendV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/EmailSend/v2/descriptions.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/EmailSend/v2/send.operation.js"
+    ],
+    "message-mcp.tool-mcp": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/mcp/McpClientTool/McpClientTool.node.js"
+    ],
+    "subworkflow.execute-workflow-trigger": [
+      "n8n-nodes-base@2.15.1:dist/nodes/ExecuteWorkflow/ExecuteWorkflowTrigger/ExecuteWorkflowTrigger.node.js",
+      "n8n-nodes-base@2.15.1:dist/utils/workflowInputsResourceMapping/constants.js"
+    ],
+    "subworkflow.execute-workflow": [
+      "n8n-nodes-base@2.15.1:dist/nodes/ExecuteWorkflow/ExecuteWorkflow/ExecuteWorkflow.node.js"
+    ],
+    "subworkflow.tool-workflow": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/tools/ToolWorkflow/ToolWorkflow.node.js",
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/tools/ToolWorkflow/v2/versionDescription.js"
+    ],
+    "git.git": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Git/Git.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Git/descriptions/CloneDescription.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Git/descriptions/CommitDescription.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Git/descriptions/PushDescription.js"
+    ],
+    "noop.passthrough": [
+      "n8n-nodes-base@2.15.1:dist/nodes/NoOp/NoOp.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/NoOp/NoOp.node.json"
+    ],
+    "flow-control.set": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Set/Set.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Set/v1/SetV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Set/v2/SetV2.node.js"
+    ],
+    "flow-control.if": [
+      "n8n-nodes-base@2.15.1:dist/nodes/If/If.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/If/V1/IfV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/If/V2/IfV2.node.js"
+    ],
+    "flow-control.switch": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Switch/Switch.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Switch/V1/SwitchV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Switch/V2/SwitchV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Switch/V3/SwitchV3.node.js"
+    ],
+    "flow-control.merge": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Merge/Merge.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Merge/v1/MergeV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Merge/v2/MergeV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Merge/v3/MergeV3.node.js"
+    ],
+    "flow-control.split-in-batches": [
+      "n8n-nodes-base@2.15.1:dist/nodes/SplitInBatches/SplitInBatches.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/SplitInBatches/v1/SplitInBatchesV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/SplitInBatches/v2/SplitInBatchesV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/SplitInBatches/v3/SplitInBatchesV3.node.js"
+    ],
+    "flow-control.schedule-trigger": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Schedule/ScheduleTrigger.node.js"
+    ],
+    "google-workspace.google-sheets": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/GoogleSheets.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v1/GoogleSheetsV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/GoogleSheetsV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/actions/versionDescription.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/actions/sheet/read.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/actions/sheet/append.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/actions/sheet/update.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/helpers/GoogleSheet.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Sheet/v2/actions/router.js"
+    ],
+    "message-mcp.gmail": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Gmail/Gmail.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Gmail/v2/GmailV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/gmail/v1/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/gmail/v2/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/gmail/v21/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/gmail/v22/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/credentials/GmailOAuth2Api.credentials.js"
+    ],
+    "flow-control.wait": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Wait/Wait.node.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/wait/v1.schema.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/wait/v11.schema.js"
+    ],
+    "message-mcp.telegram": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Telegram/Telegram.node.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/telegram/v1/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/telegram/v11/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/telegram/v12/index.schema.js",
+      "n8n-nodes-base@2.15.1:dist/credentials/TelegramApi.credentials.js"
+    ],
+    "transform.split-out": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Transform/SplitOut/SplitOut.node.js",
+      "n8n-nodes-base@2.15.1:dist/node-definitions/nodes/n8n-nodes-base/splitOut/v1.schema.js"
+    ],
+    "ai.output-parser-structured": [
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/nodes/output_parser/OutputParserStructured/OutputParserStructured.node.js",
+      "@n8n/n8n-nodes-langchain@2.43.5:dist/node-definitions/nodes/n8n-nodes-langchain/outputParserStructured/v1.schema.js"
+    ],
+    "annotation.sticky-note": [
+      "n8n-nodes-base@2.15.1:dist/nodes/StickyNote/StickyNote.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/StickyNote/StickyNote.node.json"
+    ],
+    "google-workspace.google-drive": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/GoogleDrive.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v1/GenericFunctions.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v1/GoogleDriveV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v1/SearchFunctions.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/GoogleDriveV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/common.descriptions.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/drive/Drive.resource.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/drive/create.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/drive/deleteDrive.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/drive/get.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/drive/list.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/drive/update.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/File.resource.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/copy.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/createFromText.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/deleteFile.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/download.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/move.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/share.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/update.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/file/upload.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/fileFolder/FileFolder.resource.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/fileFolder/search.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/folder/Folder.resource.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/folder/create.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/folder/deleteFolder.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/folder/share.operation.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/router.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/actions/versionDescription.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/helpers/interfaces.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/helpers/utils.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/methods/index.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/methods/listSearch.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/Drive/v2/transport/index.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/GenericFunctions.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Google/constants.js",
+      "n8n-nodes-base@2.15.1:dist/utils/descriptions.js",
+      "n8n-nodes-base@2.15.1:dist/utils/utilities.js"
+    ],
+    "flow-control.filter": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Filter/Filter.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Filter/V1/FilterV1.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Filter/V1/GenericFunctions.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Filter/V2/FilterV2.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/If/V2/utils.js",
+      "n8n-nodes-base@2.15.1:dist/utils/constants.js",
+      "n8n-nodes-base@2.15.1:dist/utils/descriptions.js"
+    ],
+    "flow-control.aggregate": [
+      "n8n-nodes-base@2.15.1:dist/nodes/Transform/Aggregate/Aggregate.node.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Transform/Aggregate/utils.js",
+      "n8n-nodes-base@2.15.1:dist/nodes/Transform/utils/utils.js"
+    ]
+  }
+}

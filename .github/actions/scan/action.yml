@@ -1,0 +1,139 @@
+name: n8n SecureFlow scan
+description: >-
+  Prepared composite action for the deterministic offline n8n workflow scanner. It verifies an
+  Action-owned accepted release receipt, checks out the receipt-bound scanner commit, proves the
+  checked source and built CLI artifacts, then runs the scanner against the caller workspace.
+author: n8n-Secureflow Community Maintainers
+
+inputs:
+  path:
+    description: File or directory of n8n workflow JSON, relative to GITHUB_WORKSPACE.
+    required: false
+    default: .
+  fail-on:
+    description: Minimum finding severity that fails the action (critical, high, medium, low, info).
+    required: false
+    default: high
+  sarif-file:
+    description: SARIF output path, relative to GITHUB_WORKSPACE.
+    required: false
+    default: n8n-scan.sarif
+
+outputs:
+  sarif-file:
+    description: Relative SARIF path written beneath GITHUB_WORKSPACE.
+    value: ${{ steps.scan.outputs.sarif-file }}
+  exit-code:
+    description: Scanner exit code (0 clean, 1 threshold, 2 usage, 3 item failure, 4 internal, 130 cancelled).
+    value: ${{ steps.scan.outputs.exit-code }}
+  release-id:
+    description: Accepted release receipt identifier used for this run.
+    value: ${{ steps.preflight.outputs.release-id }}
+  scanner-ref:
+    description: Exact scanner source commit selected by the accepted receipt.
+    value: ${{ steps.preflight.outputs.scanner-ref }}
+  package-version:
+    description: sfscanner package version bound by the accepted receipt.
+    value: ${{ steps.preflight.outputs.package-version }}
+  package-tarball-sha256:
+    description: Exact selected sfscanner package tarball digest bound by the accepted receipt.
+    value: ${{ steps.preflight.outputs.package-tarball-sha256 }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js 22 for trust preflight
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      with:
+        node-version: 22.x
+
+    - name: Verify Action-owned release receipt before scanner checkout
+      id: preflight
+      shell: bash
+      env:
+        PREFLIGHT_SCRIPT: ${{ github.action_path }}/../../../scripts/scanner-action/preflight.mjs
+        PREFLIGHT_POLICY: ${{ github.action_path }}/../../../scripts/scanner-action/release-policy.json
+        PREFLIGHT_RECEIPT: ${{ github.action_path }}/../../../scripts/scanner-action/release-receipt.json
+        ACTION_REPOSITORY: ${{ github.action_repository }}
+      run: |
+        set -euo pipefail
+        node "$PREFLIGHT_SCRIPT" \
+          --policy "$PREFLIGHT_POLICY" \
+          --receipt "$PREFLIGHT_RECEIPT" \
+          --action-repository "$ACTION_REPOSITORY"
+
+    - name: Refuse a pre-existing scanner checkout path
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      run: |
+        set -euo pipefail
+        node --input-type=module - <<'NODE'
+        import fs from 'node:fs';
+        if (fs.readdirSync('.').includes('.scanner-source')) {
+          throw new Error('.scanner-source must not exist before the receipt-bound checkout; reserve it for this Action');
+        }
+        NODE
+
+    - name: Check out receipt-bound scanner source
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        repository: ${{ steps.preflight.outputs.scanner-repository }}
+        ref: ${{ steps.preflight.outputs.scanner-ref }}
+        path: .scanner-source
+        persist-credentials: false
+
+    - name: Verify checked scanner source
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+        SOURCE_RECEIPT: ${{ github.action_path }}/../../../scripts/scanner-action/release-receipt.json
+        SOURCE_RECEIPT_SHA256: ${{ steps.preflight.outputs.receipt-sha256 }}
+        SOURCE_REPOSITORY: ${{ steps.preflight.outputs.scanner-repository }}
+        SOURCE_REF: ${{ steps.preflight.outputs.scanner-ref }}
+      run: |
+        set -euo pipefail
+        node "$GITHUB_ACTION_PATH/../../../scripts/scanner-action/adapter.mjs" source \
+          --source-root .scanner-source \
+          --receipt "$SOURCE_RECEIPT" \
+          --receipt-sha256 "$SOURCE_RECEIPT_SHA256" \
+          --repository "$SOURCE_REPOSITORY" \
+          --ref "$SOURCE_REF"
+
+    - name: Install locked scanner dependencies
+      shell: bash
+      working-directory: .scanner-source
+      run: npm ci --ignore-scripts
+
+    - name: Build scanner CLI
+      shell: bash
+      working-directory: .scanner-source
+      run: npm run build --workspace=sfscanner
+
+    - name: Verify built scanner artifacts
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+        ARTIFACT_RECEIPT: ${{ github.action_path }}/../../../scripts/scanner-action/release-receipt.json
+        ARTIFACT_RECEIPT_SHA256: ${{ steps.preflight.outputs.receipt-sha256 }}
+      run: |
+        set -euo pipefail
+        node "$GITHUB_ACTION_PATH/../../../scripts/scanner-action/adapter.mjs" artifacts \
+          --source-root .scanner-source \
+          --receipt "$ARTIFACT_RECEIPT" \
+          --receipt-sha256 "$ARTIFACT_RECEIPT_SHA256"
+
+    - name: Run v2 scanner
+      id: scan
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      env:
+        ACTION_RUNNER: ${{ github.action_path }}/../../../scripts/scanner-action/run-scan.mjs
+        GITHUB_WORKSPACE: ${{ github.workspace }}
+        SCAN_PATH: ${{ inputs.path }}
+        FAIL_ON: ${{ inputs.fail-on }}
+        SARIF_FILE: ${{ inputs.sarif-file }}
+      run: |
+        set -euo pipefail
+        node "$ACTION_RUNNER"

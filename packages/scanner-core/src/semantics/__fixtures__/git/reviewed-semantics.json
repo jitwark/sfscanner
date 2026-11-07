@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "git",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "git.git": {
+      "semanticId": "git.git",
+      "nodeType": "n8n-nodes-base.git",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/branch",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/operation",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/repositoryUrl",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials"
+      ],
+      "destinationPaths": [
+        "/repositoryUrl"
+      ],
+      "effects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "endpoints": [
+        {
+          "path": "/repositoryUrl",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "fad09a1921ed11eaf8f1a61531b80751fb4c36528182464745d030d3daf6c9d6",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "git-clone-default",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.git",
+      "version": "1.0.0",
+      "operation": "clone",
+      "expectedSemanticId": "git.git"
+    },
+    {
+      "id": "git-pull",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.git",
+      "version": "1.0.0",
+      "operation": "pull",
+      "expectedSemanticId": "git.git"
+    },
+    {
+      "id": "git-push",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.git",
+      "version": "1.0.0",
+      "operation": "push",
+      "expectedSemanticId": "git.git"
+    },
+    {
+      "id": "git-unknown-operation-fallback",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.git",
+      "version": "1.0.0",
+      "operation": "rebase",
+      "expectedSemanticId": "git.git"
+    },
+    {
+      "id": "git-dynamic-repository",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.git",
+      "version": "1.0.0",
+      "operation": "clone",
+      "expectedSemanticId": "git.git",
+      "dynamicDestination": "={{ $json.repositoryUrl }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "git-unknown-community-node",
+      "kind": "UNKNOWN",
+      "nodeType": "community.git",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "git-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.git",
+      "version": "0.9.0",
+      "operation": "clone",
+      "expectedSemanticId": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Run from the repository root on Node.js 22.
+# The CI runner checks out this repository before running these commands.
+npm ci
+npm run typecheck --workspace sfscanner
+npx --no-install vitest run packages/scanner-cli/src/v2/help.test.ts scripts/check-cli-docs.test.mjs --config packages/scanner-cli/vitest.config.ts
+npm run check:cli-docs
+npx --no-install tsx examples/scanner-cli/validate-config.mjs

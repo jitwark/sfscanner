@@ -1,0 +1,109 @@
+name: Scanner false-positive or false-negative report
+description: Report a finding that fired when it shouldn't have, or a real issue the scanner missed
+title: "[Scanner accuracy] "
+labels: ["scanner-accuracy"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Precision is the scanner's whole product — a finding that fires on safe code, or misses
+        a real one, is worth more to fix than most feature requests. This form asks for exactly
+        what a maintainer needs to reproduce the call: the rule that fired (or should have),
+        and the workflow *shape*, not your actual workflow.
+
+        **Never paste your real workflow JSON, credentials, tokens, secret values, or any
+        content copied out of a live production system.** Rewrite the minimal fragment with
+        placeholder values instead — see `docs/scanner/policy-inventory.md`'s "Minimal
+        triggering examples" section for the shape a report like this should take. If you can't
+        safely redact a real workflow down to a minimal fragment, describe the node types and
+        the data flow in prose instead of pasting JSON.
+
+  - type: dropdown
+    id: report_type
+    attributes:
+      label: Report type
+      options:
+        - False positive (a finding fired but the code is safe)
+        - False negative (something risky didn't get flagged)
+        - Wrong severity or confidence for a correct finding
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rule_id
+    attributes:
+      label: Rule ID
+      description: Pick the policy ID from the finding (shown in the scan result and in `docs/scanner/policy-inventory.md`). Choose "Not sure / not listed" if you don't know it or expected a rule that doesn't exist yet.
+      options:
+        - N8N_EXECUTE_COMMAND
+        - N8N_CODE_NODE
+        - RAW_AUTH_HEADER
+        - RAW_SECRET_INDICATOR
+        - UNAPPROVED_DOMAIN
+        - UNKNOWN_NODE_PACKAGE
+        - WEBHOOK_EXPOSURE
+        - JAVASCRIPT_DYNAMIC_EXECUTION
+        - PYTHON_DYNAMIC_EXECUTION
+        - TAINTED_COMMAND
+        - TAINTED_SQL_QUERY
+        - TAINTED_REQUEST_URL
+        - TAINTED_FILE_PATH
+        - TAINTED_CODE_INPUT
+        - TAINTED_REQUEST_HEADER
+        - TAINTED_AI_PROMPT
+        - AI_AGENT_UNGATED_TOOL
+        - Not sure / not listed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Scan profile
+      description: beta-hardened adds taint/AI/code-analysis rules that beta-default doesn't run.
+      options:
+        - beta-default
+        - beta-hardened
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow_shape
+    attributes:
+      label: Redacted workflow shape
+      description: The minimal node/connection fragment that reproduces it, with all values replaced by placeholders. Node types and the data-flow edges (what connects to what) matter most — literal values almost never do.
+      render: json
+      placeholder: |
+        { "nodes": [
+          { "id": "1", "name": "HTTP", "type": "n8n-nodes-base.httpRequest",
+            "parameters": { "url": "https://example.com/PLACEHOLDER" } }
+        ], "connections": {} }
+    validations:
+      required: true
+
+  - type: textarea
+    id: finding_text
+    attributes:
+      label: Finding text or expected finding
+      description: For a false positive/wrong severity, paste the finding's message, severity, and confidence as shown. For a false negative, describe what you expected to see flagged.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expectation
+    attributes:
+      label: What you expected, and why
+      description: Explain why the fired finding is safe, or why the missed case is actually risky. This is the part a maintainer can't infer from the JSON alone.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: redaction_confirmation
+    attributes:
+      label: Redaction confirmation
+      options:
+        - label: I have replaced every literal value, credential, secret, domain, and identifying detail in the workflow shape above with a placeholder.
+          required: true
+        - label: This is not a real production workflow — it is a minimal fragment I wrote or redacted specifically to reproduce this report.
+          required: true

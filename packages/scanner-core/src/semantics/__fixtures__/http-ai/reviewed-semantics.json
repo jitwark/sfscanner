@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "http-ai",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "http-ai.http-request": {
+      "semanticId": "http-ai.http-request",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/method",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/url",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/httpRequestAuth"
+      ],
+      "destinationPaths": [
+        "/url"
+      ],
+      "effects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "endpoints": [
+        {
+          "path": "/url",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "11ace3d42311b7b95ee4bbb88ac8b33ef4d9446ebf55fcdff065f5627a92a87c",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "http-ai.http-request.request": {
+      "semanticId": "http-ai.http-request.request",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "EQ",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": "request",
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/method",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/url",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/httpRequestAuth"
+      ],
+      "destinationPaths": [
+        "/url"
+      ],
+      "effects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "endpoints": [
+        {
+          "path": "/url",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "CONTINUE",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "11ace3d42311b7b95ee4bbb88ac8b33ef4d9446ebf55fcdff065f5627a92a87c",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "http-ai.openai": {
+      "semanticId": "http-ai.openai",
+      "nodeType": "n8n-nodes-base.openAi",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/operation",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/prompt",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/resource",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/openAiApi"
+      ],
+      "destinationPaths": [
+        "/options/baseURL"
+      ],
+      "effects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "endpoints": [
+        {
+          "path": "/prompt",
+          "channel": "MODEL",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "e28c3e13bd9a2116e2c46689286e72a1b9fb03ac29bf9474b0ee69469d1390f5",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "http-ai.ai-agent": {
+      "semanticId": "http-ai.ai-agent",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/options/systemMessage",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials"
+      ],
+      "destinationPaths": [
+        "/options/baseURL"
+      ],
+      "effects": [
+        "CALL_TOOL",
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "endpoints": [
+        {
+          "path": "/options/systemMessage",
+          "channel": "MODEL",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "ai_tool",
+          "index": 0,
+          "itemMode": "ALL"
+        },
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "fb7ec2d29c4177a5c38fa5c9604028919402989f9cbb5824abaaf7a74a518db0",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "http-ai.chat-model": {
+      "semanticId": "http-ai.chat-model",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/modelName",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/options",
+          "valueType": "OBJECT",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/openAiApi"
+      ],
+      "destinationPaths": [
+        "/options/baseURL"
+      ],
+      "effects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "endpoints": [
+        {
+          "path": "/modelName",
+          "channel": "MODEL",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "206d81df32e0686ffd9414d9408c9e03621c51b3223b8823735c2252524c57d2",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "http-request-default-dynamic-empty-allowlist",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "dynamicDestination": "={{ $json.targetUrl }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "http-request-exact-operation",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "1.0.0",
+      "operation": "request",
+      "expectedSemanticId": "http-ai.http-request.request"
+    },
+    {
+      "id": "openai-default",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.openai",
+      "dynamicDestination": "={{ $json.baseUrl }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "ai-agent-tool-port",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "2.1.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.ai-agent",
+      "dynamicDestination": "={{ $json.modelEndpoint }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "chat-model-default",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.chat-model"
+    },
+    {
+      "id": "http-ai-unregistered-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "custom.aiNode",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    }
+  ]
+}

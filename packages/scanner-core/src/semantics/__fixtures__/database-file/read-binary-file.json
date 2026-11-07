@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "database-file",
+  "cases": [
+    {
+      "id": "database-file-read-binary-file-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-operation-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": "read",
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-destination-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-item-mode-each-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-error-stop-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-retry-none-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-disabled-skip-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-disabled-unknown-behavior",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-dynamic-path-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "1.0.0",
+      "operation": "dynamicRead",
+      "expectedSemanticId": "database-file.read-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-read-binary-file-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-read-binary-file-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "0.5.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-read-binary-file-zero-version-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.readBinaryFile",
+      "version": "0.0.1",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-read-binary-file-unmatched-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.unmatchedReadFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "code-command",
+  "cases": [
+    {
+      "id": "code-command-unadmitted-bash-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.bash",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-unadmitted-shell-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.shell",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-disabled-function-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.function",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-disabled-function-item-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.functionItem",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-unadmitted-ssh-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.ssh",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-custom-python-runner-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "custom.pythonRunner",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-community-code-runner-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "community.codeRunner",
+      "version": "2.0.0",
+      "operation": "exec",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-unsupported-system-exec-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.systemExec",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-unrecognized-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.nonExistentCommand",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-zero-version-unadmitted-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeCommand",
+      "version": "0.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

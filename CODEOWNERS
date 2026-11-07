@@ -1,0 +1,19 @@
+# Reviewer map for the n8n-Secureflow public repository.
+#
+# This is a single-maintainer project. Every path below routes to the same person because
+# there is, today, only one person to route it to — this file is not asserting separation of
+# duties that doesn't exist. See GOVERNANCE.md for what that means for review quality (in
+# particular: no independent second reviewer for rights/legal or security-sensitive changes
+# yet) and for how this file should change if a second maintainer joins.
+
+* @jitwark
+/packages/scanner-core/ @jitwark
+/pipeline/ @jitwark
+/data/ @jitwark
+/app/ @jitwark
+/docs/ @jitwark
+/SECURITY.md @jitwark
+/GOVERNANCE.md @jitwark
+/THIRD_PARTY_NOTICES.md @jitwark
+/CODE_OF_CONDUCT.md @jitwark
+/CODEOWNERS @jitwark

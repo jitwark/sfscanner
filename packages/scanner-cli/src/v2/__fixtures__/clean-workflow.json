@@ -1,0 +1,17 @@
+{
+  "name": "Task 2 clean workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "clean-start",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "task-2-clean-v1"
+}

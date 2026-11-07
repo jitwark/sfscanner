@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "ingress",
+  "cases": [
+    {
+      "id": "ingress-manual-trigger-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.manualTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.manual-trigger",
+      "expectedEntry": "MANUAL",
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-manual-trigger-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.manualTrigger",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.manual-trigger",
+      "expectedEntry": "MANUAL",
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-manual-trigger-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.manualTrigger",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-manual-trigger-unsupported-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.manualTrigger",
+      "version": "0.5.0",
+      "operation": "unsupportedOp",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-disabled-webhook-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-non-entry-noop-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.noOp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-non-entry-set-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.set",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-unknown-custom-trigger",
+      "kind": "UNKNOWN",
+      "nodeType": "custom.nodes.customTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-unknown-community-webhook",
+      "kind": "UNKNOWN",
+      "nodeType": "community.nodes.communityWebhook",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-unknown-third-party-ingress",
+      "kind": "UNKNOWN",
+      "nodeType": "thirdparty.ingress.receiver",
+      "version": "1.5.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

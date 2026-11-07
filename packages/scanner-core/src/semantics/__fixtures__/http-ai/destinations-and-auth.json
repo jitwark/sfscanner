@@ -1,0 +1,211 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "http-ai",
+  "cases": [
+    {
+      "id": "http-ai-dest-literal-url",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-dynamic-url",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-header-credentials",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "3.1.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-oauth-credentials",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "4.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-openai-credentials",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.openai",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-agent-tool-orchestration",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.ai-agent",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL",
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "http-ai-dest-chat-model-credentials",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.chat-model",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-request-future-semver",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "10.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-dest-negative-unregistered-node",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.unregisteredHttp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-dest-negative-custom-ai",
+      "kind": "NEGATIVE",
+      "nodeType": "custom.aiNode",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-dest-negative-malformed-type",
+      "kind": "NEGATIVE",
+      "nodeType": "custom.invalidNodeType",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-dest-unknown-zero-version",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "0.0.1",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-dest-unknown-pre-release",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-dest-unknown-agent-version",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "0.9.9",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-dest-unknown-chat-version",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "0.1.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "code-command",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "code-command.execute-command": {
+      "semanticId": "code-command.execute-command",
+      "nodeType": "n8n-nodes-base.executeCommand",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/command",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [
+        "EXECUTE_COMMAND"
+      ],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "b636dc56cc56160789616433e10e65338b91e448a1c8172cd1206cedca09924e",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "code-command.code": {
+      "semanticId": "code-command.code",
+      "nodeType": "n8n-nodes-base.code",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/jsCode",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/mode",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [
+        "EXECUTE_CODE"
+      ],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "9603cc1df11465916430c51d6439e59178b7cc1777c5e72fb49868cd64c2cb23",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "code-command.langchain-tool-code": {
+      "semanticId": "code-command.langchain-tool-code",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolCode",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/jsCode",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/language",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/pythonCode",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [
+        "EXECUTE_CODE"
+      ],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "ai_tool",
+          "index": 0,
+          "itemMode": "ALL"
+        },
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "367829b925cae8252fc5d8065dc689b9ba5e022e8e36ecf3cda4f6f086a266c0",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "code-command.langchain-code": {
+      "semanticId": "code-command.langchain-code",
+      "nodeType": "@n8n/n8n-nodes-langchain.code",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/code/execute/code",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/code/supplyData/code",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [
+        "EXECUTE_CODE"
+      ],
+      "endpoints": [],
+      "ports": [],
+      "overwritePaths": [],
+      "errorMode": "UNKNOWN",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "5518f95adc75236d8af132524922015bb53558d172230cc2577b2e327392d05c",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "execute-command-default",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeCommand",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.execute-command"
+    },
+    {
+      "id": "code-run-each-item",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "2.1.0",
+      "operation": "runOnceForEachItem",
+      "expectedSemanticId": "code-command.code"
+    },
+    {
+      "id": "execute-command-unknown-input",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.executeCommand",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.execute-command"
+    },
+    {
+      "id": "code-command-unknown-node",
+      "kind": "UNKNOWN",
+      "nodeType": "community.codeRunner",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "execute-command-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeCommand",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "code-run-tool-code",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolCode",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.langchain-tool-code"
+    },
+    {
+      "id": "code-run-langchain-code",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.code",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.langchain-code"
+    },
+    {
+      "id": "code-run-tool-code-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolCode",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null
+    }
+  ]
+}

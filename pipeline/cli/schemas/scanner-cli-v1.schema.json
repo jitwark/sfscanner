@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:n8n-secureflow:scanner-cli-v1",
+  "title": "n8n Scan CLI scanner-cli-v1 output",
+  "description": "Versioned JSON envelope emitted by the local n8n Scan CLI. Summary counts and canonical ordering are checked by the CLI validator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "results", "summary"],
+  "properties": {
+    "schemaVersion": {"const": "scanner-cli-v1"},
+    "results": {"type": "array", "items": {"$ref": "#/$defs/resultItem"}},
+    "summary": {"$ref": "#/$defs/envelopeSummary"}
+  },
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "safeInteger": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+    "textList": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "position": {
+      "type": "object", "additionalProperties": false,
+      "required": ["line", "column", "offset"],
+      "properties": {
+        "line": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+        "column": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+        "offset": {"$ref": "#/$defs/safeInteger"}
+      }
+    },
+    "sourceSpan": {
+      "type": "object", "additionalProperties": false, "required": ["start", "end"],
+      "properties": {"start": {"$ref": "#/$defs/position"}, "end": {"$ref": "#/$defs/position"}}
+    },
+    "location": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "nodeId": {"$ref": "#/$defs/nonEmptyString"}, "nodeName": {"$ref": "#/$defs/nonEmptyString"}, "path": {"$ref": "#/$defs/nonEmptyString"},
+        "sourceSpan": {"$ref": "#/$defs/sourceSpan"}
+      }
+    },
+    "diagnostic": {
+      "type": "object", "additionalProperties": false, "required": ["code", "category"],
+      "properties": {
+        "code": {"enum": ["ANALYSIS_LIMIT_EXCEEDED", "SOURCE_SPAN_UNAVAILABLE", "DUPLICATE_JSON_KEY", "MALFORMED_NODE_PARAMETERS", "UNSUPPORTED_CODE_NODE_VARIANT", "JAVASCRIPT_PARSE_FAILED", "JAVASCRIPT_SOURCE_UNAVAILABLE", "PYTHON_SOURCE_UNAVAILABLE", "PYTHON_PARSE_FAILED", "PYTHON_PARSER_UNAVAILABLE", "EXPRESSION_PARSE_FAILED", "POLICY_EXECUTION_FAILED", "GRAPH_ANALYSIS_DEGRADED", "DUPLICATE_FINDING_COLLAPSED", "UNCLASSIFIED_CONNECTION_TYPE", "MALFORMED_CONNECTION_INDEX", "REQUIRED_STAGE_FAILURE"]},
+        "category": {"enum": ["LIMIT", "SOURCE", "PARSER", "POLICY", "GRAPH"]},
+        "location": {"$ref": "#/$defs/location"}
+      }
+    },
+    "workflow": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "nodeCount", "rawNodeCount", "annotationNodeCount", "triggerCount", "actionCount", "integrationCount", "connectionCount", "payloadBytes", "complexity", "isSubWorkflow"],
+      "properties": {
+        "name": {"type": ["string", "null"], "minLength": 1},
+        "nodeCount": {"$ref": "#/$defs/safeInteger"}, "rawNodeCount": {"$ref": "#/$defs/safeInteger"}, "annotationNodeCount": {"$ref": "#/$defs/safeInteger"},
+        "triggerCount": {"$ref": "#/$defs/safeInteger"}, "actionCount": {"$ref": "#/$defs/safeInteger"}, "integrationCount": {"$ref": "#/$defs/safeInteger"},
+        "connectionCount": {"$ref": "#/$defs/safeInteger"}, "payloadBytes": {"$ref": "#/$defs/safeInteger"},
+        "complexity": {"enum": ["LOW", "MEDIUM", "HIGH"]}, "isSubWorkflow": {"type": "boolean"}
+      }
+    },
+    "functionSummary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["basicPurpose", "triggerDescription", "dataFlowSummary", "businessCategory", "confidence"],
+      "properties": {
+        "basicPurpose": {"$ref": "#/$defs/nonEmptyString"}, "triggerDescription": {"$ref": "#/$defs/nonEmptyString"}, "dataFlowSummary": {"$ref": "#/$defs/nonEmptyString"},
+        "businessCategory": {"enum": ["MANUAL_AUTOMATION", "WEBHOOK_API", "SCHEDULED_AUTOMATION", "DATA_SYNC", "NOTIFICATION", "CUSTOM_LOGIC", "GENERAL_AUTOMATION"]},
+        "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]}
+      }
+    },
+    "integration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["service", "nodeTypes", "nodeCount", "usage", "riskNotes"],
+      "properties": {
+        "service": {"$ref": "#/$defs/nonEmptyString"}, "nodeTypes": {"$ref": "#/$defs/textList"},
+        "nodeCount": {"$ref": "#/$defs/safeInteger"}, "usage": {"$ref": "#/$defs/nonEmptyString"}, "riskNotes": {"$ref": "#/$defs/textList"}
+      }
+    },
+    "finding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["policyId", "title", "severity", "location", "evidence", "message", "explanation", "whyItMatters", "possibleImpact", "remediation", "remediationSteps", "confidence", "policyEffect"],
+      "properties": {
+        "policyId": {"$ref": "#/$defs/nonEmptyString"}, "title": {"$ref": "#/$defs/nonEmptyString"},
+        "severity": {"enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"]}, "location": {"$ref": "#/$defs/location"},
+        "evidence": {"type": "object", "propertyNames": {"not": {"enum": ["__proto__", "constructor", "prototype"]}}},
+        "message": {"$ref": "#/$defs/nonEmptyString"}, "explanation": {"$ref": "#/$defs/nonEmptyString"}, "whyItMatters": {"$ref": "#/$defs/nonEmptyString"},
+        "possibleImpact": {"$ref": "#/$defs/nonEmptyString"}, "remediation": {"$ref": "#/$defs/nonEmptyString"},
+        "remediationSteps": {"$ref": "#/$defs/textList"}, "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]}, "policyEffect": {"enum": ["LEGACY_SCORE", "REPORT_ONLY"]}
+      }
+    },
+    "riskAssessment": {
+      "type": "object", "additionalProperties": false, "required": ["score", "grade", "topRisks", "dataExposure", "complexityDrivers"],
+      "properties": {
+        "score": {"type": "integer", "minimum": 0, "maximum": 100}, "grade": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+        "topRisks": {"$ref": "#/$defs/textList"}, "dataExposure": {"$ref": "#/$defs/nonEmptyString"}, "complexityDrivers": {"$ref": "#/$defs/textList"}
+      }
+    },
+    "humanSummary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["headline", "verdict", "plainLanguageOverview", "riskNarrative", "recommendedActions", "findingHighlights"],
+      "properties": {
+        "headline": {"$ref": "#/$defs/nonEmptyString"}, "verdict": {"$ref": "#/$defs/nonEmptyString"}, "plainLanguageOverview": {"$ref": "#/$defs/nonEmptyString"}, "riskNarrative": {"$ref": "#/$defs/nonEmptyString"},
+        "recommendedActions": {"$ref": "#/$defs/textList"}, "findingHighlights": {"$ref": "#/$defs/textList"}
+      }
+    },
+    "resultSummary": {
+      "type": "object", "additionalProperties": false, "required": ["critical", "high", "medium", "low", "info"],
+      "properties": {"critical": {"type": "integer", "minimum": 0, "maximum": 5000}, "high": {"type": "integer", "minimum": 0, "maximum": 5000}, "medium": {"type": "integer", "minimum": 0, "maximum": 5000}, "low": {"type": "integer", "minimum": 0, "maximum": 5000}, "info": {"type": "integer", "minimum": 0, "maximum": 5000}}
+    },
+    "scanResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "scannerVersion", "policyProfile", "analysisStatus", "analysisDiagnostics", "workflow", "functionSummary", "integrations", "findings"],
+      "properties": {
+        "schemaVersion": {"const": "scanner-result-v1"}, "scannerVersion": {"const": "scanner-beta-1"}, "policyProfile": {"enum": ["beta-default", "beta-hardened"]},
+        "analysisStatus": {"enum": ["COMPLETE", "DEGRADED", "INDETERMINATE"]}, "analysisDiagnostics": {"type": "array", "items": {"$ref": "#/$defs/diagnostic"}},
+        "workflow": {"$ref": "#/$defs/workflow"}, "functionSummary": {"$ref": "#/$defs/functionSummary"}, "integrations": {"type": "array", "items": {"$ref": "#/$defs/integration"}}, "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+        "riskAssessment": {"$ref": "#/$defs/riskAssessment"}, "humanSummary": {"$ref": "#/$defs/humanSummary"}, "summary": {"$ref": "#/$defs/resultSummary"}
+      },
+      "allOf": [
+        {"if": {"properties": {"analysisStatus": {"const": "COMPLETE"}}, "required": ["analysisStatus"]}, "then": {"properties": {"analysisDiagnostics": {"maxItems": 0}}, "required": ["riskAssessment", "humanSummary", "summary"]}},
+        {"if": {"properties": {"analysisStatus": {"const": "DEGRADED"}}, "required": ["analysisStatus"]}, "then": {"properties": {"analysisDiagnostics": {"minItems": 1}}, "required": ["riskAssessment", "humanSummary", "summary"]}},
+        {"if": {"properties": {"analysisStatus": {"const": "INDETERMINATE"}}, "required": ["analysisStatus"]}, "then": {"properties": {"analysisDiagnostics": {"contains": {"properties": {"code": {"enum": ["MALFORMED_NODE_PARAMETERS", "POLICY_EXECUTION_FAILED", "REQUIRED_STAGE_FAILURE"]}}, "required": ["code"]}}}, "not": {"anyOf": [{"required": ["riskAssessment"]}, {"required": ["humanSummary"]}, {"required": ["summary"]}]}}}
+      ]
+    },
+    "error": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "code", "message"],
+      "properties": {"kind": {"enum": ["input", "internal", "cancelled"]}, "code": {"$ref": "#/$defs/nonEmptyString"}, "message": {"$ref": "#/$defs/nonEmptyString"}}
+    },
+    "resultItem": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["input", "ok", "result"], "properties": {"input": {"$ref": "#/$defs/nonEmptyString"}, "ok": {"const": true}, "result": {"$ref": "#/$defs/scanResult"}}},
+        {"type": "object", "additionalProperties": false, "required": ["input", "ok", "error"], "properties": {"input": {"$ref": "#/$defs/nonEmptyString"}, "ok": {"const": false}, "error": {"$ref": "#/$defs/error"}}}
+      ]
+    },
+    "envelopeSummary": {
+      "type": "object", "additionalProperties": false, "required": ["total", "completed", "inputErrors", "internalErrors", "cancelled", "findings"],
+      "properties": {"total": {"$ref": "#/$defs/safeInteger"}, "completed": {"$ref": "#/$defs/safeInteger"}, "inputErrors": {"$ref": "#/$defs/safeInteger"}, "internalErrors": {"$ref": "#/$defs/safeInteger"}, "cancelled": {"$ref": "#/$defs/safeInteger"}, "findings": {"$ref": "#/$defs/safeInteger"}}
+    }
+  }
+}

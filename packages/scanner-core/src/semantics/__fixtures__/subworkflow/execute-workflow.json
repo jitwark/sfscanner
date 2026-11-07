@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "subworkflow",
+  "cases": [
+    {
+      "id": "subworkflow-call-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-patch-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.1.3",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-operation-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.0.0",
+      "operation": "execute",
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-run-op-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.5.0",
+      "operation": "runWorkflow",
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-workflow-id-param-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-call-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-call-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "0.2.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-call-zero-version-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "0.0.1",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-call-out-of-range-with-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "0.7.1",
+      "operation": "execute",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-call-custom-node-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "custom.nodes.executeWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-call-community-caller-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "community.flow.subworkflowCaller",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-call-vendor-package-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "@vendor/n8n-nodes-orchestration.executeWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

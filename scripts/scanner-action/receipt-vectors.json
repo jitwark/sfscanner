@@ -1,0 +1,43 @@
+{
+  "syntheticOnly": true,
+  "policy": {
+    "schemaVersion": "secureflow-action-release-policy-v1",
+    "status": "ACCEPTED",
+    "actionRepository": "jitwark/sfscanner",
+    "actionPath": ".github/actions/scan",
+    "scannerRepository": "jitwark/sfscanner",
+    "releaseReceiptSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "receipt": {
+    "schemaVersion": "secureflow-action-release-receipt-v1",
+    "status": "ACCEPTED",
+    "releaseId": "synthetic-q08-action-v1",
+    "scannerRepository": "jitwark/sfscanner",
+    "scannerRef": "3333333333333333333333333333333333333333",
+    "sourceTreeSha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "lockfileSha256": "5555555555555555555555555555555555555555555555555555555555555555",
+    "package": {
+      "name": "sfscanner",
+      "version": "0.2.1",
+      "tarballSha256": "6666666666666666666666666666666666666666666666666666666666666666"
+    },
+    "artifacts": [
+      {
+        "path": "packages/scanner-cli/dist/index.js",
+        "byteLength": 1,
+        "sha256": "7777777777777777777777777777777777777777777777777777777777777777"
+      },
+      {
+        "path": "packages/scanner-cli/dist/main.js",
+        "byteLength": 2,
+        "sha256": "8888888888888888888888888888888888888888888888888888888888888888"
+      },
+      {
+        "path": "packages/scanner-cli/dist/scan-worker.js",
+        "byteLength": 3,
+        "sha256": "9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "artifactSetSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "approvedActionSha": "0123456789abcdef0123456789abcdef01234567",
+  "actionPath": "jitwark/sfscanner/.github/actions/scan",
+  "vectors": [
+    {
+      "name": "valid inactive template",
+      "expectedStatus": "PASS",
+      "expectedReasonFragments": [],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "pull_request_target event",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["pull_request_target"],
+      "workflow": "on:\n  pull_request_target:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "mutable action ref",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["mutable ref"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@v2\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "missing permissions",
+      "expectedStatus": "UNKNOWN",
+      "expectedReasonFragments": ["repository defaults are never assumed"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "secrets reference",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["secrets context"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    env:\n      NODE_OPTIONS: ${{ secrets.NODE_OPTIONS }}\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "wrong but well-formed action sha",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["approved Action commit"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@fedcba9876543210fedcba9876543210fedcba98\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "expression-dependent permissions",
+      "expectedStatus": "UNKNOWN",
+      "expectedReasonFragments": ["unresolved expression"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions: ${{ fromJSON(vars.SCAN_PERMISSIONS) }}\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "expression-dependent event",
+      "expectedStatus": "UNKNOWN",
+      "expectedReasonFragments": ["unresolved expression"],
+      "workflow": "on: ${{ inputs.event }}\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "separated sarif upload job",
+      "expectedStatus": "PASS",
+      "expectedReasonFragments": [],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n  upload:\n    runs-on: ubuntu-24.04\n    needs: scan\n    permissions:\n      security-events: write\n    steps:\n      - uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938\n        with:\n          sarif_file: n8n-scan.sarif\n"
+    },
+    {
+      "name": "write permission in scanner job",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["must grant contents: read"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: write\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "sarif upload inside scanner job",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["upload-sarif"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n      - uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938\n        with:\n          sarif_file: n8n-scan.sarif\n"
+    },
+    {
+      "name": "reusable workflow",
+      "expectedStatus": "UNKNOWN",
+      "expectedReasonFragments": ["reusable workflow"],
+      "workflow": "on:\n  workflow_call:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    },
+    {
+      "name": "caller-selected scanner ref",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["caller-supplied scanner-ref"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: false\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n          scanner-ref: 0123456789abcdef0123456789abcdef01234567\n"
+    },
+    {
+      "name": "checkout persists credentials",
+      "expectedStatus": "FAIL",
+      "expectedReasonFragments": ["persist-credentials: false"],
+      "workflow": "on:\n  pull_request:\njobs:\n  scan:\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\n        with:\n          persist-credentials: true\n      - uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567\n        with:\n          path: workflows\n"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "message-mcp",
+  "cases": [
+    {
+      "id": "message-mcp-email-send-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-explicit-op-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.0.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.1.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-smtp-credentials-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.0.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-retry-bounded-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-error-stop-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-sanitizer-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.4.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-unknown-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-garbage-credentials-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-unknown-param-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "1.1.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.email-send",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "SEND_MESSAGE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "message-mcp-email-send-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-email-send-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "0.1.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-email-send-unmatched-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.emailSendLegacy",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-email-send-invalid-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "0.8.0",
+      "operation": "invalidOp",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

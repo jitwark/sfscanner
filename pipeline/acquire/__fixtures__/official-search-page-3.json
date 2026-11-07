@@ -1,0 +1,1 @@
+{"total":11433,"workflows":[{"id":103,"name":"Manual cleanup","description":"Runs a manual cleanup.","totalViews":3,"createdAt":"2024-01-03T00:00:00.000Z","user":{"name":"Community","username":"builder","verified":false},"nodes":[{"name":"Manual Trigger","type":"n8n-nodes-base.manualTrigger"}]}]}

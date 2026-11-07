@@ -1,0 +1,25 @@
+{
+  // `scripts/` holds 18 TypeScript files — the corpus re-packager, the public
+  // dataset exporter and their helpers — and none of them were typechecked.
+  // `npm run typecheck` walks the five npm workspaces, and `scripts/` is not
+  // one; the gap was found when a new exporter's files typechecked only
+  // against a scratch config someone wrote by hand.
+  //
+  // `noEmit` throughout: everything here runs through `tsx`.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2024", "DOM"],
+    "types": ["node"],
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["../app/*"],
+      "@hub/contracts": ["../contracts/index.ts"],
+      "@hub/contracts/*": ["../contracts/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

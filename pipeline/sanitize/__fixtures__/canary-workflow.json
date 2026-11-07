@@ -1,0 +1,64 @@
+{
+  "name": "Canary Test Workflow",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "OpenAI Node",
+      "type": "n8n-nodes-base.openAi",
+      "parameters": {
+        "apiKey": "sk-proj-canaryFakeSecretKey1234567890"
+      }
+    },
+    {
+      "id": "2",
+      "name": "HTTP Node",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJjYW5hcnkiOiJ0cnVlIn0.canarySignature123456"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "3",
+      "name": "Auth Node",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "options": {
+          "auth": {
+            "url": "https://canaryUser:canaryPass123@example.com/api"
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "OpenAI Node": {
+      "main": [
+        [
+          {
+            "node": "HTTP Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Node": {
+      "main": [
+        [
+          {
+            "node": "Auth Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

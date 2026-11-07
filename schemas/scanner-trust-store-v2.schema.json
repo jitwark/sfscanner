@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scanner-trust-store-v2.schema.json",
+  "title": "SecureFlow Scanner Trust Store v2",
+  "description": "Reserved post-v2 Ed25519 trust store (WC-0702). Not consumed by any v2 admission path; v2 refuses every external rule pack and trust-store key.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "minimumVersion",
+    "keys",
+    "digest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "scanner-trust-store-v2" },
+    "id": { "$ref": "#/$defs/text" },
+    "version": { "$ref": "#/$defs/semver" },
+    "minimumVersion": { "$ref": "#/$defs/semver" },
+    "keys": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": { "$ref": "#/$defs/key" }
+    },
+    "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?![A-Za-z][A-Za-z0-9+.-]*:)(?!//)"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["keyId", "algorithm", "publicKey", "status"],
+      "properties": {
+        "keyId": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+        "algorithm": { "const": "Ed25519" },
+        "publicKey": { "type": "string", "pattern": "^[A-Za-z0-9_-]{43}$" },
+        "status": { "enum": ["ACTIVE", "REVOKED"] }
+      }
+    }
+  }
+}

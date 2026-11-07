@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "release-v2-qa-matrix-v1",
+  "recordedOn": "2026-09-09",
+  "status": "NOT_READY",
+  "branch": "codex/release-v2",
+  "owners": {"implementation": "Luna", "independentReview": "Gemini", "reviewStatus": "PENDING"},
+  "acceptedInputs": {"task11Commit": "d02476a", "browserV2Commit": "516a2e0"},
+  "releaseCandidate": {
+    "kind": "local-static-build-from-committed-data",
+    "v2RescanProduced": false,
+    "sourceManifest": {
+      "path": "data/manifest.json",
+      "schemaVersion": "manifest-v1",
+      "generatedAt": "2026-09-04T17:39:08.025Z",
+      "byteSize": 684928,
+      "sha256": "1096a367dd6a0756bdd3f14efe004c4c1f9a3b22cca806aed07bf41135ea6f01",
+      "corpusSha256": "8e0a403d456cea6852a30e897cb414f1e50dfb97f277f0886a8121cefdf5c38c"
+    },
+    "counts": {"input": 13221, "published": 11464, "quarantined": 1757, "searchable": 11245, "redistributable": 288, "linkOnly": 11176, "official": 11069, "github": 395, "enrichmentGenerated": 11464, "enrichmentFallback": 0, "enrichmentUpstream": 0, "scanned": 11464, "notScanned": 0, "findingOccurrences": 28016, "workflowsWithFindings": 8332},
+    "existingDataIdentity": {"scannerVersion": "c998701", "sanitizerVersion": "sanitize-v2-code-stripped", "model": "gemini-3.7-flash-low", "promptVersion": "describe-6-json-workflow-lexical-check", "descriptionSchemaVersion": "description-v1", "compatibilityTarget": "n8n 2.34.6"},
+    "admittedV2Authority": {"scannerVersion": "2.0.0", "profileId": "beta-default", "profileVersion": "2.0.0", "engineBuildDigest": "6f2607f641a3d75929cca11c589a44bf640fbf719347bfb374ded2d62fd282d9", "rulesetDigest": "a36d00564bbf8e8c38f05820480782cdc53fdbd3712558850066c4e3f5c3413d", "semanticsDigest": "fd036def8e7d13b092b6106d90d2dc2c866ac21eb52211a61b583863ccd589ec", "limitsDigest": "a3baa12d93dab5d07dda3288c0aefa9f7f031b0bc047efd514c9373eb73657d3"}
+  },
+  "digestMethod": "SHA-256 of sorted POSIX relative path UTF-8, NUL, file bytes, NUL for each regular file",
+  "artifacts": [
+    {"path": "data/", "files": 46, "bytes": 486351230, "sha256": "dcd10a2180228b045214360d10a375271e96f3eb7f167dae30ff02c6e38ec232"},
+    {"path": "app/public/data/", "files": 46, "bytes": 486351230, "sha256": "dcd10a2180228b045214360d10a375271e96f3eb7f167dae30ff02c6e38ec232"},
+    {"path": "app/out/", "files": 15196, "bytes": 874879936, "sha256": "6b0869062ca76285a5d5da799f220b1d9020e452d53ad953e29306593b5abb04"},
+    {"path": "app/out/data/manifest.json", "bytes": 680103, "sha256": "fb951ac406617d868d8fe6866cf4cf605285299d920ac1d4aa70acbd700db92d"},
+    {"path": "app/out/sitemap.xml", "bytes": 612, "sha256": "bf481d901bc713b587187d0e12c6b8ea7cad10c889215668d2354bcf2b90a4ed"},
+    {"path": "app/out/sitemap-pages.xml", "bytes": 5196, "sha256": "960f6b356d9304f2c3f2b89ec8f450b790f3d982c3288e70b6eff9c3088ff935"},
+    {"path": "app/out/sitemap-workflows-1.xml", "bytes": 698911, "sha256": "8e3b0fe5064b1f9439327886d56d1149adaeb9717579e7b0e67a770d55ea7e7d"},
+    {"path": "app/out/sitemap-workflows-2.xml", "bytes": 692143, "sha256": "9a6b8f19fb1d5d55d1f660b06e716c9b025f3b3d907cb14faa800ef6cd9e4cbe"},
+    {"path": "app/out/sitemap-workflows-3.xml", "bytes": 171400, "sha256": "f0f176583ca49a4edb8079ecfb7a0b541c31f1a546e5a2f55a072559464e6a9b3"}
+  ],
+  "localCommands": [
+    {"id": "L-01", "command": "npm test --workspace @hub/scanner-cli", "status": "PASS", "exitCode": 0, "result": "22 test files passed; 156 tests passed."},
+    {"id": "L-02", "command": "npm run typecheck", "status": "PASS", "exitCode": 0, "result": "Contracts, app, pipeline, scanner-core, scanner-cli, and scripts typechecks passed; route types generated."},
+    {"id": "L-03", "command": "npm run check:docs", "status": "PASS", "exitCode": 0, "result": "17 authoritative files; total=11464, searchable=11245, redistributable=288, linkOnly=11176, official=11069."},
+    {"id": "L-04", "command": "npm run check:cli-docs", "status": "PASS", "exitCode": 0, "result": "4 commands, 13 options, 6 exit codes."},
+    {"id": "L-05", "command": "npm run check:scanner-parity", "status": "PASS", "exitCode": 0, "result": "6 valid and 4 rejected profile checks; INVALID_JSON and WORKFLOW_TOO_LARGE rejected."},
+    {"id": "L-06", "command": "npm run check:scanner-goldens", "status": "PASS", "exitCode": 0, "result": "ok=true; 3 valid fixtures, 9 golden checks, 4 rejected checks, errors=[]; observations below."},
+    {"id": "L-07", "command": "npm run check:corpus-privacy", "status": "PASS", "exitCode": 0, "result": "11464 entries; email-address 7 across 5 entries; bearer/API key, private IP, internal hostname all 0."},
+    {"id": "L-08", "command": "npm run check:rights-invariant", "status": "PASS", "exitCode": 0, "result": "11464 entries: 11176 link-only, 288 redistributable; no violating workflow body."},
+    {"id": "L-09", "command": "npm run check:scanner-import-boundary", "status": "PASS", "exitCode": 0, "result": "81 production files."},
+    {"id": "L-10", "command": "npm run check:browser-safe", "status": "PASS", "exitCode": 0, "result": "Source-only browser-safe audit passed; emitted artifacts require --emitted."},
+    {"id": "L-11", "command": "npm run check:file-size:all", "status": "PASS", "exitCode": 0, "result": "709 source files; new-file limit 200; legacy baselines enforced; tests/fixtures exempt."},
+    {"id": "L-12", "command": "npm run build", "status": "PASS", "exitCode": 0, "result": "Static export passed: 250 Next pages, 11214 lean pages, 15196 files, 874879936 bytes, 525303487 HTML bytes, 11291 sitemap URLs, SEO violations 0."},
+    {"id": "L-13", "command": "npm run check:parity", "status": "PASS", "exitCode": 0, "result": "250 Next and 11214 lean detail pages; 8 rules each."},
+    {"id": "L-14", "command": "npm run check:generated-assets", "status": "PASS", "exitCode": 0, "result": "app/out: 15196 files, 0 unsafe duplicate groups, 240 OG assets, 3 favicon assets."},
+    {"id": "L-15", "command": "npm pack --dry-run --workspace @hub/scanner-cli", "status": "PASS", "exitCode": 0, "result": "@hub/scanner-cli@0.1.0; 2 files; package 2.9 kB; unpacked 6.1 kB; shasum 20ce3290ca2ad948f6645fea532e2183c9dec255; dry-run only."},
+    {"id": "L-16", "command": "npx vitest run pipeline/scan/v2-* app/src/scanner/scanner-v2-adapter.test.ts app/src/scanner/scanner-v2-presentation.test.ts app/src/scanner/scanner-dual-run.test.ts", "status": "PASS", "exitCode": 0, "result": "7 test files passed; 24 tests passed."},
+    {"id": "L-17", "command": "npm run audit:generated-assets", "status": "PASS", "exitCode": 0, "result": "app/out: 15196 files, 0 unsafe duplicate groups, 240 OG assets, 3 favicon assets."}
+  ],
+  "goldenObservations": {
+    "safe": {"beta-default": "c4544e7c0b8ce4c980eeedefae48fac2a4e61ae669ae21e495daa58243360472", "beta-hardened": "8a168592ea2f526eda7256bafe2382498bc8914b9a54886f79de2576bf70b6b3", "pipeline": "638b49604cf0646ab798bd9d8dbd35bd17fbd36c7b694c2421a5eb3d8e930eb8"},
+    "risky": {"beta-default": "b49d83f364f2387056b5906e0a11b5c7974f146f6e8d6ec360944b663effce29", "beta-hardened": "2eb046daf3ec404f8f3e20a7cd110d530d8ef193685e874ab9a64c67b9af7c31", "pipeline": "dd3aeff8e0916da8c8a597aa6e59ba0fd4cd1620bfc98fe16a65d43faf1173b3"},
+    "analyzer-cap": {"beta-default": "c3fe0d63b4a1c4904db9aaaa69427e6cccb61e730b65ffd3d50b2e76998b7daa", "beta-hardened": "c62ec0838d553f1514d0979d84748691bdc15ed474fd02d6db9c20b2b39fe49f", "pipeline": "f7262baf8a4c4ec3f463843b8b3bd7609e3138fbc0beb7cd7f3ae1d873e7c324"}
+  },
+  "rescanComparison": {"status": "PENDING", "reason": "No full acquisition/rescan was run; no v2-rescan-manifest.json or v2-release-report.json exists.", "counts": {"added": null, "removed": null, "findingChanges": null, "gradeChanges": null, "analysisStatusChanges": null, "authorityChanges": null, "rightsChanges": null}},
+  "rollback": {"status": "PENDING", "reason": "The local export was disposable and ignored; no versioned v2 candidate was promoted and no manifest/shard restoration rehearsal was run."},
+  "pendingGates": [
+    {"gate": "Full authorized acquisition and v2 rescan (npm run corpus)", "status": "PENDING", "reason": "Would acquire source data and require rights/provenance authority; skipped by offline/no-acquisition scope."},
+    {"gate": "Gemini specification/quality review of Task12 evidence", "status": "PENDING", "reason": "Independent review is required and not observed in this worktree."},
+    {"gate": "Real-browser scanner/catalogue/detail/search QA and emitted Worker no-network evidence", "status": "PENDING", "reason": "Focused Vitest tests are not real-browser or deployed-origin evidence."},
+    {"gate": "Node 22 clean-install CI on Ubuntu, Windows, macOS", "status": "PENDING", "reason": "External cross-platform execution was not run locally."},
+    {"gate": "Official GitHub SARIF ingestion", "status": "PENDING", "reason": "No GitHub ingestion was performed."},
+    {"gate": "TestSprite", "status": "PENDING", "reason": "TestSprite was not run."},
+    {"gate": "No-index deployment and serving-origin QA", "status": "PENDING", "reason": "No deployment or remote route/header/cache check was performed."},
+    {"gate": "Legal/rights approval, rollback rehearsal, repository publication", "status": "PENDING", "reason": "Local checks do not provide independent approval; the npm package was released separately as sfscanner."}
+  ],
+  "nonClaims": ["cross-platform CI", "official GitHub SARIF ingestion", "TestSprite", "deployment", "publication", "legal approval", "full acquisition/rescan", "v2 old/new diff counts", "v2 rollback promotion"]
+}

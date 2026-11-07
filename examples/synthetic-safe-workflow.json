@@ -1,0 +1,17 @@
+{
+  "name": "Synthetic local transform",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "synthetic-safe-start",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "synthetic-safe-v1"
+}

@@ -1,0 +1,456 @@
+{
+  "schemaVersion": "scanner-baseline-v2",
+  "gate": "scanner-v2-performance",
+  "claim": "same-machine repeatability evidence; not cross-machine production performance",
+  "measurement": {
+    "warmups": 1,
+    "samples": 100,
+    "batches": 3,
+    "aggregation": "median-batch-p95",
+    "clock": "performance.now",
+    "rss": "process.memoryUsage.rss",
+    "serialization": "secureflow-canonical-json-v1"
+  },
+  "environment": {
+    "node": "v22.17.0",
+    "platform": "win32",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+    "cpuCount": 16,
+    "digest": "631dfdb1a52971e815052de7008460ba4b56082b076ee6f51701779de321cb59"
+  },
+  "tool": {
+    "scannerVersion": "scanner-beta-1",
+    "hash": "sha256",
+    "scriptSha256": "66fb208261b3de7ed61c5acf070760df7f215c114a5ad3350be2c21c1a58101b",
+    "digest": "0155701e0c0ae192c23841a1c58a946269a268a45d6f5a533c47a36ce22c2178"
+  },
+  "fixtures": {
+    "source": "packages/scanner-core/src/__fixtures__/v2-adapter-fixtures.ts",
+    "profile": {
+      "id": "beta-default",
+      "version": "2.0.0"
+    },
+    "count": 10,
+    "order": [
+      "ambiguous-workflow:beta-default@2.0.0",
+      "duplicate-workflow:beta-default@2.0.0",
+      "indeterminate-workflow:beta-default@2.0.0",
+      "malformed-workflow:beta-default@2.0.0",
+      "max-bound-exceeded-workflow:beta-default@2.0.0",
+      "max-bound-workflow:beta-default@2.0.0",
+      "oversized-workflow:beta-default@2.0.0",
+      "risky-workflow:beta-default@2.0.0",
+      "safe-workflow:beta-default@2.0.0",
+      "unicode-bom-workflow:beta-default@2.0.0"
+    ],
+    "digest": "40b1547c7e4a087ef3f60593321bc3015c810ab8245148b69fd0d4a903984027"
+  },
+  "byteCeilings": {
+    "maxSerializedResultBytes": 5000000,
+    "maxEvidenceBytes": 1536000,
+    "maxRedactedArtifactBytes": 1536000
+  },
+  "cases": [
+    {
+      "key": "ambiguous-workflow:beta-default@2.0.0",
+      "id": "ambiguous-workflow",
+      "kind": "valid",
+      "fixtureClass": "ambiguous",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "df3b7a78279cbab4fc284983376c94181edf7019cc6aba6bb38ef35dc9d7a358",
+      "outcome": "SUCCESS",
+      "status": "INDETERMINATE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 13.05575,
+        "p95": 17.47645,
+        "max": 22.818000000000097
+      },
+      "rssBytes": {
+        "p50": 123029504,
+        "p95": 129745305.6,
+        "max": 130920448
+      },
+      "serializedBytes": {
+        "p50": 6261,
+        "p95": 6261,
+        "max": 6261
+      },
+      "evidenceBytes": {
+        "p50": 2604,
+        "p95": 2604,
+        "max": 2604
+      },
+      "redactedArtifactBytes": {
+        "p50": 6261,
+        "p95": 6261,
+        "max": 6261
+      }
+    },
+    {
+      "key": "duplicate-workflow:beta-default@2.0.0",
+      "id": "duplicate-workflow",
+      "kind": "valid",
+      "fixtureClass": "duplicate",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "25462eb59a308dcf770bfbdd220227ba70c322aa47855b1010d8b497711563ea",
+      "outcome": "SUCCESS",
+      "status": "INDETERMINATE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 10.4165,
+        "p95": 15.44888,
+        "max": 19.089700000000448
+      },
+      "rssBytes": {
+        "p50": 132911104,
+        "p95": 135697408,
+        "max": 137084928
+      },
+      "serializedBytes": {
+        "p50": 5915,
+        "p95": 5915,
+        "max": 5915
+      },
+      "evidenceBytes": {
+        "p50": 2263,
+        "p95": 2263,
+        "max": 2263
+      },
+      "redactedArtifactBytes": {
+        "p50": 5915,
+        "p95": 5915,
+        "max": 5915
+      }
+    },
+    {
+      "key": "indeterminate-workflow:beta-default@2.0.0",
+      "id": "indeterminate-workflow",
+      "kind": "valid",
+      "fixtureClass": "indeterminate",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "981ea57036ee60d0b5e75e151e45c162ab8ac497655c962a7d2a9adeeeb6ca9e",
+      "outcome": "SUCCESS",
+      "status": "INDETERMINATE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 11.92115,
+        "p95": 13.770875,
+        "max": 20.463399999998728
+      },
+      "rssBytes": {
+        "p50": 134363136,
+        "p95": 139781529.6,
+        "max": 140201984
+      },
+      "serializedBytes": {
+        "p50": 7823,
+        "p95": 7823,
+        "max": 7823
+      },
+      "evidenceBytes": {
+        "p50": 4167,
+        "p95": 4167,
+        "max": 4167
+      },
+      "redactedArtifactBytes": {
+        "p50": 7823,
+        "p95": 7823,
+        "max": 7823
+      }
+    },
+    {
+      "key": "malformed-workflow:beta-default@2.0.0",
+      "id": "malformed-workflow",
+      "kind": "rejected",
+      "fixtureClass": "malformed",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "cfb7c9e30b2c5d25c4bcd23c4fc1f193a1392e3199acc53fe98d90fb917084f4",
+      "outcome": "FAILURE",
+      "status": null,
+      "failureCode": "INVALID_JSON",
+      "latencyMs": {
+        "p50": 3.68175,
+        "p95": 4.45105,
+        "max": 5.703000000001339
+      },
+      "rssBytes": {
+        "p50": 140230656,
+        "p95": 140689612.8,
+        "max": 140742656
+      },
+      "serializedBytes": {
+        "p50": 81,
+        "p95": 81,
+        "max": 81
+      },
+      "evidenceBytes": {
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "redactedArtifactBytes": {
+        "p50": 81,
+        "p95": 81,
+        "max": 81
+      }
+    },
+    {
+      "key": "max-bound-exceeded-workflow:beta-default@2.0.0",
+      "id": "max-bound-exceeded-workflow",
+      "kind": "rejected",
+      "fixtureClass": "max-bound",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "b29d2e46dd49b107f119c0088799b15394529d36e05114e49a71cdbff4f660f5",
+      "outcome": "FAILURE",
+      "status": null,
+      "failureCode": "WORKFLOW_TOO_COMPLEX",
+      "latencyMs": {
+        "p50": 328.0074,
+        "p95": 358.80603,
+        "max": 448.94689999999537
+      },
+      "budgetBaselineP95Ms": 475,
+      "rssBytes": {
+        "p50": 255780864,
+        "p95": 261820416,
+        "max": 265035776
+      },
+      "serializedBytes": {
+        "p50": 139,
+        "p95": 139,
+        "max": 139
+      },
+      "evidenceBytes": {
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "redactedArtifactBytes": {
+        "p50": 139,
+        "p95": 139,
+        "max": 139
+      }
+    },
+    {
+      "key": "max-bound-workflow:beta-default@2.0.0",
+      "id": "max-bound-workflow",
+      "kind": "valid",
+      "fixtureClass": "max-bound",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "21dc28688fe235e34c1074e64196cda051d13c2458ec0f1507aaef4c4a5bdfb5",
+      "outcome": "SUCCESS",
+      "status": "COMPLETE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 625.11815,
+        "p95": 688.726585,
+        "max": 838.4933000000019
+      },
+      "budgetBaselineP95Ms": 880,
+      "rssBytes": {
+        "p50": 299081728,
+        "p95": 327554048,
+        "max": 328740864
+      },
+      "serializedBytes": {
+        "p50": 5954,
+        "p95": 5954,
+        "max": 5954
+      },
+      "evidenceBytes": {
+        "p50": 2275,
+        "p95": 2275,
+        "max": 2275
+      },
+      "redactedArtifactBytes": {
+        "p50": 5954,
+        "p95": 5954,
+        "max": 5954
+      },
+      "repinnedFrom": "21dc28688fe235e34c1074e64196cda051d13c2458ec0f1507aaef4c4a5bdfb5"
+    },
+    {
+      "key": "oversized-workflow:beta-default@2.0.0",
+      "id": "oversized-workflow",
+      "kind": "rejected",
+      "fixtureClass": "oversized",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "0b4f1eb3be6325ec918e26683bf81a848e51f199ffb755c02ac650dbf4bed43c",
+      "outcome": "FAILURE",
+      "status": null,
+      "failureCode": "WORKFLOW_TOO_LARGE",
+      "latencyMs": {
+        "p50": 784.13105,
+        "p95": 856.46985,
+        "max": 916.7643000000389
+      },
+      "rssBytes": {
+        "p50": 389492736,
+        "p95": 392581120,
+        "max": 465059840
+      },
+      "serializedBytes": {
+        "p50": 104,
+        "p95": 104,
+        "max": 104
+      },
+      "evidenceBytes": {
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "redactedArtifactBytes": {
+        "p50": 104,
+        "p95": 104,
+        "max": 104
+      }
+    },
+    {
+      "key": "risky-workflow:beta-default@2.0.0",
+      "id": "risky-workflow",
+      "kind": "valid",
+      "fixtureClass": "risky",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "44b31aca63c13bb0d8fd0f2cdf358f571f8655fb81cc34ec759839e4773b0996",
+      "outcome": "SUCCESS",
+      "status": "COMPLETE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 12.21795,
+        "p95": 16.194885,
+        "max": 20.557200000039302
+      },
+      "rssBytes": {
+        "p50": 369868800,
+        "p95": 370324070.4,
+        "max": 391200768
+      },
+      "serializedBytes": {
+        "p50": 7586,
+        "p95": 7586,
+        "max": 7586
+      },
+      "evidenceBytes": {
+        "p50": 3641,
+        "p95": 3641,
+        "max": 3641
+      },
+      "redactedArtifactBytes": {
+        "p50": 7586,
+        "p95": 7586,
+        "max": 7586
+      },
+      "repinnedFrom": "44b31aca63c13bb0d8fd0f2cdf358f571f8655fb81cc34ec759839e4773b0996"
+    },
+    {
+      "key": "safe-workflow:beta-default@2.0.0",
+      "id": "safe-workflow",
+      "kind": "valid",
+      "fixtureClass": "safe",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "39278d6adb2edb75f81386e16e46a03431f16e6bbc929ebdae171ea3fbf90932",
+      "outcome": "SUCCESS",
+      "status": "COMPLETE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 8.9366,
+        "p95": 10.174095,
+        "max": 11.197200000053272
+      },
+      "rssBytes": {
+        "p50": 369209344,
+        "p95": 374743859.2,
+        "max": 374837248
+      },
+      "serializedBytes": {
+        "p50": 5566,
+        "p95": 5566,
+        "max": 5566
+      },
+      "evidenceBytes": {
+        "p50": 1695,
+        "p95": 1695,
+        "max": 1695
+      },
+      "redactedArtifactBytes": {
+        "p50": 5566,
+        "p95": 5566,
+        "max": 5566
+      }
+    },
+    {
+      "key": "unicode-bom-workflow:beta-default@2.0.0",
+      "id": "unicode-bom-workflow",
+      "kind": "valid",
+      "fixtureClass": "unicode-bom",
+      "profile": {
+        "id": "beta-default",
+        "version": "2.0.0"
+      },
+      "inputSha256": "30d6f3c7c52bb2e90d9d08cb5ad45b2da9b89c28f44c6ffb93415a634d736417",
+      "outcome": "SUCCESS",
+      "status": "COMPLETE",
+      "failureCode": null,
+      "latencyMs": {
+        "p50": 10.39355,
+        "p95": 11.40401,
+        "max": 14.730299999937415
+      },
+      "rssBytes": {
+        "p50": 374964224,
+        "p95": 374984704,
+        "max": 375009280
+      },
+      "serializedBytes": {
+        "p50": 5873,
+        "p95": 5873,
+        "max": 5873
+      },
+      "evidenceBytes": {
+        "p50": 1996,
+        "p95": 1996,
+        "max": 1996
+      },
+      "redactedArtifactBytes": {
+        "p50": 5873,
+        "p95": 5873,
+        "max": 5873
+      },
+      "repinnedFrom": "30d6f3c7c52bb2e90d9d08cb5ad45b2da9b89c28f44c6ffb93415a634d736417"
+    }
+  ],
+  "repin": {
+    "date": "2026-10-22",
+    "reason": "Re-pin three fixture input identities after 5092e74; budgets unchanged; original docs/scanner/baseline-v2.json preserved.",
+    "original": "docs/scanner/baseline-v2-2026-10-21.json"
+  }
+}

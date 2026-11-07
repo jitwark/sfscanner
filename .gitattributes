@@ -1,0 +1,28 @@
+* text=auto eol=lf
+
+# Public source checks compare generated documentation and manifests byte-for-byte.
+# Keep source, docs, and test fixtures stable across Windows and Unix checkouts.
+*.json text eol=lf
+*.md text eol=lf
+*.mjs text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Audit receipt logs are evidence, not source: keep their exact bytes so recorded SHA-256
+# digests reproduce from a fresh checkout instead of being rewritten by eol=lf.
+*.log -text
+
+# Evidence scripts are bytes we hash; do not normalize their line endings.
+docs/audit/**/*.mjs -text
+
+# Corpus hashes and HTTP byte ranges must survive standalone clone/checkout.
+data/** -text
+
+# Release byte freeze (2026-11-08): the qualified source tree contains CRLF and
+# mixed-ending files whose exact working bytes are hashed by the public source
+# selection. Preserve every file byte-for-byte through add, commit, and checkout.
+# This final rule intentionally overrides the eol rules above; those patterns
+# remain documented as the pre-freeze normalization policy.
+* -text

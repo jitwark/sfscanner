@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "http-ai",
+  "cases": [
+    {
+      "id": "http-ai-openai-v1-basic",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.openai",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-openai-v2-chat",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.openai",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-openai-v999-future",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.openai",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-agent-v1-orchestrator",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.ai-agent",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL",
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "http-ai-agent-v2-tools",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "2.1.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.ai-agent",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL",
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "http-ai-agent-v999-future",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.ai-agent",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL",
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "http-ai-chat-model-v1-base",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.chat-model",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-chat-model-v2-extended",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.chat-model",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-chat-model-v999-max",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.chat-model",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-openai-negative-type",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.openAiNonExistent",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-agent-negative-unscoped",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.agent",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-chat-model-negative-unsupported",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatFake",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-openai-unknown-early-version",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.openAi",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-agent-unknown-alpha",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.agent",
+      "version": "0.5.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-chat-model-unknown-legacy",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "name": "sfscanner",
+  "version": "0.2.1",
+  "description": "SecureFlow Scanner — Deterministic, offline security & dataflow analyzer for n8n workflows",
+  "keywords": [
+    "n8n",
+    "security",
+    "sast",
+    "sarif",
+    "scanner",
+    "workflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jitwark/sfscanner.git"
+  },
+  "homepage": "https://github.com/jitwark/sfscanner#readme",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "main": "./dist/index.js",
+  "bin": {
+    "sfscanner": "dist/main.js",
+    "sfscanner-mcp": "dist/mcp.js"
+  },
+  "imports": {
+    "#sfscanner-worker": "./dist/scan-worker.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./v2/arguments": {
+      "types": "./dist/v2/arguments.d.ts",
+      "import": "./dist/v2/arguments.js"
+    },
+    "./v2/cli-runner": {
+      "types": "./dist/v2/cli-runner.d.ts",
+      "import": "./dist/v2/cli-runner.js"
+    },
+    "./v2/help": {
+      "types": "./dist/v2/help.d.ts",
+      "import": "./dist/v2/help.js"
+    },
+    "./v2/metadata-output": {
+      "types": "./dist/v2/metadata-output.d.ts",
+      "import": "./dist/v2/metadata-output.js"
+    },
+    "./v2/preflight-readiness": {
+      "types": "./dist/v2/preflight-readiness.d.ts",
+      "import": "./dist/v2/preflight-readiness.js"
+    },
+    "./v2/privacy-prepare": {
+      "types": "./dist/v2/privacy-prepare.d.ts",
+      "import": "./dist/v2/privacy-prepare.js"
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "lint": "eslint .",
+    "test": "vitest run --config vitest.config.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@hub/contracts": "*",
+    "@hub/scanner-core": "*",
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.7.2",
+    "vitest": "4.1.12"
+  }
+}

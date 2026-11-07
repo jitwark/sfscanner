@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "database-file",
+  "cases": [
+    {
+      "id": "database-file-write-binary-file-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-operation-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": "write",
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-destination-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-item-mode-each-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-error-stop-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-retry-bounded-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-disabled-skip-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-disabled-unknown-behavior",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-dynamic-path-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "1.0.0",
+      "operation": "dynamicWrite",
+      "expectedSemanticId": "database-file.write-binary-file",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "WRITE_FILE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-write-binary-file-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-write-binary-file-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "0.3.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-write-binary-file-zero-version-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.writeBinaryFile",
+      "version": "0.0.1",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-write-binary-file-unmatched-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.unmatchedWriteFile",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

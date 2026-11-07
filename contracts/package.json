@@ -1,0 +1,42 @@
+{
+  "name": "@hub/contracts",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./functional-nodes": "./functional-nodes.ts",
+    "./release-manifest": "./release-manifest.ts",
+    "./byte-range-index": "./byte-range-index.ts",
+    "./workflow-chart": "./workflow-chart.ts",
+    "./artifact-validation": "./artifact-validation.ts",
+    "./search-index-artifact": "./search-index-artifact.ts",
+    "./semantic-index-artifact": "./semantic-index-artifact.ts",
+    "./facet-artifact": "./facet-artifact.ts",
+    "./facets-builder": "./facets-builder.ts",
+    "./entry-artifact": "./entry-artifact.ts",
+    "./public-data-model": "./public-data-model.ts",
+    "./stable-order": "./stable-order.ts",
+    "./scanner-v2-result": "./scanner-v2-result.ts",
+    "./scanner-v2-source": "./scanner-v2-source.ts",
+    "./scanner-v2-evidence": "./scanner-v2-evidence.ts",
+    "./scanner-v2-advisory": "./scanner-v2-advisory.ts",
+    "./scanner-v2-advisory-coherence": "./scanner-v2-advisory-coherence.ts",
+    "./scanner-v2-field-flow": "./scanner-v2-field-flow.ts",
+    "./scanner-v2-field-flow-validation": "./scanner-v2-field-flow-validation.ts",
+    "./preflight-prerequisites": "./preflight-prerequisites.ts",
+    "./preflight-prerequisite-types": "./preflight-prerequisite-types.ts",
+    "./scanner-v2-advisory-validation": "./scanner-v2-advisory-validation.ts",
+    "./scanner-target-v3": "./scanner-target-v3.ts"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.0.1"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "e2e-real-6": {
+    "summary": "Process customer datastore records manually to create documents and send automated notification emails.",
+    "description": "This workflow is started manually through a manual trigger node to execute document generation and communication tasks. It retrieves records from the n8n training customer datastore, manipulates data lists with item lists nodes, and executes custom data logic using function item components.\n\nAfter preparing the customer data and generating the required documentation, the process completes by sending email notifications through the email send integration. The overall structure coordinates data retrieval, item processing, document creation, and final message delivery across eight operational nodes.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-7": {
+    "summary": "Receive external webhook events to process Zendesk ticket details and post notifications into Slack channels.",
+    "description": "This automation initiates upon receiving an incoming HTTP request via a webhook trigger node. It routes and evaluates incoming data using conditional logic nodes and custom JavaScript code execution to parse incoming ticket events.\n\nDepending on the evaluated conditions, the flow updates Zendesk tickets and dispatches formatted notifications to Slack channels. The pipeline incorporates sticky notes for inline documentation and manages conditional logic across nine integrated nodes.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-8": {
+    "summary": "Synchronize incoming Zendesk webhook events into Asana task updates using custom logic nodes.",
+    "description": "Triggered by external webhooks, this flow listens for incoming real-time payload updates related to support events. It processes incoming payload fields through custom function code and conditional evaluation nodes.\n\nOnce the incoming data is evaluated and formatted, the workflow updates or creates corresponding tasks inside Asana alongside updating Zendesk. The seven-node architecture provides straightforward event synchronization between support operations and task management.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-9": {
+    "summary": "Transfer and transform binary files across Microsoft OneDrive, Google Drive, and FTP servers manually.",
+    "description": "Initiated manually via a trigger node, this complex file processing workflow handles binary storage operations across multiple cloud and remote locations. It reads binary files from local or remote sources and writes binary content back to disk or external services.\n\nFile transfers and data transformations are executed across Microsoft OneDrive, Google Drive, and FTP servers alongside standard HTTP requests and set nodes. Containing twenty-four nodes, the structure organizes multi-cloud file management and binary manipulation operations without custom coding nodes.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-10": {
+    "summary": "Process incoming Zendesk webhook notifications to automate issue tracking updates in GitHub.",
+    "description": "This workflow starts when an external HTTP request hits the webhook trigger component. It extracts incoming payload information and evaluates execution paths through conditional IF nodes and custom code function blocks.\n\nBased on the evaluated criteria, the workflow updates issue records within GitHub and synchronizes state back to Zendesk. Across seven total nodes, the automation provides automated integration between customer support requests and developer repository tracking.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-1": {
+    "summary": "This scheduled workflow queries data using GraphQL, processes item lists, and posts automated updates directly into Discord.",
+    "description": "The execution begins with a cron trigger set to run at scheduled intervals. Once triggered, data variables are set and passed into a GraphQL node to fetch external data.\n\nThe fetched records are processed through an item lists node to format and structure the payload properly. Finally, the processed content is dispatched automatically to a designated Discord channel.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-2": {
+    "summary": "This workflow executes image analysis with AWS Rekognition via HTTP requests and updates records in Google Sheets.",
+    "description": "The process is initiated manually by the user to process image media on demand. An HTTP request node triggers analysis using AWS Rekognition to extract data and tags from the target media.\n\nFollowing image processing, data configuration nodes organize the results. The final structured output is appended directly into Google Sheets for tracking and record keeping.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-3": {
+    "summary": "This scheduled automation retrieves Google Calendar events, adjusts event date-times, and sends summary email notifications.",
+    "description": "Triggered on a periodic basis via a cron node, the workflow evaluates upcoming calendar items from Google Calendar. It uses date time nodes alongside custom JavaScript code to handle date transformations and time zone adjustments.\n\nFlow control nodes like switch and merge organize the processing logic across multiple execution paths. Once event details are aggregated and formatted, summary updates are dispatched via the email send node.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-4": {
+    "summary": "This event-driven workflow captures new Typeform submissions, runs custom code transformations, and creates deal records in Pipedrive.",
+    "description": "The workflow is automatically activated by the Typeform trigger whenever a new form response is received. Incoming form fields are processed through custom code logic to parse and reformat response parameters.\n\nAfter transforming the dataset, configured data values are forwarded to Pipedrive to update or create records. Sticky note nodes are also included in the layout to document step-by-step logic.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-5": {
+    "summary": "This triggered workflow detects Google Drive file changes, extracts spreadsheet data, and synchronizes records with Pipedrive.",
+    "description": "Operation begins automatically when the Google Drive trigger detects newly added or modified files. The workflow retrieves the file content from Google Drive and parses tabular data using the spreadsheet file node.\n\nConditional branching nodes evaluate the extracted information before merging parallel processing paths. Validated records are subsequently created or updated in Pipedrive to maintain synchronized operational data.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-16": {
+    "summary": "This manual workflow extracts data from files and utilizes artificial intelligence features for information extraction and chat generation.",
+    "description": "The workflow is initiated manually through a manual trigger node. Once executed, it reads incoming files using extract from file and html nodes, subsequently feeding data into an information extractor supported by an OpenAI language model chat node.\n\nAfter AI-driven processing and setting required variables, the pipeline executes HTTP requests and handles logic branching using a stop and error node to manage execution states. Email send nodes and sticky notes are integrated to assist with notifications and document workflow context across twenty-four total nodes.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-17": {
+    "summary": "This workflow manually triggers HTTP requests and data manipulation steps to interact with external Web endpoints.",
+    "description": "Execution begins via a manual trigger node, allowing users to start the sequence on demand. The structure routes data through node operations to prepare incoming parameters before invoking external HTTP endpoints.\n\nThroughout the seven-node pipeline, set nodes configure necessary data structures while sticky notes provide operational context. The workflow performs straightforward data transformation and outbound HTTP transmission without custom code execution or artificial intelligence features.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-18": {
+    "summary": "This webhook-triggered workflow processes incoming Web data using custom code execution and updates a MySQL database.",
+    "description": "The workflow is activated automatically by an incoming webhook event. Upon receiving payload data, custom code execution nodes parse and transform the incoming parameters into structured database operations.\n\nData is sent to a MySQL database alongside outgoing HTTP requests. Across five nodes, sticky notes document the flow, enabling automated data ingestion, transformation, and storage without artificial intelligence processing.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-19": {
+    "summary": "This scheduled workflow aggregates data and executes custom code to send automated notifications to Telegram.",
+    "description": "Triggered on a recurring schedule via a schedule trigger node, this workflow periodically initiates automated routines. Data is processed through custom code and function nodes to structure payloads and aggregate information.\n\nThe processed records are dispatched through HTTP requests and posted to Telegram. Across seven total nodes, sticky notes document the pipeline step by step without relying on external webhooks or artificial intelligence.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-20": {
+    "summary": "This complex manual workflow coordinates extensive data transformations and HTTP requests across forty-seven specialized nodes.",
+    "description": "The workflow relies on a manual trigger node to start on-demand processing sequences. It features an extensive structure containing set nodes and HTTP request nodes to build, modify, and transmit complex data payloads.\n\nWith forty-seven total nodes, sticky notes are used extensively to maintain documentation across the large node architecture. The execution pipeline operates entirely using standard node logic without custom code execution or artificial intelligence integration.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-11": {
+    "summary": "Automates ticket creation and conditional tracking across Zendesk and Jira platforms via webhooks.",
+    "description": "This workflow is triggered automatically by an incoming webhook event. Upon receiving the payload, it routes incoming data through conditional logic checks to filter requests accordingly.\n\nCustom JavaScript function logic evaluates the payload parameters before interacting with external integrations. It then creates or updates issues across both Zendesk and Jira systems to maintain synchronicity.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-12": {
+    "summary": "Processes incoming emails via artificial intelligence to log data into Google Sheets and respond to webhooks.",
+    "description": "This workflow executes upon receiving a new email through the Gmail trigger node. It inspects incoming email messages, performs cryptographic checks, and extracts content using HTML parsing tools.\n\nAn OpenAI artificial intelligence model processes the message content to generate context-aware intelligence. The workflow then logs output data into Google Sheets spreadsheet rows and sends a structured response back to an external listener.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-13": {
+    "summary": "Monitors Google Sheets for updates and posts notifications to a Discord channel.",
+    "description": "This workflow is initiated by a Google Sheets trigger node whenever new or updated rows are detected within a monitored spreadsheet. It captures row modifications for processing downstream.\n\nCustom code processes and formats the incoming spreadsheet data into a clear messaging payload. The processed information is subsequently published to a target Discord channel.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-14": {
+    "summary": "Classifies incoming Gmail messages using artificial intelligence agents to interact with Google Calendar.",
+    "description": "This workflow starts when a new email arrives in Gmail. It immediately passes the message payload into a text classification node to categorize the subject and content.\n\nAn artificial intelligence agent driven by an OpenAI language model evaluates the classified text to determine scheduling context. It then uses calendar tools to query or update events in Google Calendar based on email contents.",
+    "descriptionSource": "generated"
+  },
+  "e2e-real-15": {
+    "summary": "Summarizes documents and extracts knowledge using AI agents, custom code, Wikipedia tools, and Gmail.",
+    "description": "This workflow is launched manually to execute document processing and information extraction tasks. It loads raw text files using a default data loader and splits the content via recursive character text splitters.\n\nAn artificial intelligence agent powered by an OpenAI language model performs chain summarization and information extraction, utilizing a Wikipedia tool for supplementary context. Custom code structures the output before sending summarized results through Gmail.",
+    "descriptionSource": "generated"
+  }
+}

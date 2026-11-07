@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "message-mcp",
+  "cases": [
+    {
+      "id": "message-mcp-tool-mcp-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-call-tool-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.0",
+      "operation": "callTool",
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-execute-tool-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.1.0",
+      "operation": "executeTool",
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.1",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-auth-bearer-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-retry-bounded-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-error-output-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.4.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-unknown-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-garbage-tool-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.0",
+      "operation": "unknownTool",
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-untyped-param-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "CALL_TOOL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "message-mcp-tool-mcp-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-tool-mcp-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "0.2.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-tool-mcp-unmatched-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcpLegacy",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "message-mcp-tool-mcp-invalid-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "0.5.0",
+      "operation": "invalidOp",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

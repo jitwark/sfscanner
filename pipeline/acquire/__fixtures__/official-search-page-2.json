@@ -1,0 +1,1 @@
+{"total":11433,"workflows":[{"id":102,"name":"Scheduled report","description":"Creates a report on a schedule.","totalViews":7,"createdAt":"2024-01-02T00:00:00.000Z","user":{"name":"Community","username":"community","verified":false},"nodes":[{"name":"Schedule Trigger","type":"n8n-nodes-base.scheduleTrigger"}]}]}

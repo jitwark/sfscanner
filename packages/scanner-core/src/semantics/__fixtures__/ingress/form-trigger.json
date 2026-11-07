@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "ingress",
+  "cases": [
+    {
+      "id": "ingress-form-trigger-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-authenticated-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "1.1.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-unauthenticated-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-garbage-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-unknown-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-form-trigger-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-form-trigger-unsupported-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "0.7.0",
+      "operation": "unsupportedOp",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

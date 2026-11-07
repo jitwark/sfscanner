@@ -1,0 +1,9 @@
+[
+  { "id": "entry-a", "readiness": { "analysis": "unscanned" }, "source": { "kind": "n8n_official", "templateId": 10 } },
+  { "id": "entry-b", "readiness": { "analysis": "unscanned" }, "source": { "kind": "n8n_official", "templateId": 20 } },
+  { "id": "entry-c", "readiness": { "analysis": "unscanned" }, "source": { "kind": "n8n_official", "templateId": 30 } },
+  { "id": "entry-d", "readiness": { "analysis": "unscanned" }, "source": { "kind": "n8n_official", "templateId": 40 } },
+  { "id": "entry-e", "readiness": { "analysis": "unscanned" }, "source": { "kind": "n8n_official", "templateId": 100 } },
+  { "id": "entry-f", "readiness": { "analysis": "derived" }, "source": { "kind": "n8n_official", "templateId": 50 } },
+  { "id": "entry-g", "readiness": { "analysis": "unscanned" }, "source": { "kind": "github" } }
+]

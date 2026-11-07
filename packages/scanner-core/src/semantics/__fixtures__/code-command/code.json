@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "code-command",
+  "cases": [
+    {
+      "id": "code-command-code-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-operation-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "1.1.0",
+      "operation": "runOnceForAllItems",
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-operation-run-each-item-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "2.1.0",
+      "operation": "runOnceForEachItem",
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-parameter-path-jscode-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-destination-absence-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "code-command.code",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "EXECUTE_CODE"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "code-command-code-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-code-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "0.2.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-code-zero-version-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "0.0.1",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "code-command-code-unmatched-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.code",
+      "version": "0.7.0",
+      "operation": "unsupportedExecution",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

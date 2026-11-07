@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "rootDir": "../..",
+    "outDir": "dist/_types"
+  },
+  "include": [
+    "src/index.ts",
+    "src/v2/arguments.ts",
+    "src/v2/cli-runner.ts",
+    "src/v2/help.ts",
+    "src/v2/metadata-output.ts",
+    "src/v2/preflight-readiness.ts",
+    "src/v2/privacy-prepare.ts"
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "subworkflow",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "subworkflow.execute-workflow-trigger": {
+      "semanticId": "subworkflow.execute-workflow-trigger",
+      "nodeType": "n8n-nodes-base.executeWorkflowTrigger",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "SUBWORKFLOW",
+      "parameterPaths": [
+        {
+          "pointer": "/workflowInputs",
+          "valueType": "OBJECT",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "ff981ecbc1a92c7ab840148c25876c932849491dbe92a418f4b130d2da2ad711",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "subworkflow.execute-workflow": {
+      "semanticId": "subworkflow.execute-workflow",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/workflowId",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/workflowInputs",
+          "valueType": "OBJECT",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [
+        "/workflowId"
+      ],
+      "effects": [
+        "START_SUBWORKFLOW"
+      ],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "ae2fcce365d228d4e2bf62cdf891cc5376ec3246a5b7df15f94478cb7ebf6765",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "subworkflow.tool-workflow": {
+      "semanticId": "subworkflow.tool-workflow",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/workflowId",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/workflowInputs",
+          "valueType": "OBJECT",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [
+        "/workflowId"
+      ],
+      "effects": [
+        "START_SUBWORKFLOW"
+      ],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "ai_tool",
+          "index": 0,
+          "itemMode": "ALL"
+        },
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "6cbbee7c3554ea174b35e8291d319c3c1517ad3463207c353ebaf1271f952697",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "subworkflow-trigger-identity",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflowTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow-trigger"
+    },
+    {
+      "id": "subworkflow-call-dynamic-id",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "dynamicDestination": "={{ $json.workflowId }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "subworkflow-tool-port",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "version": "999.0.0",
+      "operation": "invoke",
+      "expectedSemanticId": "subworkflow.tool-workflow"
+    },
+    {
+      "id": "subworkflow-community-node",
+      "kind": "UNKNOWN",
+      "nodeType": "community.workflow.subworkflowCaller",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "subworkflow-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null
+    }
+  ]
+}

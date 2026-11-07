@@ -1,0 +1,83 @@
+name: Bug report
+description: Report something that behaves incorrectly in the site, the scanner UI, the CLI, or the build tooling
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for a defect: something crashed, rendered wrong, produced an incorrect
+        non-security result, or a documented command failed.
+
+        Do not include personal data, credentials, private workflow JSON, or security
+        vulnerability details in this issue. For those, use
+        [voidsyntax01@gmail.com](mailto:voidsyntax01@gmail.com) or, for a scanner
+        false-positive/false-negative report specifically, use the "False-positive or
+        false-negative scanner report" form instead — it asks for the right redacted evidence.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where does the bug live?
+      options:
+        - Catalogue site (search, entry pages, navigation)
+        - Scanner UI (upload, paste, results view)
+        - Scanner CLI (n8n-scan)
+        - Build / pipeline tooling
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Release tag, commit SHA, or "main" if you built from source. For the hosted site, the date you observed the bug is fine.
+      placeholder: e.g. commit abc1234, or "hosted site, 2026-09-05"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The smallest sequence that triggers it. A minimal, synthetic workflow JSON is far more useful than a real one — see CONTRIBUTING.md.
+      placeholder: |
+        1. Run `n8n-scan scan example.json`
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the exact error message or output if there is one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser (for the site/scanner UI) or Node version (for the CLI/pipeline).
+      placeholder: e.g. Windows 11, Chrome 130 / Node 20.11
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: This report contains no personal data, credentials, private workflow content, or security vulnerability details.
+          required: true

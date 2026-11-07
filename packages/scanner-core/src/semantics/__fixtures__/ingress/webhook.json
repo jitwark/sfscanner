@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "ingress",
+  "cases": [
+    {
+      "id": "ingress-webhook-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.4.2",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-authenticated-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-unauthenticated-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-garbage-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-unknown-auth-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedEntry": "TRIGGER",
+      "expectedEffects": [],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "ingress-webhook-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-webhook-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "0.1.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "ingress-webhook-unmatched-op-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "0.8.0",
+      "operation": "unsupportedOp",
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Type — the families are supplied by next/font in app/layout.tsx, which
+     self-hosts them at build time. Naming a family here without loading it is
+     how this design system spent its whole life rendering in the platform UI
+     font: the fallbacks are a safety net, not the plan. */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SF Mono', monospace;
+
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.3125rem;
+  --text-2xl: 1.625rem;
+  --text-3xl: 2.0625rem;
+  --text-4xl: 2.625rem;
+  --text-5xl: 3.375rem;
+
+  /* Surfaces — exactly three steps */
+  --color-page: var(--theme-page);
+  --color-panel: var(--theme-panel);
+  --color-raised: var(--theme-raised);
+  --color-hairline: var(--theme-hairline);
+  --color-hairline-strong: var(--theme-hairline-strong);
+
+  /* Text */
+  --color-ink: var(--theme-ink);
+  --color-ink-muted: var(--theme-muted);
+  --color-ink-faint: var(--theme-faint);
+
+  /* One interactive colour. `accent` is a FILL — amber on white is 1.57:1 and
+     must never carry words. `accent-text` is the same hue darkened until it
+     can. Keeping them as separate tokens is what makes the correct one the
+     convenient one. */
+  --color-accent: var(--theme-accent);
+  --color-accent-ink: var(--theme-accent-ink);
+  --color-accent-dim: var(--theme-accent-dim);
+  --color-accent-text: var(--theme-accent-text);
+  /* The boundary for anything filled with `accent`. Amber on white is 1.51:1,
+     so an amber button with no border has no discernible edge — WCAG 1.4.11
+     asks 3:1 of a control's boundary. This token is measured against every
+     surface; `accent` is not, because it is never the boundary. */
+  --color-accent-border: var(--theme-accent-border);
+
+  /* Deep ink-teal bands: hero, CTA, footer, code samples. The same value in
+     both modes, so the band still reads as a band after a theme toggle. */
+  --color-band: var(--theme-band);
+  --color-band-raised: var(--theme-band-raised);
+  --color-on-band: var(--theme-on-band);
+  --color-on-band-muted: var(--theme-on-band-muted);
+
+  /* Structural only — fails AA for text, never carries copy */
+  --color-structure: var(--theme-structure);
+
+  /* Severity ramp — status tokens for findings and analytics */
+  --color-sev-low: var(--theme-sev-low);
+  --color-sev-medium: var(--theme-sev-medium);
+  --color-sev-high: var(--theme-sev-high);
+  --color-sev-critical: var(--theme-sev-critical);
+  --color-sev-unknown: var(--theme-sev-unknown);
+
+  /* Categorical, for node families on the workflow canvas. Unordered: these
+     say "different kind", never "worse". Each is validated as a mark against
+     every surface, and each is paired with a written label in the UI. */
+  --color-cat-purple: var(--theme-cat-purple);
+  --color-cat-blue: var(--theme-cat-blue);
+  --color-cat-green: var(--theme-cat-green);
+  --color-cat-orange: var(--theme-cat-orange);
+  --color-cat-pink: var(--theme-cat-pink);
+
+  /* Rhythm: 4px base */
+  --spacing: 0.25rem;
+
+  /* Engineering System: Hyper-angular 2px radius across all interactive elements */
+  --radius-control: 2px;
+  --radius-input: 2px;
+  --radius-badge: 2px;
+  --radius-panel: 2px;
+  --radius-hero-card: 0px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-state: 120ms;
+  --dur-enter: 180ms;
+  --dur-exit: 110ms;
+  --duration-state: 120ms;
+  --duration-enter: 180ms;
+  --duration-exit: 110ms;
+
+  /* Named z-scale */
+  --z-sticky: 20;
+  --z-sheet: 40;
+  --z-popover: 60;
+  --z-toast: 80;
+}
+
+/*
+ * Dark is the canonical default for n8n-secureflow. The bootstrap script in `theme-script.ts`
+ * stamps an explicit `data-theme`, and this `:root` block ensures that any unhydrated
+ * or initial state renders cleanly in dark mode.
+ */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --theme-page: #ffffff;
+  --theme-panel: #ffffff;
+  --theme-raised: #f7f7f7;
+  --theme-hairline: #cccccc;
+  --theme-hairline-strong: #5e5e5e;
+  --theme-ink: #000000;
+  --theme-muted: #595959;
+  --theme-faint: #595959;
+  --theme-accent: #76b900;
+  --theme-accent-ink: #000000;
+  --theme-accent-dim: #ebf7d0;
+  --theme-accent-text: #265300;
+  --theme-accent-border: #3f8500;
+  --theme-band: #000000;
+  --theme-band-raised: #1a1a1a;
+  --theme-on-band: #ffffff;
+  --theme-on-band-muted: rgba(255, 255, 255, 0.7);
+  --theme-structure: #3f8500;
+  --theme-green: #3f8500;
+  --theme-pink: #c43b5a;
+  /* validated ordered severity ramp (light) */
+  --theme-sev-low: #066747;
+  --theme-sev-medium: #8f5400;
+  --theme-sev-high: #bd1455;
+  --theme-sev-critical: #7f1d1d;
+  --theme-sev-unknown: #595959;
+  /* categorical — unordered, always paired with a written label */
+  --theme-cat-purple: #6248bf;
+  --theme-cat-blue: #3f5fa5;
+  --theme-cat-green: #006b64;
+  --theme-cat-orange: #a33e18;
+  --theme-cat-pink: #a8306f;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --theme-page: #0f1720;
+  --theme-panel: #172033;
+  --theme-raised: #243b53;
+  --theme-hairline: #36475a;
+  --theme-hairline-strong: #7b8fa3;
+  --theme-ink: #f2f6f9;
+  --theme-muted: #b5bfca;
+  --theme-faint: #a9b8c6;
+  --theme-accent: #76b900;
+  --theme-accent-ink: #000000;
+  --theme-accent-dim: rgba(118, 185, 0, 0.16);
+  --theme-accent-text: #76b900;
+  --theme-accent-border: #76b900;
+  --theme-band: #172033;
+  --theme-band-raised: #243b53;
+  --theme-on-band: #ffffff;
+  --theme-on-band-muted: #cdd6de;
+  --theme-structure: #76b900;
+  --theme-green: #86efac;
+  --theme-pink: #fb7185;
+  /* validated ordered severity ramp (dark) */
+  --theme-sev-low: #34d399;
+  --theme-sev-medium: #fbbf24;
+  --theme-sev-high: #ff94a5;
+  --theme-sev-critical: #ff9797;
+  --theme-sev-unknown: #a9b8c6;
+  /* categorical — lightened for the dark surfaces */
+  --theme-cat-purple: #c8baf9;
+  --theme-cat-blue: #95bcf5;
+  --theme-cat-green: #5eead4;
+  --theme-cat-orange: #f3a36b;
+  --theme-cat-pink: #ff9dcb;
+}
+
+@layer base {
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    /* Outfit is geometric and sets loose at display sizes; the tighter track is
+       what makes a heading read as a title rather than as bigger body copy. */
+    letter-spacing: -0.028em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Every figure in this product is a measurement — result counts, node counts,
+     grades, byte sizes. Lining tabular figures keep columns aligned and stop
+     numbers jittering as they update. */
+  .tabular,
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Numbers, node types, SHAs and counts are machine facts: always mono. */
+  code,
+  kbd,
+  samp,
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.9375em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-border);
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

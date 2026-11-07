@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "n8n-scan-config-v2",
+  "format": "json",
+  "profile": "beta-default",
+  "failOn": "INFO",
+  "requireComplete": false,
+  "concurrency": 1,
+  "rules": "builtin",
+  "catalogue": "builtin",
+  "limits": "builtin",
+  "inputs": ["workflow.json"],
+  "include": ["**/*.json"],
+  "exclude": [".git/**", "node_modules/**"],
+  "allowUnsignedDevelopmentRules": false,
+  "noColor": true
+}

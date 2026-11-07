@@ -1,0 +1,47 @@
+# Inactive caller-workflow template (Q08.3d).
+#
+# Illustrative only: this file lives outside `.github/workflows/`, so GitHub
+# never schedules it. Copy it into your own repository and replace the
+# placeholder commit below with the controller-approved immutable Action
+# commit. Nothing here is evidence about an external caller.
+#
+# The composite scan Action cannot set or prove caller permissions, secrets,
+# environments or event type, so the caller must:
+#   - trigger on fork `pull_request` only (never `pull_request_target`);
+#   - grant exactly `contents: read`, with no secrets or environment;
+#   - check out with `persist-credentials: false`;
+#   - pin the published Action by full 40-hex commit;
+#   - never pass a caller-selected scanner repository or ref;
+#   - keep `github/codeql-action/upload-sarif` in a separate later job.
+
+name: n8n SecureFlow caller workflow (inactive template)
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Scan n8n workflows
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run n8n SecureFlow scan
+        id: n8n-scan
+        # Synthetic placeholder for the controller-frozen Action commit. A
+        # well-formed but unapproved SHA is refused by the validator, and the
+        # owner/repo slug must stay in step with the published Action path.
+        uses: jitwark/sfscanner/.github/actions/scan@0123456789abcdef0123456789abcdef01234567
+        with:
+          path: workflows
+          fail-on: high
+          sarif-file: n8n-scan.sarif

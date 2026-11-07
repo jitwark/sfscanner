@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://secureflow.dev/schemas/scanner-target-v3.schema.json",
+  "title": "SecureFlow scanner target context v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "communityPackages", "configuration", "contextDigest"],
+  "properties": {
+    "schemaVersion": { "const": "scanner-target-v3" },
+    "n8nVersion": { "$ref": "#/$defs/semver" },
+    "edition": { "enum": ["COMMUNITY", "ENTERPRISE", "CLOUD", "UNKNOWN"] },
+    "deployment": { "enum": ["SELF_HOSTED", "CLOUD", "UNKNOWN"] },
+    "role": { "enum": ["OWNER", "ADMIN", "MEMBER", "UNKNOWN"] },
+    "taskRunner": { "enum": ["LEGACY", "NATIVE", "UNKNOWN"] },
+    "communityPackages": { "type": "array", "maxItems": 100000, "items": { "$ref": "#/$defs/package" } },
+    "configuration": { "type": "array", "maxItems": 100000, "items": { "$ref": "#/$defs/configuration" } },
+    "contextDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-(?:[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*|0|[1-9][0-9]*)(?:\\.(?:[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*|0|[1-9][0-9]*))*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 214, "pattern": "^(?:[a-z0-9][a-z0-9._-]*|@[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*)$" },
+        "version": { "$ref": "#/$defs/semver" }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "state"],
+      "properties": {
+        "key": { "type": "string", "minLength": 1, "maxLength": 4096, "pattern": "^[^\\u0000-\\u001f\\u007f%\\\\]+$" },
+        "state": { "enum": ["ENABLED", "DISABLED", "UNKNOWN"] }
+      }
+    }
+  }
+}

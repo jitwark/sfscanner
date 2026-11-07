@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "message-mcp",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "message-mcp.slack": {
+      "semanticId": "message-mcp.slack",
+      "nodeType": "n8n-nodes-base.slack",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/channelId",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/text",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/slackApi"
+      ],
+      "destinationPaths": [
+        "/channelId"
+      ],
+      "effects": [
+        "SEND_MESSAGE"
+      ],
+      "endpoints": [
+        {
+          "path": "/text",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "CONFIDENTIALITY"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "CONTINUE",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "852ea19526d0cbbfe1ccbf4a2574521ec19ec6e6b468fa8facf267b75cf08d22",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "message-mcp.email-send": {
+      "semanticId": "message-mcp.email-send",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/subject",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/text",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/to",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials/smtp"
+      ],
+      "destinationPaths": [
+        "/to"
+      ],
+      "effects": [
+        "SEND_MESSAGE"
+      ],
+      "endpoints": [
+        {
+          "path": "/text",
+          "channel": "DATA",
+          "direction": "SINK",
+          "taint": "CONFIDENTIALITY"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "CONTINUE",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "49811e03e7a363d2d5f0feda825305a9956ce7b3d083f319ed25b48c9fdbc78a",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "message-mcp.tool-mcp": {
+      "semanticId": "message-mcp.tool-mcp",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "NONE",
+      "parameterPaths": [
+        {
+          "pointer": "/serverUrl",
+          "valueType": "STRING",
+          "required": true
+        },
+        {
+          "pointer": "/tool",
+          "valueType": "STRING",
+          "required": false
+        }
+      ],
+      "authentication": null,
+      "credentialPaths": [
+        "/credentials"
+      ],
+      "destinationPaths": [
+        "/serverUrl"
+      ],
+      "effects": [
+        "CALL_TOOL"
+      ],
+      "endpoints": [
+        {
+          "path": "/serverUrl",
+          "channel": "TOOL",
+          "direction": "SINK",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "ai_tool",
+          "index": 0,
+          "itemMode": "ALL"
+        },
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "BOUNDED",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "e66fbb3e3c11e0737e34a9620b8df715fe734e49a932356958f743c9655a8a21",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "slack-default-message",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack"
+    },
+    {
+      "id": "email-default-message",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.emailSend",
+      "version": "2.0.0",
+      "operation": "send",
+      "expectedSemanticId": "message-mcp.email-send"
+    },
+    {
+      "id": "mcp-tool-dynamic-server",
+      "kind": "UNKNOWN",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolMcp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.tool-mcp",
+      "dynamicDestination": "={{ $json.serverUrl }}",
+      "expectedDestinationUncertainty": "UNKNOWN",
+      "approvedDomains": []
+    },
+    {
+      "id": "message-unknown-auth-string",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "message-mcp.slack"
+    },
+    {
+      "id": "message-mcp-community-node",
+      "kind": "UNKNOWN",
+      "nodeType": "community.messageNode",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "message-mcp-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.slack",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null
+    }
+  ]
+}

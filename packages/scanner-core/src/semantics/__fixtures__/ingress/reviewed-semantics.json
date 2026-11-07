@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "ingress",
+  "configuration": {
+    "allowNetwork": false,
+    "approvedDomains": []
+  },
+  "expectedRecords": {
+    "ingress.webhook": {
+      "semanticId": "ingress.webhook",
+      "nodeType": "n8n-nodes-base.webhook",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "TRIGGER",
+      "parameterPaths": [
+        {
+          "pointer": "/authentication",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/path",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": {
+        "path": "/authentication",
+        "noneValues": [
+          "none"
+        ],
+        "authenticatedValues": [
+          "basicAuth",
+          "headerAuth",
+          "jwtAuth"
+        ],
+        "unknownValueEffect": "EXPOSED"
+      },
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [],
+      "endpoints": [
+        {
+          "path": "/body",
+          "channel": "DATA",
+          "direction": "SOURCE",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "3bc990dc63c7b59292d3c13553925ef81e6e9df6ee35550d6fa850a536567a13",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "ingress.form-trigger": {
+      "semanticId": "ingress.form-trigger",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "TRIGGER",
+      "parameterPaths": [
+        {
+          "pointer": "/authentication",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/path",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": {
+        "path": "/authentication",
+        "noneValues": [
+          "none"
+        ],
+        "authenticatedValues": [
+          "basicAuth"
+        ],
+        "unknownValueEffect": "EXPOSED"
+      },
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [],
+      "endpoints": [
+        {
+          "path": "/form",
+          "channel": "DATA",
+          "direction": "SOURCE",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "496761455239577de61d7da264260bbe10ec00c3689dfd1cd51610b774f3bb14",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "ingress.chat-trigger": {
+      "semanticId": "ingress.chat-trigger",
+      "nodeType": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "TRIGGER",
+      "parameterPaths": [
+        {
+          "pointer": "/authentication",
+          "valueType": "STRING",
+          "required": false
+        },
+        {
+          "pointer": "/path",
+          "valueType": "STRING",
+          "required": true
+        }
+      ],
+      "authentication": {
+        "path": "/authentication",
+        "noneValues": [
+          "none"
+        ],
+        "authenticatedValues": [
+          "basicAuth"
+        ],
+        "unknownValueEffect": "EXPOSED"
+      },
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [],
+      "endpoints": [
+        {
+          "path": "/chatInput",
+          "channel": "DATA",
+          "direction": "SOURCE",
+          "taint": "BOTH"
+        }
+      ],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "PLATFORM",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/",
+        "sourceDigest": "55db59aba0fd3ef1b82f29d26fdfdc0862a48a7f372de45137d51e96a6ee4857",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    },
+    "ingress.manual-trigger": {
+      "semanticId": "ingress.manual-trigger",
+      "nodeType": "n8n-nodes-base.manualTrigger",
+      "versionRange": {
+        "clauses": [
+          [
+            {
+              "op": "GTE",
+              "version": "1.0.0"
+            }
+          ]
+        ]
+      },
+      "operation": null,
+      "entry": "MANUAL",
+      "parameterPaths": [],
+      "authentication": null,
+      "credentialPaths": [],
+      "destinationPaths": [],
+      "effects": [],
+      "endpoints": [],
+      "ports": [
+        {
+          "type": "main",
+          "index": 0,
+          "itemMode": "EACH"
+        }
+      ],
+      "overwritePaths": [],
+      "errorMode": "STOP",
+      "retryMode": "NONE",
+      "disabledMode": "SKIP",
+      "provenance": {
+        "sourceUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/",
+        "sourceDigest": "9b184f903641affcd5839fbd977981a3b448687d01880004fc468a3bd893731f",
+        "reviewedAt": "2026-10-17",
+        "reviewer": "scanner-core-semantics-agent-review"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "ingress-webhook-authenticated",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedAuthenticationValue": "basicAuth",
+      "expectedAuthenticationEffect": "AUTHENTICATED"
+    },
+    {
+      "id": "ingress-webhook-unknown-auth",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedAuthenticationValue": "unrecognized-auth",
+      "expectedAuthenticationEffect": "EXPOSED"
+    },
+    {
+      "id": "ingress-webhook-unauthenticated",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.webhook",
+      "expectedAuthenticationValue": "none",
+      "expectedAuthenticationEffect": "UNAUTHENTICATED"
+    },
+    {
+      "id": "ingress-form-default",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.formTrigger",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.form-trigger"
+    },
+    {
+      "id": "ingress-chat-default",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.chat-trigger"
+    },
+    {
+      "id": "ingress-manual-default",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.manualTrigger",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "ingress.manual-trigger"
+    },
+    {
+      "id": "ingress-custom-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "custom.nodes.customTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null
+    },
+    {
+      "id": "ingress-pre-v1-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.webhook",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null
+    }
+  ]
+}

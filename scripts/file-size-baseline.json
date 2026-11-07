@@ -1,0 +1,9 @@
+{
+  "app/src/seo/json-ld.ts": 267,
+  "contracts/index.ts": 364,
+  "pipeline/acquire/walk-repo.ts": 268,
+  "pipeline/enrich/describe.ts": 369,
+  "pipeline/measure/node-count-impact.ts": 252,
+  "pipeline/run-enrichment.ts": 394,
+  "scripts/check-scanner-advisories.mjs": 255
+}

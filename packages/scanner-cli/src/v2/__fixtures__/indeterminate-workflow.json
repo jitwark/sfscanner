@@ -1,0 +1,17 @@
+{
+  "name": "Task 2 indeterminate workflow",
+  "nodes": [
+    {
+      "parameters": "not-an-object",
+      "id": "indeterminate-node",
+      "name": "Unknown community node",
+      "type": "@example/custom-node.unknown",
+      "typeVersion": 1,
+      "position": [0, 0]
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "task-2-indeterminate-v1"
+}

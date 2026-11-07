@@ -1,0 +1,27 @@
+{
+  "nodes": [
+    {
+      "id": "ba7c4fdd-5502-408b-ba04-484f3d3b6240",
+      "name": "Create Lead",
+      "type": "n8n-nodes-base.pipedrive",
+      "position": [
+        2020,
+        400
+      ],
+      "parameters": {
+        "title": "=Website request: {{ $('Webhook').item.json.body.company }}",
+        "resource": "lead"
+      },
+      "typeVersion": 1
+    }
+  ],
+  "connections": {
+    "Create Lead": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "name": "WordPress to Pipedrive Lead Management",
+  "id": 1998
+}

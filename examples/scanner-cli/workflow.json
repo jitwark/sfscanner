@@ -1,0 +1,17 @@
+{
+  "name": "Synthetic local transform",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "scanner-cli-safe-start",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "scanner-cli-safe-v1"
+}

@@ -1,0 +1,16 @@
+{
+  "$comment": "Owner-approved advisories that do not block the release gates. Every entry is an explicit, dated decision: it names the advisory, the package, why it is unreachable in this product, and what would end the waiver. scripts/audit-with-waivers.mjs fails the gate on anything not listed here, so a new advisory cannot ride along on an existing entry.",
+  "advisories": [
+    {
+      "id": "GHSA-vfj7-8cjw-p6xm",
+      "package": "braces",
+      "severity": "high",
+      "installed": "3.0.3",
+      "chain": "eslint-config-next -> @next/eslint-plugin-next -> fast-glob -> micromatch -> braces",
+      "reason": "Unpatched upstream, so no upgrade exists: the advisory states `Patched versions: None`, braces 3.0.3 is its newest published release, and it is the version @next/eslint-plugin-next@16.3.8 declares through fast-glob/micromatch. The chain enters through ESLint configuration only - it is not in `next build`, not in any emitted browser or worker byte, and exploitation requires an attacker-controlled brace pattern handed to micromatch, whereas the only patterns here are repository-owned lint globs. The five high audit entries (braces, micromatch, fast-glob, @next/eslint-plugin-next, eslint-config-next) are this one advisory propagating through one chain; every one of them offers the same remedy, a semver-major downgrade of eslint-config-next to 14.2.35.",
+      "decision": "Owner waiver, 2026-10-17 (@jitwark): accept and document the advisory for this release; wait for an upstream patch rather than force an unsupported downgrade.",
+      "waivedBy": "docs/decisions/ADR-dependency-advisory-remediation.md",
+      "revisit": "A patched braces release, an eslint-config-next release that drops fast-glob, or any new advisory inside the current ranges."
+    }
+  ]
+}

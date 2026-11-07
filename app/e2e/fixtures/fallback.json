@@ -1,0 +1,10 @@
+{
+  "nodes": [
+    { "id": "Start", "name": "Start", "type": "n8n-nodes-base.manualTrigger", "typeVersion": 1, "parameters": {} },
+    {
+      "id": "Unknown", "name": "Unknown", "type": "n8n-nodes-base.discord", "typeVersion": 1,
+      "parameters": { "url": "https://example.invalid/x", "awsSecretAccessKey": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" }
+    }
+  ],
+  "connections": { "Start": { "main": [[{ "node": "Unknown", "type": "main", "index": 0 }]] } }
+}

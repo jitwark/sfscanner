@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "scanner-differential-fixture-v2",
+  "ruleId": "UNAPPROVED_DOMAIN",
+  "status": "NOT_ELIGIBLE",
+  "reason": "SCORING_AUTHORITY",
+  "strata": ["clean", "risky", "unknown"]
+}

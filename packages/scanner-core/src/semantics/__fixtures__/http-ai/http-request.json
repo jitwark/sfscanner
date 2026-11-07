@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "http-ai",
+  "cases": [
+    {
+      "id": "http-ai-http-request-v1-literal",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-http-request-v2-literal",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-http-request-v4-dynamic",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "4.1.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-http-request-v999-max",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-http-request-auth-header",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-http-request-auth-oauth2",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "http-ai.http-request",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "READ_EXTERNAL",
+        "WRITE_EXTERNAL"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "http-ai-http-request-negative-wrong-namespace",
+      "kind": "NEGATIVE",
+      "nodeType": "custom.httpRequest",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-http-request-negative-missing-node",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.httpRequestInvalid",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-http-request-negative-empty-type",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.unknownHttp",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-http-request-unknown-legacy-version",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "0.9.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-http-request-unknown-prerelease",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "0.9.9",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "http-ai-http-request-unknown-pre-v1",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.httpRequest",
+      "version": "0.1.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

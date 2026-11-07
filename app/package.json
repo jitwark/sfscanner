@@ -1,0 +1,42 @@
+{
+  "name": "@hub/app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "node ../scripts/build-app.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@humanwhocodes/momoa": "^3.3.10",
+    "@lezer/python": "1.1.19",
+    "@noble/hashes": "^2.0.1",
+    "acorn": "8.17.0",
+    "lucide-react": "^0.469.0",
+    "minisearch": "^7.2.0",
+    "next": "16.4.3",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sharp": "^0.35.5",
+    "@hub/contracts": "*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@tailwindcss/postcss": "^4.3.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.4.3",
+    "jsdom": "^29.1.1",
+    "postcss": "8.5.25",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "calibration-results-v2",
+  "status": "HUMAN_REQUIRED",
+  "corpusId": "n8n-template-api-2026-08-07",
+  "corpusSource": "data/scanner/calibration-v2-manifest.json",
+  "caseCount": 30,
+  "adjudication": {
+    "status": "HUMAN_REQUIRED",
+    "settledCaseCount": 0,
+    "unresolvedCaseCount": 30,
+    "minimumIndependentReviewers": 2,
+    "reason": "The captured corpus has no independent reviewer decisions, complete rights metadata, or settled labels."
+  },
+  "metrics": {
+    "status": "INSUFFICIENT_EVIDENCE",
+    "ruleMetrics": {},
+    "confidenceInterval": {
+      "method": "WILSON",
+      "confidence": 0.95
+    },
+    "reason": "No per-rule precision, recall, confusion, or false-negative metric is scored without settled independent adjudication."
+  },
+  "measurements": {
+    "status": "NOT_RUN",
+    "latencyMsTotal": null,
+    "memoryBytesTotal": null,
+    "rssBytesTotal": null,
+    "serializedBytesTotal": null
+  },
+  "limitations": [
+    "The 30 records remain evidence-only and are not ground-truth labels.",
+    "HUMAN_REQUIRED is not converted to a positive, negative, near-miss, or unsupported truth label.",
+    "No scanner results or performance measurements are fabricated for this corpus.",
+    "Independent reviewer identity, rationale, dispute resolution, licence, and permission evidence must be supplied before metrics can become available.",
+    "These local artifacts do not satisfy external human, rights, legal, owner, CI, or release gates."
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "subworkflow",
+  "cases": [
+    {
+      "id": "subworkflow-flow-entry-trigger-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflowTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow-trigger",
+      "expectedEntry": "SUBWORKFLOW",
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-entry-caller-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-entry-tool-positive",
+      "kind": "POSITIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.tool-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 2
+    },
+    {
+      "id": "subworkflow-flow-retry-bounded-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.1.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-error-continue-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.2.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-error-stop-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.3.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-disabled-caller-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "START_SUBWORKFLOW"
+      ],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-disabled-trigger-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflowTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "subworkflow.execute-workflow-trigger",
+      "expectedEntry": "SUBWORKFLOW",
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "subworkflow-flow-contrast-noop-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.noOp",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-contrast-set-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.set",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflow",
+      "version": "0.9.9",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-trigger-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.executeWorkflowTrigger",
+      "version": "0.5.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-tool-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "version": "0.1.2",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-unknown-engine-runner",
+      "kind": "UNKNOWN",
+      "nodeType": "custom.engine.subworkflowRunner",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-unknown-composite-trigger",
+      "kind": "UNKNOWN",
+      "nodeType": "community.workflow.compositeSubflowTrigger",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "subworkflow-flow-unknown-agent-tool",
+      "kind": "UNKNOWN",
+      "nodeType": "@vendor/langchain-tools.subflowTool",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

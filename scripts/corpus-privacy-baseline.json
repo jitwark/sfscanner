@@ -1,0 +1,15 @@
+{
+  "capturedAgainstEntries": 11464,
+  "totals": {
+    "email-address": 7,
+    "bearer-or-api-key": 0,
+    "private-ip": 0,
+    "internal-hostname": 0
+  },
+  "entriesAffected": {
+    "email-address": 5,
+    "bearer-or-api-key": 0,
+    "private-ip": 0,
+    "internal-hostname": 0
+  }
+}

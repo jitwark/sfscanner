@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "scanner-semantic-fixture-v2",
+  "family": "database-file",
+  "cases": [
+    {
+      "id": "database-file-mysql-default-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-future-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "999.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-minor-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.3.1",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-v2-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "2.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-v3-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "3.1.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-operation-execute-query-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": "executeQuery",
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-operation-insert-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.1.0",
+      "operation": "insert",
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-operation-update-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.2.0",
+      "operation": "update",
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-operation-delete-fallback-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.2.5",
+      "operation": "delete",
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-credential-destination-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-item-mode-each-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-error-stop-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-retry-bounded-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-disabled-skip-positive",
+      "kind": "POSITIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-disabled-unknown-behavior",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-dynamic-operation-unknown",
+      "kind": "UNKNOWN",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "1.0.0",
+      "operation": "rawQuery",
+      "expectedSemanticId": "database-file.mysql",
+      "expectedEntry": "NONE",
+      "expectedEffects": [
+        "DATABASE_READ",
+        "DATABASE_WRITE"
+      ],
+      "expectedEndpointCount": 1,
+      "expectedPortCount": 1
+    },
+    {
+      "id": "database-file-mysql-out-of-range-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "0.9.9",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-mysql-pre-release-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "0.2.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-mysql-zero-version-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.mySql",
+      "version": "0.0.1",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    },
+    {
+      "id": "database-file-mysql-unmatched-node-negative",
+      "kind": "NEGATIVE",
+      "nodeType": "n8n-nodes-base.mysqlLegacy",
+      "version": "1.0.0",
+      "operation": null,
+      "expectedSemanticId": null,
+      "expectedEntry": null,
+      "expectedEffects": [],
+      "expectedEndpointCount": 0,
+      "expectedPortCount": 0
+    }
+  ]
+}

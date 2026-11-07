@@ -1,0 +1,1 @@
+{"total":11433,"workflows":[{"id":101,"name":"Webhook to Slack","description":"Sends webhook events to Slack.","totalViews":42,"createdAt":"2024-01-01T00:00:00.000Z","user":{"name":"n8n","username":"n8n-io","verified":true},"nodes":[{"name":"Webhook","type":"n8n-nodes-base.webhook"},{"name":"Slack","type":"n8n-nodes-base.slack"}]}]}

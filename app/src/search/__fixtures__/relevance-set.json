@@ -1,0 +1,687 @@
+{
+  "schemaVersion": "relevance-set-v2",
+  "createdOn": "2026-08-29",
+  "reviewers": [
+    "orchestrator",
+    "independent-reviewer-a",
+    "independent-reviewer-b"
+  ],
+  "release": {
+    "releaseId": "data-v2@2026-10-28T07:30:00.000Z",
+    "corpusId": "data-v2",
+    "generatedAt": "2026-10-28T07:30:00.000Z",
+    "corpusSha256": "0bf901ad36f49e63e5e037e883b3a9f1f6d34b93df2048dfbd6ee934e4231ae5",
+    "manifestSha256": "4ba5f3f79f8914f4ebad3e84c918e05a47903d0caaf6d67466ea02a92f90f266",
+    "searchable": 11245,
+    "artifacts": {
+      "search-index.json": "694a4ebb83b1bf04f3d4e9691b95b03e49c3c262e7d59b0240df962c2ba318cb",
+      "search-index-extended.json": "5aff5502222e3f75d91898812e03c0111135cddaf5528351c1b5779f4f109633",
+      "facets.json": "0ab363d8b42674f534a395cd45bce9b3b0e6bda6191b92869743226f80cb811a",
+      "semantic-index.json": "616a540c557eaeff4e951bf92af9fc480e929a945dcf21e8813706449f9bd566"
+    }
+  },
+  "protocol": {
+    "tuningSplit": "development",
+    "holdoutSplit": "holdout",
+    "holdoutPolicy": "untouched-evaluate-once",
+    "queryKey": "query+filters+sort-v1",
+    "developmentQuerySetSha256": "d7408387ae6bce41ed6db72646efac2cfa5ffc93b69caf2db666fe4c47292746",
+    "holdoutQuerySetSha256": "2c17506c2d587616c09b78796d502b98cf2b95575f2fc07c7167ca1ff24e1be5"
+  },
+  "cases": [
+    {
+      "id": "weekly-drafts-title",
+      "split": "development",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "Generate weekly content drafts from Google Sheets with Groq AI and Slack",
+      "strata": [
+        "official",
+        "link-only",
+        "common"
+      ],
+      "expected": [
+        {
+          "id": "000145202cc33ac3",
+          "relevance": 3,
+          "rationale": "The query is the current catalogue title verbatim.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "b2b-sales-title",
+      "split": "holdout",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "Complete B2B Sales Pipeline: Apollo Lead Gen, Mailgun Outreach & AI Reply Management",
+      "strata": [
+        "official",
+        "link-only",
+        "common"
+      ],
+      "expected": [
+        {
+          "id": "00d3522a9493cfca",
+          "relevance": 3,
+          "rationale": "The query is the current catalogue title verbatim and identifies the workflow unambiguously.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "crud-security-title",
+      "split": "development",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "Create a Self-Contained CRUD App with Redis Storage and HTML Frontend",
+      "strata": [
+        "official",
+        "link-only",
+        "risky"
+      ],
+      "expected": [
+        {
+          "id": "00771ec591b98266",
+          "relevance": 3,
+          "rationale": "The current title is an exact navigational match for the CRUD and Redis workflow.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "kaizen-redistributable-title",
+      "split": "holdout",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "{Template} kaizenCrypto",
+      "strata": [
+        "redistributable"
+      ],
+      "expected": [
+        {
+          "id": "008905cba922a1db",
+          "relevance": 3,
+          "rationale": "The current GitHub workflow title is a direct match and is explicitly redistributable.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "construction-safe-title",
+      "split": "development",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "Construction Blueprint to Google Sheets Automation with VLM Run and Google Drive",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "000e97a32011869b",
+          "relevance": 3,
+          "rationale": "The title identifies the simple, low-grade Google Drive and Sheets workflow.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "petshop-largest-title",
+      "split": "holdout",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "AI Petshop Assistant with GPT-4o, Google Calendar & WhatsApp/Instagram/FB",
+      "strata": [
+        "official",
+        "link-only",
+        "risky"
+      ],
+      "expected": [
+        {
+          "id": "1fa47cf6b17db507",
+          "relevance": 3,
+          "rationale": "The title is the current largest-corpus workflow and is a direct navigational match.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "annotation-heavy-title",
+      "split": "holdout",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "Design scalable sync workflows with Data Tables, ProspectPro and HubSpot",
+      "strata": [
+        "official",
+        "link-only",
+        "risky"
+      ],
+      "expected": [
+        {
+          "id": "5645f7fbb20330eb",
+          "relevance": 3,
+          "rationale": "The current annotation-heavy workflow title is an exact match; its critical grade makes it a high-impact judgment.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "orchestrator",
+          "luna-independent-review"
+        ],
+        "decision": "Keep the exact title as the sole highly relevant result."
+      }
+    },
+    {
+      "id": "weekly-id-navigation",
+      "split": "development",
+      "kind": "navigational",
+      "sort": "relevance",
+      "query": "000145202cc33ac3",
+      "strata": [
+        "official",
+        "link-only",
+        "common"
+      ],
+      "expected": [
+        {
+          "id": "000145202cc33ac3",
+          "relevance": 3,
+          "rationale": "A current stable catalogue ID is a supported direct-navigation query.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-digest-intent",
+      "split": "holdout",
+      "kind": "natural-language",
+      "sort": "relevance",
+      "query": "summarize rss feeds into a daily ai digest",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "0a00288db8c02049",
+          "relevance": 3,
+          "rationale": "The summary describes RSS collection, AI summarization, and distribution to Slack and Gmail.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "telegram-voice-intent",
+      "split": "development",
+      "kind": "natural-language",
+      "sort": "relevance",
+      "query": "respond to Telegram voice notes",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "8392aa3ffc92b297",
+          "relevance": 3,
+          "rationale": "The workflow summary explicitly answers Telegram text and voice messages with language and speech tools.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "contact-sync-intent",
+      "split": "holdout",
+      "kind": "natural-language",
+      "sort": "relevance",
+      "query": "sync contacts between databases",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "527aec2b61e55518",
+          "relevance": 3,
+          "rationale": "The workflow synchronizes Google Contacts and Notion database records.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        },
+        {
+          "id": "1dc8d76bf2c21902",
+          "relevance": 2,
+          "rationale": "The workflow synchronizes Pipedrive contact lists with MySQL records.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        },
+        {
+          "id": "ec7b9b3b30b48254",
+          "relevance": 2,
+          "rationale": "The official template syncs contact records, consent and segments between KlickTipp and Pipedrive; independently scored relevance 2 by both reviewers.",
+          "reviewer": "independent-reviewer-a",
+          "reviewedOn": "2026-09-24",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        },
+        {
+          "id": "c5dd4a5f413f428d",
+          "relevance": 2,
+          "rationale": "The GitHub-sourced counterpart to ec7b9b3b30b48254 syncs the same contact records between two stores; independently scored relevance 2 by both reviewers.",
+          "reviewer": "independent-reviewer-b",
+          "reviewedOn": "2026-09-24",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "independent-reviewer-a",
+          "independent-reviewer-b",
+          "orchestrator"
+        ],
+        "decision": "The retired third judgment (3f2e81df88ca333b) was a deduplicated mirror folded into 1dc8d76bf2c21902.dedup.alsoFoundIn rather than a loss of corpus capability, so the case is satisfiable and the query is unchanged. Both reviewers scored ec7b9b3b30b48254 and c5dd4a5f413f428d at relevance 2, and both rejected the one-way exports (97e57c6ec38601e6 relevance 1, e268af013a1007b3 relevance 0) and the documents/vector-embeddings lexical trap (524a8b223580863f relevance 0)."
+      }
+    },
+    {
+      "id": "prospect-research-intent",
+      "split": "development",
+      "kind": "natural-language",
+      "sort": "relevance",
+      "query": "scrape prospects",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "63d29e886979d9c8",
+          "relevance": 3,
+          "rationale": "The workflow researches prospect companies, gathers intelligence, and writes a Google Docs report.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "spreadsheet-alias-facet",
+      "split": "development",
+      "kind": "alias",
+      "sort": "relevance",
+      "query": "spreadsheet",
+      "filters": {
+        "integration": [
+          "google-sheets"
+        ],
+        "tag": [
+          "schedule"
+        ],
+        "grade": "LOW"
+      },
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "94b46ee8efa29016",
+          "relevance": 3,
+          "rationale": "The supported spreadsheet alias resolves to a scheduled Google Sheets workflow and the selected low-risk facet set matches it.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "chatbot-calendar-alias",
+      "split": "development",
+      "kind": "alias",
+      "sort": "relevance",
+      "query": "chatbot",
+      "filters": {
+        "integration": [
+          "google-calendar"
+        ],
+        "grade": "LOW"
+      },
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "1651fbe099356abf",
+          "relevance": 3,
+          "rationale": "The chatbot alias is judged against a low-risk workflow that uses Google Calendar and delivers chat summaries.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "sheets-misspelling",
+      "split": "holdout",
+      "kind": "misspelling",
+      "sort": "relevance",
+      "query": "googel sheets",
+      "filters": {
+        "integration": [
+          "google-sheets"
+        ]
+      },
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "0acfd07e2c540380",
+          "relevance": 3,
+          "rationale": "The controlled misspelling should still find a Google Sheets lead-ranking workflow through fuzzy matching.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "freshdesk-low-facet",
+      "split": "development",
+      "kind": "facet",
+      "sort": "relevance",
+      "query": "",
+      "filters": {
+        "integration": [
+          "freshdesk"
+        ],
+        "grade": "LOW"
+      },
+      "strata": [
+        "official",
+        "link-only",
+        "rare",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "c815a9b1a3efd099",
+          "relevance": 3,
+          "rationale": "Exactly satisfies the integration:freshdesk x grade:LOW conjunction. The conjunction's judged population contracted from four entries to these two when fe3387b7a7659ec9 and a0f07e5de4106128 left the release; both reviewers re-verified the two survivors at relevance 3.",
+          "reviewer": "independent-reviewer-a",
+          "reviewedOn": "2026-09-24",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        },
+        {
+          "id": "d7fe6815f997dd0b",
+          "relevance": 3,
+          "rationale": "Exactly satisfies the integration:freshdesk x grade:LOW conjunction. The conjunction's judged population contracted from four entries to these two when fe3387b7a7659ec9 and a0f07e5de4106128 left the release; both reviewers re-verified the two survivors at relevance 3.",
+          "reviewer": "independent-reviewer-b",
+          "reviewedOn": "2026-09-24",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "independent-reviewer-a",
+          "independent-reviewer-b",
+          "orchestrator"
+        ],
+        "decision": "Both reviewers agreed exactly: drop the two retired expectations (fe3387b7a7659ec9, a0f07e5de4106128) and keep the two members of the integration:freshdesk x grade:LOW intersection at relevance 3. The rejected neighbours are b57251818af9b37c (Freshdesk but grade MEDIUM) and 9c06ce9604b82fbc (grade LOW but integration:freshdesk-tool), both excluded by the active facets."
+      }
+    },
+    {
+      "id": "freshdesk-calendar-zero",
+      "split": "development",
+      "kind": "zero-result",
+      "sort": "relevance",
+      "query": "",
+      "filters": {
+        "tag": [
+          "freshdesk"
+        ],
+        "integration": [
+          "google-calendar"
+        ]
+      },
+      "strata": [
+        "rare"
+      ],
+      "expected": []
+    },
+    {
+      "id": "freshdesk-email-zero",
+      "split": "holdout",
+      "kind": "zero-result",
+      "sort": "relevance",
+      "query": "",
+      "filters": {
+        "tag": [
+          "freshdesk"
+        ],
+        "trigger": [
+          "email"
+        ]
+      },
+      "strata": [
+        "rare"
+      ],
+      "expected": []
+    },
+    {
+      "id": "support-ambiguous",
+      "split": "holdout",
+      "kind": "ambiguous",
+      "sort": "relevance",
+      "query": "support",
+      "filters": {
+        "integration": [
+          "freshdesk"
+        ]
+      },
+      "strata": [
+        "official",
+        "link-only",
+        "rare",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "c815a9b1a3efd099",
+          "relevance": 3,
+          "rationale": "Freshdesk support survey automation is directly relevant.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        },
+        {
+          "id": "b57251818af9b37c",
+          "relevance": 3,
+          "rationale": "Freshdesk support performance tracking is directly relevant.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        },
+        {
+          "id": "d7fe6815f997dd0b",
+          "relevance": 3,
+          "rationale": "Freshdesk support ticket creation from Telegram is directly relevant.",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-08-29",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "independent-reviewer-a",
+          "independent-reviewer-b",
+          "orchestrator"
+        ],
+        "decision": "Both reviewers agreed exactly, correcting the earlier text: the Freshdesk facet holds three workflows, not five, so keep c815a9b1a3efd099, b57251818af9b37c and d7fe6815f997dd0b at relevance 3 and drop the retired fe3387b7a7659ec9 and a0f07e5de4106128. The support-flavoured Zendesk entries (1adc4af9d30a14ca, 4ba84b5dc8b67c41) were rejected only because the integration:freshdesk filter excludes them."
+      }
+    },
+    {
+      "id": "oov-gibberish-token-zero",
+      "split": "development",
+      "kind": "zero-result",
+      "sort": "relevance",
+      "query": "qzxvplm918273",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "orchestrator",
+          "luna-independent-review"
+        ],
+        "decision": "AUDIT-SEARCH-001: an out-of-vocabulary token must not surface semantic-only matches from hashed-vector collisions. Direct SearchEngine reproduction returned 150 unrelated ElevenLabs/voice/audio results with lexical score 0 before the fix; this case pins the corrected zero-result behavior."
+      }
+    },
+    {
+      "id": "oov-second-gibberish-token-zero",
+      "split": "holdout",
+      "kind": "zero-result",
+      "sort": "relevance",
+      "query": "vqzblmpr7734xk",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "orchestrator",
+          "luna-independent-review"
+        ],
+        "decision": "A second, independently chosen gibberish token confirms the out-of-vocabulary admission gate is not tuned to a single audit string."
+      }
+    },
+    {
+      "id": "weak-similarity-unrelated-word-zero",
+      "split": "development",
+      "kind": "zero-result",
+      "sort": "relevance",
+      "query": "spelunking",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "orchestrator",
+          "luna-independent-review"
+        ],
+        "decision": "A real English word with no presence anywhere in the catalogue vocabulary still hashes into the semantic vector; without vocabulary evidence it must not be admitted as a weak-similarity semantic-only match."
+      }
+    },
+    {
+      "id": "weak-similarity-second-unrelated-word-zero",
+      "split": "holdout",
+      "kind": "zero-result",
+      "sort": "relevance",
+      "query": "marsupial",
+      "strata": [
+        "official",
+        "link-only",
+        "common",
+        "safe"
+      ],
+      "expected": [],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "orchestrator",
+          "luna-independent-review"
+        ],
+        "decision": "A second real-but-unrelated word, distinct from the audit's own example, confirms the fix generalizes beyond random alphanumeric gibberish."
+      }
+    },
+    {
+      "id": "duplicate-sync-title",
+      "split": "development",
+      "kind": "exact",
+      "sort": "relevance",
+      "query": "\"Two Way Sync Pipedrive and MySQL\"",
+      "strata": [
+        "official",
+        "link-only",
+        "rare",
+        "safe"
+      ],
+      "expected": [
+        {
+          "id": "1dc8d76bf2c21902",
+          "relevance": 3,
+          "rationale": "Exact verbatim match for the quoted title. Independent-reviewer-a's verified evidence: it is the only release record whose title normalises to \"Two way sync Pipedrive and MySQL\"; the former GitHub source variant is no longer a shipped row, and its mirrors are carried in this record's dedup.alsoFoundIn (three GitHub URLs, including 1822-two-way-sync-pipedrive-and-mysql).",
+          "reviewer": "orchestrator",
+          "reviewedOn": "2026-09-24",
+          "releaseId": "data-v2@2026-10-28T07:30:00.000Z"
+        }
+      ],
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewers": [
+          "independent-reviewer-a",
+          "independent-reviewer-b",
+          "orchestrator"
+        ],
+        "decision": "Split verdict resolved by the orchestrator on A's verified exact-match evidence: keep one judged expectation (1dc8d76bf2c21902, relevance 3) and drop the retired GitHub mirror 3f2e81df88ca333b, which is now represented by dedup.alsoFoundIn on the canonical record. B's objection that the case no longer tests source-variant preservation is recorded rather than overruled on the facts: all 11,464 release entries carry dedup.canonical true, so no duplicate-title rows remain to judge."
+      }
+    }
+  ]
+}

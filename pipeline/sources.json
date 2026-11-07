@@ -1,0 +1,221 @@
+[
+  {
+    "key": "zie619",
+    "kind": "github",
+    "repo": "Zie619/n8n-workflows",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "MIT",
+    "status": "active",
+    "note": "Large collection whose own description reads \"all of the workflows of n8n i could find (also from the site itself)\" -- collected, not authored. Held redistributable until 2026-08-25 on a measured 0.0% overlap with the official library; that figure is an artifact. The overlap test matches on structuralHash, which keeps only edges whose endpoints resolve, and 99.5% of this corpus has connections naming nodes that do not exist -- so it hashes on node types alone and cannot match a clean official template. Comparing on node types instead found 490 exact matches, 208 on workflows too large for coincidence. Link-only per the rule already applied to zengfr and ScraperNode: a LICENSE file cannot cover work the uploader did not author. See docs/audit/2026-08-25/01-CORPUS-INTEGRITY.md.",
+    "reviewedAt": "2026-08-25",
+    "redistribute": false
+  },
+  {
+    "key": "zengfr",
+    "kind": "github",
+    "repo": "zengfr/n8n-workflow-all-templates",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "Apache-2.0",
+    "status": "active",
+    "note": "Near-complete mirror of the official n8n library: 98.0% of its 10,116 files also exist on n8n.io (measure/mirror-overlap.ts, run rederive-64), and its README describes the repo as synchronized every 2 months. The Apache-2.0 file cannot license work the uploader did not author, so matching workflows are demoted to link_only per entry by rights/official-mirror.ts. Kept as a source: the entries are still worth cataloguing and deep-linking.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "scrapernode",
+    "kind": "github",
+    "repo": "ScraperNode/awesome-n8n-templates",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "MIT",
+    "status": "active",
+    "note": "Mirror of the official n8n library: 99.3% of its 8,697 files also exist on n8n.io (rederive-64). Reports MIT; matching workflows are demoted to link_only per entry, same reason as zengfr.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "murataslan1",
+    "kind": "github",
+    "repo": "murataslan1/n8n-workflow-collection",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "MIT",
+    "status": "excluded",
+    "note": "Excluded on 2026-09-03 after the configured GitHub repository returned HTTP 404 / Repository not found for both HEAD and main. Do not reacquire or publish its former entries until an owner supplies a verified replacement source and rights evidence.",
+    "reviewedAt": "2026-09-03"
+  },
+  {
+    "key": "pinecone",
+    "kind": "github",
+    "repo": "pinecone-io/n8n-templates",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "MIT",
+    "status": "active",
+    "note": "Pinecone's focused n8n examples provide a small, vendor-authored corpus under the reported MIT licence; roughly 50 workflows are expected.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "creativetim",
+    "kind": "github",
+    "repo": "creativetimofficial/free-n8n-workflow-templates-collection",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "MIT",
+    "status": "active",
+    "note": "Creative Tim's free n8n workflow collection is a small supplementary source with a reported MIT licence and about 100 expected workflows.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "kookylo",
+    "kind": "github",
+    "repo": "Kookylo/claude_workflow_generator",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "MIT",
+    "status": "active",
+    "note": "Claude workflow generator repository included for its distinct generated examples and reported MIT licence; roughly 100 workflows are expected.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "danitilahun",
+    "kind": "github",
+    "repo": "Danitilahun/n8n-workflow-templates",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": null,
+    "status": "active",
+    "note": "Large n8n template collection with approximately 2,050 expected workflows; it has no declared repository licence, so entries remain link-only.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "enescingoz",
+    "kind": "github",
+    "repo": "enescingoz/awesome-n8n-templates",
+    "branch": "main",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": "NOASSERTION",
+    "status": "active",
+    "note": "High-star awesome-n8n template collection retained for coverage despite a NOASSERTION licence result; roughly 280 workflows are expected and remain link-only.",
+    "reviewedAt": "2026-08-13"
+  },
+  {
+    "key": "n8n_official",
+    "kind": "n8n_official",
+    "include": [
+      "**/*.json"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.github/**",
+      "**/docs/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**",
+      "examples/ui/**"
+    ],
+    "expectedLicence": null,
+    "status": "active",
+    "note": "Official n8n template API metadata source; templates are proprietary and linked rather than redistributed.",
+    "reviewedAt": "2026-08-13"
+  }
+]

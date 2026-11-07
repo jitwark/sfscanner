@@ -1,0 +1,83 @@
+name: Public takedown or licence correction
+description: Submit a non-sensitive public request about a catalogue entry or its provenance
+title: "[Takedown] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for non-sensitive public requests.
+
+        Do not include personal data, security reports, credentials, workflow secrets, or
+        confidential evidence in this issue. Send anything sensitive privately to
+        [voidsyntax01@gmail.com](mailto:voidsyntax01@gmail.com).
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request type
+      description: Choose the kind of public catalogue request you are making.
+      options:
+        - Licence or provenance correction
+        - Source removal
+        - Catalogue entry removal
+        - Other non-sensitive request
+    validations:
+      required: true
+
+  - type: input
+    id: catalogue_reference
+    attributes:
+      label: Catalogue URL or stable ID
+      description: Provide the catalogue URL or stable entry ID for the affected item.
+      placeholder: Paste a catalogue URL or stable entry ID
+    validations:
+      required: true
+
+  - type: textarea
+    id: source_reference
+    attributes:
+      label: Source URL, repository, and path
+      description: Provide the public source URL and, when applicable, the repository and path. Do not include private links or sensitive material.
+      placeholder: Public source URL; repository and path if applicable
+    validations:
+      required: true
+
+  - type: dropdown
+    id: requested_action
+    attributes:
+      label: Requested action
+      description: Tell maintainers what change you are asking them to make.
+      options:
+        - Remove the source from future builds
+        - Remove the catalogue entry
+        - Correct licence or provenance metadata
+        - Make the entry link-only
+        - Other non-sensitive action
+    validations:
+      required: true
+
+  - type: textarea
+    id: rights_provenance
+    attributes:
+      label: Rights or provenance explanation
+      description: Explain your relationship to the work and the public, non-sensitive evidence supporting this request. Do not attach confidential evidence or disclose secrets.
+      placeholder: Explain the rights or provenance issue using public, non-sensitive details
+    validations:
+      required: true
+
+  - type: input
+    id: contact_method
+    attributes:
+      label: Contact method
+      description: Provide a public contact method you are comfortable sharing, or say that you prefer private email. Do not include personal data that should remain private.
+      placeholder: Public contact method or "prefer private email"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: public_request_confirmation
+    attributes:
+      label: Public request confirmation
+      options:
+        - label: I confirm that this request contains no personal data, security details, credentials, workflow secrets, or confidential evidence.
+          required: true

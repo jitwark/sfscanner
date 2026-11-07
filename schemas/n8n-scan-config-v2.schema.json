@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://secureflow.dev/schemas/n8n-scan-config-v2.schema.json",
+  "title": "n8n scan CLI configuration v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion"],
+  "properties": {
+    "schemaVersion": { "const": "n8n-scan-config-v2" },
+    "format": { "enum": ["json", "ndjson", "sarif", "table"] },
+    "profile": { "enum": ["beta-default", "beta-default@2.0.0"] },
+    "output": { "$ref": "#/$defs/localPath" },
+    "inputs": { "$ref": "#/$defs/inputPathList" },
+    "configPath": { "$ref": "#/$defs/localPath" },
+    "failOn": { "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"] },
+    "requireComplete": { "type": "boolean" },
+    "concurrency": { "type": "integer", "minimum": 1, "maximum": 16 },
+    "rules": { "const": "builtin" },
+    "limits": { "$ref": "#/$defs/artifactPath" },
+    "target": { "$ref": "#/$defs/localPath" },
+    "include": { "$ref": "#/$defs/pathList" },
+    "exclude": { "$ref": "#/$defs/pathList" },
+    "approvedDomains": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 253,
+        "pattern": "^(?=.{1,253}$)(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\\.)*[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$"
+      }
+    },
+    "allowUnsignedDevelopmentRules": { "type": "boolean" },
+    "noColor": { "type": "boolean" }
+  },
+  "$defs": {
+    "safeRelative": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!\\.\\.(?:[/\\\\]|$))(?![A-Za-z]:)(?![\\\\/])(?![A-Za-z][A-Za-z0-9+.-]*:)(?!.*[\\u0000-\\u001f\\u007f]).+$"
+    },
+    "localPath": { "$ref": "#/$defs/safeRelative" },
+    "artifactPath": { "anyOf": [{ "const": "builtin" }, { "$ref": "#/$defs/safeRelative" }] },
+    "pathList": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": { "$ref": "#/$defs/safeRelative" }
+    },
+    "inputPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!(?:[A-Za-z][A-Za-z0-9+.-]+):)(?![A-Za-z]:(?![\\\\/]|$))(?![\\\\/]{2})(?!.*[\\u0000-\\u001f\\u007f])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+$"
+    },
+    "inputPathList": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": { "$ref": "#/$defs/inputPath" }
+    }
+  }
+}

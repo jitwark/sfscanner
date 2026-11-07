@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "scanner-result-freshness-v1",
+  "recordedAt": "2026-10-20",
+  "scannerVersion": "scanner-beta-1",
+  "scannerVersionBasis": "SCANNER_VERSION in packages/scanner-core/src/scanner-version.ts — the engine identity check:scanner-goldens pins in RELEASE_GOLDEN_IDENTITY, and the constant the c998701 engine also carried (policy-registry.ts:9).",
+  "profile": "beta-default",
+  "resultsDigest": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "recordedResultStamps": [
+    {
+      "value": "c998701",
+      "kind": "git-commit-abbreviation",
+      "meaning": "Abbreviation of git commit c99870178ce6ab: the build stamp the legacy getScannerVersion() wrote into results produced before the 2026-09-25 regeneration. It survives only on the 1,791 entries with no authorized body to rescan; the 9,606 entries that carry an engine identity carry 'scanner-beta-1' instead (9,385 readiness-derived plus the 221 published verdicts), and the 67 'not-scanned' rows carry neither. It is a build stamp, not an engine identity, so the gate declares it and does not compare against it."
+    },
+    {
+      "value": "scanner-beta-1",
+      "kind": "engine-identity",
+      "meaning": "SCANNER_VERSION in packages/scanner-core/src/scanner-version.ts: the engine identity that produced the 9,385 official and 288 redistributable verdicts published by the 2026-09-25 regeneration. It is the same constant check:scanner-goldens pins in RELEASE_GOLDEN_IDENTITY, and the value data/manifest.json metadata.scannerVersion carried before the 2026-10-20 v2 regeneration; the v2 release stamp is 2.0.0."
+    },
+    {
+      "value": "not-scanned",
+      "kind": "acquirer-placeholder",
+      "meaning": "The acquirer's own 'no authorized source body could be re-established' marker, stamped by audit F-001 RULING-1 (option B) on 2026-09-27 on the 67 redistributable entries whose upstream repository murataslan1/n8n-workflow-collection was deleted (HTTP 404 on the authenticated API), so no body exists to rescan them against. It is a placeholder for a verdict that was never re-derived — not a build stamp and not an engine identity — and must never be read as a licence, a verdict, or a grade: the grade, score, counts and findings those rows still publish are the pre-regeneration verdicts and were left exactly as shipped. They also carry security.stampReason 'source_unavailable'; readiness.analysis publishes 'unscanned' because no body ships for them — the packs that used to hold those bodies were removed from the release by the 2026-09-27 regeneration. The same value is the existing legacy no-body marker in pipeline/derive/corpus-analytics.ts and pipeline/derive/verdict-adjudication.ts."
+    },
+    {
+      "value": "2.0.0",
+      "kind": "engine-identity",
+      "meaning": "The admitted native v2 engine identity written to data/manifest.json metadata.scannerVersion for the 2026-10-20 regeneration. It is the release identity of the engine that produced the v2 receipts; scanner-beta-1 remains the source constant the goldens pin."
+    }
+  ],
+  "scope": {
+    "total": 11464,
+    "redistributable": 0,
+    "linkOnly": 11464,
+    "searchable": 11245,
+    "searchableNote": "The searchable projection is 11,245 = 2,000 (search-index.json) + 9,245 (search-index-extended.json) = facets.ordinals = facets.total. It is deliberately unchanged by the 2026-09-25 regeneration: the canonical vendor taxonomy leaves core-node workflows with an empty integrations list, so isSearchable/isIndexable now state their floor on structure.nodeTypes rather than on integrations. Measured on the pre-regeneration corpus both forms selected the same 11,245 entries, so no entry left the published surface."
+  },
+  "rescan": {
+    "scannerVersion": "scanner-beta-1",
+    "profile": "beta-default",
+    "bodies": 0,
+    "identical": 0,
+    "different": 0,
+    "differentIds": [],
+    "bodiesBasis": "0 is the measured redistributable population on 2026-09-27, after audit F-001 RULING-2 (a755b85) flipped all 288 redistributable rows to link-only: no authorized body remains to rescan, so the gate-validated `bodies`/`identical`/`different`/`differentIds` are the empty scan and must stay at 0/0/0/[] because scripts/lib/scanner-result-freshness.mjs binds `bodies` to the measured redistributable count. The 288-body measurement that existed before the flip is preserved in `historical`, which the gate does not validate.",
+    "historical": {
+      "measuredAt": "b3567a1",
+      "measuredOn": "2026-09-25",
+      "note": "The rescans actually performed before RULING-2 emptied the redistributable population, recorded at commit b3567a1 and left unaltered since. Not gate-validated: kept because it is real evidence and the flip must not erase it. `bodies`/`identical`/`different`/`differentIds` are the 2026-09-25 288-body rescan; `rescanned`/`stamped` and the `rescanned*` counts are what the 2026-09-27 publication then rescanned out of them.",
+      "bodies": 288,
+      "identical": 247,
+      "different": 41,
+      "differentIds": [
+        "d3065054e45508a2",
+        "2ae2c4ee5b653c1d",
+        "31233cbf869a2986",
+        "42ba3999c62d5845",
+        "3f5cb566cd98bc11",
+        "e96afe2e20c10d6b",
+        "0e3ed401ae48c961",
+        "312f5e35f65239d2",
+        "c3e0c1a090bdef2a",
+        "5aea7a0ef92362a1",
+        "9ebf100f75a9ef26",
+        "b50f465279b03cbf",
+        "326f79272226fe0c",
+        "a1840019f066b297",
+        "d3f2f1d300c4b630",
+        "8931184f5fc392c3",
+        "d5eefe609ad1085b",
+        "cd17636a45dfb477",
+        "0e1bd3dde7151332",
+        "3f8634d727aa5042",
+        "24e128351690e930",
+        "6d9a072080c29acc",
+        "cfdacadd3ee47c65",
+        "4a723074c208af33",
+        "a4ff89357c6c8d43",
+        "c5dd4a5f413f428d",
+        "fb009c90efd892fd",
+        "5f50948a2987fea9",
+        "0921a60a96c69b56",
+        "717554d6793d90de",
+        "0dbab95cfbd107ea",
+        "44d8fef0b652e8ee",
+        "1e901491e057b95d",
+        "fdda0efe04572e25",
+        "2e67e54b1c1623ff",
+        "4880bad17358ba29",
+        "8ef29f0c244867b7",
+        "019806da06e676a6",
+        "ab56d9dec7fc07a5",
+        "37aedf68e57b80ff",
+        "19bdf901dc5c7e5e"
+      ],
+      "rescanned": 221,
+      "stamped": 67,
+      "rescannedIdentical": 188,
+      "rescannedDifferent": 33,
+      "rescannedDifferentIds": [
+        "2ae2c4ee5b653c1d",
+        "5f50948a2987fea9",
+        "8ef29f0c244867b7",
+        "fb009c90efd892fd",
+        "717554d6793d90de",
+        "6d9a072080c29acc",
+        "2e67e54b1c1623ff",
+        "44d8fef0b652e8ee",
+        "326f79272226fe0c",
+        "019806da06e676a6",
+        "d3065054e45508a2",
+        "0921a60a96c69b56",
+        "312f5e35f65239d2",
+        "b50f465279b03cbf",
+        "0e3ed401ae48c961",
+        "ab56d9dec7fc07a5",
+        "a4ff89357c6c8d43",
+        "cfdacadd3ee47c65",
+        "42ba3999c62d5845",
+        "4880bad17358ba29",
+        "0e1bd3dde7151332",
+        "d3f2f1d300c4b630",
+        "1e901491e057b95d",
+        "3f8634d727aa5042",
+        "9ebf100f75a9ef26",
+        "5aea7a0ef92362a1",
+        "d5eefe609ad1085b",
+        "0dbab95cfbd107ea",
+        "c5dd4a5f413f428d",
+        "3f5cb566cd98bc11",
+        "37aedf68e57b80ff",
+        "c3e0c1a090bdef2a",
+        "e96afe2e20c10d6b"
+      ],
+      "cause": "Policy change under a stable identity, re-measured after the credential-plumbing fix (packages/scanner-core/src/policies/secret-indicators.ts: the parameter names `credentials` and `nodeCredentialType` are no longer classified as secret-bearing keys, though their children are still traversed). 41 differences in three classes, none of them input loss, ordering or nondeterminism: a second run over the same 288 bodies was byte-identical. (1) 15 differ only in hardenedExtra and stay inside the hardened-only report-only catalog (TAINTED_REQUEST_URL, TAINTED_AI_PROMPT, TAINTED_SQL_QUERY, AI_AGENT_UNGATED_TOOL); some moved upward, and a strictly reduced input cannot add findings, so the rules moved. (2) 26 entries lose credential-plumbing false positives: all 55 `parameters.nodeCredentialType` values across the 288 bodies (todoistApi, httpHeaderAuth, wordpressApi, pineconeApi, virusTotalApi, ... — the credential-type selector of the HTTP Request node) each carried a MEDIUM sensitive_key RAW_SECRET_INDICATOR, and none of them is secret material. Removing them lowers 21 published grades (7 HIGH -> MEDIUM, 14 MEDIUM -> LOW) and makes 1ae2123eca2f28cf reproduce exactly — that entry differed from its stored verdict only by the 11 findings this fix removes, so its stored HIGH/64 stands and the pre-fix engine's CRITICAL/100 was the false-positive escalation. (3) 3f5cb566cd98bc11 also picks up the Phase-1.3 expression-island detection on node 'MySQL Pass' (secretPath '=cyber-sentinel/credentials/mysql/app_manager'), a genuine detection improvement. That derivation did not restamp the stored verdicts — a release-owner decision at the time — so on 2026-09-25 all 55 false positives and the 21 inflated grades were still shipped. 168 commits touched the scanner sources after c998701. 2026-09-27 (P3-1b, audit F-001 RULING-1 B): the stored verdicts WERE restamped, for the 221 rows that can be rescanned. Each row's `security` block was replaced by the rescanned one under the engine identity `scanner-beta-1`; 188 of the 221 reproduce their stored verdict exactly and 33 change — 12 `report_only` (hardenedExtra only), 20 `false_positive_removed` (17 published grades lowered: 10 MEDIUM -> LOW, 7 HIGH -> MEDIUM) and 1 `mixed`. The 8 remaining differences of the 41 fall in the 67 stamped rows, which stay shipped unaltered because their upstream repository is gone — they cannot be rescanned, so their inflated grades stay published under the not-scanned stamp. The two rows the handoff named: `3f5cb566cd98bc11` is among the 221 and its published claim increases (one MEDIUM credential-plumbing false positive removed, one HIGH expression-island finding added on node `MySQL Pass`, grade CRITICAL -> CRITICAL, disposition `requires-owner-decision` — the ruling published it); `1ae2123eca2f28cf` is among the 221 and its stored HIGH/64 stands exactly, its ledger old and new digests being identical (sha256:ca6b8a4e3aa718ba5c51b8a3be7afce177d60f767c9d7c3e07a5e8dcbd51edd6)."
+    },
+    "bodySource": [
+      "data/packs/pack-0.jsonl (removed from the release by the 2026-09-27 regeneration)",
+      "data/packs/pack-1.jsonl (removed from the release by the 2026-09-27 regeneration)"
+    ],
+    "bodyPointer": "each then-redistributable entry's `download` coordinates (pack, line, offset, length, sha256), which existed until audit F-001 RULING-2 (a755b85) emptied the packs and the 2026-09-27 regeneration removed them — no entry carries a download pointer now (0 of 11,464); every pointer was verified against the line's sha256 before scanning",
+    "determinism": "two consecutive derivations of the 221 published bodies by scripts/publish-rescanned-verdicts.ts produced byte-identical output — the full per-entry comparison of every field, not only the counts (sha256:8af23e77cf7a8c425eaa0c5f926f27367eb41c01285d49bc8c7cd2fe1847f3ab); the same held for the recorded 2026-09-25 run over the 288"
+  },
+  "unverified": [
+    {
+      "scope": "link_only",
+      "count": 70,
+      "status": "unverified",
+      "reason": "no authorized source body exists in this snapshot for these entries, so their verdicts could not be re-derived and are published unaltered",
+      "note": "Measured residual after the v2 regeneration: 3 official entries with no readable body and 67 community entries whose source could not be re-acquired are published as unscanned/unverified; every other entry was re-derived from an authorized body."
+    },
+    {
+      "scope": "redistributable_source_unavailable",
+      "count": 67,
+      "status": "unverified",
+      "reason": "the upstream repository murataslan1/n8n-workflow-collection was deleted (HTTP 404 on the authenticated API), so no authorized source body can be re-established and these verdicts could not be rescanned; they are published unaltered and now carry scannerVersion 'not-scanned' with stampReason 'source_unavailable' (audit F-001 RULING-1 B, 2026-09-27)",
+      "note": "These 67 rows are link-only and carry security.stampReason source_unavailable: their upstream repository was deleted, so no authorized body exists to re-derive. They are published unaltered, counted in derivation.unscanned and in the link_only residual above."
+    }
+  ],
+  "derivation": {
+    "verified": {
+      "status": "verified",
+      "count": 11394,
+      "reason": "re-derived from an authorized workflow body in the v2 regeneration: 11,394 readable inputs produced a current result (11,376 admitted native results and 18 engine refusals), bound to the same corpus manifest and inventory."
+    },
+    "unscanned": {
+      "status": "unscanned",
+      "count": 70,
+      "reason": "no workflow JSON was available for analysis: 3 official entries with no readable body and 67 community entries whose authorized source could not be re-acquired. Their readiness.analysis is unscanned and their credential list is unknown, not empty.",
+      "byScope": {
+        "official_without_body": 3,
+        "community_link_only_without_body": 67
+      }
+    }
+  }
+}

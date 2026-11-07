@@ -1,0 +1,242 @@
+{
+  "name": "@hub/scanner-core",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run --root ../.. --project scanner-core",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@hub/contracts": "0.1.0",
+    "@humanwhocodes/momoa": "^3.3.10",
+    "@lezer/python": "^1.1.19",
+    "@noble/curves": "^2.4.0",
+    "@noble/hashes": "^2.0.1",
+    "acorn": "^8.17.0"
+  },
+  "exports": {
+    "./v2": {
+      "types": "./src/v2/index.ts",
+      "import": "./src/v2/index.ts"
+    },
+    "./canonical-json": {
+      "types": "./src/canonical-json.ts",
+      "import": "./src/canonical-json.ts"
+    },
+    "./semantics/semver": {
+      "types": "./src/semantics/semver.ts",
+      "import": "./src/semantics/semver.ts"
+    },
+    "./workflow": {
+      "types": "./src/workflow.ts",
+      "import": "./src/workflow.ts"
+    },
+    "./source/source-types": {
+      "types": "./src/source/source-types.ts",
+      "import": "./src/source/source-types.ts"
+    },
+    "./source/source-parser": {
+      "types": "./src/source/source-parser.ts",
+      "import": "./src/source/source-parser.ts"
+    },
+    "./source/source-budget": {
+      "types": "./src/source/source-budget.ts",
+      "import": "./src/source/source-budget.ts"
+    },
+    "./workflow-v2/security-workflow": {
+      "types": "./src/workflow-v2/security-workflow.ts",
+      "import": "./src/workflow-v2/security-workflow.ts"
+    },
+    "./workflow-v2/normalize-security-workflow": {
+      "types": "./src/workflow-v2/normalize-security-workflow.ts",
+      "import": "./src/workflow-v2/normalize-security-workflow.ts"
+    },
+    "./workflow-v2/budget-outcomes": {
+      "types": "./src/workflow-v2/budget-outcomes.ts",
+      "import": "./src/workflow-v2/budget-outcomes.ts"
+    },
+    "./scanner-version": {
+      "types": "./src/scanner-version.ts",
+      "import": "./src/scanner-version.ts"
+    },
+    "./workflow-insights": {
+      "types": "./src/workflow-insights.ts",
+      "import": "./src/workflow-insights.ts",
+      "require": "./src/workflow-insights.ts"
+    },
+    "./scan-insights": {
+      "types": "./src/scan-insights.ts",
+      "import": "./src/scan-insights.ts",
+      "default": "./src/scan-insights.ts"
+    },
+    "./scan-risk": {
+      "types": "./src/scan-risk.ts",
+      "import": "./src/scan-risk.ts",
+      "default": "./src/scan-risk.ts"
+    },
+    "./human-summary": {
+      "types": "./src/human-summary.ts",
+      "import": "./src/human-summary.ts",
+      "default": "./src/human-summary.ts"
+    },
+    "./presentation-redaction": {
+      "types": "./src/presentation-redaction.ts",
+      "import": "./src/presentation-redaction.ts",
+      "default": "./src/presentation-redaction.ts"
+    },
+    "./redaction": {
+      "types": "./src/redaction/redaction.ts",
+      "import": "./src/redaction/redaction.ts",
+      "default": "./src/redaction/redaction.ts"
+    },
+    "./policy": {
+      "types": "./src/policy/policy.ts",
+      "import": "./src/policy/policy.ts",
+      "default": "./src/policy/policy.ts"
+    },
+    "./policy-helpers": {
+      "types": "./src/policy/policy-helpers.ts",
+      "import": "./src/policy/policy-helpers.ts"
+    },
+    "./rule-catalog": {
+      "types": "./src/policy/rule-catalog.ts",
+      "import": "./src/policy/rule-catalog.ts"
+    },
+    "./provider-token-patterns": {
+      "types": "./src/provider-token-patterns.ts",
+      "import": "./src/provider-token-patterns.ts"
+    },
+    "./secret-classifier": {
+      "types": "./src/secret-classifier.ts",
+      "import": "./src/secret-classifier.ts"
+    },
+    "./analyzers/code/javascript-analysis": {
+      "types": "./src/analyzers/code/javascript-analysis.ts",
+      "import": "./src/analyzers/code/javascript-analysis.ts",
+      "default": "./src/analyzers/code/javascript-analysis.ts"
+    },
+    "./analyzers/code/python-analysis": {
+      "types": "./src/analyzers/code/python-analysis.ts",
+      "import": "./src/analyzers/code/python-analysis.ts",
+      "default": "./src/analyzers/code/python-analysis.ts"
+    },
+    "./analyzers/taint/taint-analysis": {
+      "types": "./src/analyzers/taint/taint-analysis.ts",
+      "import": "./src/analyzers/taint/taint-analysis.ts",
+      "default": "./src/analyzers/taint/taint-analysis.ts"
+    },
+    "./analyzers/taint/taint-lattice": {
+      "types": "./src/analyzers/taint/taint-lattice.ts",
+      "import": "./src/analyzers/taint/taint-lattice.ts"
+    },
+    "./analyzers/taint/taint-propagation": {
+      "types": "./src/analyzers/taint/taint-propagation.ts",
+      "import": "./src/analyzers/taint/taint-propagation.ts"
+    },
+    "./analyzers/taint/taint-sources": {
+      "types": "./src/analyzers/taint/taint-sources.ts",
+      "import": "./src/analyzers/taint/taint-sources.ts"
+    },
+    "./analyzers/taint/taint-traces": {
+      "types": "./src/analyzers/taint/taint-traces.ts",
+      "import": "./src/analyzers/taint/taint-traces.ts"
+    },
+    "./analyzers/taint/taint-expressions": {
+      "types": "./src/analyzers/taint/taint-expressions.ts",
+      "import": "./src/analyzers/taint/taint-expressions.ts"
+    },
+    "./analyzers/ai/ai-capability-analysis": {
+      "types": "./src/analyzers/ai/ai-capability-analysis.ts",
+      "import": "./src/analyzers/ai/ai-capability-analysis.ts",
+      "default": "./src/analyzers/ai/ai-capability-analysis.ts"
+    },
+    "./graph-dominators": {
+      "types": "./src/graph-dominators.ts",
+      "import": "./src/graph-dominators.ts"
+    },
+    "./result/canonical-findings": {
+      "types": "./src/result/canonical-findings.ts",
+      "import": "./src/result/canonical-findings.ts"
+    },
+    "./result/analysis-completeness": {
+      "types": "./src/result/analysis-completeness.ts",
+      "import": "./src/result/analysis-completeness.ts",
+      "default": "./src/result/analysis-completeness.ts"
+    },
+    "./result/finding-source-spans": {
+      "types": "./src/result/finding-source-spans.ts",
+      "import": "./src/result/finding-source-spans.ts",
+      "default": "./src/result/finding-source-spans.ts"
+    },
+    "./result/analysis-diagnostics-collection": {
+      "types": "./src/result/analysis-diagnostics-collection.ts",
+      "import": "./src/result/analysis-diagnostics-collection.ts"
+    },
+    "./result/summary": {
+      "types": "./src/result/summary.ts",
+      "import": "./src/result/summary.ts"
+    },
+    "./policies/profile": {
+      "types": "./src/policies/profile.ts",
+      "import": "./src/policies/profile.ts",
+      "default": "./src/policies/profile.ts"
+    },
+    "./engine": {
+      "types": "./src/engine/engine.ts",
+      "import": "./src/engine/engine.ts",
+      "default": "./src/engine/engine.ts"
+    },
+    "./report/sarif-tags": {
+      "types": "./src/report/sarif-tags.ts",
+      "import": "./src/report/sarif-tags.ts",
+      "default": "./src/report/sarif-tags.ts"
+    },
+    "./report/sarif-document": {
+      "types": "./src/report/sarif-document.ts",
+      "import": "./src/report/sarif-document.ts",
+      "default": "./src/report/sarif-document.ts"
+    },
+    "./report/sarif-v2/output": {
+      "types": "./src/report/sarif-v2/output.ts",
+      "import": "./src/report/sarif-v2/output.ts",
+      "default": "./src/report/sarif-v2/output.ts"
+    },
+    "./test/v1-goldens": {
+      "types": "./src/__fixtures__/v1-goldens.ts",
+      "import": "./src/__fixtures__/v1-goldens.ts"
+    },
+    "./test/v2-adapter-fixtures": {
+      "types": "./src/__fixtures__/v2-adapter-fixtures.ts",
+      "import": "./src/__fixtures__/v2-adapter-fixtures.ts"
+    },
+    "./diagnostics/registry": {
+      "types": "./src/diagnostics/registry.ts",
+      "import": "./src/diagnostics/registry.ts",
+      "default": "./src/diagnostics/registry.ts"
+    },
+    "./compat/v1-registry": {
+      "types": "./src/compat/v1-registry.ts",
+      "import": "./src/compat/v1-registry.ts",
+      "default": "./src/compat/v1-registry.ts"
+    },
+    "./compat/v1-projector": {
+      "types": "./src/compat/v1-projector.ts",
+      "import": "./src/compat/v1-projector.ts"
+    },
+    "./remediation/fix-suggestion": {
+      "types": "./src/remediation/fix-suggestion.ts",
+      "import": "./src/remediation/fix-suggestion.ts"
+    },
+    "./remediation/fix-preconditions": {
+      "types": "./src/remediation/fix-preconditions.ts",
+      "import": "./src/remediation/fix-preconditions.ts"
+    },
+    "./remediation/fix-suggestion-artifact": {
+      "types": "./src/remediation/fix-suggestion-artifact.ts",
+      "import": "./src/remediation/fix-suggestion-artifact.ts"
+    }
+  }
+}

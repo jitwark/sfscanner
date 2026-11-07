@@ -1,0 +1,59 @@
+name: Feature request
+description: Propose a new capability or an enhancement to an existing one
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a single-maintainer project (see `GOVERNANCE.md`), so a request here is a
+        proposal to be prioritized, not a queue with a service-level commitment. A request that
+        touches scanner rules, redaction, provenance, or rights boundaries should say so — those
+        changes go through `CONTRIBUTING.md`'s spec-before-code path and generally need an
+        OpenSpec change, not just an issue.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What can't you do today, or what's awkward? Concrete is better than abstract — an example workflow, command, or page beats a general statement.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you want to happen instead? If you have a rough idea of the mechanism (a new scanner policy, a CLI flag, a catalogue filter), say so.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Catalogue site (search, entry pages, navigation)
+        - Scanner (new or changed detection)
+        - Scanner CLI
+        - Pipeline / corpus tooling
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Anything you tried, or an existing feature that's close but not quite it.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scanner_impact
+    attributes:
+      label: If this touches the scanner
+      options:
+        - label: This request would change a finding's severity, add/remove a rule, or change what counts as a match — I understand this needs a calibration/precision review before it ships, not just an implementation.
+          required: false

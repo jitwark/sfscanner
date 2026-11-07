@@ -1,0 +1,851 @@
+{
+  "schemaVersion": "public-repo-content-exemption-v1",
+  "exemptions": [
+    {
+      "path": "app/e2e/scanner-release-qualification.spec.ts",
+      "rule": "authorization-literal",
+      "reason": "The prerequisite qualification fixture intentionally includes a fictional authorization header to verify that the browser report withholds parameter values.",
+      "evidence": "The header uses the fixed PARAMETER_CANARY test constant, with no issued credential or service endpoint. The prerequisite-region assertions require that this value never appears. Independent browser-test review on November 7 approved retaining this exact detector fixture."
+    },
+    {
+      "path": "app/e2e/scanner-release-qualification.spec.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "The prerequisite qualification fixture uses an explicitly fictional vendor-shaped parameter canary to exercise secret withholding.",
+      "evidence": "PARAMETER_CANARY is a fixed readable test sentinel, not an issued token. The test asserts its absence from rendered prerequisites. Independent browser-test review on November 7 approved only this concrete file and detector rule."
+    },
+    {
+      "path": "app/e2e/fixtures/malicious.json",
+      "rule": "authorization-literal",
+      "reason": "A synthetic hostile workflow whose entire purpose is to be detected. The end-to-end scanner spec asserts that this fixture produces findings, so removing the pattern would delete the test.",
+      "evidence": "Line 19 is an executeCommand parameter running curl against evil.com with a bearer header whose value is a vendor-shaped prefix followed by the digits 1 through 0 repeated twice \u2014 sequential, not an issued token."
+    },
+    {
+      "path": "app/src/scanner/__fixtures__/calibration-corpus/template-10242-resume-agent-webhook.json",
+      "rule": "authorization-literal",
+      "reason": "Documentation prose inside a calibration fixture, not a credential. The string is a GitHub Actions expression showing readers how to pass a token, so the value is resolved by Actions at run time and is never present in the file.",
+      "evidence": "Line 782, inside a sticky-note markdown block: a curl example whose bearer-header value is the GitHub Actions expression for the secrets.GITHUB_TOKEN context, resolved by Actions at run time."
+    },
+    {
+      "path": "app/src/scanner/__fixtures__/calibration-corpus/template-3400-betterstack-structured-logs.json",
+      "rule": "authorization-literal",
+      "reason": "A placeholder in setup instructions embedded in the workflow's sticky note. The token position holds the literal words YOUR_TOKEN_HERE.",
+      "evidence": "Line 174, in setup prose: a Header Auth example whose bearer-header value is the literal placeholder YOUR_TOKEN_HERE."
+    },
+    {
+      "path": "app/src/scanner/__fixtures__/calibration-corpus/template-3858-openai-imagegen-http.json",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "A placeholder in the template's own parameter value. The key position holds the literal words YOUR_OPENAI_KEY_HERE.",
+      "evidence": "Line 127 sets a parameter whose value is the vendor key prefix followed by the literal placeholder YOUR_OPENAI_KEY_HERE."
+    },
+    {
+      "path": "app/src/scanner/__fixtures__/calibration-corpus/template-7051-quickbooks-invoice-webhook.json",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "A Google Fonts stylesheet URL in an HTML response body. The detector reads the `//host/path?query` shape as a userinfo-bearing URL; there is no `@` and no credential.",
+      "evidence": "Line 145 is an HTML response body containing a Google Fonts stylesheet link. Its only at-sign is inside the CSS font-weight query string; the URL carries no userinfo component."
+    },
+    {
+      "path": "app/src/scanner/__fixtures__/calibration-corpus/template-7756-telegram-meal-agent.json",
+      "rule": "high-entropy-token",
+      "reason": "Three URL-encoded GitHub screenshot filenames in the template's documentation. The percent-encoded timestamp reads as high entropy; the URLs are public image links.",
+      "evidence": "Lines 1546, 1578 and 1626 each embed `https://github.com/JarsRat/Images/blob/main/Documentation/Screenshot%202025-08-28%20...png?raw=true`."
+    },
+    {
+      "path": "app/src/scanner/__fixtures__/calibration-corpus/template-8258-secure-webhook-supabase.json",
+      "rule": "authorization-literal",
+      "reason": "Documentation describing JWT authentication as an option. The token position holds the angle-bracket placeholder `<token>`.",
+      "evidence": "Line 232, in a sticky note comparing auth options: a bearer-header example whose value is the angle-bracket placeholder for a token."
+    },
+    {
+      "path": "app/src/scanner/false-positive-regression.test.ts",
+      "rule": "secret-pattern:github-token",
+      "reason": "Synthetic provider-token text used only to verify a scanner false-positive regression.",
+      "evidence": "The match is an inline test value in a colocated regression test, not a credential or fixture body."
+    },
+    {
+      "path": "app/src/scanner/policy-helpers.ts",
+      "rule": "authorization-literal",
+      "reason": "The source defines the scanner's Authorization-header evidence shape; it does not contain a credential.",
+      "evidence": "The finding is on a literal header name/value key used to construct deterministic finding evidence."
+    },
+    {
+      "path": "app/src/scanner/redaction.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization values used only to test scanner redaction.",
+      "evidence": "All matches are inline test inputs in the redaction suite."
+    },
+    {
+      "path": "app/src/scanner/redaction.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic basic-auth URL used only to test scanner redaction.",
+      "evidence": "The URL is an inline test input in the redaction suite."
+    },
+    {
+      "path": "app/src/scanner/redaction.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Synthetic secret-assignment value used only to test scanner redaction.",
+      "evidence": "The value is an inline test input in the redaction suite."
+    },
+    {
+      "path": "app/src/scanner/redaction.test.ts",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "Synthetic JWT-shaped value used only to test scanner redaction.",
+      "evidence": "The token is an inline test input in the redaction suite."
+    },
+    {
+      "path": "app/src/scanner/scanner-input.test.tsx",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic basic-auth URLs used only to test the scanner input UI.",
+      "evidence": "The matches occur in inline component test inputs, not in shipped user data."
+    },
+    {
+      "path": "app/src/scanner/secret-classifier.test.ts",
+      "rule": "credential-filename",
+      "reason": "The detector name in this test filename is not credential material.",
+      "evidence": "The finding has no content span (line 0, column 0) and comes only from the filename."
+    },
+    {
+      "path": "app/src/scanner/taint-analysis.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Synthetic secret-assignment value used only to test taint analysis.",
+      "evidence": "The match is an inline test value in a colocated taint-analysis test."
+    },
+    {
+      "path": "docs/scanner-false-positive-review.md",
+      "rule": "authorization-literal",
+      "reason": "Documentation of a false-positive fix. It quotes the n8n header shapes to explain why an expression-driven header is now reported at INFO while a pasted literal stays HIGH; the quoted values are expression syntax and a single-letter variable, not credentials.",
+      "evidence": "Lines 75 and 79 quote the recommended n8n pattern (a template expression concatenating a bearer prefix with $credentials.token) and the two header object shapes the fix handles."
+    },
+    {
+      "path": "docs/scanner/policy-inventory.md",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "A synthetic key deliberately shaped like an AWS access key id, in the minimal example that documents what RAW_SECRET_INDICATOR detects. The body is the letters A-P in order, which no issued key can be.",
+      "evidence": "Line 140, in a fenced example block: an apiKey value with the AWS key-id prefix followed by the letters A through P in alphabetical order, which no issued key can be."
+    },
+    {
+      "path": "packages/scanner-core/README.md",
+      "rule": "authorization-literal",
+      "reason": "Documentation: the scanner's own rule table states what an auth-literal finding is; the match is the rule's example phrase, not a header value.",
+      "evidence": "Line 89, the CWE-798 row of the rule table, names the two header schemes it detects in prose; no header value exists in the file."
+    },
+    {
+      "path": "packages/scanner-core/src/analyzers/secrets/provider-token-registry.test.ts",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "Fixture: the three-segment token printed on the jwt.io documentation page, whose middle segment decodes to a sub claim of ten digits and whose signature segment decodes to the word for a signature.",
+      "evidence": "Line 28, the `jwt` entry of the registry case table. Verified by base64-decoding both trailing segments; neither encodes data."
+    },
+    {
+      "path": "packages/scanner-core/src/capabilities/beta-default.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixture: the header value is the literal word \"literal\".",
+      "evidence": "Line 99: an auth header in a synthetic workflow node whose bearer value is the English word `literal`."
+    },
+    {
+      "path": "packages/scanner-core/src/capabilities/candidate-validator.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixture: the header value is the word \"secret\".",
+      "evidence": "Line 204: an auth header string in a synthetic fact object whose value is the English word `secret`."
+    },
+    {
+      "path": "packages/scanner-core/src/facts/safe-fact-validator.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixtures: both header values are the English word \"secret\"; the tests assert the safe-fact validator reports FORBIDDEN_CONTENT.",
+      "evidence": "Lines 240 and 265: an `authentication` property and a `header` property of synthetic fact objects, both holding the word `secret`."
+    },
+    {
+      "path": "packages/scanner-core/src/facts/safe-fact-validator.test.ts",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "The AWS documentation's own example access-key id, which is not an issued credential.",
+      "evidence": "Line 287: a `nodePackage` value that is the placeholder key id AWS publishes in its access-key documentation (ends in the literal word EXAMPLE); the test asserts the validator rejects it."
+    },
+    {
+      "path": "packages/scanner-core/src/facts/safe-fact-validator.test.ts",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "Fixture: the jwt.io documentation example token (middle segment decodes to a ten-digit sub claim, signature segment decodes to the word for a signature); the test asserts it is rejected.",
+      "evidence": "Line 310: the `jwtLike` constant. Verified by base64-decoding both trailing segments."
+    },
+    {
+      "path": "packages/scanner-core/src/facts/safe-fact-validator.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Fixture: the matched value is descriptive prose in a shape the rule reads as a key prefix.",
+      "evidence": "Line 265, column 619: a `basicPurpose` property whose value is the phrase \"raw-token-value\" preceded by a live-shaped prefix."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/beta-policies.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization values used only to test deterministic policies.",
+      "evidence": "The matches are inline policy-test inputs."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/credential-policies.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixtures: a sequential value and a code expression, both inside synthetic node headers.",
+      "evidence": "Lines 22 and 43: an auth header whose value is a short sequential string, and a header object whose value is a JavaScript identifier expression."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/credential-policies.test.ts",
+      "rule": "credential-filename",
+      "reason": "The filename says what the file tests \u2014 credential policies \u2014 not what it stores: it is the vitest suite over the credential-policy source.",
+      "evidence": "The file declares only synthetic case objects for `src/policies/credential-policies.ts`; no literal credential is declared anywhere in it."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/credential-policies.ts",
+      "rule": "credential-filename",
+      "reason": "The detector name in this source filename is not credential material.",
+      "evidence": "The finding has no content span (line 0, column 0) and comes only from the filename."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/policy-coverage-matrix.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization value used only to exercise policy coverage.",
+      "evidence": "The match is an inline test input in the policy coverage matrix."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/secret-indicators.test.ts",
+      "rule": "credential-filename",
+      "reason": "The filename announces the module's subject, not stored material: the file is the vitest suite for the secret-indicator detector.",
+      "evidence": "The file feeds synthetic parameter objects to `collectSecretIndicators`; the only token-shaped values are the sequential placeholders exempted below."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/secret-indicators.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Fixture: a synthetic n8n expression token with a sequential body and an unresolved expression suffix.",
+      "evidence": "Line 17: a `token` parameter holding a short sequential prefix followed by an expression interpolation \u2014 an expression, never a live value."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/secret-indicators.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Fixtures: the same sequential-letter placeholder three times.",
+      "evidence": "Lines 53, 61 and 85: credential values in `collectSecretIndicators` cases; each token body is the alphabet sequence a through p."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/secret-indicators.ts",
+      "rule": "credential-filename",
+      "reason": "The detector name in this source filename is not credential material.",
+      "evidence": "The finding has no content span (line 0, column 0) and comes only from the filename."
+    },
+    {
+      "path": "packages/scanner-core/src/policy/policy-helpers.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization values used only to test scanner policy helpers.",
+      "evidence": "The matches are inline test inputs in the policy-helper suite."
+    },
+    {
+      "path": "packages/scanner-core/src/provider-token-patterns.ts",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "The source declares a JWT detection pattern and its synthetic test vector, not a token.",
+      "evidence": "The match is the literal pattern/test definition in the scanner's provider-token table."
+    },
+    {
+      "path": "packages/scanner-core/src/redaction-v2/patches.test.ts",
+      "rule": "secret-pattern:github-token",
+      "reason": "Fixture for the redactor: a sequential-letters token after an emoji, used to assert surrounding text is preserved.",
+      "evidence": "Line 28: a `text` constant holding an emoji, a short sequential prefix, and a token-shaped suffix made of the alphabet sequence A through L."
+    },
+    {
+      "path": "packages/scanner-core/src/redaction-v2/patches.ts",
+      "rule": "high-entropy-token",
+      "reason": "The four matches are the base64 alphabet constant repeated in the hand-rolled encoder, not a value.",
+      "evidence": "Line 149: the standard base64 alphabet string appears four times as the argument of `charAt` calls; it is a code constant, not a credential."
+    },
+    {
+      "path": "packages/scanner-core/src/redaction-v2/url-patches.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: a reserved example.test URL whose userinfo strings are the sequential token used across this suite.",
+      "evidence": "Line 6: a `value` constant on the reserved example.test domain, repeating one short sequential token in userinfo, path, and query."
+    },
+    {
+      "path": "packages/scanner-core/src/redaction/redaction.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization values used only to test core redaction.",
+      "evidence": "All matches are inline test inputs in the core redaction suite."
+    },
+    {
+      "path": "packages/scanner-core/src/redaction/redaction.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic basic-auth URL used only to test core redaction.",
+      "evidence": "The URL is an inline test input in the core redaction suite."
+    },
+    {
+      "path": "packages/scanner-core/src/rules-v2/pack-schema.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Fixture: a URL on the non-routable example domain assigned to a variable named `secret`, asserting it does not escape a pack.",
+      "evidence": "Line 76: a `secret` constant holding a URL whose host is the reserved example domain and whose path is the phrase \"should-not-escape\"."
+    },
+    {
+      "path": "packages/scanner-core/src/secret-classifier.test.ts",
+      "rule": "credential-filename",
+      "reason": "The detector name in this test filename is not credential material.",
+      "evidence": "The finding has no content span (line 0, column 0) and comes only from the filename."
+    },
+    {
+      "path": "packages/scanner-core/src/secret-classifier.ts",
+      "rule": "credential-filename",
+      "reason": "The detector name in this source filename is not credential material.",
+      "evidence": "The finding has no content span (line 0, column 0) and comes only from the filename."
+    },
+    {
+      "path": "packages/scanner-core/src/testing/fail-open-canaries.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixture: the header value is the literal word \"literal\".",
+      "evidence": "Line 101: an auth header in a synthetic node built by the canary test, whose bearer value is the English word `literal`."
+    },
+    {
+      "path": "packages/scanner-core/src/testing/property-generators.ts",
+      "rule": "authorization-literal",
+      "reason": "A template literal, not a value: the generator interpolates a token it substitutes itself.",
+      "evidence": "Line 121: the generated shape sets an auth header to a template expression over the generator-provided `token`."
+    },
+    {
+      "path": "packages/scanner-core/src/workflow-v2/normalize-security-workflow.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Fixture: a synthetic workflow JSON string whose token-shaped value is twenty letter A's.",
+      "evidence": "Line 288, column 152: a `providerValue` property holding a live-shaped prefix followed by twenty A characters, beside the literal strings `token` and `secret`."
+    },
+    {
+      "path": "pipeline/acquire/clone-sources.ts",
+      "rule": "authorization-literal",
+      "reason": "The acquisition adapter constructs a GitHub Authorization header from the caller-supplied environment token; no token value is present in source.",
+      "evidence": "The match is the header property and a dynamic Bearer expression using process.env.GITHUB_TOKEN."
+    },
+    {
+      "path": "pipeline/acquire/discover-sources.mjs",
+      "rule": "authorization-literal",
+      "reason": "The source-discovery adapter constructs a GitHub Authorization header from the caller-supplied environment token; no token value is present in source.",
+      "evidence": "The match is the header property and a dynamic Bearer expression using the token function argument."
+    },
+    {
+      "path": "pipeline/acquire/github-pinned-body.ts",
+      "rule": "authorization-literal",
+      "reason": "A template literal in the request builder; the token is a parameter, never a value in the file.",
+      "evidence": "Line 47: the request headers set an auth header to a template expression over the function's `token` parameter."
+    },
+    {
+      "path": "pipeline/audit-privacy.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization values used only to test the privacy auditor.",
+      "evidence": "All matches are inline test inputs for the authorization detector."
+    },
+    {
+      "path": "pipeline/audit-privacy.test.ts",
+      "rule": "canary-string",
+      "reason": "Synthetic canary values used only to test the privacy auditor.",
+      "evidence": "The match is an inline test input for the canary detector."
+    },
+    {
+      "path": "pipeline/audit-privacy.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic OpenAI-shaped value used only to test the privacy auditor.",
+      "evidence": "The match is an inline test input and not an operational API key."
+    },
+    {
+      "path": "pipeline/audit-privacy.ts",
+      "rule": "authorization-literal",
+      "reason": "The privacy auditor declares the Authorization detector pattern; this is rule configuration, not an operational credential.",
+      "evidence": "The match is the AUTH_LITERAL_PATTERN regular expression exported for audit classification."
+    },
+    {
+      "path": "pipeline/audit-privacy.ts",
+      "rule": "canary-string",
+      "reason": "The privacy auditor declares synthetic canary markers that its own audit must detect.",
+      "evidence": "The literals are the CANARY_STRINGS detector input and are not workflow data or credentials."
+    },
+    {
+      "path": "pipeline/cli/scan-core.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization value used only to test the CLI scanner boundary.",
+      "evidence": "The match is an inline CLI test input."
+    },
+    {
+      "path": "pipeline/cli/scan-core.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Synthetic secret-assignment value used only to test the CLI scanner boundary.",
+      "evidence": "The match is an inline CLI test input."
+    },
+    {
+      "path": "pipeline/derive/hostnames.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic basic-auth URL used only to test hostname derivation.",
+      "evidence": "The match is an inline test URL."
+    },
+    {
+      "path": "pipeline/enrich/antigravity-proxy.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic proxy Authorization value used only to test the enrichment transport.",
+      "evidence": "The match is an inline test assertion against a fake proxy key."
+    },
+    {
+      "path": "pipeline/enrich/antigravity-proxy.ts",
+      "rule": "authorization-literal",
+      "reason": "The enrichment adapter constructs an Authorization header from the caller-supplied API key; no key value is present in source.",
+      "evidence": "The match is a dynamic Bearer expression using options.apiKey."
+    },
+    {
+      "path": "pipeline/enrich/describe-spawn.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic proxy Authorization value used only to test model-description transport.",
+      "evidence": "The match is an inline test assertion against a fake proxy key."
+    },
+    {
+      "path": "pipeline/enrich/model-safe-workflow.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization value used only to test model-safe workflow projection.",
+      "evidence": "The match is an inline test input."
+    },
+    {
+      "path": "pipeline/enrich/model-safe-workflow.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic basic-auth URL used only to test model-safe workflow projection.",
+      "evidence": "The match is an inline test input."
+    },
+    {
+      "path": "pipeline/enrich/model-safe-workflow.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic OpenAI-shaped values used only to test model-safe workflow projection.",
+      "evidence": "The matches are inline test inputs and not operational API keys."
+    },
+    {
+      "path": "pipeline/enrich/public-text.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixture: the placeholder position holds the environment-variable name, not a value.",
+      "evidence": "Line 18: an auth header string whose bearer value is the name of the Bright Data API key environment variable."
+    },
+    {
+      "path": "pipeline/index/search-text.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Synthetic secret-like text used only to verify search indexing removes sensitive values.",
+      "evidence": "The value is an inline test input and the test asserts that it is absent from indexed content."
+    },
+    {
+      "path": "pipeline/sanitize/__fixtures__/canary-workflow.json",
+      "rule": "canary-string",
+      "reason": "Named 'Canary Test Workflow' fixture in a __fixtures__ directory; exists specifically to be sanitized and verified by pipeline/sanitize/canary.test.ts.",
+      "evidence": "Top-level name field literally reads \"Canary Test Workflow\"; node parameter values embed the pipeline's own canary marker substrings, checked byte-for-byte in canary.test.ts."
+    },
+    {
+      "path": "pipeline/sanitize/__fixtures__/canary-workflow.json",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Same canary fixture as above; the basic-auth-url match is a synthetic canary value, not a live credential.",
+      "evidence": "URL embeds a fake user:pass@host pattern inside the canary fixture."
+    },
+    {
+      "path": "pipeline/sanitize/__fixtures__/canary-workflow.json",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "Same canary fixture as above; the JWT-shaped match decodes to a synthetic canary payload.",
+      "evidence": "Token body's base64 payload decodes to a JSON object whose only field is the literal word \"canary\"; the token is suffixed with the pipeline's canary marker, checked byte-for-byte in canary.test.ts."
+    },
+    {
+      "path": "pipeline/sanitize/__fixtures__/canary-workflow.json",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Same canary fixture as above; the sk-proj-shaped value is the fixture's own canary literal.",
+      "evidence": "The OpenAI node's apiKey field holds an sk-proj-prefixed value built from the pipeline's canary marker substring, checked byte-for-byte in canary.test.ts."
+    },
+    {
+      "path": "pipeline/sanitize/canary.test.ts",
+      "rule": "canary-string",
+      "reason": "Test asserts these exact canary substrings do not survive sanitization; the substrings are inline literals used only for that assertion.",
+      "evidence": "Test title: 'sanitizes and verifies canary fixture with zero canary strings surviving anywhere'; the same marker substrings as the canary-workflow.json fixture appear as an inline array checked for absence after sanitization."
+    },
+    {
+      "path": "pipeline/sanitize/process-candidate.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Bearer literal used only to test candidate processing.",
+      "evidence": "A mock node's parameters hold a synthetic Bearer-prefixed placeholder under an authorization-style key."
+    },
+    {
+      "path": "pipeline/sanitize/redact.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic mock-workflow literal used only to test the sanitize pipeline's own redaction.",
+      "evidence": "A fake user:pass@host URL appears inside an inline mock n8n workflow object passed to the redaction function under test."
+    },
+    {
+      "path": "pipeline/sanitize/redact.test.ts",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "Synthetic JWT-shaped literal used only to test the sanitize pipeline's own redaction.",
+      "evidence": "A JWT-shaped Bearer token literal appears inside the same inline mock workflow object."
+    },
+    {
+      "path": "pipeline/sanitize/redact.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic sk-proj-shaped literal (the same canonical placeholder used across this codebase's own tests) used only to test redaction.",
+      "evidence": "An apiKey field holds the canonical synthetic sk-proj-shaped placeholder used identically across this repository's own detector tests, inside the inline mock workflow object."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.test.ts",
+      "rule": "credential-filename",
+      "reason": "Filename-only match: the word 'secret' in the test file's own name for pipeline/sanitize/secret-patterns.ts, not file content.",
+      "evidence": "No content span reported (line 0, column 0); the finding is the basename match alone."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.test.ts",
+      "rule": "secret-pattern:github-token",
+      "reason": "Negative control: the string is an ordinary English word that merely begins with a three-letter token prefix, asserted NOT to match the rule under test; the safety module's simplified pattern is looser than the rule.",
+      "evidence": "Line 34: an assertion that the github-token rule does not match the compound English noun used as the negative fixture."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.ts",
+      "rule": "credential-filename",
+      "reason": "The detector name in this source filename is not credential material.",
+      "evidence": "The finding has no content span (line 0, column 0) and comes only from the filename."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.ts",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "Synthetic positive test vector in the sanitizer's pattern definition table.",
+      "evidence": "The value is a documented detector test vector, not an operational credential."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic positive test vector in the sanitizer's pattern definition table.",
+      "evidence": "The URL is a documented detector test vector, not an operational credential."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.ts",
+      "rule": "secret-pattern:github-token",
+      "reason": "Synthetic positive test vector in the sanitizer's pattern definition table.",
+      "evidence": "The value is a documented detector test vector, not an operational credential."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.ts",
+      "rule": "secret-pattern:jwt-token",
+      "reason": "Synthetic positive test vector in the sanitizer's pattern definition table.",
+      "evidence": "The token is a documented detector test vector, not an operational credential."
+    },
+    {
+      "path": "pipeline/sanitize/secret-patterns.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic positive test vector in the sanitizer's pattern definition table.",
+      "evidence": "The value is a documented detector test vector, not an operational credential."
+    },
+    {
+      "path": "pipeline/sanitize/verify.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic mock-workflow literal used only to test the sanitize pipeline's verification step.",
+      "evidence": "A fake user:pass@host URL appears inside an inline mock workflow object."
+    },
+    {
+      "path": "pipeline/sanitize/verify.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic sk-proj-shaped literal used only to test the sanitize pipeline's verification step.",
+      "evidence": "An apiKey field holds the same canonical synthetic sk-proj-shaped placeholder referenced above, inside an inline mock workflow object."
+    },
+    {
+      "path": "scripts/check-published-secret-leak.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names the gate whose subject is a published-secret leak; the file is the gate's logic, not material.",
+      "evidence": "The file binds a body snapshot and sweeps published artifacts; its literals are pattern references and report field names."
+    },
+    {
+      "path": "scripts/check-published-secret-leak.test.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names the gate under test; the file is its vitest suite with synthetic fixtures.",
+      "evidence": "The suite drives the published-secret gate against throwaway temp trees."
+    },
+    {
+      "path": "scripts/check-scanner-core-bare-node.mjs",
+      "rule": "authorization-literal",
+      "reason": "Synthetic Authorization values used only by the bare-Node smoke test.",
+      "evidence": "The matches are constructed test input and assertion text in the smoke-test script."
+    },
+    {
+      "path": "scripts/extract-public-repo.test.mjs",
+      "rule": "canary-string",
+      "reason": "This is the test suite for the extractor's own content-exemption behaviour; it embeds the pipeline's canary marker substring as synthetic fixture content to prove that exemptions narrow to an exact (path, rule) pair.",
+      "evidence": "The same marker substring used by pipeline/sanitize/__fixtures__/canary-workflow.json is written into a throwaway temp fixture inside the 'suppresses only an exactly-matched exempted (path, rule) pair' test, never into a real allowlisted path."
+    },
+    {
+      "path": "scripts/extract-public-repo.test.mjs",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "This is the test suite for the extractor's own fail-closed behaviour; it embeds the canonical synthetic sk-proj-shaped placeholder to prove an allowlisted file with a secret-like value blocks extraction.",
+      "evidence": "The canonical synthetic placeholder is used as test input in the 'fails closed when an allowlisted file contains a secret-like value' test."
+    },
+    {
+      "path": "scripts/lib/public-dataset-arguments.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: a synthetic URL whose password is the word \"pass\".",
+      "evidence": "Line 101: a `credentials` constant holding a URL whose userinfo password is the English word `pass`."
+    },
+    {
+      "path": "scripts/lib/public-repo-content-safety.mjs",
+      "rule": "canary-string",
+      "reason": "The source declares the exact canary markers that its own content-safety detector must catch.",
+      "evidence": "These literals are detector configuration, not workflow data or credentials; the detector test covers their intended use."
+    },
+    {
+      "path": "scripts/lib/public-repo-content-safety.test.mjs",
+      "rule": "authorization-literal",
+      "reason": "This is the test suite for the content-safety detector itself; it embeds synthetic Authorization literals to prove the detector redacts them.",
+      "evidence": "Test literals exercise the authorization-literal rule under test in this same file."
+    },
+    {
+      "path": "scripts/lib/public-repo-content-safety.test.mjs",
+      "rule": "canary-string",
+      "reason": "This is the test suite for the content-safety detector itself; it embeds a canary marker literal to prove canary detection works.",
+      "evidence": "Test title: 'detects canary strings and credential or private-key filenames'; the assertion checks that the same marker literal is absent from the serialized findings output."
+    },
+    {
+      "path": "scripts/lib/public-repo-content-safety.test.mjs",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "This is the test suite for the content-safety detector itself; it embeds a synthetic secret assignment literal to prove the generic-secret-assignment rule fires.",
+      "evidence": "Inline literal used solely as test input for auditPublicRepoFiles."
+    },
+    {
+      "path": "scripts/lib/public-repo-content-safety.test.mjs",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "This is the test suite for the content-safety detector itself; it embeds the canonical synthetic sk-proj-shaped placeholder (reused identically across this codebase's own tests) to prove the openai-api-key rule fires and is redacted.",
+      "evidence": "The canonical synthetic placeholder is used as test input, and the same value is asserted absent from the findings output."
+    },
+    {
+      "path": "scripts/lib/published-secret-candidates.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The module is the candidates half of the published-secret gate; no credential literal is declared in it."
+    },
+    {
+      "path": "scripts/lib/published-secret-candidates.test.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The file is the vitest suite for the published-secret candidates module and drives it against throwaway fixtures."
+    },
+    {
+      "path": "scripts/lib/published-secret-input-inventory.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The module is the input-inventory half of the published-secret gate; no credential literal is declared in it."
+    },
+    {
+      "path": "scripts/lib/published-secret-input-inventory.test.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The file is the vitest suite for the published-secret input-inventory module and drives it against throwaway fixtures."
+    },
+    {
+      "path": "scripts/lib/published-secret-positive-control.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The module is the positive-control half of the published-secret gate; no credential literal is declared in it."
+    },
+    {
+      "path": "scripts/lib/published-secret-positive-control.test.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The file is the vitest suite for the published-secret positive-control module and drives it against throwaway fixtures."
+    },
+    {
+      "path": "scripts/lib/published-secret-report.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The module is the report half of the published-secret gate; no credential literal is declared in it."
+    },
+    {
+      "path": "scripts/lib/published-secret-report.test.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The file is the vitest suite for the published-secret report module and drives it against throwaway fixtures."
+    },
+    {
+      "path": "scripts/lib/published-secret-sweep.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The module is the sweep half of the published-secret gate; no credential literal is declared in it."
+    },
+    {
+      "path": "scripts/lib/published-secret-sweep.test.mjs",
+      "rule": "credential-filename",
+      "reason": "The filename names one published-secret gate component; the file holds detection logic or its synthetic fixtures, not material.",
+      "evidence": "The file is the vitest suite for the published-secret sweep module and drives it against throwaway fixtures."
+    },
+    {
+      "path": "scripts/lib/semantic-source-receipts.test.mjs",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: a synthetic registry URL whose password is the word \"pass\", in an INVALID_URL case.",
+      "evidence": "Line 78: an invalid registry URL case whose userinfo password is the English word `pass`."
+    },
+    {
+      "path": "packages/scanner-core/src/result-v2/display-label.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Test fixture verifying that authorization header declarations in node labels are safely redacted.",
+      "evidence": "Line 52: synthetic test string verifying redaction of auth header declarations."
+    },
+    {
+      "path": "packages/scanner-core/src/result-v2/display-label.test.ts",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "Test fixture verifying that AWS access key patterns in node labels are safely redacted.",
+      "evidence": "Lines 38, 93-94: synthetic documentation sample key used in display-label unit test."
+    },
+    {
+      "path": "packages/scanner-core/src/result-v2/display-label.ts",
+      "rule": "authorization-literal",
+      "reason": "Code comment explaining why auth header tokens are sanitized.",
+      "evidence": "Line 79: comment prose discussing auth token declarations."
+    },
+    {
+      "path": "packages/scanner-core/src/v2/generic-node-fallback.test.ts",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "Synthetic unit test fixture verifying parameter scanning on unmodeled fallback nodes.",
+      "evidence": "Line 53: dummy documentation sample key in test fixture."
+    },
+    {
+      "path": "packages/scanner-core/src/v2/unsafe-display-names.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic test fixture verifying D-6 display name sanitization.",
+      "evidence": "Lines 179, 224-225: synthetic auth header test token in test fixture."
+    },
+    {
+      "path": "packages/scanner-core/src/v2/unsafe-display-names.test.ts",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "Synthetic test fixture verifying D-6 display name sanitization on AWS keys.",
+      "evidence": "Lines 185-186, 194: synthetic documentation sample key."
+    },
+    {
+      "path": "app/src/seo/page-meta.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: the URL exists solely to prove a credential-bearing origin is rejected.",
+      "evidence": "Line 244 stubs NEXT_PUBLIC_SITE_URL with a reserved example.test URL whose userinfo is the single letters u and p; the assertion expects the site origin to be refused."
+    },
+    {
+      "path": "app/src/seo/site-origin.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: one invalid-URL case in the table-driven origin validator test.",
+      "evidence": "Line 21 lists a reserved x.test URL carrying userinfo as an expected-invalid input; the test asserts the origin parser returns null."
+    },
+    {
+      "path": "app/src/ui/product-links.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: one invalid-URL case proving product links drop credential-bearing origins.",
+      "evidence": "Line 17 lists a reserved example.test URL carrying userinfo in the inputs the helper must reject."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/fallback-exit-matrix.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Fixture: the AWS documentation example secret key, used to assert redaction/exit behaviour.",
+      "evidence": "Line 127 assigns the canonical AWS example key ending in EXAMPLEKEY to a variable named secret; no issued credential."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/mcp-semantic-fallback.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Fixture: the AWS documentation example secret key, used to assert the MCP fallback path redacts it.",
+      "evidence": "Line 65 assigns the canonical AWS example key ending in EXAMPLEKEY to a variable named secret."
+    },
+    {
+      "path": "packages/scanner-core/src/capabilities/semantic-fallback-diagnostic.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Fixture: the AWS documentation example secret key, used to assert the fallback diagnostic never echoes a secret.",
+      "evidence": "Line 25 defines SECRET as the canonical AWS example key ending in EXAMPLEKEY."
+    },
+    {
+      "path": "packages/scanner-core/src/policy/policy-helpers-hardening.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Fixture: an n8n expression in an Authorization header, not a pasted credential.",
+      "evidence": "Line 47 holds a header value that is the n8n expression syntax for a credentials token with no literal token present; also line 62: a header value combining a six-character sequential prefix with the n8n credentials expression, unresolved, with no credential present."
+    },
+    {
+      "path": "scripts/check-export-spot-check.test.mjs",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: a credential-bearing URL passed to the spot-check reader to prove it refuses one.",
+      "evidence": "Line 131 passes a reserved example.test URL with userinfo and asserts the call throws with a credentials error."
+    },
+    {
+      "path": "scripts/generate-og-images.test.mjs",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Fixture: a credential-bearing URL proving the footer label falls back instead of printing credentials.",
+      "evidence": "Line 45 calls footerLabel with a reserved example.test URL carrying userinfo and expects the plain product label."
+    },
+    {
+      "path": "app/src/scanner/report-v2/report-evidence.test.tsx",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 99; source SHA256 ed05cde16c5b806b609b01bfdf989ffb176ed066712af94c0e3b3deaaba49f23. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "app/src/scanner/report/report-result.test.tsx",
+      "rule": "authorization-literal",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 49; source SHA256 d6a2484b73c907bf77055ded54cbbcb6d2f56cb3515c5aaa3557148052a39b90. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "app/src/scanner/report/report-result.test.tsx",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 42; source SHA256 d6a2484b73c907bf77055ded54cbbcb6d2f56cb3515c5aaa3557148052a39b90. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/preflight-readiness.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 60; source SHA256 253af0155a8e7ec6818f972f131713f4464ffe4bfaae0645ba0e15c3d801c3f6. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/preflight-readiness.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 766; source SHA256 253af0155a8e7ec6818f972f131713f4464ffe4bfaae0645ba0e15c3d801c3f6. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/privacy-prepare.test.ts",
+      "rule": "authorization-literal",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 487,494; source SHA256 04b0f5c31684130689e1febff669782024e87e0056bc4179293496ef16dee020. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/privacy-prepare.ts",
+      "rule": "authorization-literal",
+      "reason": "These are boolean authorization-key entries in a redaction whitelist, not a header value or credential.",
+      "evidence": "Controller inspected exact source on November 3. Lines 40,45; source SHA256 936ef7093ba20f40a64d5cb169976431402638d0e10fbe70c21cc8a5ffb08f9d. Object keys map to true and contain no credential value."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/table-output.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 107; source SHA256 a6601192ffb4962104a7865a2269f7e403fb65ac11fe1ce90bdf603a889374a3. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-cli/src/v2/table-output.test.ts",
+      "rule": "secret-pattern:openai-api-key",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 107; source SHA256 a6601192ffb4962104a7865a2269f7e403fb65ac11fe1ce90bdf603a889374a3. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-core/src/analyzers/destinations/inventory.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 90; source SHA256 17894ee4831c384479826e18a945ac79b1310a3732273fa9b082c7b5cfd6c07d. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-core/src/compat/v1-projector.test.ts",
+      "rule": "secret-pattern:aws-access-key",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 351; source SHA256 6ab41fa5b4b700e4d39ceb416db95bf5f530762191a3f5173233f9de9acae88d. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-core/src/policies/domain-policy.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 45; source SHA256 b23f74a7c52a3b57bba3cd0bac9d028c2dd463790dc490dd68514e30a77d139c. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-core/src/policy/policy-helpers.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 189; source SHA256 1ae193ecee882872a50d993fee68eee651679aa53a7444ce49022e1aeeb54236. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "packages/scanner-core/src/remediation/fix-preconditions.test.ts",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 207; source SHA256 16eee2d0d32a91e2f4ee770d044a849b4a1be9cc9812ae55756d0654f8213c9a. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "pipeline/export/preflight-integration.test.ts",
+      "rule": "secret-pattern:generic-secret-assignment",
+      "reason": "Synthetic regression input exercises secret withholding or unsafe-URL rejection; the value is a documented test canary, never an issued credential. Retaining it preserves the detector control.",
+      "evidence": "Controller inspected exact source on November 3. Lines 22; source SHA256 194b54018fc8a12fbb8ae143c6c3da366e3e5b4b46f9a0083b1362cad0984e78. Fixture text uses example/test domains, explicitly named canaries, fixed alphabetic/sequential sentinel strings, or redacted-output assertions."
+    },
+    {
+      "path": "app/src/scanner/report-v2/report-advisory.test.tsx",
+      "rule": "secret-pattern:basic-auth-url",
+      "reason": "Synthetic hostile input verifies that credential-shaped URLs and extra advisory fields never render. The reserved example.test URL is an explicitly named render canary, never an issued credential; removing it would delete the withholding control.",
+      "evidence": "Line 75 contains a deliberately hostile reserved example.test URL plus separate synthetic username, password, and query-token canaries beside extra secret/raw fields. The test asserts none of those values appear in rendered output. Source SHA256 e6bf9fcfb3d392187408b9277ad22c40082be97e4ff8c591c8509dfc88675a74."
+    }
+  ]
+}

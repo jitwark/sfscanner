@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "scanner-baseline-v1",
+  "gate": "scanner-baseline",
+  "claim": "same-machine repeatability evidence; not cross-machine production performance",
+  "measurement": {
+    "warmups": 1,
+    "samples": 5,
+    "clock": "performance.now",
+    "rss": "process.memoryUsage.rss"
+  },
+  "environment": {
+    "node": "v22.17.0",
+    "platform": "win32",
+    "arch": "x64",
+    "cpuCount": 16,
+    "digest": "b0bc3febd88f543f7041afceb770a4f9b0f7f4535d2ae5a4b2dc052acba245ba"
+  },
+  "tool": {
+    "scannerVersion": "scanner-beta-1",
+    "canonicalization": "hub-canonical-json-v1",
+    "hash": "sha256",
+    "scriptSha256": "22c69febbb2a467b60f096959725aa59ece68acf8f8f828637201ffe122733a7",
+    "digest": "c159717faf0a36c9dd01f10c92697ff53cf0294fdb0effdbe769af9a4d61aed2"
+  },
+  "fixtures": {
+    "source": "packages/scanner-core/src/__fixtures__/v1-goldens.ts",
+    "count": 6,
+    "order": [
+      "safe:beta-default",
+      "safe:beta-hardened",
+      "risky:beta-default",
+      "risky:beta-hardened",
+      "analyzer-cap:beta-default",
+      "analyzer-cap:beta-hardened"
+    ],
+    "digest": "7314c57808c48d2809736dca70564f3fd62426ad012e8358f13c1f095001a14a"
+  },
+  "cases": [
+    {
+      "key": "safe:beta-default",
+      "id": "safe",
+      "profile": "beta-default",
+      "expectedDigest": "19c3a210743dc88978a8d8508ad9affb893037d10dc3fa47dd6ef4ff7657eedf",
+      "inputSha256": "b85eca26a1a466cf37d21965ef85916d89e5bf59c32ca0fb8453524e9ec09799",
+      "dimensions": {
+        "inputBytes": 152,
+        "nodes": 1,
+        "rawEdges": {
+          "value": null,
+          "reason": "native v1 exposes normalized accepted edges, not rejected raw-edge count"
+        },
+        "acceptedEdges": 0,
+        "codeIndicators": 0,
+        "codeAstNodes": {
+          "value": null,
+          "reason": "native v1 scanner does not expose parser AST node counts"
+        },
+        "taintStates": {
+          "value": null,
+          "reason": "native v1 scanner does not expose taint state counts"
+        }
+      },
+      "latencyMs": {
+        "p50": 1.3215,
+        "p95": 1.9339,
+        "max": 2.005899999999997
+      },
+      "rssBytes": {
+        "p50": 89104384,
+        "p95": 89136332.8,
+        "max": 89141248
+      }
+    },
+    {
+      "key": "safe:beta-hardened",
+      "id": "safe",
+      "profile": "beta-hardened",
+      "expectedDigest": "9bc15a88c041aa57c320d45e170b6045ddb80c059bd310758139f86b73b8a88d",
+      "inputSha256": "b85eca26a1a466cf37d21965ef85916d89e5bf59c32ca0fb8453524e9ec09799",
+      "dimensions": {
+        "inputBytes": 152,
+        "nodes": 1,
+        "rawEdges": {
+          "value": null,
+          "reason": "native v1 exposes normalized accepted edges, not rejected raw-edge count"
+        },
+        "acceptedEdges": 0,
+        "codeIndicators": 0,
+        "codeAstNodes": {
+          "value": null,
+          "reason": "native v1 scanner does not expose parser AST node counts"
+        },
+        "taintStates": {
+          "value": null,
+          "reason": "native v1 scanner does not expose taint state counts"
+        }
+      },
+      "latencyMs": {
+        "p50": 0.9683,
+        "p95": 1.78726,
+        "max": 1.917100000000005
+      },
+      "rssBytes": {
+        "p50": 89370624,
+        "p95": 89479577.6,
+        "max": 89481216
+      }
+    },
+    {
+      "key": "risky:beta-default",
+      "id": "risky",
+      "profile": "beta-default",
+      "expectedDigest": "0bfd1f8b4ba5ed692f849f2fb34c4f739b9b90d920d444d7d6d451b9da996b63",
+      "inputSha256": "1075735fd7135219d57d8d9a15b4a69a65c537da54200350c8c724037218cd01",
+      "dimensions": {
+        "inputBytes": 560,
+        "nodes": 3,
+        "rawEdges": {
+          "value": null,
+          "reason": "native v1 exposes normalized accepted edges, not rejected raw-edge count"
+        },
+        "acceptedEdges": 2,
+        "codeIndicators": 0,
+        "codeAstNodes": {
+          "value": null,
+          "reason": "native v1 scanner does not expose parser AST node counts"
+        },
+        "taintStates": {
+          "value": null,
+          "reason": "native v1 scanner does not expose taint state counts"
+        }
+      },
+      "latencyMs": {
+        "p50": 2.5431,
+        "p95": 2.8903,
+        "max": 2.9179000000000315
+      },
+      "rssBytes": {
+        "p50": 90247168,
+        "p95": 91901132.8,
+        "max": 92110848
+      }
+    },
+    {
+      "key": "risky:beta-hardened",
+      "id": "risky",
+      "profile": "beta-hardened",
+      "expectedDigest": "06374ad0919eda66448f363ae44958afeebd8af528ae4cb11a2f44abc0d8bb82",
+      "inputSha256": "1075735fd7135219d57d8d9a15b4a69a65c537da54200350c8c724037218cd01",
+      "dimensions": {
+        "inputBytes": 560,
+        "nodes": 3,
+        "rawEdges": {
+          "value": null,
+          "reason": "native v1 exposes normalized accepted edges, not rejected raw-edge count"
+        },
+        "acceptedEdges": 2,
+        "codeIndicators": 0,
+        "codeAstNodes": {
+          "value": null,
+          "reason": "native v1 scanner does not expose parser AST node counts"
+        },
+        "taintStates": {
+          "value": null,
+          "reason": "native v1 scanner does not expose taint state counts"
+        }
+      },
+      "latencyMs": {
+        "p50": 1.9156,
+        "p95": 1.9717,
+        "max": 1.9774999999999636
+      },
+      "rssBytes": {
+        "p50": 92393472,
+        "p95": 92393472,
+        "max": 92393472
+      }
+    },
+    {
+      "key": "analyzer-cap:beta-default",
+      "id": "analyzer-cap",
+      "profile": "beta-default",
+      "expectedDigest": "d6ca7bb8e0bb8b383bc43b35d7d31fc1592a229e982d1ba3b02f9f1f8120b139",
+      "inputSha256": "aa4f1d9afd3e31e3741442f46005e89b938f9f1e96879b2021bf8100a1ba6536",
+      "dimensions": {
+        "inputBytes": 4646,
+        "nodes": 20,
+        "rawEdges": {
+          "value": null,
+          "reason": "native v1 exposes normalized accepted edges, not rejected raw-edge count"
+        },
+        "acceptedEdges": 0,
+        "codeIndicators": 20,
+        "codeAstNodes": {
+          "value": null,
+          "reason": "native v1 scanner does not expose parser AST node counts"
+        },
+        "taintStates": {
+          "value": null,
+          "reason": "native v1 scanner does not expose taint state counts"
+        }
+      },
+      "latencyMs": {
+        "p50": 6.1206,
+        "p95": 7.79318,
+        "max": 8.17859999999996
+      },
+      "rssBytes": {
+        "p50": 96698368,
+        "p95": 96735232,
+        "max": 96735232
+      }
+    },
+    {
+      "key": "analyzer-cap:beta-hardened",
+      "id": "analyzer-cap",
+      "profile": "beta-hardened",
+      "expectedDigest": "c7c98d2dd50ab196e8e385168d79b56fbe120bbe8c787ccbc27ef2c488582e74",
+      "inputSha256": "aa4f1d9afd3e31e3741442f46005e89b938f9f1e96879b2021bf8100a1ba6536",
+      "dimensions": {
+        "inputBytes": 4646,
+        "nodes": 20,
+        "rawEdges": {
+          "value": null,
+          "reason": "native v1 exposes normalized accepted edges, not rejected raw-edge count"
+        },
+        "acceptedEdges": 0,
+        "codeIndicators": 20,
+        "codeAstNodes": {
+          "value": null,
+          "reason": "native v1 scanner does not expose parser AST node counts"
+        },
+        "taintStates": {
+          "value": null,
+          "reason": "native v1 scanner does not expose taint state counts"
+        }
+      },
+      "latencyMs": {
+        "p50": 27.0579,
+        "p95": 30.1275,
+        "max": 30.201099999999997
+      },
+      "rssBytes": {
+        "p50": 100122624,
+        "p95": 101543116.8,
+        "max": 101543936
+      }
+    }
+  ]
+}
