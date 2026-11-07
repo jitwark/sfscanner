@@ -22,7 +22,7 @@ jobs:
           persist-credentials: false
       - name: Run n8n SecureFlow scan
         id: n8n-scan
-        uses: jitwark/sfscanner/.github/actions/scan@0000000000000000000000000000000000000000
+        uses: jitwark/sfscanner/.github/actions/scan@827877bf7215c7119f33bd7967dcba0d531448e5
         with:
           path: examples
           fail-on: high
