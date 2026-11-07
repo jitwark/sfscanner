@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "secureflow-action-release-receipt-v1",
+  "status": "ACCEPTED",
+  "releaseId": "release-2026-11-07-9b0b0a12b836",
+  "scannerRepository": "jitwark/sfscanner",
+  "scannerRef": "83b119ee654378602533c42400d6bc3352b2eae0",
+  "sourceTreeSha256": "35595d08139e3f77e194297acb6bdf37eb98c1fed99efe9214e7d782db735ea3",
+  "lockfileSha256": "69f4ac748245f5487d55fe5a604698b6a160229fef92740fd6a9ce7d355a86b6",
+  "package": {
+    "name": "sfscanner",
+    "version": "0.2.1",
+    "tarballSha256": "0aff150fbbe9422d1106d66b7c245ba27be8f8cbaf7e162212dd3963bfc5afd7"
+  },
+  "artifacts": [
+    {
+      "path": "packages/scanner-cli/dist/_types/contracts/preflight-prerequisite-types.d.ts",
+      "byteLength": 2295,
+      "sha256": "0954c2fee14421bcc6e188c523c4ba661edc4a7855d2304ba941d17d07b7d053"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/index.d.ts",
+      "byteLength": 721,
+      "sha256": "d85882c1acdf9a4ad9b7533cccd7415a013138c0abbe1e0e6f914b51add083ab"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/arguments.d.ts",
+      "byteLength": 3319,
+      "sha256": "955790c5b95f2bc5b0ec1931ac41ac1951c303e0e976f2263776ab5de8fa4d8a"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/cli-runner.d.ts",
+      "byteLength": 854,
+      "sha256": "65a26871d70715284cb360b4c430bc9b6159a873f0096027f2d86ee6d210476f"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/commands.d.ts",
+      "byteLength": 4517,
+      "sha256": "974a10c7d2fcf72ba6f64046b14b167b7074cb7b5e8b6f33392961deda9ae12b"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/contracts.d.ts",
+      "byteLength": 5021,
+      "sha256": "1ff033c50ee5474d30238a4532a239c7308eb1bc052249dd691965219c17aa69"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/help.d.ts",
+      "byteLength": 3689,
+      "sha256": "5c9506d0722eeec85b70c5391aab9b2e83ba33a54de7fe51b1f4b47b245b173e"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/metadata-output.d.ts",
+      "byteLength": 1700,
+      "sha256": "7d7692a3abf1290cc0d5873e51e284b25688b1b384d14eef5c2b0fe592ca4e5a"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/preflight-readiness.d.ts",
+      "byteLength": 4776,
+      "sha256": "880ca925e35e9b6164324ba3fa1e5aa30376adbe753cc31ba689898175543e72"
+    },
+    {
+      "path": "packages/scanner-cli/dist/_types/packages/scanner-cli/src/v2/privacy-prepare.d.ts",
+      "byteLength": 2389,
+      "sha256": "3de37c78771f8274def6ce83fca33032d927162079ddaf6e392128eb97ee3a19"
+    },
+    {
+      "path": "packages/scanner-cli/dist/index.d.ts",
+      "byteLength": 60,
+      "sha256": "38f78bc7671b5dc7c0bd53ff1f9c98be1e2549a9e8872786a4510708b7d86016"
+    },
+    {
+      "path": "packages/scanner-cli/dist/index.js",
+      "byteLength": 1187577,
+      "sha256": "a41c3dfbbebc559cffca47c79343d45e8397f7e3de69e622ecea1b5521b3e9b1"
+    },
+    {
+      "path": "packages/scanner-cli/dist/index.js.map",
+      "byteLength": 2629291,
+      "sha256": "16b779ea72817e7adba82ac7f6698332d6419f776916dba266d8066e83e70587"
+    },
+    {
+      "path": "packages/scanner-cli/dist/main.js",
+      "byteLength": 1321701,
+      "sha256": "9bea467a30b4fdf73572c49545b5920fd8b83d31a7fa267074f4ecb5c3a0dd04"
+    },
+    {
+      "path": "packages/scanner-cli/dist/main.js.map",
+      "byteLength": 2914829,
+      "sha256": "e3c2b70eca9cfcdfae9f53249b0d41eff4b13761252e39e438e03e321a5fe40f"
+    },
+    {
+      "path": "packages/scanner-cli/dist/mcp.js",
+      "byteLength": 1144637,
+      "sha256": "1e60a74dc9d84314fe01f559990312920a21c6c2421694aa3c06c6131437676b"
+    },
+    {
+      "path": "packages/scanner-cli/dist/mcp.js.map",
+      "byteLength": 2553643,
+      "sha256": "a2b27f6309a827790295f500140486104b87ef3e65d089c7fc8ef16781442c75"
+    },
+    {
+      "path": "packages/scanner-cli/dist/scan-worker.js",
+      "byteLength": 1292727,
+      "sha256": "ec4e0b66be293f8477d29835ce6f68cf30ba61341a97d60c1f42eb7736242b31"
+    },
+    {
+      "path": "packages/scanner-cli/dist/scan-worker.js.map",
+      "byteLength": 2633135,
+      "sha256": "90587bf6e56c89fc94a21f908af0ee4c9815b82684e6a63da2a1143fef226aeb"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/arguments.d.ts",
+      "byteLength": 68,
+      "sha256": "ed8582cb95dc5f52a8637ff33be4819ceacae32407b401377898b16a20ffc0bd"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/arguments.js",
+      "byteLength": 26681,
+      "sha256": "6f9f832601a314e2bfbd69a1aca9146258d6a4887a1998d86b88e3e3ae4e077b"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/arguments.js.map",
+      "byteLength": 54169,
+      "sha256": "cd19d12b4f7b3c90118c7786e47ca63765c46a729aded8b42ce7cead732c7c27"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/cli-runner.d.ts",
+      "byteLength": 69,
+      "sha256": "e1c5a891844a38e64934dda36722e965dcaea28bb450a53841b80f189971368c"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/cli-runner.js",
+      "byteLength": 1116850,
+      "sha256": "ddec5ae463e67af78e216d0acbae6d78f8aea00f3bc4c2545cbc136d8aaedf93"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/cli-runner.js.map",
+      "byteLength": 2497770,
+      "sha256": "d7610a9744a00c43ed1d5fab85c4247fc3a0dc34fbdcf6a8210dde4e0ac9abc7"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/help.d.ts",
+      "byteLength": 63,
+      "sha256": "5c8fa072abf36bc0b909199a7ad46f63c65ffab2516ff3d8c73bce67d5d9e8b2"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/help.js",
+      "byteLength": 17599,
+      "sha256": "a337f0c06cabed89b35a70f64751f13c479bd80e8771299c6bb0c8232e312ab2"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/help.js.map",
+      "byteLength": 42013,
+      "sha256": "5e1ded744e53435bf68e4173ba4821fd034d3f71a1de5ee1bcf8cb4e2d6025bf"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/metadata-output.d.ts",
+      "byteLength": 74,
+      "sha256": "b0ebcd3652dc4da2e847ccfbd41160c175aa5bd21a20d786f10bae71999770e2"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/metadata-output.js",
+      "byteLength": 907987,
+      "sha256": "b4ce2fa2c2af984e40cb57ffe0cebbe4f0c66371552e00574e0d91be6f5e5cfb"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/metadata-output.js.map",
+      "byteLength": 2129468,
+      "sha256": "ebacd5c4d5e4bcd46cc28c5f62ec1bdcdddd290cf83a640d28db75c7e14a6306"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/preflight-readiness.d.ts",
+      "byteLength": 78,
+      "sha256": "ab5e97ca6d465e222514d0c336ea510b40612d66d9dbde6ccc674fcd67d0bdaf"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/preflight-readiness.js",
+      "byteLength": 28133,
+      "sha256": "7a4a8007914cd2e6da5b1786d7d5e3cd3202e7c14533b47c77718b75c5f9cc17"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/preflight-readiness.js.map",
+      "byteLength": 56606,
+      "sha256": "e25df4b7f92d45b2bb9cfd03ad124ad13e1c9c5a01567fed271f97242a5fa90f"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/privacy-prepare.d.ts",
+      "byteLength": 74,
+      "sha256": "c9caa8659b94fe512d563ce0483db6c2a21caf5c04965eb17e006e032e06518d"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/privacy-prepare.js",
+      "byteLength": 11328,
+      "sha256": "41f47159dfd53063936d860f88b96f2ca811a349f18fe5693ba3c4fd21580588"
+    },
+    {
+      "path": "packages/scanner-cli/dist/v2/privacy-prepare.js.map",
+      "byteLength": 22353,
+      "sha256": "3735f371d44384b66ef4d53c81ded654a6568603acc3f156cd16a39e289b4222"
+    }
+  ],
+  "artifactSetSha256": "430312dcd56c46d09637983e5aca5df8ea95dfb17daaee6efaee681546c70aec"
+}
