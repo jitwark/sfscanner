@@ -61,7 +61,7 @@ for (const width of viewports) {
 
       await expect(cancel).not.toBeVisible();
       await expect(page.getByRole('button', { name: 'Scan workflow' })).toBeEnabled();
-      await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+      await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
       await assertNoOverflow(page);
     });
 
@@ -71,7 +71,7 @@ for (const width of viewports) {
       const alert = page.getByRole('alert').filter({ hasText: 'INVALID_JSON' });
       await expect(alert).toBeVisible();
       await expect(alert).toContainText('not valid JSON');
-      await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+      await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
       await assertNoOverflow(page);
     });
 
@@ -80,7 +80,7 @@ for (const width of viewports) {
 
       const notice = page.getByRole('alert').filter({ hasText: 'V2_TOO_COMPLEX' });
       await expect(notice).toBeVisible();
-      await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+      await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
       await assertNoOverflow(page);
     });
   });

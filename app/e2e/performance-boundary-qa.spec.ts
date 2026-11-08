@@ -169,7 +169,7 @@ test('scanner initial DOM omits report and methodology content', async ({ page }
   await page.waitForLoadState('networkidle');
 
   await expect(page.getByRole('button', { name: 'Read scanner methods' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
   await expect(page.locator('#scanner-guide-content')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'What the scanner checks' })).toHaveCount(0);
   await emitBoundaryMetric(page, '/scanner/', paths, {
@@ -186,7 +186,7 @@ test('completed heavy scan stays within the existing main-thread-gap threshold',
   await fillWorkflow(page, heavyJson);
   await startGapSampling(page);
   await page.getByRole('button', { name: 'Scan workflow' }).click();
-  await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
 
   const timing = await stopGapSampling(page);
   console.log(`[PERF_BOUNDARY] ${JSON.stringify({ route: '/scanner/', phase: 'completed-heavy-scan', ...timing })}`);

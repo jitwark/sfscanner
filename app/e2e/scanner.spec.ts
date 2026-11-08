@@ -91,7 +91,7 @@ test.describe('Workflow Scanner E2E', () => {
 
     // The v2 report's outcome heading is "Analysis coverage"; "Analyst summary" was the v1
     // report's heading and left with the cutover.
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible();
 
     // Verify the scanned workflow is summarised. The v2 report renders no workflow name
     // (`app/src/scanner/report-v2/**` has no surface for it), so the submitted document's
@@ -111,7 +111,7 @@ test.describe('Workflow Scanner E2E', () => {
     await fillTextarea(page, maliciousJson);
     await page.getByRole('button', { name: 'Scan workflow' }).click();
 
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible();
 
     await expect(page.getByLabel('Selected scanner profile: Default scan')).toBeVisible();
 
@@ -142,7 +142,7 @@ test.describe('Workflow Scanner E2E', () => {
     // Assert UI returns to idle with no stale report
     await expect(cancelButton).not.toBeVisible();
     await expect(page.getByRole('button', { name: 'Scan workflow' })).toBeEnabled();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).not.toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).not.toBeVisible();
   });
 
   test('zero network requests containing workflow content', async ({ page }) => {
@@ -174,7 +174,7 @@ test.describe('Workflow Scanner E2E', () => {
 
     await fillTextarea(page, maliciousJson);
     await page.getByRole('button', { name: 'Scan workflow' }).click();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible();
 
     // The sentinel has to have observed the page's traffic and its headers, or the loop
     // below proves nothing. Measured on this build: 17 requests, 9 header names.
@@ -285,7 +285,7 @@ test.describe('Workflow Scanner E2E', () => {
       requestAnimationFrame(sampleRAF);
     });
 
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15000 });
 
     // Stop RAF sampling and collect gaps
     const gaps: number[] = await page.evaluate(() => {

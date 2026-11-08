@@ -33,7 +33,7 @@ async function fillWorkflow(page: Page, value: string): Promise<void> {
 async function scan(page: Page, workflow: string): Promise<void> {
   await fillWorkflow(page, workflow);
   await page.getByRole('button', { name: 'Scan workflow' }).click();
-  await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
 }
 
 const FRAMEWORK_PREFETCH_PATHS = ['/', '/library/', '/takedown/'] as const;
@@ -153,7 +153,7 @@ test.describe('scanner first-release browser qualification', () => {
       const retry = page.getByRole('button', { name: 'Retry scan' });
       await expect(retry).toBeVisible();
       await retry.click();
-      await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+      await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
       await expect(page.getByLabel('Analysis status: Analysis complete')).toBeVisible();
       expect(pageErrors).toEqual([]);
     });

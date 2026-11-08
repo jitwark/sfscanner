@@ -152,7 +152,7 @@ async function expectLateResultFrame(page: Page, requestId: string): Promise<voi
 }
 
 async function expectNoReportOrExport(page: Page): Promise<void> {
-  await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
   await expect(page.getByRole('button', { name: /Download|Copy/ })).toHaveCount(0);
 }
 
@@ -200,7 +200,7 @@ async function tabUntilFocused(page: Page, target: Locator, maxTabs = 80): Promi
 async function scan(page: Page, workflow: string): Promise<void> {
   await fillWorkflow(page, workflow);
   await page.getByRole('button', { name: 'Scan workflow' }).click();
-  await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15000 });
+  await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15000 });
 }
 
 function capturePageErrors(page: Page): string[] {
@@ -249,7 +249,7 @@ test.describe('scanner report admission', () => {
       await expect(page.getByLabel('Workflow JSON')).toHaveAccessibleName('Workflow JSON');
       await scan(page, maliciousJson);
 
-      await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible();
       await expect(page.getByRole('heading', { name: 'Evidence and conclusions' })).toBeVisible();
       await expect(page.getByRole('heading', { name: 'Readiness and integrations' })).toHaveCount(0);
       const decision = decisionSection(page);
@@ -416,7 +416,7 @@ test.describe('scanner report admission', () => {
     await page.goto(scannerPath);
     await scan(page, fallbackJson);
 
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible();
     await expect(page.getByLabel('Analysis status: Standard scan')).toBeVisible();
     await expect(page.getByText('SEMANTIC_CATALOGUE_MISS · DEGRADED').first()).toBeVisible();
     await expect(page.getByText('GENERIC_NODE_UNMODELED_CAPABILITY · DEGRADED').first()).toBeVisible();
@@ -454,7 +454,7 @@ test.describe('scanner report admission', () => {
     await settleAfterFrame(page);
 
     await expectNoReportOrExport(page);
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Cancel scan' })).toHaveCount(0);
     await expect(page.getByRole('progressbar')).toHaveCount(0);
     await expect(page.getByRole('status', { name: 'Scan status' })).toHaveText(/^$/);
@@ -489,7 +489,7 @@ test.describe('scanner report admission', () => {
     await expect(alert).toContainText('TIMEOUT');
     await expect(page.getByRole('button', { name: 'Retry scan' })).toBeVisible();
     await expectNoReportOrExport(page);
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
     await expect(page.getByRole('progressbar')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Cancel scan' })).toHaveCount(0);
   });
@@ -512,7 +512,7 @@ test.describe('scanner report admission', () => {
     const retry = page.getByRole('button', { name: 'Retry scan' });
     await expect(retry).toBeVisible();
     await retry.click();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15000 });
     await expect(pageErrors).toEqual([]);
   });
 });

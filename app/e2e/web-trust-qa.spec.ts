@@ -166,7 +166,7 @@ for (const width of widths) {
       element.dispatchEvent(new Event('input', { bubbles: true }));
     }, fixture);
     await page.getByRole('button', { name: 'Scan workflow' }).click();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
     const scanRequests = requests.slice(scanStart);
     testInfo.annotations.push({
       type: 'pre-scan-requests',

@@ -28,7 +28,7 @@ test.describe('scanner recovery and accessible outcomes', () => {
     const alert = page.getByRole('alert').filter({ hasText: 'INVALID_JSON' });
     await expect(alert).toContainText('INVALID_JSON');
     await expect(alert).toContainText('not valid JSON');
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).not.toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).not.toBeVisible();
     await expect(page.getByLabel(/Analysis status:/)).toHaveCount(0);
   });
 
@@ -40,7 +40,7 @@ test.describe('scanner recovery and accessible outcomes', () => {
     const alert = page.getByRole('alert').filter({ hasText: 'NOT_A_WORKFLOW' });
     await expect(alert).toContainText('NOT_A_WORKFLOW');
     await expect(alert).toContainText('no n8n workflow nodes array');
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).not.toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).not.toBeVisible();
   });
 
   test('correcting invalid input and retrying completes with an accessible status and focus target', async ({ page }) => {
@@ -52,7 +52,7 @@ test.describe('scanner recovery and accessible outcomes', () => {
     await fillTextarea(page, cleanJson);
     await submit(page);
 
-    const coverage = page.getByRole('heading', { name: 'Analysis coverage' });
+    const coverage = page.getByRole('heading', { name: 'Analysis coverage', level: 2 });
     await expect(coverage).toBeVisible();
     await expect(coverage).toHaveAttribute('tabindex', '-1');
     await expect(page.getByRole('alert').filter({ hasText: /INVALID_JSON|NOT_A_WORKFLOW/ })).toHaveCount(0);
@@ -72,10 +72,10 @@ test.describe('scanner recovery and accessible outcomes', () => {
     const action = page.getByRole('button', { name: 'Scan workflow' });
     await expect(action).toBeEnabled();
     await expect(page.getByLabel('Workflow JSON')).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).not.toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).not.toBeVisible();
 
     await fillTextarea(page, cleanJson);
     await submit(page);
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible();
   });
 });

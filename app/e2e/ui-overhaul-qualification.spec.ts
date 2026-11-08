@@ -18,23 +18,25 @@ for (const width of [320, 768, 1024, 1440]) {
     await page.goto(`${basePath}${leanPath}`);
     const leanSummary = page.locator('section#security');
     await expect(leanSummary.getByRole('heading', { name: 'Security summary' })).toBeVisible();
-    await expect(leanSummary).toContainText('Require webhook authentication.');
-    await expect(leanSummary).toContainText('Review the code path and require approval.');
+    await expect(leanSummary).toContainText('Require webhook authentication or place the endpoint behind trusted controls.');
+    await expect(leanSummary).toContainText('Review the code path, remove unnecessary scripting, and require approval.');
     await expect(leanSummary.getByRole('link')).toHaveCount(0);
     await page.screenshot({ path: testInfo.outputPath(`workflow-lean-${width}.png`), fullPage: true });
 
     await page.goto(`${basePath}${viewPath}`);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('ClientFlow Lite — Simple Onboarding (Email + Log)');
     const security = page.locator('#security');
-    await expect(security).toContainText('Require webhook authentication.');
-    await expect(security).toContainText('Review the code path and require approval.');
+    await expect(security).toContainText('Require webhook authentication or place the endpoint behind trusted controls.');
+    await expect(security).toContainText('Review the code path, remove unnecessary scripting, and require approval.');
     await expect(security.getByRole('link')).toHaveCount(0);
     await expect(page.locator('aside[aria-labelledby="related-heading"] > section').first().getByRole('link')).toHaveCount(6);
     const breadcrumbs = page.getByRole('navigation', { name: 'Breadcrumbs' });
-    await breadcrumbs.getByRole('link', { name: 'Library', exact: true }).hover();
+    await breadcrumbs.getByRole('link', { name: 'Integrations', exact: true }).hover();
+    await breadcrumbs.getByRole('link', { name: 'gmail', exact: true }).hover();
     await page.screenshot({ path: testInfo.outputPath(`workflow-view-${width}.png`), fullPage: true });
-    await breadcrumbs.getByRole('link', { name: 'Library', exact: true }).click();
+    await breadcrumbs.getByRole('link', { name: 'gmail', exact: true }).click();
     await expect(page).toHaveURL(/\/library\//);
+    await expect(page).toHaveURL(/integration=gmail/);
     await expect(page.locator('#search-results-list')).toBeVisible();
     await page.screenshot({ path: testInfo.outputPath(`library-${width}.png`), fullPage: true });
     expect(errors).toEqual([]);
@@ -76,7 +78,7 @@ for (const theme of ['dark', 'light'] as const) {
       await expect(decision.getByText('Risk grade', { exact: true })).toBeVisible();
       await expect(decision.getByText('Risk score', { exact: true })).toBeVisible();
       await expect(decision.getByText('Analysis coverage', { exact: true })).toBeVisible();
-      await expect(page.getByRole('heading', { name: 'Analysis coverage', exact: true })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2, exact: true })).toBeVisible();
       await page.screenshot({ path: testInfo.outputPath(`scanner-result-${theme}-${width}.png`), fullPage: true });
       await decision.screenshot({ path: testInfo.outputPath(`scanner-decision-${theme}-${width}.png`) });
       const order = await page.evaluate(() => {

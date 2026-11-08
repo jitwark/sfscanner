@@ -129,7 +129,7 @@ test.describe('scanner accessibility and zoom evidence', () => {
     await fillWorkflow(page, cleanJson);
     await page.getByRole('button', { name: 'Scan workflow' }).click();
 
-    const coverage = page.getByRole('heading', { name: 'Analysis coverage' });
+    const coverage = page.getByRole('heading', { name: 'Analysis coverage', level: 2 });
     await expect(coverage).toBeVisible({ timeout: 15000 });
     await expect(coverage).toHaveAttribute('tabindex', '-1');
     await expect(coverage).toBeFocused();
@@ -155,7 +155,7 @@ test.describe('scanner accessibility and zoom evidence', () => {
     await page.goto(scannerPath);
     await fillWorkflow(page, unreadableParametersJson);
     await page.getByRole('button', { name: 'Scan workflow' }).click();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15000 });
     const decision = page.getByRole('heading', { name: 'Decision and next step' });
     await decision.scrollIntoViewIfNeeded();
     await expect(decision).toBeVisible();

@@ -124,7 +124,7 @@ test.describe('scanner v2 adversarial input limits', () => {
     const terminals = (await page.evaluate(() => window.__scannerWorkerMessages ?? [])) as unknown as TerminalMessage[];
     expect(terminals).toHaveLength(1);
     expect(terminals[0]).toMatchObject({ kind: 'result-v2', result: { schemaVersion: 'scanner-result-v2' } });
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
     // The scanner error panel is the only alert with the code line; Next's route announcer is also role=alert.
     await expect(page.getByText('V2_TOO_COMPLEX', { exact: true })).toHaveCount(0);
   });
@@ -138,7 +138,7 @@ test.describe('scanner v2 adversarial input limits', () => {
     expect(terminals[0]?.kind).toBe('error-v2');
     expect(terminals[0]?.code).toBe('WORKFLOW_TOO_COMPLEX');
     await expect(page.getByRole('alert').filter({ hasText: 'V2_TOO_COMPLEX' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toHaveCount(0);
   });
 
   test('document nesting far beyond the boundary (513 levels) is rejected as WORKFLOW_TOO_COMPLEX', async ({ page }) => {
@@ -189,7 +189,7 @@ test.describe('scanner v2 adversarial input limits', () => {
 
     const excluded = (await page.evaluate(() => window.__scannerWorkerMessages ?? [])) as unknown as TerminalMessage[];
     expect(excluded[0]?.kind).toBe('result-v2');
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
     // The finding's rule id is rendered whether or not a rule-reference URL is configured
     // (the link itself is covered by `report-trust.test.tsx`); this asserts the allowlist
     // change is visible in the report.
@@ -203,7 +203,7 @@ test.describe('scanner v2 adversarial input limits', () => {
       undefined,
       { timeout: 20_000 },
     );
-    await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByRole('heading', { name: 'Analysis coverage', level: 2 })).toBeVisible({ timeout: 15_000 });
 
     const included = (await page.evaluate(() => window.__scannerWorkerMessages ?? [])) as unknown as TerminalMessage[];
     expect(included).toHaveLength(2);
