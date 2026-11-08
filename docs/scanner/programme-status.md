@@ -1,6 +1,6 @@
 # Scanner implementation and verification status
 
-## Current candidate — November 7, 2026
+## Current measurement — November 7, 2026
 
 The real frozen scan and retained-record replay completed in 1,378.05 seconds and
 431.98 seconds respectively. Their formal coverage objects are byte-identical and conserve
@@ -60,8 +60,10 @@ private-IP/internal-host matches. Its captured zero-match baseline comparison pa
 This qualifies the dataset formats and configured privacy checks. A fresh Node 22
 retained-record replay after the Excel repair completed in 402.40 seconds, preserving
 all measurements, exclusions, inventory and runtime bindings; only the expected
-producer-source hash changed. Production site/browser, package and public delivery
-remain separate pending gates.
+producer-source hash changed. Subsequent source-binding replays preserve the same
+measurements. The release-bound formal-coverage SHA-256 is
+`5f11d613316bac019dc5275e7cd23431704823ebcdbab518ee5977b5d749e5a1`, with producer
+`958e5efb5fc8b11bad741035be294eeb662db913bd7871d6b0dfc0a0a49e5ae5`.
 
 Candidate identities from the actual export:
 
@@ -81,12 +83,24 @@ files, SQLite archive and sealed logical dataset identity match the preserved in
 
 The verified candidate is promoted into `data/` and `outputs/public-dataset/`. Every
 promoted file matches its staged size/hash, and the prior local trees are preserved externally.
-These are not publicly downloadable releases. Production build/browser, final package,
-publication and anonymous read-back are not yet qualified. The selected destination is
-`jitwark/sfscanner` with GitHub Pages; no live candidate Pages or npm claim is made.
-The older Firebase site is a historical build, not proof of this candidate.
-The measured scanner snapshot and its exact retained-record replay remain preserved. The
-documentation refresh does not change those measurements or qualify the pending release.
+The [v0.2.1 release](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1) provides
+the qualified dataset ZIP, CLI archive, checksums, notices, SBOM and release record.
+The anonymous npm download of `sfscanner@0.2.1` matches the qualified archive:
+`0aff150fbbe9422d1106d66b7c245ba27be8f8cbaf7e162212dd3963bfc5afd7`.
+Its retained package verification passes all 23 controls.
+
+The website is live on [GitHub Pages](https://jitwark.github.io/sfscanner/) and
+[Firebase](https://n8n-enterprise-1.web.app/sfscanner/). The accepted production build
+passes 86 browser cases; each live host passes eight additional scanner browser cases.
+The release source and subsequent delivery-only repair each pass all six hosted CI jobs.
+Full anonymous readback on each host verifies all 15,198 application files /
+866,485,610 bytes. Each host also passes six live catalogue search, hydration and link checks.
+
+Website labels describe available evidence: model-only graded limitations may render
+`Standard scan`; mixed or unknown limitations remain `Partial analysis`, and null
+assessments never invent a grade. Completion does not establish safety or full semantic
+coverage. Model expansion remains a v0.3.0 plan; no new models are included here.
+The measured scanner snapshot and exact retained-record replays remain preserved.
 
 ## Dated history — October 27–29, 2026
 

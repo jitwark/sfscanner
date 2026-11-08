@@ -1,6 +1,6 @@
 # n8n SecureFlow 🛡️
 
-> Candidate status — November 7, 2026: the real scan and retained-record replay completed, including the producer-source binding refresh. The repaired V4 export passes all five actual reopening checks and the configured zero-match privacy baseline; verified data is promoted locally. Production build/browser, final package and publication checks remain pending. See [scanner status](docs/scanner/programme-status.md). Earlier candidate receipts do not qualify those remaining steps.
+> Release status — November 8, 2026: `sfscanner@0.2.1` is published on npm and GitHub. The production website is live on GitHub Pages and Firebase. The qualified build passes 86 production browser checks and eight live scanner checks on each host. The original formal-coverage targets remain missed; see [scanner status](docs/scanner/programme-status.md).
 
 **A deterministic security scanner for n8n workflows — and a catalogue of 11,464 public workflows
 that tells you where each one came from, what it touches, and how much of it the scanner could
@@ -9,13 +9,13 @@ actually read.**
 Runs from your terminal, from an AI agent over MCP, and in the browser. The workflow you scan never
 leaves your machine.
 
-**Release destination:** `jitwark/sfscanner` with GitHub Pages is selected; publication and anonymous read-back are pending. The [older Firebase site](https://n8n-enterprise-1.web.app) serves a historical build and does not demonstrate this candidate.
+**Live website:** [GitHub Pages](https://jitwark.github.io/sfscanner/) · [Firebase](https://n8n-enterprise-1.web.app/sfscanner/). Downloads, checksums and the release record are available in [v0.2.1](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1).
 
-> Status: local release candidate — V4 dataset, link-only (no workflow bodies redistributed)
-> Last verified: 2026-11-07 (measurement refresh; release qualification pending)
+> Status: v0.2.1 released — V4 dataset, link-only (no workflow bodies redistributed)
+> Last verified: 2026-11-08 (production build, package, hosted CI and live browser checks)
 > Owner: single maintainer, [@jitwark](https://github.com/jitwark) (see `GOVERNANCE.md`)
-> Source of truth: `data/stats.json`, `data/analytics.json`, and the formal-coverage receipt referenced in `docs/scanner/programme-status.md`.
-> `data/` and `outputs/public-dataset/` contain the verified candidate; prior local trees are preserved externally.
+> Source of truth: the qualified dataset manifest and formal-coverage identity in [release-record.json](https://github.com/jitwark/sfscanner/releases/download/v0.2.1/release-record.json), explained in `docs/scanner/programme-status.md`.
+> The release dataset ZIP contains the verified NDJSON, SQLite and Excel exports; private workflow bodies are not distributed.
 
 ---
 
