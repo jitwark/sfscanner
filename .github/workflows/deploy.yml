@@ -66,23 +66,32 @@ jobs:
           --source "$RUNNER_TEMP/qualified-pages"
           --output "$RUNNER_TEMP/pages-readback.json"
           --sha256 "$RELEASE_SHA256"
-      - name: Prepare controlled Pages tar without path rewriting
-        run: >-
-          node scripts/pages-release.mjs create
-          --source "$RUNNER_TEMP/qualified-pages"
-          --archive "$RUNNER_TEMP/artifact.tar"
-      - name: Upload controlled Pages artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - name: Package qualified Pages directory with official action
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
+          path: ${{ runner.temp }}/qualified-pages
+          include-hidden-files: true
           retention-days: 1
-          if-no-files-found: error
+      - name: Create post-package readback manifest
+        env:
+          RELEASE_SHA256: ${{ inputs.sha256 }}
+        run: >-
+          node scripts/pages-release.mjs manifest
+          --source "$RUNNER_TEMP/qualified-pages"
+          --output "$RUNNER_TEMP/pages-readback-after.json"
+          --sha256 "$RELEASE_SHA256"
+      - name: Prove official packaging left qualified bytes unchanged
+        run: |
+          cmp "$RUNNER_TEMP/pages-readback.json" "$RUNNER_TEMP/pages-readback-after.json"
+          sha256sum "$RUNNER_TEMP/pages-readback.json" "$RUNNER_TEMP/pages-readback-after.json"
       - name: Upload expected-content readback manifest
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: pages-readback-manifest
-          path: ${{ runner.temp }}/pages-readback.json
+          path: |
+            ${{ runner.temp }}/pages-readback.json
+            ${{ runner.temp }}/pages-readback-after.json
           retention-days: 1
           if-no-files-found: error
 
