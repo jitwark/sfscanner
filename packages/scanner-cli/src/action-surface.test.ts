@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -72,10 +72,14 @@ const bash = ['C:/Program Files/Git/bin/bash.exe', '/bin/bash', 'bash'].find((ca
 });
 const scratch: string[] = [];
 afterEach(() => { while (scratch.length) rmSync(scratch.pop()!, { recursive: true, force: true, maxRetries: 5, retryDelay: 50 }); });
-function temp(prefix: string) { const dir = mkdtempSync(path.join(os.tmpdir(), prefix)); scratch.push(dir); return dir; }
+function temp(prefix: string, parent = os.tmpdir()) {
+  const dir = realpathSync(mkdtempSync(path.join(parent, prefix)));
+  scratch.push(dir);
+  return dir;
+}
 const demoWorkflow = JSON.stringify({ nodes: [{ name: 'Start', type: 'n8n-nodes-base.manualTrigger', typeVersion: 1, position: [0, 0], parameters: {} }], connections: {} });
-function fixture(workflows: Record<string, string> = { 'workflows/demo.json': demoWorkflow }) {
-  const workspace = temp('sf-action-'); const authority = temp('sf-action-authority-');
+function fixture(workflows: Record<string, string> = { 'workflows/demo.json': demoWorkflow }, tempRoot = os.tmpdir()) {
+  const workspace = temp('sf-action-', tempRoot); const authority = temp('sf-action-authority-', tempRoot);
   prepareActionFixture(root, workspace, authority, workflows);
   return { workspace, authority };
 }
@@ -149,6 +153,14 @@ describe('the prepared scanner Action surface', () => {
 });
 
 describe('the prepared scanner Action isolation', () => {
+  it('canonicalizes fixture temp roots before invoking the shipped runner', () => {
+    const base = temp('sf-action-alias-'); const target = path.join(base, 'target'); const alias = path.join(base, 'alias');
+    mkdirSync(target); symlinkSync(target, alias, 'junction');
+    const value = fixture(undefined, alias);
+    expect(value.workspace).toBe(realpathSync(value.workspace));
+    expect(value.authority).toBe(realpathSync(value.authority));
+    expect(realpathSync(path.join(value.authority, 'run-scan.mjs'))).toBe(path.join(value.authority, 'run-scan.mjs'));
+  });
   it('checks out receipt-bound source and builds only that checkout', () => {
     const checkout = stepText('Check out receipt-bound scanner source');
     expect(checkout).toContain('repository: ${{ steps.preflight.outputs.scanner-repository }}');
