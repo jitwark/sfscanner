@@ -51,7 +51,7 @@ test.describe('no horizontal document overflow at 320px', () => {
     await page.goto(`${basePath}/w/${subject.slug}/`);
     await expect(page.getByRole('heading', { name: subject.title })).toBeVisible();
     await assertNoOverflow(page);
-    await page.getByRole('link', { name: /Read (?:all \d+ findings|each finding)/i }).click();
+    await page.getByRole('link', { name: 'Open the interactive view', exact: true }).click();
     await page.waitForURL(/\/w\/view\/\?id=/);
     await expect(page.getByRole('heading', { name: subject.title })).toBeVisible({ timeout: 30_000 });
     await assertNoOverflow(page);

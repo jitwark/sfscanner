@@ -54,7 +54,9 @@ test.describe('scanner recovery and accessible outcomes', () => {
 
     const coverage = page.getByRole('heading', { name: 'Analysis coverage', level: 2 });
     await expect(coverage).toBeVisible();
-    await expect(coverage).toHaveAttribute('tabindex', '-1');
+    const outcome = page.getByRole('heading', { name: 'Decision and next step', level: 2 });
+    await expect(outcome).toHaveAttribute('tabindex', '-1');
+    await expect(outcome).toBeFocused();
     await expect(page.getByRole('alert').filter({ hasText: /INVALID_JSON|NOT_A_WORKFLOW/ })).toHaveCount(0);
   });
 

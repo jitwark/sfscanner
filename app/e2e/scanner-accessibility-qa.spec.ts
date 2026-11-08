@@ -131,8 +131,9 @@ test.describe('scanner accessibility and zoom evidence', () => {
 
     const coverage = page.getByRole('heading', { name: 'Analysis coverage', level: 2 });
     await expect(coverage).toBeVisible({ timeout: 15000 });
-    await expect(coverage).toHaveAttribute('tabindex', '-1');
-    await expect(coverage).toBeFocused();
+    const outcome = page.getByRole('heading', { name: 'Decision and next step', level: 2 });
+    await expect(outcome).toHaveAttribute('tabindex', '-1');
+    await expect(outcome).toBeFocused();
 
     for (const name of [
       // The v2 report's section headings on a graded result. "Analyst summary" and
