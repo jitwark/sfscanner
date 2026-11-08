@@ -54,21 +54,22 @@ describe('ScanCoveragePanel', () => {
     render(<ScanCoveragePanel coverage={coverage} evidence={evidence} release={release} />);
 
     expect(screen.getByText(/19 admitted native results · 1 engine refusals/)).toBeTruthy();
-    const indeterminate = screen.getByText('Indeterminate').closest('tr')!;
+    const indeterminate = screen.getByText('Analysis incomplete').closest('tr')!;
     expect(indeterminate.textContent).toContain('no assessment is published');
     const refused = screen.getByText('No result (refused)').closest('tr')!;
     expect(refused.textContent).toContain('no native result exists');
     expect(refused.textContent).toContain('Not historical');
-    const degraded = screen.getByText('Degraded').closest('tr')!;
-    expect(degraded.textContent).toContain('assessment may be withheld');
+    const degraded = screen.getByText('Partial analysis').closest('tr')!;
+    expect(degraded.textContent).toContain('does not show whether each result was limited');
     expect(document.body.textContent).not.toContain('Current v2 verdict');
+    expect(document.body.textContent).not.toContain('Standard scan');
   });
 
   it('separates admitted native results from engine refusals and never calls the latter current', () => {
     render(<ScanCoveragePanel coverage={coverage} evidence={evidence} release={release} />);
 
     const copy = document.body.textContent!.replace(/\s+/g, ' ');
-    expect(copy).toContain('19 rows are admitted native results (17 completed, 2 degraded, 0 indeterminate)');
+    expect(copy).toContain('19 rows are admitted native results (17 analysis complete, 2 partial analysis, 0 analysis incomplete)');
     expect(copy).toContain('1 more were read by the current engine and refused');
     expect(copy).toContain('not historical, not unread, and never current or clean');
     expect(copy).toContain('the 20 bound readable inputs');

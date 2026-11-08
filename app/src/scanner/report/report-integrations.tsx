@@ -1,6 +1,7 @@
-import { AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, CircleHelp } from 'lucide-react';
 import type { ScanWorkflowResult } from '../engine';
 import type { ScannerReportModelV2 } from '../scanner-v2-presentation';
+import { scanAnalysisPresentation, type AnalysisPresentation } from '../analysis-language';
 import { isReportIncomplete } from './report-blocks';
 import { anatomy, pluralize } from './report-formatting';
 
@@ -10,18 +11,16 @@ function v2Model(scan: ScanWorkflowResult): ScannerReportModelV2 | undefined {
   return candidate.v2?.schemaVersion === 'scanner-result-v2' ? candidate as ScannerReportModelV2 : undefined;
 }
 
-function CoverageDetails({ model }: { model: ScannerReportModelV2 }) {
+function CoverageDetails({ model, presentation }: { model: ScannerReportModelV2; presentation: AnalysisPresentation }) {
   const { analysis, limits } = model.v2;
-  const message = model.assessment === null
-    ? 'Assessment unavailable because coverage is insufficient.'
-    : analysis.status === 'DEGRADED'
-      ? 'Some evidence may be omitted; review the limits before relying on this report.'
-      : 'Coverage details for the risk assessment.';
+  const diagnosticTone = presentation.tone === 'neutral'
+    ? 'border-hairline text-ink-muted'
+    : 'border-sev-medium text-sev-medium';
 
   return (
     <div className="mt-5 border-t border-hairline pt-4">
       <h3 className="font-display text-base font-semibold text-ink">Analysis coverage</h3>
-      <p className="mt-1 text-sm leading-6 text-ink-muted">{message}</p>
+      <p className="mt-1 text-sm leading-6 text-ink-muted">{presentation.summary}</p>
       <ul aria-label="Analysis capability coverage" className="mt-3 space-y-2">
         {analysis.capabilities.map((capability) => <li key={capability.id} className="flex flex-col gap-1 rounded-control border border-hairline bg-raised/40 p-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <span className="font-mono font-semibold text-ink">{capability.id}</span>
@@ -36,7 +35,7 @@ function CoverageDetails({ model }: { model: ScannerReportModelV2 }) {
         </li>)}
       </ul> : null}
       {analysis.diagnostics.length > 0 ? <ul aria-label="Analysis diagnostics" className="mt-2 flex flex-wrap gap-2">
-        {analysis.diagnostics.map((diagnostic) => <li key={diagnostic.id} className="rounded-full border border-sev-medium bg-raised px-2.5 py-1 font-mono text-2xs text-sev-medium">
+        {analysis.diagnostics.map((diagnostic) => <li key={diagnostic.id} className={`rounded-full border bg-raised px-2.5 py-1 font-mono text-2xs ${diagnosticTone}`}>
           Notice: {diagnostic.code} · {diagnostic.aggregateEffect}
         </li>)}
       </ul> : null}
@@ -47,27 +46,36 @@ function CoverageDetails({ model }: { model: ScannerReportModelV2 }) {
 
 export function ReportIntegrations({ scan }: ReportIntegrationsProps) {
   const model = v2Model(scan);
-  const status = model?.v2.analysis.status ?? scan.analysisStatus;
-  const assessmentMissing = model?.assessment === null;
-  const incomplete = isReportIncomplete(scan) || status === 'INDETERMINATE' || assessmentMissing;
-  const complete = status === 'COMPLETE' && !incomplete;
+  const presentation = scanAnalysisPresentation(scan);
+  const incomplete = !presentation.assessmentAvailable || isReportIncomplete(scan);
+  const complete = presentation.label === 'Analysis complete' && !incomplete;
+  const noticeTone = presentation.tone === 'neutral'
+    ? 'border-hairline bg-raised/40'
+    : presentation.tone === 'complete'
+      ? 'border-hairline bg-raised/40'
+      : presentation.tone === 'caution'
+        ? 'border-sev-medium bg-raised/40'
+        : 'border-sev-high bg-raised/50';
+  const StatusIcon = complete
+    ? CheckCircle2
+    : presentation.tone === 'neutral'
+      ? CircleHelp
+      : AlertTriangle;
 
   return (
     <section className="rounded-panel border border-hairline bg-panel p-4 sm:p-5">
       <h2 className="font-display text-lg font-semibold text-ink">Readiness and integrations</h2>
-      <div className="mt-3 flex items-start gap-2 rounded-control border border-hairline bg-raised/40 p-3 text-sm text-ink">
-        {complete
-          ? <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sev-low" aria-hidden="true" />
-          : <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-sev-medium" aria-hidden="true" />}
+      <div className={`mt-3 flex items-start gap-2 rounded-control border p-3 text-sm text-ink ${noticeTone}`}>
+        <StatusIcon className={`mt-0.5 h-4 w-4 shrink-0 ${complete ? 'text-sev-low' : presentation.tone === 'neutral' ? 'text-ink-muted' : 'text-sev-medium'}`} aria-hidden="true" />
         <p>
-          <span className="font-semibold">{complete ? 'Full local analysis completed.' : 'Analysis has coverage limits.'}</span>{' '}
-          {incomplete ? 'Required report data was unavailable, so no risk decision is shown.' : null}{' '}
+          <span className="font-semibold">{presentation.label}.</span>{' '}
+          {presentation.summary}{' '}
           Confirm credentials, write actions, destination hosts, and node settings in n8n before import.
         </p>
       </div>
 
-      {model ? <CoverageDetails model={model} /> : !complete && scan.analysisDiagnostics.length > 0 ? <ul className="mt-3 flex flex-wrap gap-2" aria-label="Analysis coverage notices">
-        {scan.analysisDiagnostics.map((diagnostic, index) => <li key={`${diagnostic.code}-${index}`} className="rounded-full border border-sev-medium bg-raised px-2.5 py-1 font-mono text-2xs text-sev-medium">
+      {model ? <CoverageDetails model={model} presentation={presentation} /> : !complete && scan.analysisDiagnostics.length > 0 ? <ul className="mt-3 flex flex-wrap gap-2" aria-label="Analysis coverage notices">
+        {scan.analysisDiagnostics.map((diagnostic, index) => <li key={`${diagnostic.code}-${index}`} className={`rounded-full border bg-raised px-2.5 py-1 font-mono text-2xs ${presentation.tone === 'neutral' ? 'border-hairline text-ink-muted' : 'border-sev-medium text-sev-medium'}`}>
           Notice: {diagnostic.code}
         </li>)}
       </ul> : null}

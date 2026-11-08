@@ -2,6 +2,7 @@ import { BookOpen, CircleHelp, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import type { ScanWorkflowResult } from '../engine';
 import type { ScannerReportModelV2 } from '../scanner-v2-presentation';
+import { scanAnalysisPresentation, type AnalysisPresentation } from '../analysis-language';
 import { safeReportText } from './report-safe-content';
 import { scannerRuleReferenceUrl } from '../../ui/product-links';
 
@@ -81,24 +82,21 @@ function AuthorityDetails({ model }: { model: ScannerReportModelV2 }) {
   );
 }
 
-function V2StatusDetails({ model }: { model: ScannerReportModelV2 }) {
-  const status = model.v2.analysis.status;
-  if (status === 'INDETERMINATE') {
-    return <p className="mt-3 rounded-control border border-sev-high bg-raised/50 p-3 text-sm leading-6 text-ink">Analysis is indeterminate; assessment unavailable because coverage is insufficient, so no risk decision is shown.</p>;
-  }
-  if (model.assessment === null) {
-    return <p className="mt-3 rounded-control border border-sev-high bg-raised/50 p-3 text-sm leading-6 text-ink">Assessment unavailable because analysis coverage is insufficient; no risk decision is shown.</p>;
-  }
-  if (status === 'DEGRADED') {
-    return <p className="mt-3 rounded-control border border-sev-medium bg-raised/50 p-3 text-sm leading-6 text-ink">Analysis is degraded; omitted evidence may affect coverage. Review the analysis limits before relying on this report.</p>;
-  }
-  return null;
+function V2StatusDetails({ presentation }: { presentation: AnalysisPresentation }) {
+  if (presentation.label === 'Analysis complete') return null;
+  const tone = presentation.tone === 'neutral'
+    ? 'border-hairline'
+    : presentation.tone === 'caution'
+      ? 'border-sev-medium'
+      : 'border-sev-high';
+  return <p className={`mt-3 rounded-control border bg-raised/50 p-3 text-sm leading-6 text-ink ${tone}`}>{presentation.message}</p>;
 }
 
 
 export function ReportTrust({ scan }: { scan: ScanWorkflowResult }) {
   const model = v2Model(scan);
-  const v2Incomplete = Boolean(model && (model.assessment === null || model.v2.analysis.status !== 'COMPLETE'));
+  const presentation = scanAnalysisPresentation(scan);
+  const v2Incomplete = Boolean(model && presentation.label !== 'Analysis complete');
   const example = !v2Incomplete && scan.scannerVersion.trim() && scan.findings.find((finding) => finding.policyId.trim());
 
   return (
@@ -111,7 +109,7 @@ export function ReportTrust({ scan }: { scan: ScanWorkflowResult }) {
         </div>
       </div>
 
-      {model ? <V2StatusDetails model={model} /> : null}
+      {model ? <V2StatusDetails presentation={presentation} /> : null}
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <div>
           <h4 className="flex items-center gap-1.5 font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">
@@ -128,7 +126,7 @@ export function ReportTrust({ scan }: { scan: ScanWorkflowResult }) {
             What this result does not prove
           </h4>
           <p className="mt-1 text-sm leading-6 text-ink">
-            This is not proof of runtime behavior. Pattern-based checks can miss unrecognized secrets or behavior, so review credentials, downstream services, and host assumptions separately.
+            This is not proof of runtime behavior or safety. Node-model coverage can be partial, and pattern-based checks can miss unrecognized secrets or behavior, so review credentials, downstream services, and host assumptions separately.
           </p>
         </div>
       </div>

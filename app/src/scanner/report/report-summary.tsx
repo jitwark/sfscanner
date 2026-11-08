@@ -2,6 +2,7 @@ import type { RefObject } from 'react';
 import { AlertTriangle, CheckCircle2, CircleHelp, RotateCcw } from 'lucide-react';
 import type { ScanWorkflowResult } from '../engine';
 import type { ScannerReportModelV2 } from '../scanner-v2-presentation';
+import { scanAnalysisPresentation, type AnalysisPresentation } from '../analysis-language';
 import { GradePill, isReportIncomplete, Metric, TextBlock } from './report-blocks';
 import { CornerSquare } from '../../ui/primitives/corner-square';
 
@@ -14,18 +15,16 @@ function v2Model(scan: ScanWorkflowResult): ScannerReportModelV2 | undefined {
   const candidate = scan as unknown as Partial<ScannerReportModelV2>;
   return candidate.v2?.schemaVersion === 'scanner-result-v2' ? candidate as ScannerReportModelV2 : undefined;
 }
-function CoverageDetails({ model }: { model: ScannerReportModelV2 }) {
+function CoverageDetails({ model, presentation }: { model: ScannerReportModelV2; presentation: AnalysisPresentation }) {
   const { analysis, limits } = model.v2;
-  const message = model.assessment === null
-    ? 'Assessment unavailable because coverage is insufficient.'
-    : analysis.status === 'DEGRADED'
-      ? 'Some evidence may be omitted; review the limits before relying on this report.'
-      : 'Coverage details for the risk assessment.';
+  const diagnosticTone = presentation.tone === 'neutral'
+    ? 'border-hairline text-ink-muted'
+    : 'border-sev-medium text-sev-medium';
 
   return (
     <div className="mt-5 border-t border-hairline pt-4">
       <h3 className="font-display text-base font-semibold text-ink">Analysis coverage</h3>
-      <p className="mt-1 text-sm leading-6 text-ink-muted">{message}</p>
+      <p className="mt-1 text-sm leading-6 text-ink-muted">{presentation.summary}</p>
       <ul aria-label="Analysis capability coverage" className="mt-3 space-y-2">
         {analysis.capabilities.map((capability) => (
           <li key={capability.id} className="flex flex-col gap-1 rounded-control border border-hairline bg-raised/40 p-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3">
@@ -45,7 +44,7 @@ function CoverageDetails({ model }: { model: ScannerReportModelV2 }) {
       </ul> : null}
       {analysis.diagnostics.length > 0 ? <ul aria-label="Analysis diagnostics" className="mt-2 flex flex-wrap gap-2">
         {analysis.diagnostics.map((diagnostic) => (
-          <li key={diagnostic.id} className="rounded-full border border-sev-medium bg-raised px-2.5 py-1 font-mono text-2xs text-sev-medium">
+          <li key={diagnostic.id} className={`rounded-full border bg-raised px-2.5 py-1 font-mono text-2xs ${diagnosticTone}`}>
             Notice: {diagnostic.code} · {diagnostic.aggregateEffect}
           </li>
         ))}
@@ -57,31 +56,22 @@ function CoverageDetails({ model }: { model: ScannerReportModelV2 }) {
 
 export function ReportSummary({ scan, outcomeHeadingRef, onRetry }: ReportSummaryProps) {
   const model = v2Model(scan);
-  const status: ScanWorkflowResult['analysisStatus'] = model?.v2.analysis.status ?? scan.analysisStatus;
+  const presentation = scanAnalysisPresentation(scan);
   const assessment = model?.assessment ?? scan.riskAssessment;
-  const assessmentMissing = model ? model.assessment === null : false;
-  const incomplete = isReportIncomplete(scan) || status === 'INDETERMINATE' || assessmentMissing;
-  const statusLabel = model && status === 'INDETERMINATE'
-    ? 'Analysis indeterminate'
-    : model && assessmentMissing
-      ? 'Assessment unavailable'
-      : incomplete && status !== 'INDETERMINATE'
-        ? 'Analysis incomplete'
-        : status === 'DEGRADED'
-          ? 'Analysis degraded'
-          : status === 'INDETERMINATE'
-            ? 'Analysis indeterminate'
-            : 'Analysis complete';
-  const statusClass = incomplete
-    ? 'bg-raised text-sev-high border-sev-high'
-    : status === 'DEGRADED'
-      ? 'bg-raised text-sev-medium border-sev-medium'
-      : 'bg-raised text-sev-low border-sev-low';
-  const StatusIcon = incomplete
-    ? CircleHelp
-    : status === 'DEGRADED'
-      ? AlertTriangle
-      : CheckCircle2;
+  const assessmentMissing = !presentation.assessmentAvailable;
+  const incomplete = assessmentMissing || isReportIncomplete(scan);
+  const statusClass = presentation.tone === 'complete'
+    ? 'bg-raised text-sev-low border-sev-low'
+    : presentation.tone === 'neutral'
+      ? 'bg-raised text-ink-muted border-hairline'
+      : presentation.tone === 'caution'
+        ? 'bg-raised text-sev-medium border-sev-medium'
+        : 'bg-raised text-sev-high border-sev-high';
+  const StatusIcon = presentation.tone === 'complete'
+    ? CheckCircle2
+    : presentation.tone === 'neutral'
+      ? CircleHelp
+      : AlertTriangle;
 
   return (
     <section className="relative rounded-panel border border-hairline bg-panel p-4 sm:p-5">
@@ -98,10 +88,10 @@ export function ReportSummary({ scan, outcomeHeadingRef, onRetry }: ReportSummar
         <div className="flex flex-wrap items-center gap-2">
           <span
             className={`inline-flex items-center gap-1.5 rounded-control border px-2.5 py-1 font-mono text-2xs font-bold uppercase tracking-wider ${statusClass}`}
-            aria-label={`Analysis status: ${statusLabel}`}
+            aria-label={`Analysis status: ${presentation.label}`}
           >
             <StatusIcon className="h-3.5 w-3.5" aria-hidden="true" />
-            {statusLabel}
+            {presentation.label}
           </span>
           {incomplete ? null : <GradePill grade={assessment!.grade} />}
         </div>
@@ -114,12 +104,10 @@ export function ReportSummary({ scan, outcomeHeadingRef, onRetry }: ReportSummar
               {assessmentMissing ? 'Risk assessment unavailable.' : 'Analysis could not be completed.'}
             </p>
             <p className="mt-2 text-sm leading-6 text-ink-muted">
-              {assessmentMissing
-                ? 'The scanner did not produce a risk assessment from sufficient coverage, so no risk grade or summary is shown. Review the coverage details below.'
-                : 'A required analysis stage did not finish, so no risk grade or summary is shown for this scan. Review the coverage notices below before relying on it.'}
+              {presentation.message} Review the coverage notices below before relying on it.
             </p>
             {onRetry ? <button type="button" onClick={onRetry} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-control border border-sev-high bg-raised px-3 font-mono text-xs font-semibold text-ink transition-colors hover:bg-accent-dim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-border active:translate-y-px">
-              <RotateCcw className="h-4 w-4" aria-hidden="true" /><span>Retry deep scan</span>
+              <RotateCcw className="h-4 w-4" aria-hidden="true" /><span>Retry scan</span>
             </button> : null}
           </div>
         ) : <>
@@ -138,7 +126,7 @@ export function ReportSummary({ scan, outcomeHeadingRef, onRetry }: ReportSummar
           <TextBlock title="Risk in plain language" text={scan.humanSummary!.riskNarrative} />
         </>}
       </div>
-      {model ? <CoverageDetails model={model} /> : null}
+      {model ? <CoverageDetails model={model} presentation={presentation} /> : null}
     </section>
   );
 }

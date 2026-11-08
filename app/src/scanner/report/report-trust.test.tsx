@@ -139,12 +139,13 @@ describe('scanner report trust and help', () => {
   it('keeps v2 null and indeterminate outcomes explicitly non-conclusive', () => {
     const { container, unmount } = render(<ReportTrust scan={indeterminateV2Scan} />);
 
-    expect(container.textContent).toMatch(/indeterminate|insufficient coverage/i);
-    expect(container.textContent).not.toMatch(/safe|complete/i);
+    expect(container.textContent).toContain('Analysis incomplete');
+    expect(container.textContent).toContain('Assessment unavailable because required analysis did not finish');
+    expect(container.textContent).not.toMatch(/full local analysis completed|all node behavior.+modelled|safe to execute|analysis passed/i);
     unmount();
 
     const completeWithoutAssessment = render(<ReportTrust scan={completeWithoutAssessmentV2Scan} />);
-    expect(completeWithoutAssessment.container.textContent).toMatch(/assessment unavailable|insufficient coverage/i);
-    expect(completeWithoutAssessment.container.textContent).not.toMatch(/full local analysis completed|complete/i);
+    expect(completeWithoutAssessment.container.textContent).toMatch(/Assessment unavailable/i);
+    expect(completeWithoutAssessment.container.textContent).not.toMatch(/Analysis complete\.|full local analysis completed|safe to execute/i);
   });
 });

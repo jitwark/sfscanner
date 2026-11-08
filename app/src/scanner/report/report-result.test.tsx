@@ -20,6 +20,13 @@ const UNREADABLE = JSON.stringify({
   ],
   connections: {},
 });
+const UNKNOWN_INNOCENT = JSON.stringify({
+  nodes: [
+    { id: 'Start', name: 'Start', type: 'n8n-nodes-base.manualTrigger', typeVersion: 1, parameters: {} },
+    { id: 'Unknown', name: 'Unknown', type: 'n8n-nodes-base.discord', typeVersion: 1, parameters: { url: 'https://example.invalid/x' } },
+  ],
+  connections: { Start: { main: [[{ node: 'Unknown', type: 'main', index: 0 }]] } },
+});
 
 /** The real pipeline boundary: worker engine envelope -> the model the report consumes. */
 function reportModel(json: string): ScannerReportModelV2 {
@@ -119,6 +126,7 @@ describe('ReportResult', () => {
 
     renderReport(scan);
 
+    expect(screen.getByLabelText('Analysis status: Analysis complete')).toBeTruthy();
     expect(screen.getByText(`${assessment.grade} risk`)).toBeTruthy();
     expect(screen.getByLabelText(`Risk score: ${assessment.score} out of 100`)).toBeTruthy();
     expect(screen.queryByText('No grade')).toBeNull();
@@ -133,6 +141,8 @@ describe('ReportResult', () => {
 
     const { container } = renderReport(scan);
 
+    expect(screen.getByLabelText('Analysis status: Standard scan')).toBeTruthy();
+    expect(screen.getAllByText(/Some node behavior is not modelled/i).length).toBeGreaterThan(0);
     expect(screen.getByText(`${scan.assessment!.grade} risk`)).toBeTruthy();
     expect(screen.getByText('SEMANTIC_CATALOGUE_MISS · DEGRADED')).toBeTruthy();
     expect(screen.getByText('GENERIC_NODE_UNMODELED_CAPABILITY · DEGRADED')).toBeTruthy();
@@ -142,6 +152,18 @@ describe('ReportResult', () => {
     expect(container.textContent).not.toContain(RAW_SECRET);
   });
 
+  it('labels a real readable unmodelled node Standard scan with the model caveat', () => {
+    const scan = reportModel(UNKNOWN_INNOCENT);
+    expect(scan.v2.analysis.status).toBe('DEGRADED');
+    expect(scan.assessment).not.toBeNull();
+
+    renderReport(scan);
+
+    expect(screen.getByLabelText('Analysis status: Standard scan')).toBeTruthy();
+    expect(screen.getAllByText(/Some node behavior is not modelled/i).length).toBeGreaterThan(0);
+    expect(screen.queryByText('No grade')).toBeNull();
+  });
+
   it('keeps a genuine indeterminate result ungraded and explicitly non-conclusive', () => {
     const scan = reportModel(UNREADABLE);
     expect(scan.v2.analysis.status).toBe('INDETERMINATE');
@@ -149,6 +171,8 @@ describe('ReportResult', () => {
 
     renderReport(scan);
 
+    expect(screen.getByLabelText('Analysis status: Analysis incomplete')).toBeTruthy();
+    expect(screen.getAllByText(/Assessment unavailable because required analysis did not finish/i).length).toBeGreaterThan(0);
     expect(screen.getByText('No grade')).toBeTruthy();
     expect(screen.queryByLabelText(/^Risk score:/)).toBeNull();
     expect(screen.queryByText(/^(?:LOW|MEDIUM|HIGH|CRITICAL) risk$/)).toBeNull();

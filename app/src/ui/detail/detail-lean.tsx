@@ -11,6 +11,7 @@ import { RelatedLinks, type RelatedLink } from './related-links';
 import { AboutSection } from './about-section';
 import { detailHref, interactiveHref as buildInteractiveHref } from '../../catalogue/detail-href';
 import { sitePath } from '../site-url.mjs';
+import { analysisStatusLabel } from '../../scanner/analysis-language';
 
 export type { RelatedLink };
 
@@ -25,6 +26,7 @@ export function DetailLean({
 }) {
   const interactiveHref = sitePath(buildInteractiveHref(entry.id, related.map((item) => item.id)));
   const sourceLabel = entry.source.kind === 'n8n_official' ? 'n8n.io' : entry.source.repo ?? 'GitHub';
+  const analysisLabel = analysisStatusLabel(entry.security.analysisStatus);
 
   return (
     <article data-layout="workbench" className="mx-auto flex w-full min-w-0 flex-col gap-6 pb-8">
@@ -36,6 +38,7 @@ export function DetailLean({
               <span className="rounded-md border border-hairline bg-raised px-2 py-0.5">{sourceLabel}</span>
               <LicenceBadge licence={entry.rights.licence ?? 'Link only'} />
               <GradePill grade={entry.security.grade} />
+              {analysisLabel ? <span className="rounded-md border border-hairline bg-raised px-2 py-0.5">{analysisLabel}</span> : null}
               <span>ID: {entry.id.slice(0, 8)}</span>
               {entry.rights.reason && <span className="text-ink-faint">({entry.rights.reason})</span>}
             </div>

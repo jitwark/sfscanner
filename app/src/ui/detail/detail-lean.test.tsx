@@ -138,6 +138,15 @@ describe('DetailLean hierarchy and section anchors', () => {
     expect(within(container).getByLabelText('Scanner grade LOW, score 100 out of 100')).toBeTruthy();
   });
 
+  it('shows the persisted analysis status without inferring Standard scan', () => {
+    const base = makeEntry();
+    const entry = { ...base, security: { ...base.security, analysisStatus: 'DEGRADED' as const } };
+    const container = render(<DetailLean entry={entry} related={[]} />).container;
+
+    expect(within(container).getByText('Partial analysis')).toBeTruthy();
+    expect(within(container).queryByText('Standard scan')).toBeNull();
+  });
+
   it('handles description provenance honestly', () => {
     const { container } = render(<DetailLean entry={makeEntry({ descriptionSource: 'upstream', description: 'Authoritative copy.' })} related={[]} />);
     expect(within(container).getByLabelText('Upstream description')).toBeTruthy();

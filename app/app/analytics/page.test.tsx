@@ -102,7 +102,7 @@ describe('AnalyticsPage', () => {
     const copy = document.body.textContent!.replace(/\s+/g, ' ');
     expect(copy).not.toContain('same deterministic scanner that runs in your browser');
     expect(copy).toContain('admitted v2 receipt matches the full engine, profile, ruleset and semantics identity');
-    expect(copy).toContain('17 complete, 2 degraded, 0 indeterminate');
+    expect(copy).toContain('17 analysis complete, 2 partial analysis, 0 analysis incomplete');
     expect(copy).toContain('1 was refused without a result and publish no grade');
     expect(copy).toContain('0 carry only a retired-engine verdict');
     expect(copy).toContain('3 have no input');

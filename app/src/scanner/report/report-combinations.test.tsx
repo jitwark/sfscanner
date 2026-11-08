@@ -80,7 +80,7 @@ describe('scanner report result combinations', () => {
     });
     render(<><ReportSummary scan={scan} /><ReportIntegrations scan={scan} /></>);
 
-    expect(screen.getByLabelText('Analysis status: Analysis degraded')).toBeTruthy();
+    expect(screen.getByLabelText('Analysis status: Partial analysis')).toBeTruthy();
     expect(screen.getByText('HIGH risk')).toBeTruthy();
     expect(screen.getByText('Notice: SOURCE_SPAN_UNAVAILABLE')).toBeTruthy();
   });
@@ -94,12 +94,12 @@ describe('scanner report result combinations', () => {
     render(<><ReportSummary scan={incomplete} /><ReportDecision scan={incomplete} /><ReportFindings scan={incomplete} /><ReportIntegrations scan={incomplete} /></>);
 
     expect(screen.getByLabelText('Analysis status: Analysis incomplete')).toBeTruthy();
-    expect(screen.getByText('Analysis could not be completed.')).toBeTruthy();
+    expect(screen.getByText('Risk assessment unavailable.')).toBeTruthy();
     expect(screen.queryByText('HIGH risk')).toBeNull();
     expect(screen.getByText('No grade')).toBeTruthy();
     expect(screen.queryByText('Full local analysis completed.')).toBeNull();
-    expect(screen.getByText('Analysis has coverage limits.')).toBeTruthy();
-    expect(screen.getByText(/Required report data was unavailable/)).toBeTruthy();
+    expect(screen.getByText('Analysis incomplete.')).toBeTruthy();
+    expect(screen.getAllByText(/Required report data is incomplete/).length).toBeGreaterThan(0);
   });
 
   it('withholds the grade for an indeterminate result and retains the diagnostic notice', () => {
@@ -112,8 +112,8 @@ describe('scanner report result combinations', () => {
     });
     render(<><ReportSummary scan={scan} /><ReportIntegrations scan={scan} /></>);
 
-    expect(screen.getByLabelText('Analysis status: Analysis indeterminate')).toBeTruthy();
-    expect(screen.getByText('Analysis could not be completed.')).toBeTruthy();
+    expect(screen.getByLabelText('Analysis status: Analysis incomplete')).toBeTruthy();
+    expect(screen.getByText('Risk assessment unavailable.')).toBeTruthy();
     expect(screen.queryByText(/risk$/)).toBeNull();
     expect(screen.getByText('Notice: MALFORMED_NODE_PARAMETERS')).toBeTruthy();
   });

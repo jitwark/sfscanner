@@ -14,6 +14,30 @@ async function openLibrary(page: Page, pathname = '/library/'): Promise<Locator>
   return results;
 }
 
+async function openLibraryWithExtendedIndex(page: Page): Promise<Locator> {
+  const extendedIndex = page.waitForResponse(
+    (response) => /\/data\/search-index-extended\.json$/.test(new URL(response.url()).pathname),
+    { timeout: 20_000 },
+  );
+  const results = await openLibrary(page);
+
+  const headerCount = page.locator('header span').filter({ hasText: /^\d[\d,]*\s*workflows$/ });
+  await expect(headerCount).toHaveCount(1);
+  const fullCount = ((await headerCount.textContent()) ?? '').match(/\d[\d,]*/)?.[0];
+  if (!fullCount) throw new Error('Header workflow count is missing.');
+
+  const resultAnnouncement = page
+    .locator('section[aria-labelledby="library-results-heading"] p[aria-live]')
+    .filter({ hasText: /^\d[\d,]* workflows(?: of \d[\d,]*)?$/ });
+  await expect(resultAnnouncement).toHaveCount(1);
+
+  const response = await extendedIndex;
+  expect(response.ok(), `extended search index response ${response.status()}`).toBe(true);
+  await response.finished();
+  await expect(resultAnnouncement).toHaveText(`${fullCount} workflows`, { timeout: 20_000 });
+  return results;
+}
+
 async function assertNoHorizontalOverflow(page: Page, surface: string): Promise<void> {
   const measurement = await page.evaluate(() => ({
     documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
@@ -73,9 +97,11 @@ test('library stays within the viewport at 320px and 200% visual zoom', async ({
 });
 
 test('search, filter, sort, and result controls are keyboard reachable with visible focus', async ({ page }) => {
-  const results = await openLibrary(page);
+  const results = await openLibraryWithExtendedIndex(page);
   const search = page.getByRole('combobox', { name: 'Search n8n workflows' });
-  const quickFilter = page.getByRole('button', { name: /^Quick filter / }).first();
+  const quickFilterName = await page.getByRole('button', { name: /^Quick filter Medium\s/ }).getAttribute('aria-label');
+  if (!quickFilterName) throw new Error('Quick filter accessible name is missing.');
+  const quickFilter = page.getByRole('button', { name: quickFilterName, exact: true });
   const sort = page.getByRole('combobox', { name: 'Sort results' });
   const filters = page.getByRole('button', { name: 'Filters', exact: true });
   const firstResult = results.getByRole('link').first();
@@ -94,7 +120,7 @@ test('search, filter, sort, and result controls are keyboard reachable with visi
 });
 
 test('library names controls and facet groups truthfully and announces counts/statuses', async ({ page }) => {
-  const results = await openLibrary(page);
+  const results = await openLibraryWithExtendedIndex(page);
   const search = page.getByRole('combobox', { name: 'Search n8n workflows' });
   const sort = page.getByRole('combobox', { name: 'Sort results' });
   const filters = page.getByRole('button', { name: 'Filters', exact: true });
@@ -106,7 +132,8 @@ test('library names controls and facet groups truthfully and announces counts/st
   await expect(sort).toHaveAccessibleName('Sort results');
   await expect(filters).toHaveAccessibleName('Filters');
   await expect(results).toHaveAccessibleName('Workflow results');
-  const resultTitle = (await firstResult.locator('span').first().innerText()).trim();
+  const resultTitle = ((await firstResult.locator('span').first().textContent()) ?? '').replace(/\s+/g, ' ').trim();
+  expect(resultTitle, 'first result title is rendered text').not.toBe('');
   await expect(firstResult).toHaveAccessibleName(resultTitle);
 
   const resultCount = page.locator('p[aria-live="polite"]').filter({ hasText: /workflows/ }).first();

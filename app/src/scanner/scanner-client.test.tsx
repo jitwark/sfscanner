@@ -211,8 +211,8 @@ describe('ScannerClient request ownership', () => {
     fireEvent.change(screen.getByLabelText('Workflow JSON'), { target: { value: '{}' } });
     fireEvent.click(screen.getByRole('button', { name: 'Scan workflow' }));
 
-    expect(await screen.findByText('Analysis could not be completed.')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'Retry deep scan' })); // in-report CTA label (report-summary.tsx:122); client error retry is 'Retry scan' (scanner-client.tsx:172)
+    expect(await screen.findByText('Risk assessment unavailable.')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Retry scan' })); // in-report CTA; client error retry uses the same label.
 
     expect(await screen.findByText('Recovered result')).toBeTruthy();
     expect(runScanV2).toHaveBeenCalledTimes(2);

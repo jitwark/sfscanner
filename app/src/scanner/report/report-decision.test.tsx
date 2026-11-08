@@ -56,11 +56,11 @@ describe('ReportDecision', () => {
   it('withholds grade, score, and reassuring wording when a v2 assessment is null', () => {
     render(<ReportDecision scan={v2Scan('COMPLETE', null)} />);
 
-    expect(screen.getByText(/assessment is unavailable/i)).toBeTruthy();
+    expect(screen.getByText(/Assessment unavailable/i)).toBeTruthy();
     expect(screen.getAllByText(/coverage is insufficient/i).length).toBeGreaterThan(0);
     expect(screen.queryByText(/HIGH risk/)).toBeNull();
     expect(screen.queryByText(/80\/100/)).toBeNull();
-    expect(screen.queryByText(/analysis complete/i)).toBeNull();
+    expect(screen.queryByText(/Analysis complete\./)).toBeNull();
   });
 
   it('renders a degraded v2 assessment with score, omissions, and report-only context', () => {
@@ -79,7 +79,8 @@ describe('ReportDecision', () => {
   it('uses v2 indeterminate status over legacy projected fields', () => {
     render(<ReportDecision scan={v2Scan('INDETERMINATE', null)} />);
 
-    expect(screen.getByText(/assessment is unavailable/i)).toBeTruthy();
+    expect(screen.getByText(/Analysis incomplete/i)).toBeTruthy();
+    expect(screen.getByText(/Assessment unavailable because required analysis did not finish/i)).toBeTruthy();
     expect(screen.queryByText(/HIGH risk/)).toBeNull();
     expect(screen.queryByText(/analysis complete/i)).toBeNull();
   });
@@ -100,7 +101,7 @@ describe('ReportDecision', () => {
 
     expect(screen.queryByRole('list', { name: 'Decision coverage limits' })).toBeNull();
     expect(screen.queryByText(/legacy-limit/)).toBeNull();
-    expect(screen.queryByText('Analysis has coverage limits.')).toBeNull();
+    expect(screen.queryByText('Analysis limits are recorded.')).toBeNull();
   });
 
   it('keeps the legacy v1 decision wording and grade when no v2 model is present', () => {
@@ -125,6 +126,7 @@ describe('ReportDecision', () => {
 
     expect(screen.getByText('No grade')).toBeTruthy();
     expect(screen.queryByText(/HIGH risk/)).toBeNull();
-    expect(screen.getByText(/No risk decision is available/)).toBeTruthy();
+    expect(screen.getByText(/Analysis incomplete/i)).toBeTruthy();
+    expect(screen.getByText(/no risk decision is shown/i)).toBeTruthy();
   });
 });

@@ -9,6 +9,7 @@ import { StatTile } from '../../src/ui/analytics/stat-tile';
 import { CompositionSections, SectionHeading } from '../../src/ui/analytics/composition-sections';
 import { NodeCoveragePanel } from '../../src/ui/analytics/node-coverage';
 import { ScanCoveragePanel } from '../../src/ui/analytics/scan-coverage';
+import { corpusCoverageLabel } from '../../src/scanner/analysis-language';
 import { GRADE_LABEL, GRADE_ORDER, GRADE_TOKEN, COMPLEXITY_LABEL } from '../../src/ui/analytics/severity';
 import { JsonLdScript, pageJsonLd } from '../../src/seo/json-ld';
 import { canonicalAlternates } from '../../src/seo/page-meta';
@@ -78,7 +79,7 @@ export default function AnalyticsPage() {
           label="Current v2 results"
           value={scanCoverage.scanned}
           share={share(scanCoverage.scanned)}
-          detail={`${v2Evidence.inventory.available.toLocaleString('en-US')} inputs were attempted under the admitted v2 identity: ${scanCoverage.scanned.toLocaleString('en-US')} produced an authentic native result (${scanCoverage.completed.toLocaleString('en-US')} complete, ${scanCoverage.degraded.toLocaleString('en-US')} degraded, ${scanCoverage.indeterminate.toLocaleString('en-US')} indeterminate). ${scanCoverage.noResult.toLocaleString('en-US')} ${scanCoverage.noResult === 1 ? 'was' : 'were'} refused without a result and publish no grade; ${scanCoverage.noBody.toLocaleString('en-US')} have no input; ${scanCoverage.sourceUnavailable.toLocaleString('en-US')} are owner-ruled source-unavailable and ${scanCoverage.historical.toLocaleString('en-US')} carry only a retired-engine verdict.`}
+          detail={`${v2Evidence.inventory.available.toLocaleString('en-US')} inputs were attempted under the admitted v2 identity: ${scanCoverage.scanned.toLocaleString('en-US')} produced an authentic native result (${scanCoverage.completed.toLocaleString('en-US')} ${corpusCoverageLabel('completed').toLowerCase()}, ${scanCoverage.degraded.toLocaleString('en-US')} ${corpusCoverageLabel('degraded').toLowerCase()}, ${scanCoverage.indeterminate.toLocaleString('en-US')} ${corpusCoverageLabel('indeterminate').toLowerCase()}). ${scanCoverage.noResult.toLocaleString('en-US')} ${scanCoverage.noResult === 1 ? 'was' : 'were'} refused without a result and publish no grade; ${scanCoverage.noBody.toLocaleString('en-US')} have no input; ${scanCoverage.sourceUnavailable.toLocaleString('en-US')} are owner-ruled source-unavailable and ${scanCoverage.historical.toLocaleString('en-US')} carry only a retired-engine verdict.`}
         />
       </section>
 

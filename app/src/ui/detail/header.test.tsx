@@ -83,4 +83,12 @@ describe('DetailHeader action label', () => {
     expect(currentPage?.textContent).toContain(entry.title);
     expect(container.querySelector('a[href^="/w/folder/"]')).toBeNull();
   });
+
+  it('shows the persisted analysis status without claiming model-only coverage', () => {
+    const base = makeEntry();
+    const entry = { ...base, security: { ...base.security, analysisStatus: 'DEGRADED' as const } };
+    const { getByText } = render(<DetailHeader entry={entry} />);
+
+    expect(getByText('Partial analysis')).toBeTruthy();
+  });
 });

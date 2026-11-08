@@ -2,6 +2,7 @@ import { AlertTriangle, CircleHelp, ShieldCheck } from 'lucide-react';
 import type { RefObject } from 'react';
 import type { AnalysisDiagnosticV2 } from '@hub/contracts/scanner-v2-result';
 import type { ScannerReportModelV2 } from '../scanner-v2-presentation';
+import { scanAnalysisPresentation } from '../analysis-language';
 import { safeReportText } from '../report/report-safe-content';
 
 type ReportCoverageProps = { model: ScannerReportModelV2; outcomeHeadingRef?: RefObject<HTMLHeadingElement | null> };
@@ -71,24 +72,26 @@ function DiagnosticExplanation({ diagnostic }: { diagnostic: AnalysisDiagnosticV
 
 export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps) {
   const { analysis, limits } = model.v2;
-  const noAssessment = model.assessment === null;
-  const incomplete = noAssessment || analysis.status !== 'COMPLETE';
-  const statusLabel = analysis.status === 'DEGRADED'
-    ? 'Analysis degraded'
-    : analysis.status === 'INDETERMINATE'
-      ? 'Analysis indeterminate'
-      : noAssessment
-        ? 'Assessment unavailable'
-        : 'Analysis complete';
-  const statusMessage = noAssessment && analysis.status === 'DEGRADED'
-    ? 'Analysis degraded. Assessment is unavailable because some evidence may be omitted; no risk grade is shown for this state.'
-    : noAssessment
-      ? 'Assessment unavailable. No risk grade is shown because the available coverage cannot support a risk decision.'
-      : analysis.status === 'DEGRADED'
-        ? 'Analysis degraded. Some evidence may be omitted; the grade shown reflects only the evidence the scanner could assess.'
-        : analysis.status === 'INDETERMINATE'
-          ? 'Analysis indeterminate. Required evidence did not complete, so no risk grade is shown.'
-          : 'Analysis complete. Capability execution and bounded omissions are listed below.';
+  const presentation = scanAnalysisPresentation(model);
+  const statusTone = presentation.tone === 'complete'
+    ? 'border-sev-low bg-raised text-sev-low'
+    : presentation.tone === 'neutral'
+      ? 'border-hairline bg-raised text-ink-muted'
+      : presentation.tone === 'caution'
+        ? 'border-sev-medium bg-raised text-sev-medium'
+        : 'border-sev-high bg-raised text-sev-high';
+  const messageTone = presentation.tone === 'complete'
+    ? 'border-hairline bg-raised/40'
+    : presentation.tone === 'neutral'
+      ? 'border-hairline bg-raised/40'
+      : presentation.tone === 'caution'
+        ? 'border-sev-medium bg-raised/50'
+        : 'border-sev-high bg-raised/50';
+  const StatusIcon = presentation.tone === 'complete'
+    ? ShieldCheck
+    : presentation.tone === 'neutral'
+      ? CircleHelp
+      : AlertTriangle;
   const omissions = limits.usage.reduce((total, limit) => total + limit.omitted, 0) + model.v2.stats.omittedFindings;
   const diagnosticsById = new Map(analysis.diagnostics.map((diagnostic) => [diagnostic.id, diagnostic]));
   const referencedIds = new Set(analysis.capabilities.flatMap((capability) => capability.diagnosticIds));
@@ -101,14 +104,14 @@ export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps
           <h2 ref={outcomeHeadingRef} tabIndex={outcomeHeadingRef ? -1 : undefined} id="scanner-v2-coverage-heading" className="font-display text-lg font-semibold text-ink focus:outline-none">Analysis coverage</h2>
           <p className="mt-1 text-sm leading-6 text-ink-muted">Execution coverage is evidence about what the scanner examined, not proof that unexamined behavior is safe.</p>
         </div>
-        <span role="status" className={`inline-flex items-center gap-1.5 self-start rounded-control border px-2.5 py-1 font-mono text-2xs font-bold uppercase tracking-wider ${incomplete ? 'border-sev-high bg-raised text-sev-high' : 'border-sev-low bg-raised text-sev-low'}`} aria-label={`Analysis status: ${statusLabel}`}>
-          {incomplete ? <CircleHelp className="h-3.5 w-3.5" aria-hidden="true" /> : <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}
-          {statusLabel}
+        <span role="status" className={`inline-flex items-center gap-1.5 self-start rounded-control border px-2.5 py-1 font-mono text-2xs font-bold uppercase tracking-wider ${statusTone}`} aria-label={`Analysis status: ${presentation.label}`}>
+          <StatusIcon className="h-3.5 w-3.5" aria-hidden="true" />
+          {presentation.label}
         </span>
       </div>
 
-      <div className={`mt-4 rounded-control border p-3 text-sm leading-6 text-ink ${incomplete ? 'border-sev-high bg-raised/50' : 'border-hairline bg-raised/40'}`} role={incomplete ? 'alert' : undefined}>
-        {statusMessage}
+      <div className={`mt-4 rounded-control border p-3 text-sm leading-6 text-ink ${messageTone}`} role={presentation.tone === 'warning' ? 'alert' : presentation.label === 'Analysis complete' ? undefined : 'note'}>
+        {presentation.message}
       </div>
 
       <div className="mt-5">

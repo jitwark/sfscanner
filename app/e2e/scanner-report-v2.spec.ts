@@ -299,7 +299,8 @@ test.describe('scanner report admission', () => {
     await clearWorkerResults(page);
     await page.goto(scannerPath);
     await scan(page, unknownInnocentJson);
-    await expect(page.getByLabel('Analysis status: Analysis degraded')).toBeVisible();
+    await expect(page.getByLabel('Analysis status: Standard scan')).toBeVisible();
+    await expect(page.getByText(/Some node behavior is not modelled/i).first()).toBeVisible();
     await expect(page.getByText('SEMANTIC_CATALOGUE_MISS · DEGRADED')).toBeVisible();
     await expect(page.getByText('GENERIC_NODE_UNMODELED_CAPABILITY · DEGRADED')).toBeVisible();
     await expectWorkerGradeRendered(page);
@@ -350,7 +351,7 @@ test.describe('scanner report admission', () => {
     await clearWorkerResults(page);
     await page.goto(scannerPath);
     await scan(page, unreadableParametersJson);
-    await expect(page.getByLabel('Analysis status: Analysis indeterminate')).toBeVisible();
+    await expect(page.getByLabel('Analysis status: Analysis incomplete')).toBeVisible();
     expect((await latestWorkerResult(page)).result?.assessment).toBeNull();
     const decision = decisionSection(page);
     await expect(decision.getByText('No grade')).toBeVisible();
@@ -416,7 +417,7 @@ test.describe('scanner report admission', () => {
     await scan(page, fallbackJson);
 
     await expect(page.getByRole('heading', { name: 'Analysis coverage' })).toBeVisible();
-    await expect(page.getByLabel('Analysis status: Analysis degraded')).toBeVisible();
+    await expect(page.getByLabel('Analysis status: Standard scan')).toBeVisible();
     await expect(page.getByText('SEMANTIC_CATALOGUE_MISS · DEGRADED').first()).toBeVisible();
     await expect(page.getByText('GENERIC_NODE_UNMODELED_CAPABILITY · DEGRADED').first()).toBeVisible();
     expect(await page.locator('body').innerText()).not.toContain('wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY');

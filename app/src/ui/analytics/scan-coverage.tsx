@@ -1,4 +1,5 @@
 import type { CorpusAnalytics } from '@hub/contracts';
+import { corpusCoverageLabel } from '../../scanner/analysis-language';
 import { SectionHeading } from './composition-sections';
 import { DigestItem, IdentityRow } from './scan-coverage-receipts';
 
@@ -34,19 +35,19 @@ export function ScanCoveragePanel({
   const rows = [
     {
       key: 'completed',
-      label: 'Completed',
+      label: corpusCoverageLabel('completed'),
       count: coverage.completed,
-      detail: 'Every required capability ran; nothing was skipped, omitted or truncated.',
+      detail: 'Required capabilities completed within the recorded limits. This is not proof of safety or complete runtime modelling.',
     },
     {
       key: 'degraded',
-      label: 'Degraded',
+      label: corpusCoverageLabel('degraded'),
       count: coverage.degraded,
-      detail: 'A result exists, but recorded skips or omissions mean its assessment may be withheld or may have missed findings.',
+      detail: 'The aggregate degraded population does not show whether each result was limited by missing node modelling, omitted evidence, a failed check, or another limit.',
     },
     {
       key: 'indeterminate',
-      label: 'Indeterminate',
+      label: corpusCoverageLabel('indeterminate'),
       count: coverage.indeterminate,
       detail: 'An admitted native result exists, but a required capability was skipped, failed or truncated, so no assessment is published.',
     },
@@ -132,9 +133,9 @@ export function ScanCoveragePanel({
           </div>
           <p className="mt-3 border-t border-hairline pt-3 text-xs leading-5 text-ink-muted">
             <strong className="text-ink">{coverage.scanned.toLocaleString('en-US')}</strong> rows are admitted
-            native results ({coverage.completed.toLocaleString('en-US')} completed,{' '}
-            {coverage.degraded.toLocaleString('en-US')} degraded,{' '}
-            {coverage.indeterminate.toLocaleString('en-US')} indeterminate).{' '}
+            native results ({coverage.completed.toLocaleString('en-US')} {corpusCoverageLabel('completed').toLowerCase()},{' '}
+            {coverage.degraded.toLocaleString('en-US')} {corpusCoverageLabel('degraded').toLowerCase()},{' '}
+            {coverage.indeterminate.toLocaleString('en-US')} {corpusCoverageLabel('indeterminate').toLowerCase()}).{' '}
             <strong className="text-ink">{coverage.noResult.toLocaleString('en-US')}</strong> more were read by
             the current engine and refused: no result exists, so they are reported as no-result — not
             historical, not unread, and never current or clean. Together they are the{' '}

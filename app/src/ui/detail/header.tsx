@@ -5,6 +5,7 @@ import { GradePill } from '../primitives/pill';
 import { DownloadControl } from './download-control';
 import { safeHttpUrl, stripInvisible } from '../../seo/hostile-text';
 import { detailHref } from '../../catalogue/detail-href';
+import { analysisStatusLabel } from '../../scanner/analysis-language';
 
 type DetailHeaderProps = {
   entry: Entry;
@@ -20,6 +21,7 @@ type DetailHeaderProps = {
 export function DetailHeader({ entry, breadcrumbs, staticDownloadHref }: DetailHeaderProps) {
   const sourceLabel = entry.source.kind === 'n8n_official' ? 'n8n.io' : entry.source.repo ?? 'GitHub';
   const sourceHref = safeExternalHref(entry.source.permalink);
+  const analysisLabel = analysisStatusLabel(entry.security.analysisStatus);
   return (
     <header className="min-w-0 space-y-5">
       <Breadcrumbs items={breadcrumbs ?? defaultBreadcrumbs(entry)} className="rounded-control" />
@@ -35,6 +37,7 @@ export function DetailHeader({ entry, breadcrumbs, staticDownloadHref }: DetailH
         )}
         <LicenceBadge licence={entry.rights.licence ?? 'Link only'} />
         <GradePill grade={entry.security.grade} />
+        {analysisLabel ? <span className="rounded-control border border-hairline bg-raised px-2.5 py-0.5">{analysisLabel}</span> : null}
       </div>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between pt-2">
         <div className="min-w-0 max-w-4xl space-y-3">

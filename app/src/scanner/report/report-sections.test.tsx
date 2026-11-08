@@ -211,9 +211,10 @@ describe('scanner report hierarchy', () => {
 
     render(<ReportSummary scan={indeterminate} />);
 
-    expect(screen.getByLabelText('Analysis status: Analysis indeterminate')).toBeTruthy();
+    expect(screen.getByLabelText('Analysis status: Analysis incomplete')).toBeTruthy();
     expect(screen.queryByText('HIGH risk')).toBeNull();
-    expect(screen.getByText('Analysis could not be completed.')).toBeTruthy();
+    expect(screen.getByText('Risk assessment unavailable.')).toBeTruthy();
+    expect(screen.getByText(/Assessment unavailable because required analysis did not finish/)).toBeTruthy();
   });
 
   it('builds deterministic SARIF 2.1.0 with status, diagnostics, and report-only semantics', () => {
@@ -289,7 +290,7 @@ describe('scanner report hierarchy', () => {
       },
     } as unknown as ScannerReportModelV2;
     render(<ReportSummary scan={v2Scan} />);
-    expect(screen.getByLabelText('Analysis status: Analysis degraded')).toBeTruthy();
+    expect(screen.getByLabelText('Analysis status: Partial analysis')).toBeTruthy();
 
     expect(screen.getByRole('heading', { name: 'Analysis coverage' })).toBeTruthy();
     expect(screen.getByLabelText('Analysis capability coverage').textContent).toContain('workflow-insights');
@@ -308,7 +309,7 @@ describe('scanner report hierarchy', () => {
     expect(screen.getByLabelText('Analysis limit usage').textContent).toContain('1 omitted');
     expect(screen.getByLabelText('Analysis limit usage').textContent).toContain('limit exhausted');
     expect(screen.getByText('Notice: OPTIONAL_LIMIT_EXCEEDED · DEGRADED')).toBeTruthy();
-    expect(screen.getByText('Analysis has coverage limits.')).toBeTruthy();
+    expect(screen.getByText('Assessment unavailable.')).toBeTruthy();
     expect(container.textContent).not.toContain('Full local analysis completed.');
     expect(container.textContent?.toLowerCase()).not.toContain('safe to execute');
   });

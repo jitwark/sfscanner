@@ -42,9 +42,40 @@ function ref(): RefObject<HTMLHeadingElement | null> {
   return { current: null };
 }
 
+const assessment = {
+  score: 80, grade: 'HIGH', scoringPolicyVersion: '2.0.0', basisFindingIds: [],
+  excludedReportOnlyFindingIds: [], excludedUncertainFindingIds: [],
+  excludedNotApplicableFindingIds: [], unknownEvidenceCount: 0,
+};
+
+function modelOnly(): ScannerReportModelV2 {
+  const base = model();
+  const diagnosticIds = ['c'.repeat(64), 'd'.repeat(64)];
+  return model({
+    assessment,
+    v2: {
+      ...base.v2,
+      analysis: {
+        status: 'DEGRADED',
+        capabilities: [{
+          id: 'workflow-insights', version: '1.0.0', required: false, status: 'DEGRADED',
+          seen: 3, analyzed: 3, skipped: 0, omitted: 0, diagnosticIds,
+        }],
+        diagnostics: [
+          { id: diagnosticIds[0], code: 'SEMANTIC_CATALOGUE_MISS', category: 'CATALOGUE', capabilityId: 'workflow-insights', aggregateEffect: 'DEGRADED', assessmentEligible: true },
+          { id: diagnosticIds[1], code: 'GENERIC_NODE_UNMODELED_CAPABILITY', category: 'CATALOGUE', capabilityId: 'workflow-insights', aggregateEffect: 'DEGRADED', assessmentEligible: true },
+        ],
+      },
+      limits: { ...base.v2.limits, usage: [] },
+      stats: { ...base.v2.stats, rejectedCandidates: 0, collapsedCandidates: 0, omittedFindings: 0 },
+    },
+    limits: { usage: [] },
+  });
+}
+
   afterEach(cleanup);
 describe('ReportCoverage', () => {
-  it('renders capability counts, omissions, diagnostics, and an honest degraded status', () => {
+  it('renders capability counts, omissions, diagnostics, and Assessment unavailable for a null assessment', () => {
     const scan = model({
       v2: {
         ...model().v2,
@@ -60,11 +91,11 @@ describe('ReportCoverage', () => {
     render(<ReportCoverage model={scan} />);
 
     expect(screen.getByRole('heading', { name: 'Analysis coverage' })).toBeTruthy();
-    expect(screen.getByRole('status').textContent).toContain('Analysis degraded');
+    expect(screen.getByRole('status').textContent).toContain('Assessment unavailable');
     expect(screen.getByText(/javascript-security/)).toBeTruthy();
     expect(screen.getByText(/3\/4 analyzed/)).toBeTruthy();
     expect(screen.getAllByText(/1 omitted/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('alert').textContent).toMatch(/no risk grade/i);
+    expect(screen.getByRole('alert').textContent).toMatch(/no grade is shown/i);
     expect(screen.queryByText(/LOW risk/)).toBeNull();
 
     const capabilities = screen.getByRole('list', { name: 'Analysis capability coverage' });
@@ -77,6 +108,49 @@ describe('ReportCoverage', () => {
     expect(within(limitRows).getByText((_, element) => element?.tagName === 'P' && element.textContent === 'code-bytes: 3/3 examined · 1 omitted · limit exhausted')).toBeTruthy();
     expect(within(limitRows).getByText(/Omitted evidence is not a clean result/i)).toBeTruthy();
     expect(within(limitRows).getByText(/exhausted, so further evidence was not reviewed/i)).toBeTruthy();
+  });
+
+  it('uses Standard scan only for positive, non-adverse model coverage evidence', () => {
+    render(<ReportCoverage model={modelOnly()} />);
+
+    expect(screen.getByRole('status').textContent).toContain('Standard scan');
+    const note = screen.getAllByRole('note').find((element) => element.textContent?.includes('Standard scan'));
+    expect(note?.textContent).toMatch(/Some node behavior is not modelled/i);
+    expect(note?.textContent).toMatch(/Findings and the grade reflect the available evidence/i);
+    expect(screen.queryByRole('alert')).toBeNull();
+  });
+
+  it('keeps a model-only result with a recorded limit at Partial analysis', () => {
+    const scan = modelOnly();
+    const usage = [{ id: 'code-bytes', maximum: 3, examined: 3, omitted: 1, exhausted: true }];
+    const mixed = model({ ...scan, v2: { ...scan.v2, limits: { ...scan.v2.limits, usage } }, limits: { usage } });
+    render(<ReportCoverage model={mixed} />);
+
+    expect(screen.getByRole('status').textContent).toContain('Partial analysis');
+    expect(screen.getByRole('alert').textContent).toMatch(/Some evidence was omitted, refused, failed, or not covered/i);
+    expect(screen.queryByText('Standard scan')).toBeNull();
+  });
+
+  it('keeps an unknown diagnostic code at Partial analysis even when it replaces a model notice', () => {
+    const scan = modelOnly();
+    const first = scan.v2.analysis.diagnostics[0];
+    const diagnostic = { ...first, code: 'OPTIONAL_LIMIT_EXCEEDED' };
+    const unknown = model({
+      ...scan,
+      v2: {
+        ...scan.v2,
+        analysis: {
+          ...scan.v2.analysis,
+          diagnostics: [diagnostic],
+          capabilities: [{ ...scan.v2.analysis.capabilities[0], diagnosticIds: [diagnostic.id] }],
+        },
+      },
+    });
+    render(<ReportCoverage model={unknown} />);
+
+    expect(screen.getByRole('status').textContent).toContain('Partial analysis');
+    expect(screen.getByText(/OPTIONAL_LIMIT_EXCEEDED/)).toBeTruthy();
+    expect(screen.queryByText('Standard scan')).toBeNull();
   });
 
   it('explains diagnostics that no capability row references without inventing a capability reason', () => {
@@ -97,6 +171,7 @@ describe('ReportCoverage', () => {
     });
     render(<ReportCoverage model={scan} />);
 
+    expect(screen.getByRole('status').textContent).toContain('Analysis incomplete');
     expect(screen.getByRole('alert').textContent).toContain('Assessment unavailable');
     expect(screen.getByText(/No capability executions were returned/)).toBeTruthy();
     expect(screen.getByText(/No bounded omissions were reported/)).toBeTruthy();
@@ -138,7 +213,8 @@ describe('ReportCoverage', () => {
     render(<ReportCoverage model={scan} />);
 
     expect(screen.queryByText(/no risk grade/i)).toBeNull();
-    expect(screen.getByRole('alert').textContent).toMatch(/grade shown reflects only the evidence/i);
+    expect(screen.getByRole('status').textContent).toContain('Partial analysis');
+    expect(screen.getByRole('alert').textContent).toMatch(/findings and any grade reflect only what was assessed/i);
   });
 
   it('renders both fallback coverage codes (renderer-only)', () => {
