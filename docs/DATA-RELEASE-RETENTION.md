@@ -1,5 +1,7 @@
 # Public data release retention and supersession
 
+> Current boundary — November 8, 2026: v0.2.1 publication and both-host delivery are complete. Automated cleanup remains separately owner-controlled; a published release does not authorize deleting retained evidence. The target-policy implementation history below is preserved. See [programme status](scanner/programme-status.md).
+
 Status: target policy; staged-release family landed in commit `9fc2789`, but owner approval is
 required before automated cleanup, publication, or wiring into deployment/release gates.
 

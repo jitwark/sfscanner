@@ -1,6 +1,6 @@
 # @hub/scanner-core — The n8n-SecureFlow Scanner Core Engine
 
-> **Package Identity:** `secureflow-scanner@2.0.0`  
+> **Workspace package:** private `@hub/scanner-core@0.1.0`; admitted v2 engine identity `secureflow-scanner@2.0.0`. These are distinct from the published CLI package `sfscanner@0.2.1`.  
 > **Architecture:** Compiler-Grade Static AST & Dataflow Analysis Engine for n8n Workflows  
 > **Licensing:** MIT for this scanner tooling. See the [canonical licensing policy](../../docs/LICENSING.md) for the catalogue dataset terms.
 

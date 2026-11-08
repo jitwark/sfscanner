@@ -53,7 +53,7 @@ describe('ScannerInput', () => {
     expect((container.firstElementChild as HTMLElement).style.width).toBe('320px');
     expect(screen.getByRole('heading', { name: 'Scan a workflow' })).toBeTruthy();
     expect(screen.getByRole('textbox', { name: 'Workflow JSON' })).toBeTruthy();
-    expect(screen.getByText('Paste JSON or drop an n8n Download file.')).toBeTruthy();
+    expect(screen.getByText('Paste JSON or drop a workflow JSON file exported from n8n.')).toBeTruthy();
     expect(screen.queryByText(/Scanned workflow/)).toBeNull();
   });
 
@@ -241,7 +241,9 @@ describe('ScannerInput', () => {
   it('does not advertise a competing Standard mode in the scanner guide', () => {
     render(<ScannerLimits />);
 
-    expect(screen.getByText('Deep scan')).toBeTruthy();
+    expect(screen.getByText('Default scan')).toBeTruthy();
+    expect(screen.getByText('Workflow content stays local')).toBeTruthy();
+    expect(screen.queryByText('Deep scan')).toBeNull();
     expect(screen.queryByText(/Standard/)).toBeNull();
     expect(screen.queryByText('Two depths')).toBeNull();
   });

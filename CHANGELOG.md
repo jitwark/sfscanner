@@ -3,15 +3,37 @@
 All notable changes to n8n SecureFlow — the scanner, the CLI, the catalogue site, and the
 pipeline that builds it.
 
-The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). This project has not
-cut a public release yet, so everything below sits under **Unreleased**. The first tagged version
-will be `0.2.0`, cut when the release blockers in [`STATUS.md`](STATUS.md) are closed.
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+The published release in this repository is [v0.2.1](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1).
+See [programme status](docs/scanner/programme-status.md) for verified delivery and coverage limits.
 
-Entries are grouped by what a reader would notice, not by which workspace changed. Where a change
-closes an audit finding, the finding's ID is cited so the evidence in
-[`docs/audit/2026-09-04/`](docs/audit/2026-09-04/) stays reachable.
+Entries are grouped by observable behavior. Historical audit IDs are retained as
+evidence labels; the private audit records are not part of the public repository.
 
 ## [Unreleased]
+
+- A final scanner/results, workflow security-summary, library layout and analytics UI overhaul
+  is authorized and in progress before the owner's long pause. These new UI bytes are not yet
+  qualified or deployed. Semantic-model expansion remains a v0.3 plan only.
+
+## [0.2.1] — 2026-11-08
+
+- Published the qualified CLI archive to npm and GitHub; anonymous package bytes match the
+  retained archive, which passes 23 package controls.
+- Published the link-only V4 dataset: 18 NDJSON relations, SQLite schema v3 and 12 Excel sheets,
+  with five actual reopening checks passed and no raw workflow bodies redistributed.
+- Deployed the qualified website to GitHub Pages and Firebase. Each host passed a complete
+  anonymous readback of 15,198 application files and 14 live browser cases; the build passed
+  86 production browser cases.
+- Clarified scan-status presentation while preserving raw schemas, scoring, grades and exports.
+  Completion does not establish safety or full semantic coverage.
+- Retained the measured programme limitations: 112/144,043 reviewed executable instances and
+  0/9,669 fully modelled cohort workflows. Original 95%/90% targets remain missed.
+
+## Historical preparation notes — before v0.2.1
+
+The entries below preserve earlier candidate counts, format versions, unpublished pins and
+audit decisions as they were recorded. They are not current release or implementation status.
 
 - **`sfscanner@0.2.0` and the v2 corpus are ready to publish — privacy-sanitized at the publication
   root.** The catalogue now carries admitted v2 native results only: 11,376 results (83 complete,
@@ -30,9 +52,9 @@ closes an audit finding, the finding's ID is cited so the evidence in
   and the contract comparison is type-only, so nothing is added to the runtime output. The
   `@hub/scanner-core` v2 SARIF emitter now reaches its sibling modules by relative path instead of
   through its own package subpaths, restoring the standalone boundary the source audit enforces.
-  Evidence: [`167`](docs/audits/2026-10-19-production-readiness/167-scanner-contract-acceptance-closure.md),
+  Evidence: `167`,
   independently reviewed in
-  [`169`](docs/audits/2026-10-19-production-readiness/169-final-closure-code-review.md).
+  `169`.
 
 - **Four gate regressions are closed at their cause, not their symptom.** The v1 and v2 oversized-
   payload rejections come from one helper with unchanged codes, key order and guard order; the SEO
@@ -42,18 +64,18 @@ closes an audit finding, the finding's ID is cited so the evidence in
   end-to-end chart-integrity subject now reads the served `data/details/` shard, so the fixture
   matches the export instead of the pruned `catalogue-N.json` (test-only; no runtime change). No
   ignore, no disabled rule, no dependency added. Evidence:
-  [`168`](docs/audits/2026-10-19-production-readiness/168-web-gates-acceptance-closure.md) and the
+  `168` and the
   one carried LOW in
-  [`171`](docs/audits/2026-10-19-production-readiness/171-final-surgical-ts-closure.md).
+  `171`.
 
 - **The canvas toolbar and node list show where keyboard focus is.** Three controls — the SVG
   download button, the Popout button and the node-list `<summary>` — carried
   `focus-visible:outline-none` with no replacement ring, so tabbing the canvas reported position to
   nobody (WCAG 2.4.7). Deleting that one utility per control lets the shipped global `:focus-visible`
   rule paint the same 2 px ring the sibling zoom control already had; no new class, no CSS change.
-  Static disposition is [`153`](docs/audits/2026-10-19-production-readiness/153-keyboard-focus-review-closure.md);
+  Static disposition is `153`;
   the browser RED (pre-fix export) and GREEN are
-  [`154`](docs/audits/2026-10-19-production-readiness/154-keyboard-focus-runtime-fix.md).
+  `154`.
 
 - **The composite scan action builds a pinned scanner checkout instead of the caller's
   workspace.** `uses: …/.github/actions/scan` now takes a required `scanner-ref` (full 40-hex
@@ -62,7 +84,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   there only, and excludes that checkout from the default `path: '.'` scan so its own JSON cannot be
   consumed as caller input. The example keeps both references at all zeros, labelled
   `BLOCKED — no published scanner commit`, until one published commit can replace both. Evidence is
-  in [`152-action-source-isolation-implementation.md`](docs/audits/2026-10-19-production-readiness/152-action-source-isolation-implementation.md).
+  in `152-action-source-isolation-implementation.md`.
 
 - **A graded v2 scan now shows the grade the worker actually returned, and its exports carry that
   same result.** The v2 report mounts the existing decision block for every model, and report
@@ -74,7 +96,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   `analysisStatus`/`riskGrade` run properties. The non-hydrating lean tier honours the advertised
   Ctrl/⌘ wheel, Popout now carries the explicit 44 px width floor, and the scanner guide no longer
   claims a ten-findings-per-code-source cap no shipped analyzer enforces. Evidence is in
-  [`146-browser-grade-root-fix.md`](docs/audits/2026-10-19-production-readiness/146-browser-grade-root-fix.md).
+  `146-browser-grade-root-fix.md`.
 
 - **Scanner governance docs now match the shipped binary, and two gates prove it.**
   `--fail-on` is documented as `INFO`, directory scans show `--schema v2`, the MCP client config uses
@@ -89,8 +111,8 @@ closes an audit finding, the finding's ID is cited so the evidence in
   `data/analytics.json`, the licence authority, and real `git check-ignore` scopes, and
   `check:attributions` runs the generator's own `--check` in `CORE_GATES`, so a per-source count that
   drifts from `data/catalogue-*.json` fails even when the row sums still add up. Evidence is in
-  [`149-private-governance-accuracy-implementation.md`](docs/audits/2026-10-19-production-readiness/149-private-governance-accuracy-implementation.md)
-  and [`157-attribution-gate-closure.md`](docs/audits/2026-10-19-production-readiness/157-attribution-gate-closure.md).
+  `149-private-governance-accuracy-implementation.md`
+  and `157-attribution-gate-closure.md`.
 
 - **The scanner now states which limits are enforced, dormant, or unwired, and reports only budgets
   it actually measured.** `ADMITTED_LIMIT_STATES` in `contracts/scanner-limits-v2.ts` classifies all
@@ -103,7 +125,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   2,083/2,084 is presentation-only (`OPTIONAL_LIMIT_EXCEEDED` with the assessment retained). The
   scanner guide no longer claims the shipped profile parses JavaScript/Python, tracks value flow,
   or runs AI-agent checks, and states there is no 24-node workflow cap. Evidence is in
-  [`145-scanner-limits-coverage-implementation.md`](docs/audits/2026-10-19-production-readiness/145-scanner-limits-coverage-implementation.md).
+  `145-scanner-limits-coverage-implementation.md`.
 
 - **The privacy gate and dataset identity now reject ambiguous input instead of guessing.**
   `scripts/check-public-bundle-privacy.mjs` parses an allowlist: `--bundle=<dir>`, unknown arguments,
@@ -113,7 +135,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   it disagrees with `public-release.json`; a null `counts` or `facetCounts.rights` is typed the same
   way instead of throwing a `TypeError`. The promotion runbook states that a `CI=true` labelled skip
   for absent bodies is not a verdict. Evidence is in
-  [`143-data-post-review-root-fix.md`](docs/audits/2026-10-19-production-readiness/143-data-post-review-root-fix.md).
+  `143-data-post-review-root-fix.md`.
 
 - **Six web post-review defects are fixed at their shared roots.** The diagram canvas now binds one
   native, non-passive `wheel` listener on its own viewport instead of a React synthetic handler that
@@ -129,7 +151,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   unhashed bytes, and `verifyPackedRecord` fails closed on an absent digest. The shared catalogue
   loader rejects a loaded total that disagrees with the manifest's `totalEntries`, so a declared but
   renamed shard stops the export instead of silently shrinking it. Evidence is in
-  [`139-web-post-review-root-fix.md`](docs/audits/2026-10-19-production-readiness/139-web-post-review-root-fix.md).
+  `139-web-post-review-root-fix.md`.
 
 - **A promoted public bundle now has its own privacy gate, and a legacy bundle says it is legacy.**
   `scripts/check-public-bundle-privacy.mjs --bundle <dir>` reads exactly the requested bundle,
@@ -144,9 +166,9 @@ closes an audit finding, the finding's ID is cited so the evidence in
   `readBundleMetadata` now throws a typed `DatasetIdentityError`: `LEGACY_V1` tells a v1 bundle
   apart from corrupt v2 metadata with re-export guidance, while `INVALID_BUNDLE` keeps the
   malformed-bundle failure. The nine-step promotion runbook is in
-  [`docs/releases/dataset-promotion.md`](docs/releases/dataset-promotion.md); promotion itself
+  `docs/releases/dataset-promotion.md`; promotion itself
   remains owner-gated (O-1) and has not run. Evidence is in
-  [`137-data-privacy-identity-implementation.md`](docs/audits/2026-10-19-production-readiness/137-data-privacy-identity-implementation.md).
+  `137-data-privacy-identity-implementation.md`.
 
 - **Exclusion wording now names the registry that exists, and a workbook read-back pins U+FFFD.**
   The data dictionary and release notes no longer claim the pipeline lacks an exclusion registry:
@@ -170,7 +192,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   baseline captured before the change. Exclusions and artifacts now say exactly what they are:
   schema-reserved, registry-backed relations that stay empty, with a nonzero excluded count labelled
   a corpus facet rather than rows. Evidence, hashes and commands are in
-  [`133-data-export-remediation-implementation.md`](docs/audits/2026-10-19-production-readiness/133-data-export-remediation-implementation.md).
+  `133-data-export-remediation-implementation.md`.
 
 - **The catalogue site now fails closed on release identity, declares downloads it cannot serve, and
   refuses to build a page list from missing artefacts.** A release export must be built with
@@ -187,7 +209,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   digest, disagrees with the manifest's offsets or lengths, or points at a pack over that bound. A
   catalogue shard the release manifest declares but the build cannot read stops the page list by name
   instead of silently shrinking it. Evidence, commands and the remaining owner blockers are in
-  [`127-web-remediation-completion.md`](docs/audits/2026-10-19-production-readiness/127-web-remediation-completion.md);
+  `127-web-remediation-completion.md`;
   the release-identity journey stays `BLOCKED (B-07)` until the `app/app/public` duplicate is removed by
   its owner, and the public deployment journey stays `BLOCKED (B-01)`.
 
@@ -198,7 +220,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   `version.engine.buildDigest` now reports core's `ENGINE_BUILD_DIGEST_V2`, the same value every scan
   result already carries, instead of the tool hash. Exit codes, analysis statuses, findings, profile,
   ruleset, semantics, and limits identities, and secret redaction are unchanged. Evidence is in
-  [`112-canonical-metadata-identity-correction.md`](docs/audits/2026-10-19-production-readiness/112-canonical-metadata-identity-correction.md).
+  `112-canonical-metadata-identity-correction.md`.
 
 - **Unknown workflow nodes now carry two labelled coverage codes, and common flow-control nodes are
   modelled.** A readable unmodelled node emits `SEMANTIC_CATALOGUE_MISS` and the new
@@ -213,7 +235,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   upstream receipt rows, for 32 records across 31 types, and the v1 crosswalk projects the new code
   as `POLICY_EXECUTION_FAILED`/`POLICY`/`DEGRADED`. `beta-default@2.0.0` still scores seven
   policies; the ten `beta-hardened` analyzers stay unadmitted. Evidence is in
-  [`100-semantic-fallback-catalogue-remediation.md`](docs/audits/2026-10-19-production-readiness/100-semantic-fallback-catalogue-remediation.md);
+  `100-semantic-fallback-catalogue-remediation.md`;
   browser and independent runtime acceptance remain pending.
 
 - **The published scan command's `profile` is the canonical admitted id, not the raw CLI spelling.**
@@ -223,7 +245,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   the unsafe cast that hid the mismatch is gone, so a strict NodeNext consumer sees the value the
   parser actually returns; `beta-hardened` remains a usage error and no profile was added. Scan
   output, exit codes, and config canonicalization are unchanged. Evidence is in
-  [`94-cli-public-profile-type-fix.md`](docs/audits/2026-10-19-production-readiness/94-cli-public-profile-type-fix.md).
+  `94-cli-public-profile-type-fix.md`.
 
 - **Output containment is resolved-base containment, and a selected file is identified by its resolved path.**
   An output path's parent must now resolve inside the resolved selection root: an ancestor link that
@@ -234,7 +256,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   same-label file can no longer be scanned silently; absolute inputs remain admitted and labels remain
   relative. The absolute base itself is labelled without its basename prefix, so `.` and the absolute
   spelling produce the same labels. Evidence is in
-  [`80-cli-path-containment-identity-fix.md`](docs/audits/2026-10-19-production-readiness/80-cli-path-containment-identity-fix.md).
+  `80-cli-path-containment-identity-fix.md`.
 
 - **The published CLI is importable, and its admitted flags now do what they say.** The package
   ships an ESM-only root export with `{types, import}` conditions and `main: ./dist/index.js`, whose
@@ -252,7 +274,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   findings now carry source spans so SARIF emits physical locations; every SARIF rule descriptor
   carries a `helpUri` anchor, and a completed DEGRADED/INDETERMINATE item is a successful invocation.
   Evidence is in
-  [`74-cli-packaging-contract-cutover.md`](docs/audits/2026-10-19-production-readiness/74-cli-packaging-contract-cutover.md).
+  `74-cli-packaging-contract-cutover.md`.
 
 - **Webhook authentication is exact-match again, because the pinned runtime is.** The pinned
   `n8n-nodes-base@2.15.1` `dist/nodes/Webhook/utils.js:205-289` compares `authentication` with strict
@@ -265,7 +287,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   resolves `ajv@^6.15.0` from a declared `@hub/pipeline` devDependency (lockfile updated offline), and
   the MCP installed-shim comment states the real proof boundary: Windows name-variant entry handshake
   proved; Windows `.cmd` and POSIX `.bin` still unexercised. Evidence in
-  [`54-community-security-correction.md`](docs/audits/2026-10-19-production-readiness/54-community-security-correction.md).
+  `54-community-security-correction.md`.
 
 - **v2 fact IDs hash the canonical fact, so webhook authentication findings survive the pipeline.**
   A policy finding whose ingress fact carried a malformed `authentication` spelling (`" basicAuth "`,
@@ -277,7 +299,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   identity for every admissible fact), so those spellings report MEDIUM through the real CLI and
   MCP with exit 0 at `--fail-on CRITICAL` while the exact three raw names stay protected. Evidence
   is in
-  [`66-webhook-fact-canonicalization-fix.md`](docs/audits/2026-10-19-production-readiness/66-webhook-fact-canonicalization-fix.md).
+  `66-webhook-fact-canonicalization-fix.md`.
 
 - **v2 scans can no longer outrun their per-input deadline.** Each v2 scan now runs in a dedicated
   built worker (`dist/scan-worker.js`) resolved through the package's private
@@ -290,10 +312,10 @@ closes an audit finding, the finding's ID is cited so the evidence in
   `FAILED` because the exit is unproven; the message/error/exit handlers are armed before the
   post-construction abort check, and the scanner-cli suite builds `dist/` once in project setup
   instead of racing an in-file rebuild. Evidence is in
-  [`48-worker-isolation-execution.md`](docs/audits/2026-10-19-production-readiness/48-worker-isolation-execution.md),
-  [`55-worker-lifecycle-correction.md`](docs/audits/2026-10-19-production-readiness/55-worker-lifecycle-correction.md),
+  `48-worker-isolation-execution.md`,
+  `55-worker-lifecycle-correction.md`,
   and
-  [`60-worker-termination-rejection-correction.md`](docs/audits/2026-10-19-production-readiness/60-worker-termination-rejection-correction.md).
+  `60-worker-termination-rejection-correction.md`.
 - **Scanner core false-negative fixes (audit SEC-01/02/03/04, BUG-01).** Redaction now covers
   token/password/pass/pwd keys, all four paired header-value fields, non-HTTP credential URLs
   including malformed authorities, and Stripe restricted `rk_live_`/`rk_test_` keys while keeping
@@ -306,9 +328,9 @@ closes an audit finding, the finding's ID is cited so the evidence in
   keeps findings parsed before a later syntax error; JavaScript remains explicitly all-or-nothing;
   the core reduction now emits `REQUIRED_STAGE_FAILURE`/`INDETERMINATE`, and the published CLI
   schema accepts that `INDETERMINATE` shape. Focused RED/GREEN, probes, and timestamps are in
-  [`27-core-security-implementation.md`](docs/audits/2026-10-19-production-readiness/27-core-security-implementation.md);
+  `27-core-security-implementation.md`;
   the correction evidence is in
-  [`47-core-policy-schema-execution.md`](docs/audits/2026-10-19-production-readiness/47-core-policy-schema-execution.md).
+  `47-core-policy-schema-execution.md`.
 
 - **`sfscanner@0.1.0` published on npm.** The standalone scanner CLI and MCP server are published
   on the public npm registry under `sfscanner`, providing deterministic offline workflow analysis via
@@ -320,7 +342,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   injected `--output` cannot overwrite a file. Console output of every
   method is redirected to stderr, and the 1 MiB stdio frame cap now counts JSON content for both LF
   and CRLF clients. Focused MCP tests: 33 pass; evidence in
-  [`26-mcp-critical-fixes.md`](docs/audits/2026-10-19-production-readiness/26-mcp-critical-fixes.md).
+  `26-mcp-critical-fixes.md`.
 - **The `sfscanner-mcp` bin starts the server when installed.** The entry check now compares the
   module's real path instead of a `mcp.js` filename suffix, so npm's POSIX `node_modules/.bin`
   symlink serves `initialize`/`tools/list`/`tools/call` instead of exiting 0 with no response.
@@ -328,7 +350,7 @@ closes an audit finding, the finding's ID is cited so the evidence in
   dash/dash-glob policy. Focused MCP suite: 37 pass, 1 skipped (Windows symlink privilege);
   packed verifier named-entry probe passes, POSIX `.bin` execution remains unexercised on the
   Windows gate. Evidence in
-  [`42-mcp-entry-execution.md`](docs/audits/2026-10-19-production-readiness/42-mcp-entry-execution.md).
+  `42-mcp-entry-execution.md`.
 - **The web scanner now shows a real in-flight state.** Submitting a workflow renders a status with an
   elapsed timer and a working cancel, replacing a disabled button that gave no sign of progress or of how
   long the wait might be. The cancel path aborts the worker rather than leaving it to finish.

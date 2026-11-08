@@ -136,16 +136,18 @@ describe('scanner report trust and help', () => {
     expect(container.textContent?.toLowerCase()).not.toMatch(/verified signature|trusted ruleset|software bill of materials/);
   });
 
-  it('keeps v2 null and indeterminate outcomes explicitly non-conclusive', () => {
+  it('keeps the decision caveat out of the trust section while preserving its remainder', () => {
     const { container, unmount } = render(<ReportTrust scan={indeterminateV2Scan} />);
 
-    expect(container.textContent).toContain('Analysis incomplete');
-    expect(container.textContent).toContain('Assessment unavailable because required analysis did not finish');
+    expect(container.textContent).not.toContain('Analysis incomplete.');
+    expect(container.textContent).not.toContain('Assessment unavailable because required analysis did not finish');
+    expect(container.textContent).toMatch(/not proof of runtime behavior/i);
+    expect(container.textContent).toMatch(/Node-model coverage can be partial/i);
     expect(container.textContent).not.toMatch(/full local analysis completed|all node behavior.+modelled|safe to execute|analysis passed/i);
     unmount();
 
     const completeWithoutAssessment = render(<ReportTrust scan={completeWithoutAssessmentV2Scan} />);
-    expect(completeWithoutAssessment.container.textContent).toMatch(/Assessment unavailable/i);
+    expect(completeWithoutAssessment.container.textContent).not.toContain('Assessment unavailable');
     expect(completeWithoutAssessment.container.textContent).not.toMatch(/Analysis complete\.|full local analysis completed|safe to execute/i);
   });
 });

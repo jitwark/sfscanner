@@ -8,8 +8,7 @@
 > Source of truth: [`package.json`](../../package.json), [`run-gates.mjs`](../../scripts/run-gates.mjs), [`rollback-release.mjs`](../../scripts/rollback-release.mjs), [`stage-release.mjs`](../../scripts/stage-release.mjs), [`rehearse-release-rollback.mjs`](../../scripts/rehearse-release-rollback.mjs), and the [release assurance specification](../../openspec/changes/world-class-scanner-cli/specs/scanner-release-assurance/spec.md)
 
 Use this procedure to prepare evidence for a candidate. A green local command is necessary
-engineering evidence only. The repository remains private, and no step below authorizes a
-public catalogue, GitHub repository or Action, MCP publication, or deployment.
+engineering evidence only. The qualified v0.2.1 repository, npm archive, Action and both sites are already public; see [programme status](programme-status.md). This procedure governs a future candidate and does not authorize a new publication or qualify the in-progress UI overhaul.
 
 ## Release identities and rollback authority
 

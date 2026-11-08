@@ -1,6 +1,6 @@
 # n8n SecureFlow 🛡️
 
-> Release status — November 8, 2026: `sfscanner@0.2.1` is published on npm and GitHub. The production website is live on GitHub Pages and Firebase. The qualified build passes 86 production browser checks and eight live scanner checks on each host. The original formal-coverage targets remain missed; see [scanner status](docs/scanner/programme-status.md).
+> Release status — November 8, 2026: `sfscanner@0.2.1` is published on npm and GitHub. The production website is live on GitHub Pages and Firebase. The qualified build passes 86 production browser checks and 14 live browser cases on each host (8 scanner + 6 catalogue). The original formal-coverage targets remain missed; see [scanner status](docs/scanner/programme-status.md).
 
 **A deterministic security scanner for n8n workflows — and a catalogue of 11,464 public workflows
 that tells you where each one came from, what it touches, and how much of it the scanner could
@@ -10,6 +10,8 @@ Runs from your terminal, from an AI agent over MCP, and in the browser. The work
 leaves your machine.
 
 **Live website:** [GitHub Pages](https://jitwark.github.io/sfscanner/) · [Firebase](https://n8n-enterprise-1.web.app/sfscanner/). Downloads, checksums and the release record are available in [v0.2.1](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1).
+
+**Development state — November 8, 2026:** the owner authorized a final scanner/workflow/library/analytics UI overhaul before a long implementation pause. Both deployed sites remain the qualified baseline until the new UI passes fresh delivery checks. The [current programme status](docs/scanner/programme-status.md) separates verified delivery from remaining coverage gaps; the [v0.3 roadmap](docs/scanner/v0.3-roadmap.md) is planning only and has no implementation ETA.
 
 > Status: v0.2.1 released — V4 dataset, link-only (no workflow bodies redistributed)
 > Last verified: 2026-11-08 (production build, package, hosted CI and live browser checks)
@@ -34,8 +36,8 @@ leaves your machine.
 
 ## ⚡ Quickstart
 
-These commands show CLI usage after a verified installation. The current candidate's final package
-and npm publication have not yet been qualified; they are not installation or availability claims.
+Install the published, verified package with `npm install -g sfscanner@0.2.1`, then use
+the commands below. Its anonymous registry download matches the qualified release archive.
 
 ```bash
 # one workflow, readable output
@@ -55,8 +57,8 @@ Node 22. The package is ESM-only. The MCP server is one tool, `n8n_scan`, over s
 [`packages/scanner-cli/README.md`](packages/scanner-cli/README.md) for the config snippet.
 
 The browser scanner uses the shared engine in a worker on your machine; the site is a static
-export with no server API and no network scanner. Production browser qualification for this
-candidate is pending.
+export with no server API and no network scanner. The production build passes 86 browser cases;
+each live host also passes eight scanner and six catalogue cases, including the first real scan offline.
 
 ---
 
@@ -127,30 +129,35 @@ The formal cohort excludes 1,795 rows: 1,671 community-package rows, 54 invalid 
 means the measurement finished with explicit exclusions; it does not certify complete semantics or
 safety. These are measured programme target misses and documented first-release limitations.
 
-### 📦 Candidate dataset — downloads pending
+### 📦 Published V4 dataset
 
 The real export produced `release-2026-11-07-9edb75aa0898` in `public-data-model-v4` format:
 18 logical relations in NDJSON and SQLite, plus a 12-sheet Excel workbook. The dataset format
-version is independent of scanner version 2.x. These files are local candidate artifacts;
-**they are not publicly downloadable yet**. The repaired bundle passes all five actual reopening
+version is independent of scanner version 2.x. Download the qualified
+[dataset ZIP](https://github.com/jitwark/sfscanner/releases/download/v0.2.1/sfscanner-dataset-v4.zip)
+and verify it against [SHA256SUMS](https://github.com/jitwark/sfscanner/releases/download/v0.2.1/SHA256SUMS).
+The repaired bundle passes all five actual reopening
 checks, including exact Excel metadata, cell, formula and truncation validation. A sweep of
 2,935,097 NDJSON string leaves found zero email, token, private-IP or internal-host matches;
 the captured zero-match baseline comparison also passes. These checks qualify the dataset
-formats and configured privacy controls, not the remaining site/package/publication steps.
+formats and configured privacy controls. Site, package and public delivery have their own
+completed checks, recorded in the release record and programme status.
 
-Candidate source manifest SHA-256: `40177ed565aa1babb1004e5124c8a9b455f215ff8777bfb5f80b029401a74479`.
-Candidate corpus SHA-256: `025e8707c8a9c93d99e6f191e9e23ec73403b7af0e2f419695857e32cd9ab634`.
+Released source manifest SHA-256: `40177ed565aa1babb1004e5124c8a9b455f215ff8777bfb5f80b029401a74479`.
+Released corpus SHA-256: `025e8707c8a9c93d99e6f191e9e23ec73403b7af0e2f419695857e32cd9ab634`.
 
-| Candidate artifact | Bytes | SHA-256 |
+| Released artifact | Bytes | SHA-256 |
 | --- | ---: | --- |
 | `public-release.json` | 1,598 | `0e103f9444d5b0ae0ad6dd9e9dceb4b8b8310fc1145582add28b77ab93c205f6` |
 | `release.sqlite` | 236,318,720 | `5d8920cbb64f758753740efb9ccfb5a754e5489596bead6ece701f545fbce1a3` |
 | `release.xlsx` | 39,089,573 | `0b0d6f46d2de10a1fe64ac159c7d7fab406ec16e116270f34c7830a3125af717` |
 | `ndjson/public-release.json` | 3,058 | `b159c952786785e524f7ca0a2bec8e761fe6415fce692af7c8e736d28f3ebeee` |
 
-The NDJSON manifest lists the 18 relation files and their identities. Final source association,
-production site/browser, package and public delivery checks remain pending. No candidate Pages or
-npm availability is claimed; the historical Firebase analytics page is not candidate evidence.
+The NDJSON manifest lists the 18 relation files and their identities. The
+[release record](https://github.com/jitwark/sfscanner/releases/download/v0.2.1/release-record.json)
+binds the qualified source, package, dataset and both live hosts. Full anonymous readback
+verified all 15,198 application files on each host. The larger semantic-coverage programme
+remains incomplete, as the measured target misses above show.
 
 A *result* is an admitted scan of the exact body bytes — not a safety verdict. A *degraded* scan may
 have missed findings or had its assessment withheld; an *indeterminate* scan publishes no assessment.

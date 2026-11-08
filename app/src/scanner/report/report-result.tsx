@@ -53,11 +53,11 @@ export function ReportResult({ scan, prerequisites, outcomeHeadingRef, onRetry }
   return (
     <div className="flex flex-col gap-6">
       {model ? <>
-        <ReportV2Sections model={model} outcomeHeadingRef={outcomeHeadingRef} />
-        {prerequisites ? <ReportPrerequisites model={prerequisites} /> : null}
-        <ReportDecision scan={scan} />
+        <ReportDecision scan={scan} outcomeHeadingRef={outcomeHeadingRef} />
         <ReportFindings scan={scan} />
         <ReportAnatomy scan={scan} />
+        {prerequisites ? <ReportPrerequisites model={prerequisites} /> : null}
+        <ReportV2Sections model={model} />
       </> : <>
         <ReportSummary scan={scan} outcomeHeadingRef={outcomeHeadingRef} onRetry={onRetry} />
         {prerequisites ? <ReportPrerequisites model={prerequisites} /> : null}

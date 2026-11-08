@@ -75,7 +75,9 @@ read-only violation — the contract bans caller dependency installs and builds,
 | [`146-browser-grade-root-fix.md`](../audits/2026-10-19-production-readiness/146-browser-grade-root-fix.md) | browser report/export grade parity | not a package identity |
 | [`149-private-governance-accuracy-implementation.md`](../audits/2026-10-19-production-readiness/149-private-governance-accuracy-implementation.md) | governance documents match the shipped binary, with its own gates | not a corpus or release claim |
 
-## Unrun
+## Historical unrun checkpoint — superseded for the published v0.2.1 release
+
+The statements below describe the earlier migration checkpoint. Public extraction and publication subsequently passed; product source 6313d89097c09faad499f54deeee33c6571109d5 is public, and the actual pinned Action scan/SARIF run 42424040201 passed. The public caller uses immutable accepted pins, not zero placeholders. Formal corpus measurement completed with 112/144,043 reviewed executable instances and 0/9,669 fully modelled workflows; the 95%/90% targets were missed. See [programme status](programme-status.md) for current release facts.
 
 - **Public extraction** of these files (`scripts/extract-public-repo.mjs`) — UNRUN.
 - **Corpus scan / full corpus coverage** — UNRUN. No rule count or coverage figure is claimed here.

@@ -50,14 +50,30 @@ function v2Scan(
   } as unknown as ScannerReportModelV2;
 }
 
+const finding: ScanWorkflowResult['findings'][number] = {
+  policyId: 'N8N_CODE_NODE', title: 'Code node', severity: 'LOW', location: {}, evidence: {},
+  message: 'Review this node.', explanation: 'Code can change behavior.', whyItMatters: 'Review it.',
+  possibleImpact: 'Unexpected behavior.', remediation: 'Review the code.', remediationSteps: [],
+  confidence: 'HIGH', policyEffect: 'LEGACY_SCORE',
+};
+
+function withFinding(scan: ScanWorkflowResult): ScanWorkflowResult {
+  return {
+    ...scan,
+    findings: [finding],
+    summary: scan.summary ? { ...scan.summary, low: Math.max(1, scan.summary.low) } : scan.summary,
+  };
+}
+
 
 describe('ReportDecision', () => {
   afterEach(() => cleanup());
   it('withholds grade, score, and reassuring wording when a v2 assessment is null', () => {
     render(<ReportDecision scan={v2Scan('COMPLETE', null)} />);
 
-    expect(screen.getByText(/Assessment unavailable/i)).toBeTruthy();
+    expect(screen.getAllByText(/Assessment unavailable/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/coverage is insufficient/i).length).toBeGreaterThan(0);
+    expect(screen.getByText('No score')).toBeTruthy();
     expect(screen.queryByText(/HIGH risk/)).toBeNull();
     expect(screen.queryByText(/80\/100/)).toBeNull();
     expect(screen.queryByText(/Analysis complete\./)).toBeNull();
@@ -79,7 +95,7 @@ describe('ReportDecision', () => {
   it('uses v2 indeterminate status over legacy projected fields', () => {
     render(<ReportDecision scan={v2Scan('INDETERMINATE', null)} />);
 
-    expect(screen.getByText(/Analysis incomplete/i)).toBeTruthy();
+    expect(screen.getByText('Analysis incomplete. Assessment unavailable because required analysis did not finish; no risk decision is shown.')).toBeTruthy();
     expect(screen.getByText(/Assessment unavailable because required analysis did not finish/i)).toBeTruthy();
     expect(screen.queryByText(/HIGH risk/)).toBeNull();
     expect(screen.queryByText(/analysis complete/i)).toBeNull();
@@ -111,8 +127,24 @@ describe('ReportDecision', () => {
     expect(screen.getByText(/advisory decision from the local scanner/i)).toBeTruthy();
     expect(screen.queryByText('Assessment unavailable')).toBeNull();
   });
+
+  it('does not direct a clean LOW result to nonexistent findings', () => {
+    const cleanLow: ScanWorkflowResult = {
+      ...result('COMPLETE'),
+      riskAssessment: { grade: 'LOW', score: 0, topRisks: [], dataExposure: 'Unknown', complexityDrivers: [] },
+      summary: { critical: 0, high: 0, medium: 0, low: 0, info: 0 },
+    };
+
+    render(<ReportDecision scan={cleanLow} />);
+
+    expect(screen.getByText('LOW risk')).toBeTruthy();
+    expect(screen.getByText(/No findings were returned/i)).toBeTruthy();
+    expect(screen.queryByText('Review the findings before importing.')).toBeNull();
+    expect(screen.queryByRole('link', { name: 'Review findings' })).toBeNull();
+  });
+
   it('puts the grade and recommended next step before detailed sections', () => {
-    render(<ReportDecision scan={result('COMPLETE')} />);
+    render(<ReportDecision scan={withFinding(result('COMPLETE'))} />);
 
     expect(screen.getByRole('heading', { name: 'Decision and next step' })).toBeTruthy();
     expect(screen.getByText('HIGH risk')).toBeTruthy();
@@ -126,7 +158,7 @@ describe('ReportDecision', () => {
 
     expect(screen.getByText('No grade')).toBeTruthy();
     expect(screen.queryByText(/HIGH risk/)).toBeNull();
-    expect(screen.getByText(/Analysis incomplete/i)).toBeTruthy();
+    expect(screen.getByText('Analysis incomplete. Assessment unavailable because required analysis did not finish; no risk decision is shown.')).toBeTruthy();
     expect(screen.getByText(/no risk decision is shown/i)).toBeTruthy();
   });
 });

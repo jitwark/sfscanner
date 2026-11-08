@@ -34,7 +34,7 @@ export function ScannerLimits() {
         <div className="rounded-control border border-hairline bg-raised p-3">
           <div className="flex items-center gap-2">
             <Layers className="h-3.5 w-3.5 text-accent-text" aria-hidden />
-            <h3 className="font-display text-xs font-semibold text-ink">Deep scan</h3>
+            <h3 className="font-display text-xs font-semibold text-ink">Default scan</h3>
           </div>
           <p className="mt-1.5 text-xs text-ink-muted">
             The shipped profile reads workflow structure and settings. It does not parse JavaScript
@@ -66,7 +66,7 @@ export function ScannerLimits() {
         <div className="rounded-control border border-hairline bg-raised p-3">
           <div className="flex items-center gap-2">
             <EyeOff className="h-3.5 w-3.5 text-accent-text" aria-hidden />
-            <h3 className="font-display text-xs font-semibold text-ink">Nothing leaves</h3>
+            <h3 className="font-display text-xs font-semibold text-ink">Workflow content stays local</h3>
           </div>
           <p className="mt-1.5 text-xs text-ink-muted">
             The scanner worker does not send workflow content to a remote service or persist it through

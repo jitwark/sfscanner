@@ -1,5 +1,7 @@
 # Data lifecycle
 
+> Release boundary — November 8, 2026: v0.2.1 data is already qualified and published as a separate link-only V4 artifact. The lifecycle below governs future derivations/promotions; it is not a current pending publication queue. The UI overhaul reuses the bound promoted data. See [data availability](DATA-AVAILABILITY.md).
+
 > Status: current
 > Last verified: 2026-08-29
 > Owner: Pipeline maintainer

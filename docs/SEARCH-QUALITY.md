@@ -1,5 +1,7 @@
 # Search quality
 
+> Measurement boundary — November 8, 2026: search algorithms/contracts remain reference guidance; dated ranking and latency figures retain their original corpus/machine scope. The v0.2.1 release passed its configured governance gates, but no new human relevance sign-off or fresh experiment is claimed by the UI refresh. See [programme status](scanner/programme-status.md).
+
 > Status: current
 > Last verified: 2026-09-28
 > Owner: Search maintainer

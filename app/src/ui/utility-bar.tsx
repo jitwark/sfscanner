@@ -13,7 +13,7 @@ export function UtilityBar() {
           <span>Local client-side execution · zero telemetry · open source</span>
         </div>
         <div className="flex items-center gap-4 text-2xs">
-          <span className="text-ink">v0.1.0</span>
+          <span className="text-ink">Static analysis · advisory</span>
         </div>
       </div>
     </aside>

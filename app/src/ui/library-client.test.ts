@@ -280,6 +280,16 @@ describe('toLibraryItemFromSearch', () => {
     expect(new URL(window.location.href).searchParams.get('page')).toBe('2');
     expect(screen.getByText('48 workflows')).toBeDefined();
   });
+
+  it('loads the page saved in the URL before the first post-hydration search', async () => {
+    window.history.replaceState({}, '', '/library/?page=5');
+    searchMock.mockResolvedValue({ ids: [], total: 240, counts: EMPTY_COUNTS, items: [] });
+
+    render(createElement(LibraryClient, { initialItems: [], initialCounts: EMPTY_COUNTS, totalCount: 240 }));
+
+    await waitFor(() => expect(searchMock).toHaveBeenCalledOnce());
+    expect(searchMock.mock.calls[0]?.[2]).toMatchObject({ page: 1, limit: 120 });
+  });
 });
 
 describe('LibraryClient hydration', () => {

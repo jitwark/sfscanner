@@ -1,6 +1,41 @@
 # Scanner implementation and verification status
 
-## Current measurement — November 7, 2026
+> Canonical public scanner and programme status. Last updated: November 8, 2026.
+>
+> **Owner boundary — November 8, 2026:** Long pause planned AFTER the newly authorized
+> scanner/workflow/library/analytics overhaul; the prior `0.2.1` release remains the qualified
+> baseline, and the UI overhaul is not yet qualified. There is no automatic resume. Overall
+> programme completion remains `null`; any future completion date is unknown.
+
+## Release baseline — November 8, 2026
+
+The qualified product release is tag
+[`v0.2.1`](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1), published November 8, 2026,
+at product commit `6313d89097c09faad499f54deeee33c6571109d5`. The public documentation head
+verified for this release is `8e2a6f10b144d79cc147f09453f202deb0f39193`.
+
+The package `sfscanner@0.2.1` was published to npm with maintainer account `jitwarr` (distinct
+from the GitHub owner `jitwark`). Its qualified tarball SHA-256 is
+`0aff150fbbe9422d1106d66b7c245ba27be8f8cbaf7e162212dd3963bfc5afd7`; the anonymous registry
+download matches the qualified archive.
+
+The site is live on [GitHub Pages](https://jitwark.github.io/sfscanner/) and
+[Firebase](https://n8n-enterprise-1.web.app/sfscanner/); the Firebase root redirects with HTTP
+`302` to `/sfscanner/`. Anonymous readback on each host verifies all `15,198` application files
+and `866,485,610` bytes. The accepted production build passes `86` browser cases and `1,491`
+application tests. Each live host passes `14` additional browser cases: `8` scanner and `6`
+catalogue checks.
+
+The delivery revision `1d9f4ad7dff09fd880c7397feeeecfb2893383ad` passes all `6/6` hosted CI
+jobs in run `42475593007`. The published Action commit
+`827877bf7215c7119f33bd7967dcba0d531448e5` passed an actual pull-request scan and SARIF upload
+in run `42424040201`.
+
+The V4 dataset contains `18` NDJSON relations, SQLite schema version `3` and a `12`-sheet Excel
+workbook. All five actual reopen checks qualified. All `11,464` catalogue records are link-only;
+no raw workflow bodies are distributed.
+
+## Formal coverage baseline — November 7, 2026
 
 The real frozen scan and retained-record replay completed in 1,378.05 seconds and
 431.98 seconds respectively. Their formal coverage objects are byte-identical and conserve
@@ -83,24 +118,29 @@ files, SQLite archive and sealed logical dataset identity match the preserved in
 
 The verified candidate is promoted into `data/` and `outputs/public-dataset/`. Every
 promoted file matches its staged size/hash, and the prior local trees are preserved externally.
-The [v0.2.1 release](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1) provides
-the qualified dataset ZIP, CLI archive, checksums, notices, SBOM and release record.
-The anonymous npm download of `sfscanner@0.2.1` matches the qualified archive:
-`0aff150fbbe9422d1106d66b7c245ba27be8f8cbaf7e162212dd3963bfc5afd7`.
-Its retained package verification passes all 23 controls.
-
-The website is live on [GitHub Pages](https://jitwark.github.io/sfscanner/) and
-[Firebase](https://n8n-enterprise-1.web.app/sfscanner/). The accepted production build
-passes 86 browser cases; each live host passes eight additional scanner browser cases.
-The release source and subsequent delivery-only repair each pass all six hosted CI jobs.
-Full anonymous readback on each host verifies all 15,198 application files /
-866,485,610 bytes. Each host also passes six live catalogue search, hydration and link checks.
+The `v0.2.1` release provides the qualified dataset ZIP, CLI archive, checksums, notices, SBOM
+and release record. The retained package verification passes all `23` controls.
 
 Website labels describe available evidence: model-only graded limitations may render
 `Standard scan`; mixed or unknown limitations remain `Partial analysis`, and null
 assessments never invent a grade. Completion does not establish safety or full semantic
-coverage. Model expansion remains a v0.3.0 plan; no new models are included here.
-The measured scanner snapshot and exact retained-record replays remain preserved.
+coverage. The [v0.3 roadmap](v0.3-roadmap.md) is plan-only; no new models are included in
+`0.2.1`. The measured scanner snapshot and exact retained-record replays remain preserved.
+
+## Programme completion boundary
+
+The named website, deployment and release scope is complete for the qualified `0.2.1` baseline.
+That is not completion of the original scanner programme.
+
+- The formal reviewed-instance and fully-modelled-workflow targets were missed:
+  `112 / 144,043` executable instances and `0 / 9,669` workflows.
+- The top-20 formal missing types account for `95,746 / 143,931` missing instances
+  (`66.522153%`), but that is backlog incidence, not achieved coverage.
+- `19 / 20` top-20 types and `19 / 20` top-20 exact cohorts already resolve to legacy
+  `MODELLED`; direct impact on current `DEGRADED` labels remains `UNKNOWN`.
+- No prioritized v0.3 type is `LOCAL_SOURCE_READY`, and v0.3 has no actual admitted models.
+- Overall programme completion is `null`. A future completion date and any coverage forecast
+  remain unknown.
 
 ## Dated history — October 27–29, 2026
 

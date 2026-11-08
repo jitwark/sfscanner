@@ -146,4 +146,40 @@ describe('ResultCard', () => {
     expect(screen.getByText('Three')).toBeDefined();
     expect(screen.getByText('Four')).toBeDefined();
   });
+
+  it('keeps long chips, titles and source URLs inside the card column', () => {
+    const longTitle = `ExtremelyLongWorkflowTitleWithoutBreakOpportunity${'X'.repeat(120)}`;
+    const longChip = `ExtremelyLongIntegrationLabel${'Y'.repeat(120)}`;
+    const longSource = `https://example.invalid/${'source-segment/'.repeat(12)}`;
+    const { container } = render(
+      <ResultCard
+        item={{
+          ...sampleItem,
+          title: longTitle,
+          integrations: [longChip],
+          sourceRepo: longSource,
+        }}
+      />,
+    );
+
+    const link = screen.getByRole('link', { name: longTitle });
+    expect(link.getAttribute('title')).toBe(longTitle);
+    const title = link.querySelector('span');
+    expect(title?.className).toContain('min-w-0');
+    expect(title?.className).toContain('break-words');
+    expect(title?.className).toContain('[overflow-wrap:anywhere]');
+
+    const chip = screen.getByText(/^Extremelylongintegrationlabel/);
+    expect(chip.className).toContain('max-w-full');
+    expect(chip.className).toContain('break-all');
+
+    const metadata = container.querySelector('article > div:last-child');
+    expect(metadata?.className).toContain('min-w-0');
+    expect(metadata?.className).toContain('max-w-full');
+    expect(metadata?.className).toContain('md:w-56');
+
+    const source = screen.getByText(longSource);
+    expect(source.className).toContain('min-w-0');
+    expect(source.className).toContain('break-all');
+  });
 });

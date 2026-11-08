@@ -16,7 +16,8 @@ export type ResultCardProps = {
 function Chip({ label, muted = false }: { label: string; muted?: boolean }) {
   return (
     <span
-      className={`whitespace-nowrap rounded-control border border-hairline px-2 py-0.5 font-mono text-[11px] ${
+      title={label}
+      className={`inline-block max-w-full break-all rounded-control border border-hairline px-2 py-0.5 align-middle font-mono text-[11px] ${
         muted ? 'text-ink-faint' : 'bg-raised text-ink-muted'
       }`}
     >
@@ -47,10 +48,10 @@ export function ResultCard({ item, isHighlighted = false, activeDescendantId }: 
   const routable = isClientRoutable({ isPrerendered: item.isPrerendered });
   const rawHref = detailHref({ id, slug });
   const targetHref = routable ? rawHref : sitePath(rawHref);
-  const titleClassName = 'inline-flex min-h-11 max-w-full items-center rounded-control px-2 -ml-2 text-sm font-semibold text-ink transition-colors hover:text-accent-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-border active:text-accent-text md:text-base';
+  const titleClassName = 'inline-flex min-h-11 max-w-full min-w-0 items-center rounded-control px-1 -ml-1 text-sm font-semibold text-ink transition-colors hover:text-accent-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-border active:text-accent-text md:-ml-2 md:px-2 md:text-base';
   const titleContent = (
     <>
-      <span className="line-clamp-1">{title}</span>
+      <span className="min-w-0 break-words [overflow-wrap:anywhere]" title={title}>{title}</span>
       {/* Stretched so the whole row is the target, while the accessible
           name stays the title alone. */}
       <span className="absolute inset-0" aria-hidden="true" />
@@ -68,8 +69,8 @@ export function ResultCard({ item, isHighlighted = false, activeDescendantId }: 
     >
       <div className="min-w-0 flex-1">
         {routable
-          ? <Link href={targetHref as Route} className={titleClassName}>{titleContent}</Link>
-          : <a href={targetHref} className={titleClassName}>{titleContent}</a>}
+          ? <Link href={targetHref as Route} title={title} className={titleClassName}>{titleContent}</Link>
+          : <a href={targetHref} title={title} className={titleClassName}>{titleContent}</a>}
 
         <p className="mt-0.5 line-clamp-2 max-w-3xl text-xs leading-5 text-ink-muted">
           {summary || 'No overview description available for this workflow.'}
@@ -86,7 +87,7 @@ export function ResultCard({ item, isHighlighted = false, activeDescendantId }: 
         </div>
       </div>
 
-      <div className="flex shrink-0 flex-wrap items-center justify-between gap-x-3 gap-y-1.5 md:w-56 md:flex-col md:items-end">
+      <div className="flex min-w-0 max-w-full shrink-0 flex-wrap items-center justify-between gap-x-3 gap-y-1.5 md:w-56 md:flex-col md:items-end">
         <GradeBadge grade={toGrade(grade)} compact />
         {/* Each value keeps its own element rather than being interpolated into
             one string: a label that only exists as part of a larger text node
@@ -96,10 +97,10 @@ export function ResultCard({ item, isHighlighted = false, activeDescendantId }: 
           <span aria-hidden="true">·</span>
           <span>{trigger}</span>
         </p>
-        <p className="flex items-center gap-1.5 font-mono text-[11px] text-ink-faint">
+        <p className="flex w-full min-w-0 flex-wrap items-center justify-end gap-x-1.5 font-mono text-[11px] text-ink-faint">
           <span>{isLinkOnly ? 'Link-only' : 'Redistributable'}</span>
-          <span aria-hidden="true" className="hidden sm:inline">·</span>
-          <span className="hidden sm:inline">{sourceRepo}</span>
+          <span aria-hidden="true" className="hidden shrink-0 sm:inline">·</span>
+          <span className="hidden min-w-0 max-w-full break-all text-right sm:inline">{sourceRepo}</span>
         </p>
       </div>
     </article>

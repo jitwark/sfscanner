@@ -1,11 +1,14 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, within } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import type { Entry, PublicFinding, SvgPreviewArtifact } from '@hub/contracts';
 import { makeEntry } from '../../test-support/make-entry';
 import { DetailLean } from './detail-lean';
 
-afterEach(() => cleanup());
+afterEach(() => {
+  cleanup();
+  vi.unstubAllEnvs();
+});
 
 const finding = (severity: PublicFinding['severity'], index: number): PublicFinding => ({
   id: `POLICY_${index}`,
@@ -119,6 +122,30 @@ describe('DetailLean hierarchy and section anchors', () => {
     }
   });
 
+  it('keeps the interactive handoff on the canvas, not in the security summary', () => {
+    const { container } = render(<DetailLean entry={heavyEntry()} related={related} />);
+
+    expect(container.querySelector('#security a[href*="/w/view/"]')).toBeNull();
+    expect(container.querySelector('#workflow-canvas a[href*="/w/view/"]')).not.toBeNull();
+  });
+
+  it.each(['', '/', '///', '/sfscanner'])(
+    'never emits a protocol-relative interactive href for base path %j',
+    (basePath) => {
+      vi.stubEnv('NEXT_PUBLIC_BASE_PATH', basePath);
+      const { container } = render(<DetailLean entry={heavyEntry()} related={related} />);
+      const link = container.querySelector<HTMLAnchorElement>('#workflow-canvas a[href*="/w/view/"]');
+
+      expect(link).not.toBeNull();
+      expect(link!.getAttribute('href')?.startsWith('//')).toBe(false);
+      expect(link!.getAttribute('href')).toBe(
+        basePath === '/sfscanner'
+          ? '/sfscanner/w/view/?id=heavy-1&related=r1,r2'
+          : '/w/view/?id=heavy-1&related=r1,r2',
+      );
+    },
+  );
+
   it('emits every id at most once, so anchors and aria-labelledby targets stay unambiguous', () => {
     const { container } = render(<DetailLean entry={heavyEntry()} related={related} preview={preview} />);
     const ids = [...container.querySelectorAll<HTMLElement>('[id]')].map((element) => element.id);
@@ -142,9 +169,11 @@ describe('DetailLean hierarchy and section anchors', () => {
     const base = makeEntry();
     const entry = { ...base, security: { ...base.security, analysisStatus: 'DEGRADED' as const } };
     const container = render(<DetailLean entry={entry} related={[]} />).container;
+    const security = container.querySelector<HTMLElement>('#security');
 
-    expect(within(container).getByText('Partial analysis')).toBeTruthy();
-    expect(within(container).queryByText('Standard scan')).toBeNull();
+    expect(security).not.toBeNull();
+    expect(within(security!).getByText('Partial analysis')).toBeTruthy();
+    expect(within(container).queryAllByText('Standard scan')).toHaveLength(0);
   });
 
   it('handles description provenance honestly', () => {

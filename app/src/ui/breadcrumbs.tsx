@@ -46,6 +46,7 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
               ) : (
                 <Link
                   href={item.href as Route}
+                  prefetch={false}
                   className="flex min-h-6 min-w-0 items-center truncate transition-colors duration-120 hover:text-ink focus-visible:outline-2 focus-visible:outline-accent-border"
                 >
                   {item.label}

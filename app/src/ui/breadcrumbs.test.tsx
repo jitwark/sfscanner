@@ -1,6 +1,16 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import type { ReactNode } from 'react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from '@testing-library/react';
 import { Breadcrumbs } from './breadcrumbs';
+
+vi.mock('next/link', () => ({
+  default: ({ href, prefetch, className, children }: {
+    href: string;
+    prefetch?: boolean;
+    className?: string;
+    children: ReactNode;
+  }) => <a href={href} className={className} data-prefetch={prefetch === false ? 'false' : 'unset'}>{children}</a>,
+}));
 
 afterEach(() => cleanup());
 
@@ -47,5 +57,22 @@ describe('Breadcrumbs', () => {
     expect(last!.className).not.toContain('min-w-0');
     expect(last!.className).toMatch(/min-w-(28|40|\[)/);
     expect(last!.className).toContain('flex-1');
+  });
+
+  it('disables RSC prefetch for static-export breadcrumb links', () => {
+    const { container } = render(
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Integrations', href: '/integrations/' },
+          { label: 'gmail', href: '/library/?integration=gmail' },
+          { label: 'ClientFlow' },
+        ]}
+      />,
+    );
+
+    const links = [...container.querySelectorAll('ol a')];
+    expect(links).toHaveLength(3);
+    expect(links.map((link) => link.getAttribute('data-prefetch'))).toEqual(['false', 'false', 'false']);
   });
 });

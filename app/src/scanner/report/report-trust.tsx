@@ -2,7 +2,7 @@ import { BookOpen, CircleHelp, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import type { ScanWorkflowResult } from '../engine';
 import type { ScannerReportModelV2 } from '../scanner-v2-presentation';
-import { scanAnalysisPresentation, type AnalysisPresentation } from '../analysis-language';
+import { scanAnalysisPresentation } from '../analysis-language';
 import { safeReportText } from './report-safe-content';
 import { scannerRuleReferenceUrl } from '../../ui/product-links';
 
@@ -82,17 +82,6 @@ function AuthorityDetails({ model }: { model: ScannerReportModelV2 }) {
   );
 }
 
-function V2StatusDetails({ presentation }: { presentation: AnalysisPresentation }) {
-  if (presentation.label === 'Analysis complete') return null;
-  const tone = presentation.tone === 'neutral'
-    ? 'border-hairline'
-    : presentation.tone === 'caution'
-      ? 'border-sev-medium'
-      : 'border-sev-high';
-  return <p className={`mt-3 rounded-control border bg-raised/50 p-3 text-sm leading-6 text-ink ${tone}`}>{presentation.message}</p>;
-}
-
-
 export function ReportTrust({ scan }: { scan: ScanWorkflowResult }) {
   const model = v2Model(scan);
   const presentation = scanAnalysisPresentation(scan);
@@ -109,7 +98,6 @@ export function ReportTrust({ scan }: { scan: ScanWorkflowResult }) {
         </div>
       </div>
 
-      {model ? <V2StatusDetails presentation={presentation} /> : null}
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <div>
           <h4 className="flex items-center gap-1.5 font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">

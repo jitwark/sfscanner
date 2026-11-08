@@ -1,13 +1,9 @@
 # Scanner documentation
 
-**Latest Candidate8 status-only verification — October29:** [report](../audit/2026-10-29-candidate8-verification/REPORT.md), [source findings](../audit/2026-10-29-candidate8-verification/SOURCE-REVIEW.md), [candidate/requirements](../audit/2026-10-29-candidate8-verification/CANDIDATE-REQUIREMENTS.md), and [public delivery](../audit/2026-10-29-candidate8-verification/DELIVERY-REVIEW.md). Candidate8is locally staged; CLI readiness is integrated. Original product/quality acceptance and public delivery remain open. Earlier review banners below are historical. No new plan or prompt.
-
-**Current review — 2026-10-29:** start with [programme status](programme-status.md), [review](../audit/2026-10-29-completion-review/REPORT.md), [plan](../superpowers/plans/2026-10-29-product-integration-and-delivery.md), [prompt](../audit/2026-10-29-completion-review/IMPLEMENTATION-START-PROMPT.md) and [master](../audit/2026-10-24-master-remediation/MASTER-REPORT.md). Candidate6 is staged locally; dependency audit is clean. Module logic/integration, exact staged-byte reopen, original quality admission and public delivery remain open.
-
-**Current programme status — 2026-10-24:** start with [implementation/verification status](programme-status.md), [master audit](../audit/2026-10-24-master-remediation/MASTER-REPORT.md) and [final remediation plan](../superpowers/plans/2026-10-24-scanner-final-remediation.md). Fresh source/component checks do not update release artifacts or admit v2 hardened. The original five chunks and48 leaves remain the programme identity; no current aggregate percentage has been accepted. Existing v1/v2 reference boundaries below remain applicable.
+Start with [canonical programme status](programme-status.md) for the published v0.2.1 baseline, verified delivery and explicit semantic coverage limits. The [v0.3 roadmap](v0.3-roadmap.md) is planning only. A bounded scanner/workflow/library/analytics UI overhaul is currently authorized before the owner's long pause; new UI bytes need fresh qualification. Earlier Candidate6/Candidate8 reports are historical receipts, not current blockers or an execution queue.
 
 > Status: current documentation index; v1 remains the native compatibility surface and v2 is explicitly versioned.
-> Last verified: 2026-10-28
+> Last verified: 2026-11-08 (documentation reconciliation; technical contracts remain explicitly versioned)
 > Owner: Scanner maintainer
 > Source of truth: [`packages/scanner-core/src/v2/scan-workflow.ts`](../../packages/scanner-core/src/v2/scan-workflow.ts), [`packages/scanner-core/src/v2/admitted-registry.ts`](../../packages/scanner-core/src/v2/admitted-registry.ts), and [`contracts/`](../../contracts/)
 

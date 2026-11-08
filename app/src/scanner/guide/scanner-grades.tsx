@@ -5,7 +5,7 @@ const GRADES: Array<{ grade: string; band: string; means: string; act: string }>
     grade: 'LOW',
     band: 'under 25',
     means: 'No high or critical risk was found under the current scoring rules. Review any low or informational findings before import.',
-    act: 'Import it. Still connect your own credentials rather than reusing anything in the file.',
+    act: 'Review the remaining findings, then confirm the workflow uses your own credentials and expected destinations. A LOW grade is not a safety certificate.',
   },
   {
     grade: 'MEDIUM',
@@ -32,7 +32,7 @@ const SEVERITIES: Array<{ severity: string; weight: string; means: string }> = [
   { severity: 'HIGH', weight: '35', means: 'A credential is exposed in the file, or looks like one.' },
   { severity: 'MEDIUM', weight: '18', means: 'A door left open — reachable, but nothing is leaking yet.' },
   { severity: 'LOW', weight: '6', means: 'Worth knowing before you import. Not a defect.' },
-  { severity: 'INFO', weight: '1', means: 'The workflow is doing the right thing. Recorded so you can see it was checked.' },
+  { severity: 'INFO', weight: '1', means: 'A context observation was recorded. INFO is not a defect, and it does not imply the workflow is safe.' },
 ];
 
 export function ScannerGrades() {
@@ -91,8 +91,9 @@ export function ScannerGrades() {
         </p>
         <p>
           Repeat hits are deliberately discounted so one repeated pattern cannot drown out the rest
-          of the report. Deep-scan code and value-flow findings add review context; they do not become
-          an authoritative execution or safety verdict.
+          of the report. Code and value-flow findings are not admitted in the shipped scanner; if a
+          later profile admits them, they add review context rather than an authoritative execution
+          or safety verdict.
         </p>
         <p className="border-l-2 border-hairline-strong pl-3 text-ink-faint">
           Known limitation: workflow size is currently measured from raw node count, which includes

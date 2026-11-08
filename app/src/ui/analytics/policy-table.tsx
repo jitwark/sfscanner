@@ -28,17 +28,14 @@ export function PolicyTable({ policies, denominator }: PolicyTableProps) {
 
   return (
     <section className="min-w-0 rounded-panel border border-hairline bg-panel p-5">
-      <h3 className="font-display text-lg font-semibold text-ink">What the scanner finds</h3>
-      <p className="mt-1 max-w-[70ch] text-sm leading-6 text-ink-muted">
-        Every rule in the shipped <code className="font-mono text-2xs text-ink">beta-default</code>{' '}
-        profile, ranked by how many of the {bounded.toLocaleString('en-US')} catalogued workflows it
-        reaches. Findings recorded on entries without a scan under the current contract are included,
-        so this is reach across the catalogue, not a scanned-only rate. These are deterministic
-        pattern matches, not judgements — a finding is a thing to read before importing, not a
-        verdict.
-      </p>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <h3 className="font-display text-base font-semibold text-ink">Policies</h3>
+        <p className="font-mono text-2xs tabular-nums text-ink-faint">
+          Reach across {bounded.toLocaleString('en-US')} workflows
+        </p>
+      </div>
 
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-3 overflow-x-auto">
         <table className="w-full min-w-[34rem] border-collapse">
           <caption className="sr-only">Scanner policies by number of workflows affected</caption>
           <thead>

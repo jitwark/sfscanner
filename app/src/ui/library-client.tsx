@@ -56,7 +56,7 @@ export function LibraryClient({ initialItems, initialCounts, totalCount, initial
   const refreshAbort = useRef<AbortController | null>(null);
   const pageRef = useRef(1);
   useEffect(() => { pageRef.current = page; focusedItem.current = activeIndex >= 0 ? items[activeIndex] ?? null : null; }, [activeIndex, items, page]);
-  useEffect(() => { initialPage.current = page; }, [page]);
+  useEffect(() => { initialPage.current = readQueryState().page; }, []);
   const refresh = useCallback(async (
     nextQuery: string,
     nextFilters: SearchFilters,

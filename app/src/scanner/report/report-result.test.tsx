@@ -27,10 +27,22 @@ const UNKNOWN_INNOCENT = JSON.stringify({
   ],
   connections: { Start: { main: [[{ node: 'Unknown', type: 'main', index: 0 }]] } },
 });
+const MIXED = JSON.stringify({
+  name: 'Mixed coverage',
+  nodes: [
+    { id: 'Start', name: 'Start', type: 'n8n-nodes-base.manualTrigger', typeVersion: 1, parameters: {} },
+    { id: 'Command', name: 'Command', type: 'n8n-nodes-base.executeCommand', typeVersion: 1, parameters: { command: 'echo hello' } },
+  ],
+  connections: { Start: { main: [[{ node: 'Command', type: 'main', index: 0 }]] } },
+});
 
 /** The real pipeline boundary: worker engine envelope -> the model the report consumes. */
-function reportModel(json: string): ScannerReportModelV2 {
-  const result = scanWorkflowV2({ bytes: Uint8Array.from(new TextEncoder().encode(json)), profile: { id: 'beta-default', version: '2.0.0' } });
+function reportModel(json: string, limits?: Readonly<Record<string, number>>): ScannerReportModelV2 {
+  const result = scanWorkflowV2({
+    bytes: Uint8Array.from(new TextEncoder().encode(json)),
+    profile: { id: 'beta-default', version: '2.0.0' },
+    ...(limits === undefined ? {} : { limits }),
+  });
   if (!result.ok) throw new Error(result.code);
   return toScannerReportModelV2(result.result);
 }
@@ -110,6 +122,15 @@ describe('ReportResult', () => {
     await waitFor(() => expect(document.activeElement).toBe(heading));
   });
 
+  it('moves focus to the v2 decision instead of technical coverage', async () => {
+    const outcomeHeadingRef = { current: null } as RefObject<HTMLHeadingElement | null>;
+    render(<ReportResult scan={reportModel(fixture('clean.json'))} outcomeHeadingRef={outcomeHeadingRef} onRetry={vi.fn()} />);
+
+    const heading = screen.getByRole('heading', { name: 'Decision and next step' });
+    await waitFor(() => expect(document.activeElement).toBe(heading));
+    expect(screen.getByRole('heading', { name: 'Analysis coverage' })).not.toBe(heading);
+  });
+
   it('keeps the v1 report shape and grade when no v2 model is attached', () => {
     renderReport(createMockScanResult('beta-default'));
 
@@ -132,6 +153,44 @@ describe('ReportResult', () => {
     expect(screen.queryByText('No grade')).toBeNull();
     expect(screen.getAllByText(/No findings were returned for this scan\./).length).toBeGreaterThan(0);
     expect(screen.queryByText(/Analysis did not complete/i)).toBeNull();
+  });
+
+  it('puts the decision, findings, remediation, export, prerequisites, and technical evidence in hierarchy order', () => {
+    const { container } = renderReport(reportModel(fixture('clean.json')));
+    const headings = Array.from(container.querySelectorAll('h2')).map((heading) => heading.textContent);
+
+    expect(headings).toEqual([
+      'Decision and next step',
+      'Critical and high findings',
+      'Affected nodes',
+      'Remediation',
+      'Export or copy',
+      'Analysis coverage',
+      'Evidence and conclusions',
+      'Applicability and target context',
+      'Verified traces',
+    ]);
+  });
+
+  it('renders a real mixed-coverage assessment as Partial analysis with a retained grade and action', () => {
+    const scan = reportModel(MIXED, { maxStoredSourceSpans: 1 });
+    const omitted = scan.v2.limits.usage.find((limit) => limit.id === 'maxStoredSourceSpans');
+    expect(scan.v2.analysis.status).toBe('DEGRADED');
+    expect(scan.assessment).not.toBeNull();
+    expect(omitted?.omitted).toBeGreaterThan(0);
+
+    renderReport(scan);
+
+    expect(screen.getByLabelText('Analysis status: Partial analysis')).toBeTruthy();
+    expect(screen.getAllByText('Partial analysis').length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Some evidence was omitted, refused, failed, or not covered/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(`${scan.assessment!.grade} risk`)).toBeTruthy();
+    expect(screen.getByLabelText(`Risk score: ${scan.assessment!.score} out of 100`)).toBeTruthy();
+    expect(screen.getAllByText(/maxStoredSourceSpans/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/N8N_EXECUTE_COMMAND/).length).toBeGreaterThan(0);
+    expect(screen.getByText('Recommended next step:')).toBeTruthy();
+    expect(screen.queryByText('No grade')).toBeNull();
+    expect(screen.queryByText(/Analysis complete\./)).toBeNull();
   });
 
   it('renders a graded degraded v2 envelope with both coverage codes and its retained, redacted finding', () => {

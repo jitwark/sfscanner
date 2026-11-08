@@ -1,7 +1,6 @@
 import { ScannerClient } from '@/src/scanner/scanner-client';
 import { ScannerGuide } from '@/src/ui/scanner-guide';
 import { JsonLdScript, scannerJsonLd } from '../../src/seo/json-ld';
-import Link from 'next/link';
 import { canonicalAlternates } from '../../src/seo/page-meta';
 import { isPreviewBuild } from '../../src/seo/robots';
 import { Breadcrumbs } from '@/src/ui/breadcrumbs';
@@ -10,7 +9,7 @@ export const metadata = {
   ...(isPreviewBuild() ? {} : { alternates: canonicalAlternates('/scanner/') }),
   title: 'Workflow Scanner | n8n-secureflow',
   description:
-    'Check an n8n workflow before you import it. Finds pasted credentials, open webhooks and shell execution, entirely in your browser.',
+    'Check one n8n workflow after the page loads. Review pasted credentials, open webhooks and shell execution locally; results are advisory.',
 };
 
 export default function ScannerPage() {
@@ -18,10 +17,10 @@ export default function ScannerPage() {
     <div>
       <JsonLdScript data={scannerJsonLd()} />
 
-      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+      <div className="mx-auto flex max-w-5xl flex-col gap-7">
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Scanner' }]} className="rounded-control" />
 
-        <header className="flex max-w-2xl flex-col gap-3">
+        <header className="flex max-w-3xl flex-col gap-3">
           <p className="font-mono text-2xs uppercase tracking-[0.16em] text-accent-text font-bold">
             Local workflow scanner
           </p>
@@ -29,24 +28,41 @@ export default function ScannerPage() {
             Check a workflow before you run it
           </h1>
           <p className="text-base leading-7 text-ink-muted">
-            Review workflow structure, declared prerequisites, and supported security checks before importing an n8n workflow.
+            Paste or upload one workflow JSON export from n8n. See what the local scan found, what it
+            could not assess, and what to review before import.
           </p>
         </header>
 
         <ScannerClient />
 
-        <section aria-labelledby="scanner-purpose" className="max-w-3xl border-t border-hairline pt-6">
-          <h2 id="scanner-purpose" className="border-b border-hairline pb-2 font-sans text-xl font-bold text-ink">What the report helps you review</h2>
-          <p className="mt-3 text-sm leading-6 text-ink-muted">
-            It answers three questions: <strong className="font-semibold text-ink">is a credential
-            sitting in this file</strong>, <strong className="font-semibold text-ink">can this reach
-            further than a workflow should</strong>, and{' '}
-            <strong className="font-semibold text-ink">what will it need from me</strong>. Every
-            workflow in our{' '}
-            <Link href="/library/" prefetch={false} className="text-accent-text underline decoration-hairline-strong underline-offset-2 hover:decoration-current">
-              library
-            </Link>{' '}
-            has already been through the same checks.
+        <section aria-labelledby="scanner-purpose" className="border-t border-hairline pt-6">
+          <h2 id="scanner-purpose" className="font-sans text-xl font-bold text-ink">What this review gives you</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-control border border-hairline bg-panel p-4">
+              <h3 className="font-display text-sm font-semibold text-ink">Risk grade and score</h3>
+              <p className="mt-1 text-sm leading-6 text-ink-muted">
+                A triage signal from deterministic policy matches. No grade or score is shown when the
+                scanner cannot support a risk decision.
+              </p>
+            </div>
+            <div className="rounded-control border border-hairline bg-panel p-4">
+              <h3 className="font-display text-sm font-semibold text-ink">Analysis coverage</h3>
+              <p className="mt-1 text-sm leading-6 text-ink-muted">
+                What was examined, omitted, unavailable, or refused. Coverage describes evidence limits;
+                it is not a safety certificate.
+              </p>
+            </div>
+            <div className="rounded-control border border-hairline bg-panel p-4">
+              <h3 className="font-display text-sm font-semibold text-ink">Next actions</h3>
+              <p className="mt-1 text-sm leading-6 text-ink-muted">
+                Priority findings, remediation guidance, and declared prerequisites to confirm in n8n.
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-ink-muted">
+            This is a static review of one JSON export. It does not execute the workflow or prove runtime
+            safety. Library entries can have different coverage and versions, so rescan your exported copy
+            before import.
           </p>
         </section>
         <ScannerGuide />

@@ -15,7 +15,7 @@ export type FindingsSummaryProps = {
  * severity.
  *
  * A clean count needs a denominator, or "clean" silently means "nothing was
- * recorded", which is also what an entry nobody scanned looks like. So the
+ * recorded", which is also how an entry without a clean completed scan can look. So the
  * clean figure is stated against the completed scans it came from, and the
  * entries that merely have no findings recorded are named as such.
  *
@@ -35,22 +35,21 @@ export function FindingsSummary({ findings, total, completed }: FindingsSummaryP
 
   return (
     <section className="min-w-0 rounded-panel border border-hairline bg-panel p-5">
-      <h3 className="font-display text-base font-semibold text-ink">Findings across the corpus</h3>
-      <p className="mt-1 max-w-[60ch] text-sm leading-6 text-ink-muted">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <h3 className="font-display text-base font-semibold text-ink">Findings</h3>
+        <p className="font-mono text-2xs tabular-nums text-ink-faint">
+          {findings.workflowsWithFindings.toLocaleString('en-US')} of{' '}
+          {total.toLocaleString('en-US')} workflows
+        </p>
+      </div>
+      <p className="mt-1 font-mono text-2xs tabular-nums text-ink-faint">
         {hasFindings ? (
           <>
-            <strong className="text-ink">{findings.workflowsWithFindings.toLocaleString('en-US')}</strong>{' '}
-            workflows ({flaggedShare.toFixed(1)}%) carry at least one finding;{' '}
-            <strong className="text-ink">{findings.cleanScanned.toLocaleString('en-US')}</strong> of the{' '}
-            <strong className="text-ink">{completed.toLocaleString('en-US')}</strong> scans that completed
-            carry none. Another{' '}
-            <strong className="text-ink">{recordedButNotClean.toLocaleString('en-US')}</strong> entries have
-            no findings recorded but were not scanned under the current scanner, so they are not counted
-            clean. Most findings are low severity, and low severity means &ldquo;worth a look&rdquo;.
+            {flaggedShare.toFixed(1)}% flagged · {findings.cleanScanned.toLocaleString('en-US')} clean of{' '}
+            {completed.toLocaleString('en-US')} complete scans · {recordedButNotClean.toLocaleString('en-US')}{' '}
+            rows without a clean completed scan
           </>
-        ) : (
-          <strong className="text-ink">No findings were recorded in this release.</strong>
-        )}
+        ) : 'No findings recorded.'}
       </p>
 
       <div className="mt-4 flex h-3 w-full gap-[2px] overflow-hidden rounded-full border border-hairline/60 bg-raised p-[1px]" aria-hidden="true">

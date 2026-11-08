@@ -175,8 +175,8 @@ recommends it. Seven output surfaces stay first-class:
 | Scanner and CI | SARIF 2.1.0 with CWE tags | `--format sarif`, [`sarif-v2/output.ts`](../../packages/scanner-core/src/report/sarif-v2/output.ts) | Supported |
 | Scanner result | `table` (human-readable) | `--format table` | Supported |
 | Public dataset bundle | NDJSON shards plus a manifest | [`pipeline/export/ndjson.ts`](../../pipeline/export/ndjson.ts) | Supported |
-| Public dataset bundle | SQLite (schema version 2, FTS5 `workflow_search` table) | [`pipeline/export/sqlite.ts`](../../pipeline/export/sqlite.ts) | Supported |
-| Public dataset bundle | Excel `.xlsx` — `README`, `Workflows`, `Findings`, `Integrations`, `Tags`, `Triggers`, `Provenance`, `Requirements`, `Release Metadata`, `Data Dictionary` sheets | [`pipeline/export/excel.ts`](../../pipeline/export/excel.ts) | Supported |
+| Public dataset bundle | SQLite (published V4 bundle: schema version 3, FTS5 `workflow_search` table) | [`pipeline/export/sqlite.ts`](../../pipeline/export/sqlite.ts) | Supported |
+| Public dataset bundle | Excel `.xlsx` — `README`, `Workflows`, `Findings`, `Integrations`, `Tags`, `Triggers`, `Provenance`, `Requirements`, `Release Metadata`, `Data Dictionary`, `Preflight Coverage`, `Preflight Evidence` sheets (12 in the published V4 bundle) | [`pipeline/export/excel.ts`](../../pipeline/export/excel.ts) | Supported |
 
 No format is deprecated. Specifically:
 

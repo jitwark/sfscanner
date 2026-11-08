@@ -28,17 +28,19 @@ export function CompositionSections({ analytics }: { analytics: CorpusAnalytics 
   return (
     <>
       <section aria-labelledby="parts-heading" className="flex flex-col gap-4">
-        <SectionHeading id="parts-heading" title="What workflows are made of" />
+        <SectionHeading
+          id="parts-heading"
+          title="Composition"
+          aside={`${integrations.length.toLocaleString('en-US')} integrations · ${nodeTypes.length.toLocaleString('en-US')} node types`}
+        />
         <div className="grid grid-cols-1 min-w-0 gap-4 lg:grid-cols-2">
           <BarList
-            title="Most common integrations"
-            description="The services these workflows connect to."
+            title="Integrations"
             total={total}
             rows={integrations.map((row) => ({ label: row.label, count: row.count }))}
           />
           <BarList
-            title="Most common node types"
-            description="Including the plumbing — Set, If and HTTP Request are not integrations, but they are most of the work."
+            title="Node types"
             total={total}
             rows={nodeTypes.map((row) => ({ label: shortNodeType(row.label), count: row.count }))}
           />
@@ -46,17 +48,15 @@ export function CompositionSections({ analytics }: { analytics: CorpusAnalytics 
       </section>
 
       <section aria-labelledby="provenance-heading" className="flex flex-col gap-4">
-        <SectionHeading id="provenance-heading" title="Where it came from" />
+        <SectionHeading id="provenance-heading" title="Provenance" />
         <div className="grid grid-cols-1 min-w-0 gap-4 lg:grid-cols-2">
           <BarList
             title="Sources"
-            description="Every entry links back to a recorded permalink at its origin. GitHub sources are commit-pinned; official n8n templates link to a live page that its author can edit."
             total={total}
             rows={sources.map((row) => ({ label: SOURCE_LABEL[row.label] ?? row.label, count: row.count }))}
           />
           <BarList
-            title="Where descriptions come from"
-            description="Model-written descriptions are labelled as such on every workflow page. Deterministic facts — grades, readiness, structure — are never model-written."
+            title="Descriptions"
             total={total}
             rows={[
               { label: 'Generated', count: enrichment.generated },

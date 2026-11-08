@@ -39,14 +39,12 @@ export function RiskMatrix({ cells, max }: RiskMatrixProps) {
 
   return (
     <section className="min-w-0 rounded-panel border border-hairline bg-panel p-5">
-      <h3 className="font-display text-base font-semibold text-ink">Grade against complexity</h3>
-      <p className="mt-1 max-w-[60ch] text-sm leading-6 text-ink-muted">
-        Whether bigger workflows carry worse findings. Read down a column to compare grades within
-        one size band. Shading is proportional to the largest cell; every cell states its own count,
-        so nothing here is carried by colour.
-      </p>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <h3 className="font-display text-base font-semibold text-ink">Grade × complexity</h3>
+        <p className="font-mono text-2xs text-ink-faint">Unknown excluded</p>
+      </div>
 
-      <div className="mt-4 overflow-x-auto min-w-0">
+      <div className="mt-3 overflow-x-auto min-w-0">
         <table className="w-full min-w-0 border-collapse sm:min-w-[22rem]">
           <caption className="sr-only">Workflow count by security grade and complexity band</caption>
           <thead>
@@ -109,9 +107,6 @@ export function RiskMatrix({ cells, max }: RiskMatrixProps) {
           </tbody>
         </table>
       </div>
-      <p className="mt-3 border-t border-hairline/80 pt-2.5 text-2xs leading-5 text-ink-faint">
-        Note: Workflows with <span className="font-mono text-ink-muted">Unknown</span> grade (unassessed, refused, or indeterminate) are excluded from this matrix and detailed in the breakdown below.
-      </p>
     </section>
   );
 }

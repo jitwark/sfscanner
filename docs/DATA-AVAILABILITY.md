@@ -1,31 +1,21 @@
 # Data availability
 
-Status: engineering pre-release. The current checkout contains generated catalogue artifacts for local
-engineering and review, but they are not approved for public redistribution.
+Status: published link-only V4 dataset, verified November 8, 2026. The current UI overhaul does not change the dataset or grant new redistribution rights.
 
-The selected public-repository extraction is intentionally source-only until the owner confirms the
-release rights and the independent legal review is complete. It includes the scanner, static site,
-pipeline, CLI, contracts, examples, tests that do not require the private generated corpus, and release
-tooling. It does not include the current `data/`, `app/public/data/`, or acquired workflow fixture corpora.
+## Source checkout and release artifacts
 
-An approved release must add a versioned, provenance-complete data bundle produced by the corpus
-pipeline and pass the release gates, including rights, privacy, hash, graph-coherence, extraction, and
-legal checks. Do not infer permission from a public upstream URL or repository licence. Until that
-release record exists, the code-only public tree is not a deployable catalogue snapshot and local
-generated data must not be copied into a public repository.
+The selected public repository contains scanner/site/pipeline source, contracts, examples, tests and release tooling. It deliberately excludes private generated corpus inputs, native evidence and raw workflow bodies. Source-only CI runs source gates and source tests; a source checkout alone is not a complete catalogue build input.
 
-## What the catalogue artifact contains today (2026-09-27)
+The [v0.2.1 release](https://github.com/jitwark/sfscanner/releases/tag/v0.2.1) separately publishes the qualified dataset ZIP, checksums, licences and release record. Its public-data-model-v4 bundle includes 18 NDJSON relations, SQLite schema v3 and a 12-sheet Excel workbook. All five actual cross-format reopening checks pass. Verify the downloaded files against SHA256SUMS and the manifests inside the bundle.
 
-- **11,464 published entries, every one of them `link_only`.** No workflow JSON is distributed by this
-  release: it carries no download packs and no entry carries a download pointer. Each entry publishes
-  derived facts and its recorded upstream coordinates. See the
-  [authoritative licensing policy](LICENSING.md) for the licence split (MIT code, personal/non-commercial
-  aggregated catalogue) and how the entries were acquired.
-- **67 entries carry a recorded `not-scanned/source_unavailable` stamp**, because the repository that
-  hosted them no longer resolves and their files could not be re-read for a fresh scan. The other 221 of
-  the former 288 were re-fetched and re-scanned.
-- **Search/relevance signaling is agent-derived and not human-reviewed.** The relevance fixture's
-  judgments come from multi-agent adversarial review with arbitration; independent human sign-off is
-  outstanding. See [`SEARCH-QUALITY.md`](SEARCH-QUALITY.md).
+Both [Pages](https://jitwark.github.io/sfscanner/) and [Firebase](https://n8n-enterprise-1.web.app/sfscanner/) serve the qualified static catalogue baseline. New UI bytes are not qualified merely because the old site is live; see [programme status](scanner/programme-status.md).
 
-See also [`docs/sources.md`](sources.md) and the internal release plan for the pending decisions.
+## Rights and evidence boundaries
+
+- All 11,464 records are link-only; zero workflow bodies are redistributable. Public metadata records provenance and upstream coordinates without proxying the original workflow JSON.
+- The release passed its configured rights, privacy, extraction and governance controls. A public upstream URL or repository licence alone does not grant redistribution rights. See [licensing](LICENSING.md) and [sources](sources.md).
+- The configured dataset sweep examined 2,935,097 string leaves with zero email/token/private-IP/internal-host matches; this does not certify arbitrary future content.
+- Sixty-seven entries are source-unavailable: the pinned upstream source could not be reacquired. That does not establish deletion, archival, offline operation or safety. Three inputs have no body and fifteen scans explicitly returned NO_RESULT.
+- Search/relevance judgments are agent-derived; no independent human relevance sign-off is claimed. Dated search experiments are described in [search quality](SEARCH-QUALITY.md).
+
+The canonical measured census and formal semantic limits are in [programme status](scanner/programme-status.md). Do not copy private data into public source or infer model coverage from a completed scan.

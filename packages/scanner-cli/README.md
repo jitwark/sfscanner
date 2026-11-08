@@ -4,7 +4,7 @@
 
 > **Licensing:** MIT for this package's code and scanner tooling. The catalogue dataset has separate Personal / Non-Commercial terms; see https://github.com/jitwark/sfscanner/blob/main/docs/LICENSING.md.
 
-> Release candidate: the supported profile is `beta-default`; experimental hardened analysis is not publicly admitted. Supply-chain opt-in reports canonical advisory state and unknown coverage when no snapshot is admitted. See the [CLI guide](https://github.com/jitwark/sfscanner/blob/main/docs/scanner/cli-v2.md) for supported contracts and limits.
+> Published release `sfscanner@0.2.1`: the supported profile is `beta-default`; experimental hardened analysis is not publicly admitted. Supply-chain opt-in reports canonical advisory state and unknown coverage when no snapshot is admitted. See the [CLI guide](https://github.com/jitwark/sfscanner/blob/main/docs/scanner/cli-v2.md) for supported contracts and limits.
 ```bash
 npx sfscanner scan my-workflow.json
 ```

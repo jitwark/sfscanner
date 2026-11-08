@@ -134,6 +134,17 @@ describe('ReportFindings', () => {
     expect(cards[1].querySelector('h3')?.textContent).toBe('HIGH finding 1');
     expect(screen.getByRole('status').textContent).toContain('priority findings remain visible');
   });
+
+  it('places priority cards before secondary filters and scanner authority details', () => {
+    render(<ReportFindings scan={completeScan([finding(0, 'CRITICAL'), finding(1, 'LOW')])} />);
+
+    const priorityCard = screen.getAllByRole('article')[0];
+    const filterHeading = screen.getByRole('heading', { name: 'Filter other findings' });
+    const trustHeading = screen.getByRole('heading', { name: 'How to read this result' });
+    expect(priorityCard.compareDocumentPosition(filterHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(priorityCard.compareDocumentPosition(trustHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('shows v2 applicability, evidence class, effect, and safe trace availability', () => {
     const secretTracePayload = 'sk_live_trace_payload_must_not_render';
     const v2Scan = withV2(

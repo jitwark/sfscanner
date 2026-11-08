@@ -1,5 +1,7 @@
 # Architecture
 
+> Release reconciliation — November 8, 2026: this is an architecture reference. Older corpus counts and footprint measurements in dated sections are historical, not current release metrics. The qualified release has 11,464 link-only records; current release and in-progress UI scope are described in [programme status](scanner/programme-status.md).
+
 > Status: current
 > Last verified: 2026-09-04
 > Owner: Community Hub maintainers

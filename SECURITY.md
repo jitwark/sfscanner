@@ -1,8 +1,7 @@
 # Security policy
 
-> This is a single-maintainer project (see `GOVERNANCE.md`) with no numbered release yet. The
-> response expectations below are what one person can actually commit to, not an aspirational
-> SLA — treat the absence of a promise as more honest than an unenforceable one.
+> The current published release is `0.2.1`. This is a single-maintainer project
+> (see `GOVERNANCE.md`); response expectations are best-effort, not an SLA.
 
 ## Scope and boundary
 
@@ -21,11 +20,10 @@ rights decision; a link-only record points to its upstream source and is not pro
 
 | Version | Supported |
 | --- | --- |
-| `main` branch | Yes — this is the only thing that exists. No tagged or numbered release has shipped yet. |
+| `0.2.1` | Current published release; report issues against the qualified package or release source. |
+| `main` branch | Development source; new changes require their own qualification and do not imply a new package release. |
 
-Once a first tagged release ships, this table will be replaced with real version rows and this
-sentence will go away. Until then, "supported" means "the only build a report can be reproduced
-against."
+`0.2.1` is the supported published release. `main` is development source and does not imply a new package release.
 
 ## Reporting a vulnerability
 

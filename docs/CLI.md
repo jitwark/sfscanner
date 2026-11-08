@@ -1,9 +1,15 @@
 # Offline scanner CLI
 
-> Status: experimental, locally runnable
-> Last verified: 2026-09-24
+> Status: published `sfscanner@0.2.1`; local workspace adapter reference below
+> Last verified: 2026-11-08 (published archive and 23 package controls)
 > Owner: n8n-Secureflow Community Maintainers
-> Source of truth: `pipeline/cli/`
+> Source of truth: `packages/scanner-cli/`, published archive, and `pipeline/cli/` for the workspace adapter
+
+Install the published command with `npm install -g sfscanner@0.2.1`. The anonymous registry
+download matches the qualified release archive. See the [package usage guide](../packages/scanner-cli/README.md)
+for the installed CLI/MCP interface and [programme status](scanner/programme-status.md) for the
+release and coverage limits. The workspace commands below remain the local adapter reference;
+they do not require a new npm publication. The current UI overhaul does not change CLI semantics.
 
 The current CLI adapter runs the deterministic scanner locally. It does not upload workflow
 content or make a network request during a scan. It accepts JSON files, recursive directories, or

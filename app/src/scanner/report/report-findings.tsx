@@ -68,45 +68,49 @@ export function ReportFindings({ scan }: ReportFindingsProps) {
         <h2 id="scanner-findings-heading" className="font-display text-lg font-semibold text-ink">Critical and high findings</h2>
         <p className="font-mono text-xs text-ink-muted">{priority.length} priority</p>
       </div>
-      <div className="mt-4 flex flex-wrap items-end gap-3 border-y border-hairline py-3">
-        <div>
-          <label htmlFor="finding-severity-filter" className="font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">Severity</label>
-          <select id="finding-severity-filter" aria-label="Filter findings by severity" value={filters.severity}
-            onChange={(event) => setFilters((current) => ({ ...current, severity: event.target.value as FindingSeverityFilter }))}
-            className="mt-1 block min-h-11 rounded-control border border-hairline bg-raised px-3 text-sm text-ink">
-            <option value="ALL">All severities</option>
-            {SEVERITIES.map((severity) => <option key={severity} value={severity}>{severity}</option>)}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="finding-effect-filter" className="font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">Effect</label>
-          <select id="finding-effect-filter" aria-label="Filter findings by effect" value={filters.effect}
-            onChange={(event) => setFilters((current) => ({ ...current, effect: event.target.value as FindingEffectFilter }))}
-            className="mt-1 block min-h-11 rounded-control border border-hairline bg-raised px-3 text-sm text-ink">
-            <option value="ALL">All effects</option>
-            <option value="LEGACY_SCORE">Changes risk grade</option>
-            <option value="REPORT_ONLY">Report-only</option>
-          </select>
-        </div>
-        <button type="button" onClick={() => setFilters(DEFAULT_FILTERS)} disabled={!filtersActive}
-          aria-label="Clear finding filters"
-          className="inline-flex min-h-11 items-center rounded-control border border-hairline bg-raised px-3 font-mono text-xs font-semibold text-ink transition-all hover:border-accent-border hover:bg-accent-dim disabled:cursor-not-allowed disabled:opacity-40">
-          Clear filters
-        </button>
-      </div>
-      <p id="scanner-findings-status" className="mt-3 text-xs text-ink-muted" role="status" aria-live="polite">{statusText}</p>
-      <ReportTrust scan={scan} />
-
-      {emptyScan ? <p className="mt-4 rounded-control border border-accent-border/30 bg-accent-dim p-3 text-sm leading-6 text-ink" role="note">
-        {emptyFindingsMessage(scan)}
-      </p> : noMatches ? <p className="mt-4 rounded-control border border-accent-border/30 bg-accent-dim p-3 text-sm leading-6 text-ink" role="note">
-        No filterable findings match these filters. The scan did return findings; priority findings remain visible while you review the filterable findings.
-      </p> : null}
       {priority.length > 0 ? <div className="mt-4 divide-y divide-hairline">
         {visiblePriority.map((finding, index) => <FindingCard key={`${finding.policyId}-${index}`} finding={finding} model={model} />)}
       </div> : !filtersActive ? <p className="mt-3 flex items-start gap-2 text-sm text-ink-muted">
         <CircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-sev-low" aria-hidden="true" />
         <span>{noPriorityFindingsMessage(scan)}</span>
+      </p> : null}
+      <p id="scanner-findings-status" className="mt-3 text-xs text-ink-muted" role="status" aria-live="polite">{statusText}</p>
+
+      {!emptyScan ? <div className="mt-4 border-t border-hairline pt-4">
+        <h3 className="font-display text-base font-semibold text-ink">Filter other findings</h3>
+        <p className="mt-1 text-xs leading-5 text-ink-muted">Priority findings stay visible. These filters narrow the remaining findings.</p>
+        <div className="mt-3 flex flex-wrap items-end gap-3">
+          <div>
+            <label htmlFor="finding-severity-filter" className="font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">Severity</label>
+            <select id="finding-severity-filter" aria-label="Filter findings by severity" value={filters.severity}
+              onChange={(event) => setFilters((current) => ({ ...current, severity: event.target.value as FindingSeverityFilter }))}
+              className="mt-1 block min-h-11 rounded-control border border-hairline bg-raised px-3 text-sm text-ink">
+              <option value="ALL">All severities</option>
+              {SEVERITIES.map((severity) => <option key={severity} value={severity}>{severity}</option>)}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="finding-effect-filter" className="font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">Effect</label>
+            <select id="finding-effect-filter" aria-label="Filter findings by effect" value={filters.effect}
+              onChange={(event) => setFilters((current) => ({ ...current, effect: event.target.value as FindingEffectFilter }))}
+              className="mt-1 block min-h-11 rounded-control border border-hairline bg-raised px-3 text-sm text-ink">
+              <option value="ALL">All effects</option>
+              <option value="LEGACY_SCORE">Changes risk grade</option>
+              <option value="REPORT_ONLY">Report-only</option>
+            </select>
+          </div>
+          <button type="button" onClick={() => setFilters(DEFAULT_FILTERS)} disabled={!filtersActive}
+            aria-label="Clear finding filters"
+            className="inline-flex min-h-11 items-center rounded-control border border-hairline bg-raised px-3 font-mono text-xs font-semibold text-ink transition-all hover:border-accent-border hover:bg-accent-dim disabled:cursor-not-allowed disabled:opacity-40">
+            Clear filters
+          </button>
+        </div>
+      </div> : null}
+
+      {emptyScan ? <p className="mt-4 rounded-control border border-accent-border/30 bg-accent-dim p-3 text-sm leading-6 text-ink" role="note">
+        {emptyFindingsMessage(scan)}
+      </p> : noMatches ? <p className="mt-4 rounded-control border border-accent-border/30 bg-accent-dim p-3 text-sm leading-6 text-ink" role="note">
+        No filterable findings match these filters. The scan did return findings; priority findings remain visible while you review the filterable findings.
       </p> : null}
 
       {visibleOther.length > 0 ? <div className="mt-5 border-t border-hairline pt-4">
@@ -122,6 +126,8 @@ export function ReportFindings({ scan }: ReportFindingsProps) {
         Show more findings ({Math.min(FINDING_PAGE_SIZE, remainingFindings)})
       </button> : null}
     </section>
+
+    <ReportTrust scan={scan} />
 
     <section aria-labelledby="affected-nodes-heading" className="rounded-panel border border-hairline bg-panel p-4 sm:p-5">
       <div className="flex items-center justify-between gap-2">

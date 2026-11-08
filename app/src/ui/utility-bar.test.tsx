@@ -3,9 +3,10 @@ import { render, screen } from '@testing-library/react';
 import { UtilityBar } from './utility-bar';
 
 describe('UtilityBar', () => {
-  it('renders utility notice and version indicator', () => {
+  it('renders the utility notice and a truthful functional badge without an internal version', () => {
     render(<UtilityBar />);
     expect(screen.getByText(/zero telemetry/i)).toBeDefined();
-    expect(screen.getByText(/v0\.1\.0/i)).toBeDefined();
+    expect(screen.getByText('Static analysis · advisory')).toBeDefined();
+    expect(document.body.textContent).not.toMatch(/\bv?\d+\.\d+\.\d+\b/i);
   });
 });

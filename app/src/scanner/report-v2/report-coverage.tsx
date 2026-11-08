@@ -1,11 +1,10 @@
 import { AlertTriangle, CircleHelp, ShieldCheck } from 'lucide-react';
-import type { RefObject } from 'react';
 import type { AnalysisDiagnosticV2 } from '@hub/contracts/scanner-v2-result';
 import type { ScannerReportModelV2 } from '../scanner-v2-presentation';
 import { scanAnalysisPresentation } from '../analysis-language';
 import { safeReportText } from '../report/report-safe-content';
 
-type ReportCoverageProps = { model: ScannerReportModelV2; outcomeHeadingRef?: RefObject<HTMLHeadingElement | null> };
+type ReportCoverageProps = { model: ScannerReportModelV2 };
 
 /** Fixed prose for every capability status; never sourced from the model. */
 const CAPABILITY_STATUS_EXPLANATIONS: Readonly<Record<string, string>> = {
@@ -70,7 +69,7 @@ function DiagnosticExplanation({ diagnostic }: { diagnostic: AnalysisDiagnosticV
   </>;
 }
 
-export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps) {
+export function ReportCoverage({ model }: ReportCoverageProps) {
   const { analysis, limits } = model.v2;
   const presentation = scanAnalysisPresentation(model);
   const statusTone = presentation.tone === 'complete'
@@ -80,19 +79,18 @@ export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps
       : presentation.tone === 'caution'
         ? 'border-sev-medium bg-raised text-sev-medium'
         : 'border-sev-high bg-raised text-sev-high';
-  const messageTone = presentation.tone === 'complete'
-    ? 'border-hairline bg-raised/40'
-    : presentation.tone === 'neutral'
-      ? 'border-hairline bg-raised/40'
-      : presentation.tone === 'caution'
-        ? 'border-sev-medium bg-raised/50'
-        : 'border-sev-high bg-raised/50';
   const StatusIcon = presentation.tone === 'complete'
     ? ShieldCheck
     : presentation.tone === 'neutral'
       ? CircleHelp
       : AlertTriangle;
-  const omissions = limits.usage.reduce((total, limit) => total + limit.omitted, 0) + model.v2.stats.omittedFindings;
+  const limitOmissions = limits.usage.reduce((total, limit) => total + limit.omitted, 0);
+  const capabilityOmissions = analysis.capabilities.reduce((total, capability) => total + capability.omitted, 0);
+  // The engine's omittedFindings count already includes capability candidate omissions.
+  const omissions = limitOmissions + model.v2.stats.omittedFindings;
+  const completeCoverage = presentation.label === 'Analysis complete';
+  const cleanCoverage = completeCoverage && presentation.assessmentAvailable;
+  const hasRecordedOmissions = omissions > 0 || capabilityOmissions > 0;
   const diagnosticsById = new Map(analysis.diagnostics.map((diagnostic) => [diagnostic.id, diagnostic]));
   const referencedIds = new Set(analysis.capabilities.flatMap((capability) => capability.diagnosticIds));
   const unlinked = analysis.diagnostics.filter((diagnostic) => !referencedIds.has(diagnostic.id));
@@ -101,17 +99,13 @@ export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps
     <section aria-labelledby="scanner-v2-coverage-heading" className="rounded-panel border border-hairline bg-panel p-4 sm:p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 ref={outcomeHeadingRef} tabIndex={outcomeHeadingRef ? -1 : undefined} id="scanner-v2-coverage-heading" className="font-display text-lg font-semibold text-ink focus:outline-none">Analysis coverage</h2>
+          <h2 id="scanner-v2-coverage-heading" className="font-display text-lg font-semibold text-ink">Analysis coverage</h2>
           <p className="mt-1 text-sm leading-6 text-ink-muted">Execution coverage is evidence about what the scanner examined, not proof that unexamined behavior is safe.</p>
         </div>
         <span role="status" className={`inline-flex items-center gap-1.5 self-start rounded-control border px-2.5 py-1 font-mono text-2xs font-bold uppercase tracking-wider ${statusTone}`} aria-label={`Analysis status: ${presentation.label}`}>
           <StatusIcon className="h-3.5 w-3.5" aria-hidden="true" />
           {presentation.label}
         </span>
-      </div>
-
-      <div className={`mt-4 rounded-control border p-3 text-sm leading-6 text-ink ${messageTone}`} role={presentation.tone === 'warning' ? 'alert' : presentation.label === 'Analysis complete' ? undefined : 'note'}>
-        {presentation.message}
       </div>
 
       <div className="mt-5">
@@ -138,9 +132,12 @@ export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps
       </div>
 
       <div className="mt-5 border-t border-hairline pt-4">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <h3 className="font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">Bounded omissions and limits</h3>
-          <span className="font-mono text-xs text-ink-muted">{omissions} omitted</span>
+          <div className="font-mono text-xs text-ink-muted sm:text-right">
+            <span className="block">{omissions} recorded in limits/findings</span>
+            {capabilityOmissions > 0 ? <span className="block text-2xs">{capabilityOmissions} {capabilityOmissions === 1 ? 'capability unit' : 'capability units'} omitted</span> : null}
+          </div>
         </div>
         {limits.usage.length > 0 ? <ul aria-label="Analysis limit usage" className="mt-3 space-y-2">
           {limits.usage.map((limit) => <li key={limit.id} className="rounded-control border border-hairline bg-raised/40 p-3 text-sm">
@@ -148,7 +145,7 @@ export function ReportCoverage({ model, outcomeHeadingRef }: ReportCoverageProps
             <p className="mt-1 text-xs leading-5 text-ink-muted">{LIMIT_EXPLANATION}{limit.exhausted ? ` ${LIMIT_EXHAUSTED_EXPLANATION}` : ''}</p>
           </li>)}
         </ul> : <p className="mt-3 text-sm text-ink-muted">No scanner limit rows were returned.</p>}
-        {omissions === 0 ? <p className="mt-3 flex items-start gap-2 text-sm text-ink-muted" role="note"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sev-low" aria-hidden="true" />No bounded omissions were reported by the result.</p> : <p className="mt-3 flex items-start gap-2 text-sm text-sev-medium" role="note"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />Omitted evidence is not a clean result; review the affected limits before relying on the report.</p>}
+        {cleanCoverage && !hasRecordedOmissions ? <p className="mt-3 flex items-start gap-2 text-sm text-ink-muted" role="note"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sev-low" aria-hidden="true" />No bounded omissions were reported by the result.</p> : hasRecordedOmissions ? <p className="mt-3 flex items-start gap-2 text-sm text-sev-medium" role="note"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />Recorded omissions are not a clean result; review the affected limits and capability rows before relying on the report.</p> : <p className="mt-3 flex items-start gap-2 text-sm text-ink-muted" role="note"><CircleHelp className="mt-0.5 h-4 w-4 shrink-0 text-accent-text" aria-hidden="true" />{presentation.label === 'Assessment unavailable' ? 'No numeric omissions were reported, but no risk assessment is available; review the capability statuses and diagnostics below.' : 'No numeric omissions were reported, but coverage is incomplete; review the capability statuses and diagnostics below.'}</p>}
       </div>
 
       <div className="mt-5 border-t border-hairline pt-4">

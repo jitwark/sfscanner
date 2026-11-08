@@ -1,14 +1,19 @@
 import { cleanup, render, screen } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { CorpusAnalytics } from '@hub/contracts';
 import AnalyticsPage from './page';
 
-afterEach(() => cleanup());
+const state = vi.hoisted(() => ({ analytics: null as unknown as CorpusAnalytics }));
 
-// Five rows short of the corpus total (20 of 25) are read under the current contract, so
-// every figure below has a denominator that is visibly not the whole catalogue.
-// The numbers are small on purpose: the page's job is to state them, and a test
-// that mirrors the shipped corpus would only prove it can repeat itself.
+vi.mock('../../src/catalogue/analytics-node', () => ({
+  readAnalyticsSync: () => state.analytics,
+  readReleaseSnapshotSync: () => ({
+    generatedAt: '2026-11-07T09:32:14.957Z',
+    corpusSha256: '025e8707c8a9c93d99e6f191e9e23ec73403b7af0e2f419695857e32cd9ab634',
+  }),
+}));
+vi.mock('../../src/seo/json-ld', () => ({ JsonLdScript: () => null, pageJsonLd: () => ({}) }));
+
 const ANALYTICS: CorpusAnalytics = {
   schemaVersion: 4,
   total: 25,
@@ -75,87 +80,113 @@ const ANALYTICS: CorpusAnalytics = {
     modelledTypes: 6,
     partlyModelledTypes: 2,
     unmodelledTypes: 2,
-    versions: [
-      { nodeType: 'n8n-nodes-base.slack', version: '2', workflows: 25, instances: 30, semantics: 'MODELLED' },
-    ],
-    unknownTypes: [{ nodeType: 'n8n-nodes-base.mystery', workflows: 4, instances: 5, versions: ['1'] }],
+    versions: [],
+    unknownTypes: [],
   },
 };
 
-vi.mock('../../src/catalogue/analytics-node', () => ({
-  readAnalyticsSync: () => ANALYTICS,
-  readReleaseSnapshotSync: () => ({ generatedAt: '2026-10-20T00:00:00.000Z', corpusSha256: 'f'.repeat(64) }),
-}));
-vi.mock('../../src/seo/json-ld', () => ({ JsonLdScript: () => null, pageJsonLd: () => ({}) }));
+const ZERO_ANALYTICS: CorpusAnalytics = {
+  ...ANALYTICS,
+  total: 0,
+  searchable: 0,
+  rights: { redistributable: 0, linkOnly: 0 },
+  grades: { LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0, UNKNOWN: 0 },
+  triggers: [],
+  complexity: { simple: 0, medium: 0, complex: 0 },
+  capabilities: { hasCode: 0, hasAI: 0, hasWebhook: 0 },
+  integrations: [],
+  nodeTypes: [],
+  tags: [],
+  sources: [],
+  findings: {
+    totalOccurrences: 0,
+    workflowsWithFindings: 0,
+    cleanScanned: 0,
+    noFindingsRecorded: 0,
+    bySeverity: { CRITICAL: 0, HIGH: 0, MEDIUM: 0, LOW: 0, INFO: 0 },
+    policies: [],
+  },
+  nodeCountBins: [{ label: '1–3', min: 1, max: 3, count: 0 }],
+  nodeCountMedian: 0,
+  scanCoverage: {
+    total: 0,
+    bodyAvailable: 0,
+    scanned: 0,
+    notScanned: 0,
+    completed: 0,
+    degraded: 0,
+    indeterminate: 0,
+    noResult: 0,
+    noBody: 0,
+    historical: 0,
+    sourceUnavailable: 0,
+  },
+  v2Evidence: {
+    ...ANALYTICS.v2Evidence,
+    inventory: { available: 0, missing: 0, sourceUnavailable: 0 },
+    states: { current: 0, noResult: 0, historical: 0, unscanned: 0, sourceUnavailable: 0 },
+    current: { complete: 0, degraded: 0, indeterminate: 0 },
+  },
+};
+
+beforeEach(() => {
+  state.analytics = ANALYTICS;
+});
+
+afterEach(() => cleanup());
 
 describe('AnalyticsPage', () => {
-  /**
-   * The header used to claim the stored findings came "from the same
-   * deterministic scanner that runs in your browser". They do not: catalogue
-   * verdicts are admitted against a recorded v2 identity, and the browser is a
-   * separate run. The scanned figure has exclusions the page has to name, or
-   * "20 scanned" reads as "the corpus was scanned".
-   */
-  it('states the admitted v2 identity and what the current-verdict count excludes', () => {
+  it('renders current counts and a readable release snapshot date', () => {
     render(<AnalyticsPage />);
 
     const copy = document.body.textContent!.replace(/\s+/g, ' ');
-    expect(copy).not.toContain('same deterministic scanner that runs in your browser');
-    expect(copy).toContain('admitted v2 receipt matches the full engine, profile, ruleset and semantics identity');
-    expect(copy).toContain('17 analysis complete, 2 partial analysis, 0 analysis incomplete');
-    expect(copy).toContain('1 was refused without a result and publish no grade');
-    expect(copy).toContain('0 carry only a retired-engine verdict');
-    expect(copy).toContain('3 have no input');
-    expect(copy).toContain('2 are owner-ruled source-unavailable');
-    expect(copy).toContain('not security accuracy');
+    expect(copy).toContain('25 workflows');
+    expect(copy).toContain('20');
+    expect(copy).toContain('7 Nov 2026');
+    expect(copy).toContain('With findings');
+    expect(copy).toContain('16.0% of catalogue');
+    expect(copy).not.toContain('2026-11-07T09:32:14.957Z');
+    expect(copy).not.toContain('025e8707');
+    expect(copy).not.toContain('beta-default');
+    expect(copy).not.toContain('Current v2 results');
+    expect(copy).not.toContain('17 complete · 2 partial · 0 incomplete');
   });
 
-  /**
-   * A clean count is a claim about scans. The page must not let it stand as a
-   * whole-catalogue rate, and must name the rows that only have no finding
-   * recorded.
-   */
-  it('denominates findings by the scans that completed, not by the catalogue', () => {
-    render(<AnalyticsPage />);
+  it('removes both coverage sections and their descriptive copy', () => {
+    const { container } = render(<AnalyticsPage />);
+
+    expect(screen.queryByRole('heading', { name: 'Node semantics coverage' })).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Scan coverage' })).toBeNull();
+    expect(container.querySelector('#nodes-heading')).toBeNull();
+    expect(container.querySelector('#coverage-heading')).toBeNull();
 
     const copy = document.body.textContent!.replace(/\s+/g, ' ');
-    expect(copy).toContain('13 of the 17 scans that completed carry none');
-    expect(copy).toContain('6 entries have no findings recorded but were not scanned');
+    expect(copy).not.toContain('catalogue coverage, not security accuracy');
+    expect(copy).not.toContain('bound readable inputs');
+    expect(copy).not.toContain('every entry lands in exactly one state');
+    expect(copy).not.toContain('signature verified');
   });
 
-  /**
-   * The policy bars divide by the population their numerators came from, and a
-   * finding recorded on a row without a current-contract scan is still in that
-   * numerator — so the denominator is the catalogue, and the prose says so.
-   */
-  it('measures policy reach over the catalogue its findings were counted on', () => {
+  it('keeps chart denominators explicit and concise', () => {
     render(<AnalyticsPage />);
 
     const copy = document.body.textContent!.replace(/\s+/g, ' ');
-    expect(copy).toContain('how many of the 25 catalogued workflows it reaches');
-    expect(copy).toContain('not a scanned-only rate');
+    expect(copy).toContain('Reach across 25 workflows');
+    expect(copy).toContain('4 of 25 workflows');
+    expect(copy).toContain('13 clean of 17 complete scans');
+    expect(copy).toContain('6 rows without a clean completed scan');
+    expect(copy).toContain('80.0% of catalogue');
   });
 
-  /** States partition the catalogue; the page prints the identity receipts were checked against. */
-  it('renders coverage states that reconcile and the identity they were admitted under', () => {
+  it('renders empty and zero data without NaN, Infinity or a false clean claim', () => {
+    state.analytics = ZERO_ANALYTICS;
     render(<AnalyticsPage />);
 
     const copy = document.body.textContent!.replace(/\s+/g, ' ');
-    expect(copy).toContain('every entry lands in exactly one state');
-    expect(copy).toContain('beta-default v4');
-    expect(copy).toContain('v2-default v7 · signature verified');
-    expect(copy).toContain('catalogue v2.1.0');
-    expect(copy).toContain('20 available · 3 missing · 2 source-unavailable');
-    expect(copy).toContain('2026-10-20T00:00:00.000Z');
-  });
-
-  /** Node coverage is catalogue coverage; the page must not imply it is a safety measure. */
-  it('shows node semantics coverage with unmodelled types named', () => {
-    render(<AnalyticsPage />);
-
-    const copy = document.body.textContent!.replace(/\s+/g, ' ');
-    expect(copy).toContain('catalogue coverage, not security accuracy');
-    expect(copy).toContain('Counted over the 20 bound readable inputs, including the 1 engine refusal');
-    expect(screen.getByText('n8n-nodes-base.mystery')).toBeTruthy();
+    expect(copy).not.toMatch(/NaN|Infinity/);
+    expect(copy).toContain('No findings recorded.');
+    expect(copy).toContain('0.0% of catalogue');
+    expect(screen.getByRole('heading', { name: 'Security grades' })).toBeTruthy();
+    expect(screen.getByText('Unknown excluded')).toBeTruthy();
   });
 });

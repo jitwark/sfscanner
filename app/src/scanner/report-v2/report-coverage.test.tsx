@@ -95,7 +95,8 @@ describe('ReportCoverage', () => {
     expect(screen.getByText(/javascript-security/)).toBeTruthy();
     expect(screen.getByText(/3\/4 analyzed/)).toBeTruthy();
     expect(screen.getAllByText(/1 omitted/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('alert').textContent).toMatch(/no grade is shown/i);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.getByText(/Recorded omissions are not a clean result/i)).toBeTruthy();
     expect(screen.queryByText(/LOW risk/)).toBeNull();
 
     const capabilities = screen.getByRole('list', { name: 'Analysis capability coverage' });
@@ -114,9 +115,8 @@ describe('ReportCoverage', () => {
     render(<ReportCoverage model={modelOnly()} />);
 
     expect(screen.getByRole('status').textContent).toContain('Standard scan');
-    const note = screen.getAllByRole('note').find((element) => element.textContent?.includes('Standard scan'));
-    expect(note?.textContent).toMatch(/Some node behavior is not modelled/i);
-    expect(note?.textContent).toMatch(/Findings and the grade reflect the available evidence/i);
+    expect(screen.getByText(/No numeric omissions were reported, but coverage is incomplete/i)).toBeTruthy();
+    expect(screen.queryByText(/Some node behavior is not modelled/i)).toBeNull();
     expect(screen.queryByRole('alert')).toBeNull();
   });
 
@@ -127,7 +127,8 @@ describe('ReportCoverage', () => {
     render(<ReportCoverage model={mixed} />);
 
     expect(screen.getByRole('status').textContent).toContain('Partial analysis');
-    expect(screen.getByRole('alert').textContent).toMatch(/Some evidence was omitted, refused, failed, or not covered/i);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.getByText(/Recorded omissions are not a clean result/i)).toBeTruthy();
     expect(screen.queryByText('Standard scan')).toBeNull();
   });
 
@@ -172,10 +173,50 @@ describe('ReportCoverage', () => {
     render(<ReportCoverage model={scan} />);
 
     expect(screen.getByRole('status').textContent).toContain('Analysis incomplete');
-    expect(screen.getByRole('alert').textContent).toContain('Assessment unavailable');
     expect(screen.getByText(/No capability executions were returned/)).toBeTruthy();
-    expect(screen.getByText(/No bounded omissions were reported/)).toBeTruthy();
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.queryByText(/No bounded omissions were reported/)).toBeNull();
+    expect(screen.getByText(/No numeric omissions were reported, but coverage is incomplete/i)).toBeTruthy();
     expect(screen.queryByText(/risk$/i)).toBeNull();
+  });
+
+  it('does not show a green no-omissions cue when analysis has no assessment', () => {
+    const base = model();
+    const scan = model({
+      v2: { ...base.v2, analysis: { status: 'COMPLETE', capabilities: [], diagnostics: [] } },
+    });
+
+    render(<ReportCoverage model={scan} />);
+
+    expect(screen.getByRole('status').textContent).toContain('Assessment unavailable');
+    expect(screen.queryByText(/No bounded omissions were reported/)).toBeNull();
+    expect(screen.getByText(/No numeric omissions were reported, but no risk assessment is available/i)).toBeTruthy();
+  });
+
+  it('shows capability omissions without a green clean cue when coverage is incomplete', () => {
+    const base = model();
+    const scan = model({
+      v2: {
+        ...base.v2,
+        analysis: {
+          status: 'DEGRADED',
+          capabilities: [{
+            id: 'workflow-insights', version: '1.0.0', required: true, status: 'DEGRADED',
+            seen: 2, analyzed: 1, skipped: 0, omitted: 1, diagnosticIds: [],
+          }],
+          diagnostics: [],
+        },
+        limits: { ...base.v2.limits, usage: [] },
+        stats: { ...base.v2.stats, omittedFindings: 0 },
+      },
+      limits: { usage: [] },
+    });
+
+    render(<ReportCoverage model={scan} />);
+
+    expect(screen.getByText(/1 capability unit omitted/)).toBeTruthy();
+    expect(screen.getByText(/Recorded omissions are not a clean result/)).toBeTruthy();
+    expect(screen.queryByText(/No bounded omissions were reported/)).toBeNull();
   });
 
   it('composes v2 sections once, never grades degraded analysis, and keeps the v1 fallback intact', () => {
@@ -214,7 +255,21 @@ describe('ReportCoverage', () => {
 
     expect(screen.queryByText(/no risk grade/i)).toBeNull();
     expect(screen.getByRole('status').textContent).toContain('Partial analysis');
-    expect(screen.getByRole('alert').textContent).toMatch(/findings and any grade reflect only what was assessed/i);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.getByText(/No numeric omissions were reported, but coverage is incomplete/i)).toBeTruthy();
+  });
+
+  it('keeps the indeterminate caveat in the decision instead of repeating it in technical sections', () => {
+    const base = model();
+    const scan = model({
+      assessment: null,
+      v2: { ...base.v2, analysis: { status: 'INDETERMINATE', capabilities: [], diagnostics: [] } },
+    });
+
+    render(<ReportResult scan={scan} outcomeHeadingRef={ref()} onRetry={() => undefined} />);
+
+    expect(screen.getAllByText(/Assessment unavailable because required analysis did not finish/i)).toHaveLength(1);
+    expect(screen.queryByRole('alert')).toBeNull();
   });
 
   it('renders both fallback coverage codes (renderer-only)', () => {

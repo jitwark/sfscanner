@@ -92,6 +92,30 @@ describe('WorkflowViewClient', () => {
     expect(fetchEntryById).toHaveBeenCalledWith('r2', expect.any(AbortSignal));
   });
 
+  it('hydrates the reported bookmark and all six related ids', async () => {
+    const id = '26006871febf2139';
+    const related = [
+      '9a366a688a57c198',
+      '418dbcd24b4f3257',
+      'b0a8e7757835f64c',
+      '23989dded507086a',
+      '36a59699dc15cd56',
+      '3d67918986ec8b61',
+    ];
+    vi.mocked(useSearchParams).mockImplementation(() => fakeSearchParams({ id, related: related.join(',') }));
+    fetchEntryById.mockImplementation(async (requested) => entry(requested));
+
+    render(<WorkflowViewClient />);
+
+    const node = await screen.findByTestId('detail-entry');
+    expect(node.textContent).toBe(id);
+    expect(node.getAttribute('data-related')).toBe(related.join(','));
+    for (const requested of [id, ...related]) {
+      expect(fetchEntryById).toHaveBeenCalledWith(requested, expect.any(AbortSignal));
+    }
+    expect(fetchEntryById).toHaveBeenCalledTimes(7);
+  });
+
   it('shows an explicit empty related list, rather than crashing, when the URL carries none', async () => {
     vi.mocked(useSearchParams).mockImplementation(() => fakeSearchParams({ id: 'main' }));
     fetchEntryById.mockImplementation(async (id: string) => (id === 'main' ? entry('main') : null));

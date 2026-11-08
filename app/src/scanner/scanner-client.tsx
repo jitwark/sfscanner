@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { DEFAULT_SCANNER_LIMITS } from '@hub/contracts';
-import { AlertCircle, Lock, RotateCcw } from 'lucide-react';
+import { AlertCircle, RotateCcw } from 'lucide-react';
 import type { ScanWorkflowResult } from './engine';
 import { MAX_WORKFLOW_BYTES_LABEL } from './scanner-input-validation';
 import { runScanV2, ScanError } from './run-scan';
@@ -161,10 +161,6 @@ export function ScannerClient({ now = Date.now }: { now?: () => number } = {}) {
         {isScanning ? phaseMessage : ''}
       </p>
       <ScannerInput isScanning={isScanning} hasResult={result !== null} onScan={startScan} onDraftChange={() => setPrerequisites(null)} />
-      <div className="flex items-start gap-2 rounded-control border border-hairline bg-panel p-3 text-xs text-ink-muted" role="note">
-        <Lock className="mt-0.5 h-4 w-4 shrink-0 text-accent-text" aria-hidden="true" />
-        <span>Runs entirely in your browser: up to {MAX_WORKFLOW_BYTES_LABEL} is analysed locally in a Web Worker. Nothing is transmitted, and results are advisory.</span>
-      </div>
 
       {isScanning && progress
         ? <ScanProgress label={phaseMessage} pct={progress.pct} startedAt={progress.startedAt} now={now} onCancel={cancelCurrentScan} />

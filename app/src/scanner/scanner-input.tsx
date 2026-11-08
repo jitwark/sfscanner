@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useRef, useState, type ChangeEvent, type DragEvent } from 'react';
-import { AlertCircle, Globe, PencilLine, Shield, Upload } from 'lucide-react';
+import { AlertCircle, Globe, Lock, PencilLine, Shield, Upload } from 'lucide-react';
 import { MAX_WORKFLOW_BYTES, MAX_WORKFLOW_BYTES_LABEL, exceedsWorkflowByteLimit, parseApprovedDomains } from './scanner-input-validation';
 import { SAFE_SAMPLE_WORKFLOW } from './safe-sample-workflow';
 export { MAX_WORKFLOW_BYTES, MAX_WORKFLOW_BYTES_LABEL } from './scanner-input-validation';
@@ -132,15 +132,24 @@ export function ScannerInput({ isScanning, hasResult = false, onScan, onDraftCha
 
   return (
     <div className="rounded-panel border border-hairline bg-panel p-4 sm:p-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="font-display text-lg font-semibold text-ink">Scan a workflow</h2>
-          <p className="mt-1 text-sm text-ink-muted">Paste JSON or drop an n8n Download file.</p>
+          <p className="mt-1 text-sm text-ink-muted">Paste JSON or drop a workflow JSON file exported from n8n.</p>
         </div>
-        <div className="rounded-control border border-accent-border/50 bg-accent-dim px-3 py-2" aria-label="Selected scanner profile: Default scan">
+        <div className="max-w-full rounded-control border border-accent-border/50 bg-accent-dim px-3 py-2" aria-label="Selected scanner profile: Default scan">
           <p className="font-mono text-xs font-semibold text-accent-text">Default scan</p>
-          <p className="mt-0.5 text-2xs text-ink-muted">Workflow structure and built-in security policy analysis</p>
+          <p className="mt-0.5 text-2xs text-ink-muted">Structure + built-in policies · static review</p>
         </div>
+      </div>
+
+      <div className="mt-4 flex items-start gap-2 rounded-control border border-hairline bg-raised/40 p-3 text-xs leading-5 text-ink-muted" role="note">
+        <Lock className="mt-0.5 h-4 w-4 shrink-0 text-accent-text" aria-hidden="true" />
+        <p>
+          <strong className="font-semibold text-ink">Local scan after this page loads.</strong>{' '}
+          Up to {MAX_WORKFLOW_BYTES_LABEL} runs in a Web Worker in this tab. Nothing is transmitted by the
+          scanner; workflow JSON stays in memory. Normal page assets may use the network. Results are advisory.
+        </p>
       </div>
 
       <div aria-disabled={isScanning}
@@ -148,10 +157,13 @@ export function ScannerInput({ isScanning, hasResult = false, onScan, onDraftCha
         onDragLeave={() => setIsDragging(false)} onDrop={handleDrop}
         className={`mt-4 rounded-panel border-2 border-dashed p-4 transition-colors ${isDragging ? 'border-accent-border bg-accent-dim' : 'border-hairline bg-raised/30'} ${isScanning ? 'opacity-60' : ''}`}>
         {showEditor ? <>
-          <label htmlFor="workflow-json" className="sr-only">Workflow JSON</label>
+          <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+            <label htmlFor="workflow-json" className="font-mono text-2xs font-semibold uppercase tracking-wider text-ink-muted">Workflow JSON</label>
+            <span className="text-2xs text-ink-faint">One workflow export · JSON only</span>
+          </div>
           <textarea id="workflow-json" value={jsonText} disabled={isScanning}
             onChange={(event) => { onDraftChange?.(); setJsonText(event.target.value); setInputError(null); }}
-            placeholder="Paste workflow JSON here or drag and drop a .json file..." rows={6}
+            placeholder="Paste workflow JSON here or drag and drop a .json file..." rows={7}
             className="w-full resize-y bg-transparent font-mono text-xs text-ink placeholder:text-ink-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-border disabled:cursor-not-allowed" />
         </> : isScanning ? <div role="status" aria-live="polite" className="rounded-control border border-accent-border/30 bg-accent-dim p-3 text-sm text-ink">
           <p className="font-semibold">Scanning workflow locally</p>

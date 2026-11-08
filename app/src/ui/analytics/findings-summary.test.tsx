@@ -17,7 +17,7 @@ describe('FindingsSummary', () => {
   it('states explicitly when the release has no findings', () => {
     render(<FindingsSummary findings={noFindings} total={4} completed={0} />);
 
-    expect(screen.getByText('No findings were recorded in this release.')).toBeTruthy();
+    expect(screen.getByText('No findings recorded.')).toBeTruthy();
     expect(screen.queryByText(/Most findings are low severity/)).toBeNull();
   });
 
@@ -25,9 +25,9 @@ describe('FindingsSummary', () => {
    * The clean figure is a claim about scans, so it is stated against the scans
    * that completed, and the rows that merely have no finding recorded are named
    * as exactly that. Without both numbers "clean" reads as "nothing was found",
-   * which is also what an entry nobody scanned looks like.
+   * which is also how an entry without a clean completed scan can look.
    */
-  it('denominates the clean count by completed scans and separates the rows with no findings recorded', () => {
+  it('denominates clean scans and labels rows without a clean completed scan', () => {
     render(
       <FindingsSummary
         findings={{
@@ -43,11 +43,10 @@ describe('FindingsSummary', () => {
       />,
     );
 
-    const copy = screen.getByText(/carry at least one finding/).textContent!.replace(/\s+/g, ' ');
-    expect(copy).toContain('6 workflows (54.5%) carry at least one finding');
-    expect(copy).toContain('3 of the 4 scans that completed carry none');
-    // 5 rows with no findings recorded minus the 3 clean scans.
-    expect(copy).toContain('2 entries have no findings recorded but were not scanned');
-    expect(copy).toContain('not counted clean');
+    const copy = document.body.textContent!.replace(/\s+/g, ' ');
+    expect(copy).toContain('6 of 11 workflows');
+    expect(copy).toContain('54.5% flagged');
+    expect(copy).toContain('3 clean of 4 complete scans');
+    expect(copy).toContain('2 rows without a clean completed scan');
   });
 });

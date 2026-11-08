@@ -80,9 +80,8 @@ export function DetailLean({
             />
             {/*
               This region's handoff to the interactive view. `#before-you-run`
-              tells the reader the pre-run checks live there and
-              `FindingsSummary` sends them there for the rest of the report, so
-              the canvas cannot dead-end behind its own pan/zoom toolbar.
+              and `FindingsSummary` say that the remaining detail lives there,
+              so the canvas cannot dead-end behind its own pan/zoom toolbar.
 
               The copy no longer sells "pan, zoom" as what the click adds — the
               static script delivers those here now. It names the explorable
@@ -99,7 +98,7 @@ export function DetailLean({
             </p>
           </section>
 
-          <FindingsSummary entry={entry} interactiveHref={interactiveHref} />
+          <FindingsSummary entry={entry} />
         </div>
       </div>
 

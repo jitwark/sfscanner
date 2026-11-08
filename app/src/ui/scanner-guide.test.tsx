@@ -17,7 +17,13 @@ describe('ScannerGuide', () => {
     expect(await screen.findByRole('heading', { name: 'What the scanner checks' })).toBeTruthy();
     expect(await screen.findByRole('heading', { name: 'What it cannot tell you' })).toBeTruthy();
     expect(screen.getByText(/No high or critical risk was found/)).toBeTruthy();
+    expect(screen.getByText(/A LOW grade is not a safety certificate/)).toBeTruthy();
+    expect(screen.getByText(/^Default scan$/)).toBeTruthy();
+    expect(screen.getByText(/INFO is not a defect/)).toBeTruthy();
     expect(screen.getByText(/does not send workflow content to a remote service/)).toBeTruthy();
+    expect(screen.queryByText('Deep scan')).toBeNull();
+    expect(screen.queryByText(/Import it\./)).toBeNull();
+    expect(screen.queryByText(/doing the right thing/i)).toBeNull();
     expect(screen.queryByText(/18,311-workflow corpus/)).toBeNull();
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
   });
